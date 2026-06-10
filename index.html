@@ -66,6 +66,25 @@
   .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:35;opacity:0;pointer-events:none;transition:opacity .25s;}
   .backdrop.show{opacity:1;pointer-events:auto;}
 
+  .post-btn{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:8px;font-size:14px;padding:6px 14px;cursor:pointer;white-space:nowrap;font-weight:600;}
+  .post-btn:hover{background:var(--blue-h);border-color:var(--blue-h);}
+  .modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.4);overflow-y:auto;padding:48px 16px;}
+  .modal.show{display:flex;}
+  .modal-box{background:#fff;border-radius:14px;width:480px;max-width:100%;padding:24px 24px 22px;box-shadow:0 12px 40px rgba(0,0,0,.2);}
+  .modal-box h3{font-size:18px;font-weight:700;margin-bottom:4px;}
+  .modal-box .hint{color:var(--text3);font-size:12.5px;line-height:1.6;margin-bottom:16px;}
+  .field{margin-bottom:13px;}
+  .field label{display:block;font-size:13px;color:var(--text2);margin-bottom:5px;font-weight:600;}
+  .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:14px;font-family:inherit;outline:none;color:var(--text);}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);}
+  .field textarea{resize:vertical;min-height:64px;}
+  .field .req{color:var(--accent);}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;}
+  .btn-ghost{border:1px solid var(--line);background:#fff;color:var(--text2);border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;}
+  .btn-ghost:hover{background:var(--pill);}
+  .btn-primary{border:none;background:var(--blue);color:#fff;border-radius:8px;padding:8px 18px;font-size:14px;font-weight:600;cursor:pointer;}
+  .btn-primary:hover{background:var(--blue-h);}
+
   @media(max-width:760px){
     .layout{display:block;padding:18px 16px 48px;}
     .menu-btn{display:block;}
@@ -87,8 +106,33 @@
     <div class="date">2026年6月10日 · 星期三</div>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
+    <button class="post-btn" id="postBtn">✚ 投稿</button>
   </div>
 </header>
+
+<div class="modal" id="postModal">
+  <div class="modal-box">
+    <h3>投稿 · 推荐一条动态</h3>
+    <p class="hint">欢迎补充我们漏掉的一级市场交易或重要新闻。提交后会进入审核队列（生成一条 GitHub Issue），通过后由维护者加入页面。<br>需要一个免费 GitHub 账号；点"提交"会跳转到已填好内容的 Issue 页面，确认即可。</p>
+    <div class="field"><label>标题 <span class="req">*</span></label><input id="f-title" type="text" placeholder="如：某公司完成X亿元A轮，XX资本领投"></div>
+    <div class="field"><label>原文链接 <span class="req">*</span></label><input id="f-url" type="url" placeholder="https://…（可追溯的报道/公告链接）"></div>
+    <div class="field"><label>板块 <span class="req">*</span></label>
+      <select id="f-cat">
+        <option value="少数股权">少数股权</option>
+        <option value="M&A">M&A（并购/收购）</option>
+        <option value="IPO">IPO</option>
+        <option value="大厂动态">大厂动态</option>
+        <option value="AI动态">AI 动态</option>
+      </select>
+    </div>
+    <div class="field"><label>一句话摘要</label><textarea id="f-sum" placeholder="关键数字（金额/估值/轮次/投资方）尽量保留"></textarea></div>
+    <div class="field"><label>投稿人（选填）</label><input id="f-by" type="text" placeholder="署名或留空"></div>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="postCancel">取消</button>
+      <button class="btn-primary" id="postSubmit">提交投稿</button>
+    </div>
+  </div>
+</div>
 
 <div class="layout">
   <aside id="drawer">
@@ -104,7 +148,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>SpaceX 750亿美元史上最大IPO本周四登陆纳斯达克；Apollo 联手 Blackstone 推出350亿美元AI基础设施融资；中国筹备2950亿美元全国AI基建计划；四大云厂商2026年CAPEX指引合计7250亿美元，同比+77%；港股Q1 IPO募资1100亿港元创纪录。</p>
+      <p>SpaceX 750亿美元史上最大IPO本周四登陆纳斯达克；GSK 106亿美元收购 Nuvalent；大宗商品数据平台 Kpler 获 Sixth Street 10亿美元战略投资；Apollo 联手 Blackstone 推出350亿美元AI基础设施融资；中国筹备2950亿美元全国AI基建计划；四大云厂商2026年CAPEX指引合计7250亿美元同比+77%。</p>
     </div>
     <div class="result-meta" id="meta"></div>
     <div id="feed"></div>
@@ -154,8 +198,41 @@ const ITEMS = [
  sum:"多方产业资本合资组建的AI汽车品牌AIVA正式发布，火山引擎提供豆包大模型与智能座舱技术。概念车AIVA Origin Concept已亮相，首款量产车AIVA ME7覆盖20万元以上市场。",
  why:"典型的产业资本少数股权联合体打法：车企+电池+云厂商共同持股新主体。",
  tags:["产业资本","少数股权","智能汽车","中国"]},
+{t:"6月9日",src:"IT桔子",cat:"minority",regions:["欧洲","全球"],score:80,
+ title:"大宗商品数据平台 Kpler 获 Sixth Street 10亿美元战略投资",
+ url:"https://www.itjuzi.com/",
+ sum:"贸易与大宗商品情报平台 Kpler 完成 10 亿美元战略投资，由美国私募信贷巨头 Sixth Street 领投。少数股权方式注入，数据基础设施赛道罕见大额单笔。",
+ why:"非控股大额战略投资样本：私募信贷以少数股权切入数据资产。",
+ tags:["少数股权","战略投资","数据","私募信贷"]},
+{t:"6月9日",src:"IT桔子",cat:"minority",regions:["中国"],score:75,
+ title:"歌尔科技获 10亿元人民币战略投资",
+ url:"https://36kr.com/newsflashes/3845821928524040",
+ sum:"先进制造龙头歌尔科技完成 10 亿元人民币战略投资。声学/光学/VR 代工与零部件产业资本继续向上游集中。",
+ tags:["少数股权","战略投资","先进制造","中国"]},
+{t:"6月10日",src:"IT桔子",cat:"minority",regions:["中国"],score:73,
+ title:"凯思凯迪完成3.18亿元D轮，上海科创投、中国太平领投",
+ url:"https://mp.weixin.qq.com/s/FmQ-LrOdU01AIL8Be62zwA",
+ sum:"医疗健康企业凯思凯迪完成 3.18 亿元人民币 D 轮融资，由上海科创投集团与中国太平领投。国资与险资联合领投，延续中国一级市场本土资本主导的格局。",
+ why:"国资+险资领投，印证'本土资本接棒美元基金'的结构性趋势。",
+ tags:["少数股权","D轮","国资","医疗健康","中国"]},
+{t:"6月10日",src:"IT桔子",cat:"minority",regions:["中国"],score:71,
+ title:"具身智能公司千诀科技获数亿元A轮，京铭资本领投",
+ url:"https://mp.weixin.qq.com/s/4kKkiqPWsi6uPJ56OuWk-w",
+ sum:"机器人企业千诀科技完成数亿元人民币 A 轮，京铭资本领投。呼应工信部'2026年底人形机器人万台级落地'政策，具身智能一级市场持续升温。",
+ tags:["少数股权","A轮","机器人","中国"]},
+{t:"6月9日",src:"IT桔子",cat:"minority",regions:["欧洲"],score:72,
+ title:"德国火箭公司 Isar Aerospace 完成2.7亿欧元D轮",
+ url:"https://www.itjuzi.com/",
+ sum:"欧洲商业航天企业 Isar Aerospace 完成 2.7 亿欧元 D 轮融资。欧洲'新太空'赛道大额私募融资，对标美国 SpaceX 路线。",
+ tags:["少数股权","D轮","航天","欧洲"]},
 
 // ───────────── M&A ─────────────
+{t:"6月9日",src:"IT桔子",cat:"ma",regions:["美国"],score:86,
+ title:"GSK 106亿美元收购 Nuvalent：年内最大生物医药并购之一",
+ url:"https://www.itjuzi.com/",
+ sum:"葛兰素史克（GSK）宣布以约 106 亿美元（100% 股权）收购精准肿瘤药企 Nuvalent。大药企以巨额现金收购临床后期管线，延续 biopharma 的'管线并购'主线。",
+ why:"本轮更新最大一笔并购：百亿美元级生物医药整合。",
+ tags:["M&A","医药","美国","管线收购"]},
 {t:"6月9日",src:"Dealroom / 多家媒体",cat:"ma",regions:["中东","巴西"],score:83,
  title:"AD Ports 8.35亿美元收购巴西港口资产：阿联酋资本最大单笔出海、首次进入拉美",
  url:"https://dealroom.net/blog/recent-m-a-deals",
@@ -444,6 +521,28 @@ function closeDrawer(){ drawer.classList.remove("open"); backdrop.classList.remo
 document.getElementById("menuBtn").addEventListener("click",openDrawer);
 document.getElementById("drawerClose").addEventListener("click",closeDrawer);
 backdrop.addEventListener("click",closeDrawer);
+
+// 投稿 modal → 生成预填 GitHub Issue
+const REPO="jeanajin0409-art/market-pulse";
+const postModal=document.getElementById("postModal");
+function openPost(){ postModal.classList.add("show"); }
+function closePost(){ postModal.classList.remove("show"); }
+document.getElementById("postBtn").addEventListener("click",openPost);
+document.getElementById("postCancel").addEventListener("click",closePost);
+postModal.addEventListener("click",e=>{ if(e.target===postModal) closePost(); });
+document.getElementById("postSubmit").addEventListener("click",()=>{
+  const title=document.getElementById("f-title").value.trim();
+  const url=document.getElementById("f-url").value.trim();
+  const cat=document.getElementById("f-cat").value;
+  const sum=document.getElementById("f-sum").value.trim();
+  const by=document.getElementById("f-by").value.trim();
+  if(!title||!url){ alert("请填写标题和原文链接"); return; }
+  const body=`**板块**：${cat}\n**标题**：${title}\n**原文链接**：${url}\n**摘要**：${sum||"（未填）"}\n**投稿人**：${by||"匿名"}\n\n— 经由 DealHOT 网页投稿`;
+  const issueUrl=`https://github.com/${REPO}/issues/new?title=`+
+    encodeURIComponent(`[投稿] ${title}`)+`&body=`+encodeURIComponent(body)+`&labels=投稿`;
+  window.open(issueUrl,"_blank","noopener");
+  closePost();
+});
 
 function setCat(id){ state.cat=id; render(); if(window.matchMedia("(max-width:760px)").matches) closeDrawer(); }
 function setRegion(r){ state.region = state.region===r?null:r; render(); }

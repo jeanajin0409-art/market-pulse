@@ -36,17 +36,17 @@
 | `benthompson` | Ben Thompson · Stratechery | bigtech | 大厂战略分析 |
 | `karpathy` | Andrej Karpathy | ai | AI 技术/模型观点 |
 | `lexfridman` | Lex Fridman | ai | AI 访谈（信号稀，备用） |
+| `nathanbenaich` | Nathan Benaich · Air Street | ai / minority | AI 投资数据、State of AI 年报作者 |
+| `martin_casado` | Martin Casado · a16z | ai / bigtech | AI 基础设施/算力投资视角 |
 
-## D. 候选补充（我建议、待确认后并入上表）
+## D. 机构 / 媒体（→ 各板块 scoop 源）
 
-一级市场/AI 投资里高价值、目前不在名单上的：
+| handle | 名称 | 喂板块 | 备注 |
+|---|---|---|---|
+| `TheInformation` | The Information | 各板块 | 一级市场/AI 独家 scoop 源头，常被二手转引 |
+| `pitchbook` | PitchBook（机构） | minority / ma | PE/VC 交易数据库官方 |
+| `saranormous` | Sarah Guo · Conviction | minority / ai | AI 原生基金，早期 AI deal 嗅觉 |
+| `ttunguz` | Tomasz Tunguz · Theory | minority | SaaS/VC 数据与图表，量化感强 |
+| `packyM` | Packy McCormick · Not Boring | ai / minority | 公司/赛道 deep dive |
 
-| handle | 名称 | 为什么值得加 |
-|---|---|---|
-| `TheInformation` | The Information | 一级市场/AI 独家 scoop 的源头，常被二手转引 |
-| `saranormous` | Sarah Guo · Conviction | AI 原生基金，早期 AI deal 嗅觉 |
-| `nathanbenaich` | Nathan Benaich · Air Street | AI 投资数据、State of AI 年报作者 |
-| `martin_casado` | Martin Casado · a16z | AI 基础设施/算力投资视角 |
-| `ttunguz` | Tomasz Tunguz · Theory | SaaS/VC 数据与图表，量化感强 |
-| `packyM` | Packy McCormick · Not Boring | 公司/赛道 deep dive |
-| `pitchbook` | PitchBook（机构） | PE/VC 交易数据库官方 |
+> 2026-06-10：上述 7 个候选已全部并入正式 track 名单（用户确认）。
