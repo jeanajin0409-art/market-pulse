@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealHOT · 一级市场与AI动态</title>
+<style>
+  :root{
+    --text:#1a1a1a; --text2:#555; --text3:#888; --line:#ececec;
+    --blue:#1558d6; --blue-h:#0d3fa3; --bg:#ffffff; --pill:#f3f4f6; --pill-t:#666;
+    --accent:#e8540c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);font-size:15px;line-height:1.65;}
+  a{color:var(--blue);text-decoration:none;}
+  a:hover{color:var(--blue-h);text-decoration:underline;}
+
+  header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10;}
+  .nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:22px;padding:12px 20px;}
+  .logo{font-size:20px;font-weight:800;letter-spacing:-.5px;}
+  .logo span{color:var(--accent);}
+  .nav .date{color:var(--text3);font-size:13px;}
+  .nav .spacer{flex:1;}
+  .search{border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:14px;width:220px;outline:none;}
+  .search:focus{border-color:var(--blue);}
+
+  .layout{max-width:1080px;margin:0 auto;display:flex;gap:36px;padding:24px 20px 60px;}
+
+  aside{width:170px;flex-shrink:0;position:sticky;top:64px;align-self:flex-start;}
+  .side-title{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 8px;}
+  .side-title:first-child{margin-top:4px;}
+  .cat-btn{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;border:none;background:none;padding:7px 10px;border-radius:8px;font-size:14.5px;color:var(--text2);cursor:pointer;}
+  .cat-btn:hover{background:var(--pill);}
+  .cat-btn.active{background:#eef3fe;color:var(--blue);font-weight:600;}
+  .cat-btn .n{font-size:12px;color:var(--text3);}
+  .chip-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 11px;font-size:12.5px;color:var(--text2);cursor:pointer;}
+  .chip:hover{border-color:var(--blue);color:var(--blue);}
+  .chip.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+
+  main{flex:1;min-width:0;}
+  .lead{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:6px;}
+  .lead h1{font-size:21px;font-weight:700;margin-bottom:6px;}
+  .lead p{color:var(--text2);font-size:14.5px;}
+  .result-meta{color:var(--text3);font-size:13px;padding:12px 0 4px;}
+
+  .card{border-bottom:1px solid var(--line);padding:18px 0;}
+  .meta{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text3);margin-bottom:6px;flex-wrap:wrap;}
+  .meta .src{color:var(--text2);}
+  .score{margin-left:auto;font-size:11.5px;color:#b45309;background:#fef3e2;border-radius:6px;padding:1px 7px;font-weight:600;}
+  .card h2{font-size:16.5px;font-weight:650;line-height:1.5;margin-bottom:6px;}
+  .card .sum{color:var(--text2);font-size:14px;margin-bottom:7px;}
+  .card .why{color:var(--text3);font-size:13px;margin-bottom:9px;}
+  .card .why::before{content:"推荐理由：";color:#aaa;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{background:var(--pill);color:var(--pill-t);border-radius:6px;padding:2px 9px;font-size:12px;cursor:pointer;}
+  .tag:hover{background:#e4e7ec;}
+  .tag.region{background:#eef3fe;color:var(--blue);}
+  .empty{padding:48px 0;color:var(--text3);text-align:center;}
+
+  footer{border-top:1px solid var(--line);}
+  .foot{max-width:1080px;margin:0 auto;padding:20px;color:var(--text3);font-size:12.5px;line-height:1.9;}
+
+  @media(max-width:760px){
+    .layout{flex-direction:column;}
+    aside{width:100%;position:static;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+    .side-title{width:100%;margin:8px 0 2px;}
+    .cat-btn{width:auto;}
+    .search{width:140px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Deal<span>HOT</span></div>
+    <div class="date">2026年6月10日 · 星期三</div>
+    <div class="spacer"></div>
+    <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
+  </div>
+</header>
+
+<div class="layout">
+  <aside>
+    <div class="side-title">板块</div>
+    <div id="cats"></div>
+    <div class="side-title">地区</div>
+    <div class="chip-row" id="regions"></div>
+    <div class="side-title">AI 主题</div>
+    <div class="chip-row" id="topics"></div>
+  </aside>
+
+  <main>
+    <div class="lead">
+      <h1>今日导读</h1>
+      <p>SpaceX 750亿美元史上最大IPO本周四登陆纳斯达克；Apollo 联手 Blackstone 推出350亿美元AI基础设施融资；中国筹备2950亿美元全国AI基建计划；四大云厂商2026年CAPEX指引合计7250亿美元，同比+77%；港股Q1 IPO募资1100亿港元创纪录。</p>
+    </div>
+    <div class="result-meta" id="meta"></div>
+    <div id="feed"></div>
+  </main>
+</div>
+
+<footer>
+  <div class="foot">
+    DealHOT · 一级市场与AI动态聚合页（演示版）。设计参考 <a href="https://aihot.virxact.com/" target="_blank">AIHOT</a>，AI 动态数据来自 aihot.virxact.com 公开API，一级市场条目来自 Bloomberg、Crunchbase、Dealroom、IPOX、证券时报、Fast Company ME、Markets Group、Bain 等公开报道。<br>
+    所有摘要为二手整理，引用请回原文核对。时间为北京时间。
+  </div>
+</footer>
+
+<script>
+// cat: minority | ma | ipo | bigtech | ai
+// regions: 中国 美国 亚太 中东 巴西 欧洲 全球
+const ITEMS = [
+// ───────────── 少数股权 ─────────────
+{t:"6月9日",src:"Markets Group",cat:"minority",regions:["中国","亚太"],score:84,
+ title:"全球PE重新加仓中国：年内PE参与的中国公司交易已达250亿美元，创2021年以来新高",
+ url:"https://www.marketsgroup.org/news/investors-shift-from-u-s-to-asia-as-pe-funds-eye-return-to-china",
+ sum:"估值吸引力叠加全球资金对美元资产的再平衡，推动国际PE回流中国。EQT亚洲主席 Jean Eric Salata 表示，许多非美LP认为自己对美元资产敞口过高，正在向亚洲——尤其是香港与中国——重新配置。",
+ why:"方向性信号：外资PE对华少数股权与并购的风险偏好正在修复。",
+ tags:["PE","少数股权","资金流向"]},
+{t:"6月上旬",src:"Bain & Company",cat:"minority",regions:["亚太"],score:78,
+ title:"贝恩2026亚太PE报告：退出受阻下，少数股权出售与接续基金成为主流流动性工具",
+ url:"https://www.bain.com/insights/asia-pacific-private-equity-report-2026/",
+ sum:"LP回款压力下，GP越来越多采用接续基金（continuation vehicle）、基金间转让和少数股权出售来回笼资金。2025年亚太已公告M&A总额约1.1万亿美元（16,626笔），金额同比+59%。",
+ why:"理解当前亚太一级市场交易结构（为何少数股权交易变多）的框架性报告。",
+ tags:["PE","少数股权","接续基金","退出"]},
+{t:"6月上旬",src:"Moonfare",cat:"minority",regions:["亚太","中国"],score:72,
+ title:"亚太PE格局悄然换挡：印度单笔规模变大，中国转向本土资本主导",
+ url:"https://www.moonfare.com/blog/asia-pacific-private-equity-2026",
+ sum:"印度买断交易笔数减少但平均规模上升；中国市场持续向本土资本再平衡，地方基金与国资背景投资人份额扩大，部分全球资本收缩。",
+ why:"看清中国一级市场买方结构变化：国资/产业资本接棒美元基金。",
+ tags:["PE","少数股权","国资","印度"]},
+{t:"6月上旬",src:"White & Case M&A Explorer",cat:"minority",regions:["美国","欧洲"],score:70,
+ title:"美欧少数股权交易激增：财务投资人与产业方都在用minority stake替代全控收购",
+ url:"https://mergers.whitecase.com/highlights/minority-report-minority-stakes-spike-in-us-and-europe-for-sponsors-and-strategics-alike",
+ sum:"高利率与反垄断审查趋严背景下，sponsor 和 strategic 都更倾向以少数股权切入：保留卖方控制权、降低审批阻力，同时锁定后续优先购买权。",
+ why:"美国市场少数股权交易动机的结构性解读，可对照中国市场打法。",
+ tags:["少数股权","M&A结构","反垄断"]},
+{t:"6月9日 21:00",src:"公众号：火山引擎",cat:"minority",regions:["中国"],score:69,
+ title:"赛力斯、宁德时代等产业资本联合组建AI出行品牌AIVA，首款量产车2026年内亮相",
+ url:"https://mp.weixin.qq.com/s/toK_uIB9ECFHVaoCgK-w9Q",
+ sum:"多方产业资本合资组建的AI汽车品牌AIVA正式发布，火山引擎提供豆包大模型与智能座舱技术。概念车AIVA Origin Concept已亮相，首款量产车AIVA ME7覆盖20万元以上市场。",
+ why:"典型的产业资本少数股权联合体打法：车企+电池+云厂商共同持股新主体。",
+ tags:["产业资本","少数股权","智能汽车","中国"]},
+
+// ───────────── M&A ─────────────
+{t:"6月9日",src:"Dealroom / 多家媒体",cat:"ma",regions:["中东","巴西"],score:83,
+ title:"AD Ports 8.35亿美元收购巴西港口资产：阿联酋资本最大单笔出海、首次进入拉美",
+ url:"https://dealroom.net/blog/recent-m-a-deals",
+ sum:"阿布扎比AD Ports Group宣布8.35亿美元收购巴西港口与物流资产，为公司历史上最大交易，也是首次进入拉丁美洲。中东主权背景资本沿\"一带一路+南南贸易\"航线持续扫货基础设施。",
+ why:"中东×巴西双重命中：海湾资本出海拉美的标志性案例。",
+ tags:["M&A","中东资本","基础设施","出海"]},
+{t:"6月8日",src:"Intellizence",cat:"ma",regions:["美国","欧洲"],score:76,
+ title:"Ingredion 36亿美元收购 Tate & Lyle：食品配料行业整合再下一城",
+ url:"https://intellizence.com/insights/merger-and-acquisition/largest-merger-acquisition-deals/",
+ sum:"美国配料巨头Ingredion宣布以36亿美元收购英国Tate & Lyle，双方在甜味剂与特种淀粉上高度互补，交易需通过美欧反垄断审查。",
+ tags:["M&A","消费/食品","跨境"]},
+{t:"6月6日",src:"Intellizence",cat:"ma",regions:["欧洲"],score:74,
+ title:"Drahi 出售 SFR 落定：多家电信公司联合235亿美元接盘",
+ url:"https://intellizence.com/insights/merger-and-acquisition/largest-merger-acquisition-deals/",
+ sum:"Patrick Drahi旗下法国电信运营商SFR以235亿美元出售给电信财团，欧洲电信业\"四并三\"式整合的又一标志性交易，债务压力下的大型资产处置样本。",
+ tags:["M&A","电信","欧洲"]},
+{t:"6月5日",src:"Intellizence",cat:"ma",regions:["欧洲"],score:71,
+ title:"Triton 约30亿欧元从凯雷手中收购传动设备商 Flender",
+ url:"https://intellizence.com/insights/merger-and-acquisition/largest-merger-acquisition-deals/",
+ sum:"PE二手交易（sponsor-to-sponsor）：Triton Partners以约30亿欧元（35亿美元）从Carlyle收购德国工业传动企业Flender，风电传动业务为核心资产。",
+ tags:["M&A","PE二手交易","工业"]},
+{t:"6月4日",src:"Intellizence",cat:"ma",regions:["美国","欧洲"],score:70,
+ title:"Servier 26.5亿美元收购 Edgewise 肌营养不良症业务",
+ url:"https://intellizence.com/insights/merger-and-acquisition/largest-merger-acquisition-deals/",
+ sum:"法国药企Servier收购Edgewise Therapeutics旗下肌营养不良症管线，biopharma领域\"管线切割式\"并购（asset carve-out）的最新案例。",
+ tags:["M&A","医药","管线收购"]},
+{t:"6月上旬",src:"Fast Company ME",cat:"ma",regions:["中东"],score:75,
+ title:"中东Q1并购233亿美元（196笔），埃及逆势坚挺，2026开年动能延续",
+ url:"https://fastcompanyme.com/news/egypt-holds-its-ground-as-middle-east-ma-deals-hit-23-3-billion-in-q1-2026/",
+ sum:"海湾主权基金主导的能源、物流、AI基础设施收购持续放量；埃及凭借资产价格优势保持交易热度。咨询机构普遍预计中东全年M&A将续创新高。",
+ why:"中东并购市场的季度基准数据，适合做横向对比。",
+ tags:["M&A","中东","主权基金","季度数据"]},
+{t:"6月上旬",src:"Consultancy.lat",cat:"ma",regions:["巴西"],score:72,
+ title:"巴西科技并购全面回暖：本土整合+国际买家双轮驱动",
+ url:"https://www.consultancy.lat/news/1566/brazils-technology-ma-scene-is-back-whats-driving-the-rebound",
+ sum:"利率下行与雷亚尔企稳带动巴西科技并购反弹，金融科技、SaaS和支付赛道交易最活跃，国际战略买家与PE重新入场。",
+ tags:["M&A","巴西","科技","拉美"]},
+{t:"6月9日 13:53",src:"IT之家",cat:"ma",regions:["美国","欧洲"],score:78,
+ title:"SpaceX 手握以600亿美元收购 Cursor 的选择权；Cursor 欧洲总部落地伦敦",
+ url:"https://www.ithome.com/0/961/868.htm",
+ sum:"AI编程独角兽Cursor B2B年化营收约26亿美元，将在伦敦设欧洲总部并招聘约200人。SpaceX拥有以600亿美元收购Cursor的选择权，或支付100亿美元开展全新合作。",
+ why:"罕见的\"收购期权\"交易结构，且给出了Cursor最新ARR锚点。",
+ tags:["M&A","AI","收购期权","ARR"]},
+{t:"4月27日（背景）",src:"TechCrunch",cat:"ma",regions:["中国","美国"],score:73,
+ title:"中国否决 Meta 20亿美元收购 Manus：跨境AI并购的监管天花板",
+ url:"https://techcrunch.com/2026/04/27/china-vetoes-metas-2b-manus-deal-after-months-long-probe/",
+ sum:"历经数月审查后，中国监管否决Meta对AI智能体公司Manus的20亿美元收购。中美双向审查收紧，AI资产跨境交易的可行性窗口持续收窄。",
+ why:"评估中国AI资产跨境退出路径时必须纳入的监管判例。",
+ tags:["M&A","监管","AI","跨境"]},
+
+// ───────────── IPO ─────────────
+{t:"6月12日上市",src:"IPOX / 多家媒体",cat:"ipo",regions:["美国"],score:92,
+ title:"SpaceX IPO 定价135美元/股、募资约750亿美元，本周四登陆纳斯达克——史上最大IPO",
+ url:"https://www.ipox.com/ipox/the-ipox-update-06062026",
+ sum:"SpaceX美国IPO初步定价135美元/股，计划6月11日最终定价、12日在纳斯达克开始交易，募资规模约750亿美元，将超越沙特阿美成为历史最大IPO。亚洲市场已掀起\"SpaceX概念股\"代理炒作。",
+ why:"本周全球资本市场最大事件，将重新定义大型私有科技公司的退出路径。",
+ tags:["IPO","纳斯达克","航天","史上最大"]},
+{t:"6月9日 10:19",src:"IT之家",cat:"ipo",regions:["美国"],score:85,
+ title:"OpenAI 秘密提交 IPO 申请",
+ url:"https://www.ithome.com/0/961/792.htm",
+ sum:"OpenAI已秘密提交IPO申请（confidential filing），正式上市仍需较长时间。同日Altman旗下Tools for Humanity（World/Worldcoin，投后25亿美元）因营收困境裁员，肯尼亚叫停其运营、韩国开出隐私罚单。",
+ why:"AI一级市场最大的潜在退出事件正式进入流程。",
+ tags:["IPO","OpenAI","AI"]},
+{t:"6月上旬",src:"IndexBox / 证监会备案",cat:"ipo",regions:["中国"],score:74,
+ title:"安克创新递交港股上市备案，拟发行至多6851万股境外上市股份",
+ url:"https://www.indexbox.io/blog/hong-kong-ipo-market-attracts-international-investors-despite-spacex-listing/",
+ sum:"A股消费电子龙头安克创新向中国证监会提交港股上市备案，A+H阵营继续扩容。UBS与摩根大通均表示香港仍是全球前三IPO目的地。",
+ tags:["IPO","港股","A+H","消费电子"]},
+{t:"Q1数据",src:"证券时报",cat:"ipo",regions:["中国"],score:82,
+ title:"港股Q1：40家IPO募资近1100亿港元、同比+489%；318家基石投资人合计认购456.75亿港元",
+ url:"https://www.stcn.com/article/detail/3723858.html",
+ sum:"科技与新经济唱主角，40家新股中15家为A+H。基石投资总额同比增长超7倍——基石轮已成为一级市场资金（含国资与主权基金）参与港股定价的主通道。",
+ why:"基石认购是观察\"一级市场资金入场二级定价\"的最佳窗口，数据罕见地细。",
+ tags:["IPO","港股","基石投资","季度数据"]},
+{t:"年度展望",src:"证券时报",cat:"ipo",regions:["中国"],score:73,
+ title:"国际长线资金回流：2026年港股IPO募资有望突破3000亿港元",
+ url:"https://www.stcn.com/article/detail/3577322.html",
+ sum:"壁仞科技、智谱AI、MiniMax年初集体登陆港股奠定科技基调；科技+A to H双主题贯穿全年，多家机构预计全年募资超3000亿港元。",
+ tags:["IPO","港股","AI上市潮"]},
+{t:"6月10-11日",src:"IPOX IPO Calendar",cat:"ipo",regions:["美国"],score:66,
+ title:"本周纳斯达克新股：Parabilis Medicines（6/10）、Forbright（6/11）",
+ url:"https://www.ipox.com/upcoming-ipos",
+ sum:"SpaceX巨无霸登场前，生物医药公司Parabilis Medicines与银行Forbright分别于周三、周四在纳斯达克挂牌，测试窗口期市场承接力。",
+ tags:["IPO","纳斯达克","医药","金融"]},
+
+// ───────────── 大厂动态 ─────────────
+{t:"6月9日 02:18",src:"Apple Newsroom / Tech Startups",cat:"bigtech",regions:["美国"],score:88,
+ title:"WWDC 2026：新Siri AI由Google Gemini驱动，Apple每年向Google支付约10亿美元",
+ url:"https://techstartups.com/2026/06/09/top-tech-news-today-june-9-2026/",
+ sum:"Apple发布新一代Apple Intelligence与Siri AI：自然多轮对话、屏幕上下文感知、独立Siri AI应用。底层由Google Gemini提供支持，Apple为此签下约10亿美元/年的协议；macOS 27 Golden Gate宣布终止支持Intel Mac。受DMA影响，Siri AI在欧盟延迟上线。",
+ why:"Apple把核心AI体验外包给Google，大厂AI格局的分水岭事件。",
+ tags:["大厂","Apple","Google","产品"]},
+{t:"6月9日",src:"Tom's Hardware",cat:"bigtech",regions:["美国","全球"],score:90,
+ title:"四大云厂商2026年CAPEX合计7250亿美元、同比+77%：Amazon 2000亿、Microsoft 1900亿、Alphabet 1750-1850亿、Meta 1150-1350亿",
+ url:"https://www.tomshardware.com/tech-industry/big-tech/big-techs-ai-spending-plans-reach-725-billion",
+ sum:"Google、Microsoft、Meta、Amazon 2026年资本开支指引合计7250亿美元，较去年4100亿美元的纪录再增77%。分析师称\"AI泡沫\"的看空论点是\"garbage\"——需求端订单可见性仍在改善。",
+ why:"AI CAPEX的总量锚点，所有算力、电力、数据中心投资判断的基准数字。",
+ tags:["大厂","CAPEX","AI基建"]},
+{t:"6月10日 09:41",src:"IT之家",cat:"bigtech",regions:["欧洲","美国"],score:76,
+ title:"欧盟临时措施：责令Meta在反垄断调查期间向第三方AI助手免费开放WhatsApp",
+ url:"https://www.ithome.com/0/962/206.htm",
+ sum:"欧盟委员会认定Meta禁止第三方AI助手调用WhatsApp Business API（后改为付费）实质延续封锁，可能严重损害通用AI助手市场竞争，责令调查结束前免费开放。",
+ tags:["大厂","Meta","监管","欧盟"]},
+{t:"6月9日 18:07",src:"Bloomberg",cat:"bigtech",regions:["亚太","中国","美国"],score:79,
+ title:"台湾考虑收紧AI芯片对华出口管制，与美国措施对齐",
+ url:"https://www.bloomberg.com/news/articles/2026-06-09/taiwan-mulls-curbs-on-ai-chip-exports-to-china-to-align-with-us",
+ sum:"台湾当局正考虑对AI芯片出口中国大陆实施更严格管制以遏制走私，进一步与美国出口限制对齐，或招致北京方面反制。",
+ why:"直接影响中国AI算力供给与相关一级市场标的（国产替代链）估值逻辑。",
+ tags:["大厂","芯片","出口管制","地缘"]},
+{t:"6月9日 23:55",src:"The Decoder",cat:"bigtech",regions:["欧洲"],score:74,
+ title:"德国里程碑裁决：Google须为AI Overviews的错误回答直接担责",
+ url:"https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers",
+ sum:"德国法院裁定AI概览属Google\"自身言论\"，不适用搜索引擎的有限责任保护。为全球AI生成内容的责任认定树立先例。",
+ tags:["大厂","Google","监管","AI责任"]},
+{t:"6月10日 05:48",src:"Bloomberg",cat:"bigtech",regions:["美国"],score:68,
+ title:"IBM CEO：已在量子计算投入100亿美元，AI不必然导致裁员",
+ url:"https://www.bloomberg.com/news/videos/2026-06-09/ibm-ceo-ai-won-t-necessarily-lead-to-smaller-headcount-video",
+ sum:"Arvind Krishna透露IBM量子计算累计投资达100亿美元，联邦政府另承诺10亿美元在纽约Albany建芯片制造设施。",
+ tags:["大厂","IBM","量子计算"]},
+{t:"6月2日",src:"CNBC",cat:"bigtech",regions:["美国"],score:72,
+ title:"Nvidia发布Windows笔记本芯片：黄仁勋押注\"AI全栈\"的消费端落子",
+ url:"https://www.cnbc.com/2026/06/02/nvidias-new-pc-chips-are-ceos-bid-to-own-every-part-of-ai-stack.html",
+ sum:"Nvidia推出面向Windows PC的高性能笔记本芯片，从数据中心向消费终端延伸，意图占据AI技术栈每一层。",
+ tags:["大厂","Nvidia","芯片","终端"]},
+
+// ───────────── AI 动态 ─────────────
+{t:"6月10日 01:04",src:"Anthropic Newsroom",cat:"ai",regions:["美国","全球"],score:90,
+ title:"Anthropic 发布 Claude Fable 5 与 Claude Mythos 5：几乎全基准SOTA，定价较Mythos Preview砍半",
+ url:"https://www.anthropic.com/news/claude-fable-5-mythos-5",
+ sum:"Fable 5在软件工程、知识工作、视觉、科研等基准达到SOTA，Stripe称其\"将数月工程压缩至数天\"；Mythos 5使药物设计提速约10倍。两模型定价均为$10/百万输入、$50/百万输出tokens。",
+ why:"本周最重要的模型发布，直接抬高AI应用层公司的能力基线。",
+ tags:["AI","模型/技术","Anthropic"]},
+{t:"6月9日 16:13",src:"Bloomberg",cat:"ai",regions:["中国"],score:88,
+ title:"中国筹备2950亿美元（约2万亿元）五年期全国AI基础设施建设计划",
+ url:"https://www.bloomberg.com/news/articles/2026-06-09/china-prepares-295-billion-plan-to-fund-nationwide-ai-buildout",
+ sum:"未来五年投入约2万亿元人民币建设全国数据中心，目标在AI产业上超越美国。将直接拉动国产算力、电力、液冷、光模块等一级市场赛道。",
+ why:"中国版AI CAPEX总量锚点，对标美国四大厂的7250亿美元。",
+ tags:["AI","CAPEX","中国","政策"]},
+{t:"6月10日 00:54",src:"Bloomberg",cat:"ai",regions:["美国"],score:86,
+ title:"Apollo 与 Blackstone 联手350亿美元AI融资交易，Anthropic、Broadcom 参与",
+ url:"https://www.bloomberg.com/news/videos/2026-06-09/apollo-blackstone-fund-ai-boom-video",
+ sum:"华尔街正在为昂贵的AI芯片创建新融资模型，这笔350亿美元的交易可能标志着一个全新AI投资资产类别（芯片融资/算力ABS）的开端。",
+ why:"私募信贷进场AI CAPEX——一级市场资金结构正在被重写。",
+ tags:["AI","投融资","CAPEX","私募信贷"]},
+{t:"6月10日 05:24",src:"Bloomberg",cat:"ai",regions:["美国"],score:75,
+ title:"Super Micro 拟股权融资70亿美元，用于AI服务器组件采购",
+ url:"https://www.bloomberg.com/news/articles/2026-06-09/super-micro-plans-to-raise-7-billion-in-equity-for-ai-equipment",
+ sum:"为满足客户订单的AI服务器组件采购需求，Super Micro计划通过一揽子股权融资筹集70亿美元扩产。",
+ tags:["AI","CAPEX","投融资","服务器"]},
+{t:"6月5日当周",src:"Crunchbase News",cat:"ai",regions:["美国","亚太"],score:80,
+ title:"本周融资榜：Supabase 5亿美元（GIC领投，估值105亿）、Flourish 5亿、Suno 4亿（估值54亿）、AlphaSense 3.5亿（估值75亿）、Ramp 7.5亿",
+ url:"https://news.crunchbase.com/venture/biggest-funding-rounds-june-5-2026/",
+ sum:"超过一打数亿美元级融资落地：开发者平台Supabase由新加坡GIC领投5亿美元；类脑AI公司Flourish首轮即5亿美元；AI音乐Suno获Bond领投4亿美元；AI市场情报AlphaSense获3.5亿美元。",
+ why:"一周看清AI一级市场水温：钱在涌向infra、垂直Agent和\"新范式\"模型公司。",
+ tags:["AI","投融资","独角兽","主权基金"]},
+{t:"6月10日 09:46",src:"X：Rohan Paul",cat:"ai",regions:["美国"],score:75,
+ title:"180亿美元对冲基金 Magnetar：新产品弃用人类分析师，改用数百个AI智能体做股票研究",
+ url:"https://x.com/rohanpaul_ai/status/2064524448582267047",
+ sum:"AI负责搜索投资想法、研究公司、推荐头寸并预测趋势，人类仅保留交易批准权。买方机构\"AI替代研究员\"从概念走向产品化。",
+ tags:["AI","ARR/商业化","金融"]},
+{t:"6月9日 23:32",src:"Bloomberg",cat:"ai",regions:["亚太"],score:71,
+ title:"塔塔咨询（TCS）将放缓招聘、加大AI智能体使用：印度外包业的转折点",
+ url:"https://www.bloomberg.com/news/articles/2026-06-09/asia-s-largest-outsourcer-to-slow-hiring-as-ai-reshapes-industry",
+ sum:"亚洲最大外包商减少未来招聘规模，劳动密集型外包模式被AI智能体重塑，影响整个印度IT服务板块的增长叙事。",
+ tags:["AI","ARR/商业化","亚太","劳动力"]},
+{t:"6月9日 10:01",src:"X：Rohan Paul",cat:"ai",regions:["美国"],score:83,
+ title:"Musk 详解 SpaceX AI1 轨道AI数据中心卫星：单星120kW持续算力，计划部署百万颗",
+ url:"https://x.com/rohanpaul_ai/status/2064165951936094364",
+ sum:"单星峰值150kW（约等于一个NVIDIA GB300机架），激光链路约1Tbps互联，2027年底量产，近期目标吉瓦级轨道算力、长期太瓦级。",
+ why:"AI CAPEX的极限脑洞：算力基建从地面卷到近地轨道。",
+ tags:["AI","CAPEX","航天","算力"]},
+{t:"6月10日 05:06",src:"Claude Blog",cat:"ai",regions:["美国"],score:75,
+ title:"Claude Managed Agents 新增定时运行（cron）与环境变量保险库，Rakuten等已落地",
+ url:"https://claude.com/blog/whats-new-in-claude-managed-agents",
+ sum:"代理可按cron计划自动执行周期任务，vaults支持环境变量注入、真实密钥仅附加在网络边界。已集成Browserbase、Notion、Ramp、Sentry等CLI。",
+ tags:["AI","产品","Agent"]},
+{t:"6月10日 01:12",src:"X：OpenAI Devs",cat:"ai",regions:["美国"],score:76,
+ title:"OpenAI Responses API 网页搜索新增图片结果",
+ url:"https://x.com/OpenAIDevs/status/2064395155688616153",
+ sum:"开发者可构建展示商品、地点、视觉参考与来源链接的应用，电商与灵感类AI产品的搜索基建补齐。",
+ tags:["AI","产品","API"]},
+{t:"6月9日 22:10",src:"Google DeepMind Blog",cat:"ai",regions:["美国","全球"],score:81,
+ title:"Google DeepMind 发布 Gemma 4 12B：无编码器统一多模态架构，16GB显存可本地跑",
+ url:"https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model",
+ sum:"性能接近26B MoE但内存占用不到一半，原生支持音频输入，内置MTP drafter降低延迟，Apache 2.0开源，累计下载超1.5亿次。",
+ tags:["AI","模型/技术","开源"]},
+{t:"6月9日 23:18",src:"X：Google DeepMind",cat:"ai",regions:["美国","全球"],score:78,
+ title:"Google DeepMind 发布 Gemini 3.5 Live Translate：最新音频模型，主打快速跨语言实时翻译",
+ url:"https://x.com/GoogleDeepMind/status/2064366504745828689",
+ sum:"Google DeepMind推出Gemini 3.5 Live Translate，为其最新音频模型，专为低延迟的跨语言实时翻译场景构建。",
+ tags:["AI","模型/技术","产品","Google"]},
+{t:"6月9日 11:31",src:"公众号：小米 MiMo",cat:"ai",regions:["中国"],score:80,
+ title:"小米 MiMo-V2.5-Pro UltraSpeed：1T参数模型输出首破1000 tokens/s",
+ url:"https://mp.weixin.qq.com/s/EZvmrx8xfM9MZNCMDwImFQ",
+ sum:"FP4混合量化+DFlash块级并行推测解码+TileRT常驻内核引擎，速度提升约10倍、定价为标准版3倍。FP4权重与checkpoint已开源。",
+ tags:["AI","模型/技术","中国","推理加速"]},
+{t:"6月9日 19:45",src:"公众号：火山引擎",cat:"ai",regions:["中国"],score:70,
+ title:"火山引擎 TRAE Work 企业版上线：面向全员的AI办公平台，Work+Code双模式",
+ url:"https://mp.weixin.qq.com/s/f7QzLzwHPHHv3tWT1Wrnkw",
+ sum:"Work模式面向非技术岗，混合输入直接产出PPT/文档/周期报告；Code模式自然语言生成应用。企业后台统一配模型与限额，沙箱隔离+操作审计。",
+ tags:["AI","产品","中国","企业服务"]},
+{t:"6月9日 09:15",src:"IT之家",cat:"ai",regions:["中国"],score:70,
+ title:"工信部、国资委：2026年底人形机器人完成应用验证并常态部署，万台级规模落地",
+ url:"https://www.ithome.com/0/961/749.htm",
+ sum:"目标形成百个以上高价值场景；省级地区不少于20个场景单元、央企不少于10个；鼓励\"人形机器人即服务\"商业创新。",
+ why:"具身智能一级市场最重要的政策需求侧信号。",
+ tags:["AI","政策","机器人","中国"]},
+{t:"6月9日 00:16",src:"X：ChatGPT",cat:"ai",regions:["美国"],score:67,
+ title:"ChatGPT 新增数据图表生成功能，移动端与网页端同步上线",
+ url:"https://x.com/ChatGPTapp/status/2064018770839113769",
+ sum:"数据与对比可直接在ChatGPT内转化为图表，办公场景渗透继续加深。",
+ tags:["AI","产品"]},
+{t:"6月9日 06:50",src:"IT之家",cat:"ai",regions:["美国"],score:75,
+ title:"Altman宣布OpenAI进入第三阶段：自动化AI研究员、经济提速、人手一个AGI",
+ url:"https://www.ithome.com/0/961/721.htm",
+ sum:"与首席科学家联合发文，称到2028年3月大量研究将由AI完成；强调安全底线，呼吁成立国际机构，必要时可暂缓前沿模型研发。",
+ tags:["AI","模型/技术","战略"]}
+];
+
+const CATS = [
+  {id:"all", name:"全部"},
+  {id:"minority", name:"少数股权"},
+  {id:"ma", name:"M&A"},
+  {id:"ipo", name:"IPO"},
+  {id:"bigtech", name:"大厂动态"},
+  {id:"ai", name:"AI 动态"},
+];
+const REGIONS = ["中国","美国","亚太","中东","巴西","欧洲","全球"];
+const TOPICS = ["产品","模型/技术","CAPEX","ARR/商业化","投融资","政策"];
+
+let state = {cat:"all", region:null, topic:null, q:""};
+
+function counts(){
+  const c = {all: ITEMS.length};
+  ITEMS.forEach(i=>{ c[i.cat]=(c[i.cat]||0)+1; });
+  return c;
+}
+
+function matches(i){
+  if(state.cat!=="all" && i.cat!==state.cat) return false;
+  if(state.region && !i.regions.includes(state.region)) return false;
+  if(state.topic && !i.tags.some(t=>t.includes(state.topic))) return false;
+  if(state.q){
+    const q = state.q.toLowerCase();
+    const hay = (i.title+i.sum+(i.why||"")+i.tags.join(" ")+i.src).toLowerCase();
+    if(!hay.includes(q)) return false;
+  }
+  return true;
+}
+
+function render(){
+  const c = counts();
+  document.getElementById("cats").innerHTML = CATS.map(x=>
+    `<button class="cat-btn ${state.cat===x.id?"active":""}" onclick="setCat('${x.id}')">
+      <span>${x.name}</span><span class="n">${c[x.id]||0}</span></button>`).join("");
+  document.getElementById("regions").innerHTML = REGIONS.map(r=>
+    `<span class="chip ${state.region===r?"active":""}" onclick="setRegion('${r}')">${r}</span>`).join("");
+  document.getElementById("topics").innerHTML = TOPICS.map(t=>
+    `<span class="chip ${state.topic===t?"active":""}" onclick="setTopic('${t}')">${t}</span>`).join("");
+
+  const list = ITEMS.filter(matches);
+  const catName = CATS.find(x=>x.id===state.cat).name;
+  document.getElementById("meta").textContent =
+    `${catName}${state.region?" · "+state.region:""}${state.topic?" · "+state.topic:""}${state.q?" · 搜索“"+state.q+"”":""} — 共 ${list.length} 条，按板块与重要度排列`;
+
+  document.getElementById("feed").innerHTML = list.length ? list.map(i=>`
+    <article class="card">
+      <div class="meta">
+        <span>${i.t}</span><span>·</span><span class="src">${i.src}</span>
+        <span class="score">${i.score}</span>
+      </div>
+      <h2><a href="${i.url}" target="_blank" rel="noopener">${i.title}</a></h2>
+      <p class="sum">${i.sum}</p>
+      ${i.why?`<p class="why">${i.why}</p>`:""}
+      <div class="tags">
+        ${i.regions.map(r=>`<span class="tag region" onclick="setRegion('${r}')">${r}</span>`).join("")}
+        ${i.tags.map(t=>`<span class="tag" onclick="tagSearch('${t}')">${t}</span>`).join("")}
+      </div>
+    </article>`).join("")
+    : `<div class="empty">没有匹配的条目 — 试试清除筛选条件</div>`;
+}
+
+function setCat(id){ state.cat=id; render(); }
+function setRegion(r){ state.region = state.region===r?null:r; render(); }
+function setTopic(t){ state.topic = state.topic===t?null:t; render(); }
+function tagSearch(t){ const el=document.getElementById("q"); el.value=t; state.q=t; render(); }
+document.getElementById("q").addEventListener("input",e=>{ state.q=e.target.value.trim(); render(); });
+
+render();
+</script>
+</body>
+</html>
