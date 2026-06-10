@@ -61,12 +61,20 @@
   footer{border-top:1px solid var(--line);}
   .foot{max-width:1080px;margin:0 auto;padding:20px;color:var(--text3);font-size:12.5px;line-height:1.9;}
 
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;font-size:17px;padding:3px 10px;color:var(--text2);cursor:pointer;}
+  .drawer-close{display:none;position:absolute;top:10px;right:12px;border:none;background:none;font-size:24px;color:var(--text3);cursor:pointer;line-height:1;}
+  .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:35;opacity:0;pointer-events:none;transition:opacity .25s;}
+  .backdrop.show{opacity:1;pointer-events:auto;}
+
   @media(max-width:760px){
-    .layout{flex-direction:column;}
-    aside{width:100%;position:static;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
-    .side-title{width:100%;margin:8px 0 2px;}
-    .cat-btn{width:auto;}
-    .search{width:140px;}
+    .layout{display:block;padding:18px 16px 48px;}
+    .menu-btn{display:block;}
+    .nav{gap:12px;}
+    .nav .date{display:none;}
+    .search{flex:1;min-width:0;width:auto;}
+    aside{position:fixed;top:0;left:0;bottom:0;width:264px;max-width:80vw;background:#fff;z-index:40;padding:20px 18px;overflow-y:auto;transform:translateX(-105%);transition:transform .25s ease;box-shadow:2px 0 18px rgba(0,0,0,.12);}
+    aside.open{transform:translateX(0);}
+    .drawer-close{display:block;}
   }
 </style>
 </head>
@@ -74,6 +82,7 @@
 
 <header>
   <div class="nav">
+    <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
     <div class="date">2026年6月10日 · 星期三</div>
     <div class="spacer"></div>
@@ -82,7 +91,8 @@
 </header>
 
 <div class="layout">
-  <aside>
+  <aside id="drawer">
+    <button class="drawer-close" id="drawerClose" aria-label="关闭筛选">×</button>
     <div class="side-title">板块</div>
     <div id="cats"></div>
     <div class="side-title">地区</div>
@@ -100,6 +110,7 @@
     <div id="feed"></div>
   </main>
 </div>
+<div class="backdrop" id="backdrop"></div>
 
 <footer>
   <div class="foot">
@@ -427,7 +438,14 @@ function render(){
     : `<div class="empty">没有匹配的条目 — 试试清除筛选条件</div>`;
 }
 
-function setCat(id){ state.cat=id; render(); }
+const drawer=document.getElementById("drawer"), backdrop=document.getElementById("backdrop");
+function openDrawer(){ drawer.classList.add("open"); backdrop.classList.add("show"); }
+function closeDrawer(){ drawer.classList.remove("open"); backdrop.classList.remove("show"); }
+document.getElementById("menuBtn").addEventListener("click",openDrawer);
+document.getElementById("drawerClose").addEventListener("click",closeDrawer);
+backdrop.addEventListener("click",closeDrawer);
+
+function setCat(id){ state.cat=id; render(); if(window.matchMedia("(max-width:760px)").matches) closeDrawer(); }
 function setRegion(r){ state.region = state.region===r?null:r; render(); }
 function setTopic(t){ state.topic = state.topic===t?null:t; render(); }
 function tagSearch(t){ const el=document.getElementById("q"); el.value=t; state.q=t; render(); }
