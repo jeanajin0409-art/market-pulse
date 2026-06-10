@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>SpaceX 750亿美元史上最大IPO本周四登陆纳斯达克；GSK 106亿美元收购 Nuvalent；大宗商品数据平台 Kpler 获 Sixth Street 10亿美元战略投资；Apollo 联手 Blackstone 推出350亿美元AI基础设施融资；中国筹备2950亿美元全国AI基建计划；四大云厂商2026年CAPEX指引合计7250亿美元同比+77%。</p>
+      <p>Anthropic 估值达9650亿美元；SpaceX 750亿美元史上最大IPO本周四登陆纳斯达克；GSK 106亿美元收购 Nuvalent；Apollo+Blackstone 350亿美元AI芯片融资获谷歌财务担保；工信部印发"AI+信息通信"创新发展实施意见；四大云厂商2026年CAPEX指引合计7250亿美元同比+77%。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -243,6 +243,16 @@ const ITEMS = [
  url:"https://www.itjuzi.com/",
  sum:"欧洲商业航天企业 Isar Aerospace 完成 2.7 亿欧元 D 轮融资。欧洲'新太空'赛道大额私募融资，对标美国 SpaceX 路线。",
  tags:["少数股权","D轮","航天","欧洲"]},
+{t:"6月10日",d:"2026-06-10",src:"IT桔子",cat:"minority",regions:["全球","欧洲"],score:71,
+ title:"瑞士胰岛素贴片公司 CeQur 完成1亿美元E轮",
+ url:"https://www.vbdata.cn/intelDetail/1024160",
+ sum:"医疗健康企业 CeQur 完成 1 亿美元 E 轮融资。糖尿病管理可穿戴赛道持续获大额私募资金。",
+ tags:["少数股权","E轮","医疗健康","欧洲"]},
+{t:"6月10日",d:"2026-06-10",src:"IT桔子",cat:"minority",regions:["中国"],score:70,
+ title:"巴泰医疗完成2亿元D轮，创东方投资领投",
+ url:"https://mp.weixin.qq.com/s/9RYoaYjoEBN5WLhiL-M4-A",
+ sum:"医疗健康企业巴泰医疗完成 2 亿元人民币 D 轮融资，创东方投资领投。国内医疗器械中后期融资延续活跃。",
+ tags:["少数股权","D轮","医疗健康","中国"]},
 
 // ───────────── M&A ─────────────
 {t:"6月9日",d:"2026-06-09",src:"IT桔子",cat:"ma",regions:["美国"],score:86,
@@ -395,6 +405,28 @@ const ITEMS = [
  sum:"华尔街正在为昂贵的AI芯片创建新融资模型，这笔350亿美元的交易可能标志着一个全新AI投资资产类别（芯片融资/算力ABS）的开端。",
  why:"私募信贷进场AI CAPEX——一级市场资金结构正在被重写。",
  tags:["AI","投融资","CAPEX","私募信贷"]},
+{t:"6月10日 20:00",d:"2026-06-10",src:"Bloomberg",cat:"ai",regions:["美国"],score:80,
+ title:"走进 Anthropic：估值达9650亿美元的 AI 巨头",
+ url:"https://www.bloomberg.com/news/videos/2026-06-10/inside-anthropic-the-965-billion-ai-juggernaut-video",
+ sum:"Bloomberg 起底 Anthropic：最新估值约 9650 亿美元，跻身全球最高估值私有 AI 公司之列。Claude Fable 5/Mythos 5 发布后商业化与融资节奏进一步加速。",
+ why:"头部模型公司一级市场估值锚点：逼近万亿美元。",
+ tags:["AI","投融资","估值","Anthropic"]},
+{t:"6月10日 13:57",d:"2026-06-10",src:"Bloomberg",cat:"ai",regions:["美国"],score:74,
+ title:"谷歌财务担保支撑 Anthropic 350亿美元芯片租赁交易",
+ url:"https://www.bloomberg.com/news/videos/2026-06-10/google-s-backstops-underpin-35-bln-anthropic-chip-deal-video",
+ sum:"Apollo、Blackstone 主导的 350 亿美元 AI 芯片融资交易由谷歌提供财务担保（backstop）支撑，凸显云厂商以信用为算力租赁兜底的新融资范式。",
+ why:"承接 Apollo+Blackstone 交易：揭示算力融资的信用结构。",
+ tags:["AI","CAPEX","投融资","私募信贷"]},
+{t:"6月10日 15:07",d:"2026-06-10",src:"IT之家",cat:"ai",regions:["中国"],score:78,
+ title:"工信部印发《“人工智能+信息通信”创新发展实施意见》",
+ url:"https://www.ithome.com/0/962/456.htm",
+ sum:"工信部发布“AI+信息通信”实施意见，部署 AI 在电信网络、算力基础设施等领域的融合应用，进一步明确国产 AI 基建的政策需求侧。",
+ tags:["AI","政策","中国","AI基建"]},
+{t:"6月10日 16:21",d:"2026-06-10",src:"IT之家",cat:"ai",regions:["中国"],score:72,
+ title:"摩尔线程开源 MusaCoder 代码大模型：9B/27B 基于国产GPU全链路训练",
+ url:"https://www.ithome.com/0/962/509.htm",
+ sum:"摩尔线程开源 MusaCoder 代码大模型（9B/27B），基于国产 GPU 完成全链路训练，国产算力软硬件一体化又一进展。",
+ tags:["AI","模型/技术","中国","国产GPU"]},
 {t:"6月10日 05:24",d:"2026-06-10",src:"Bloomberg",cat:"ai",regions:["美国"],score:75,
  title:"Super Micro 拟股权融资70亿美元，用于AI服务器组件采购",
  url:"https://www.bloomberg.com/news/articles/2026-06-09/super-micro-plans-to-raise-7-billion-in-equity-for-ai-equipment",
