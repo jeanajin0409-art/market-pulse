@@ -77,6 +77,12 @@ curl -sH "User-Agent: $UA" "https://aihot.virxact.com/api/public/items?mode=sele
 
 返回字段 `title/source/publishedAt/summary/category/score/url`。挑 score≥65 且与一级市场视角相关的条目（资本开支、融资、ARR、重要模型/产品、政策），改写为上面的 ITEMS 格式。`publishedAt`（UTC）转北京时间 = +8 小时。若用户装有 aihot skill，其文档有完整 API 说明。
 
+### 1.5 IT桔子 OpenAPI（少数股权deal + 重要新闻，接入中）
+
+数据源 `openapi.itjuzi.com`，用于拉取中国一级市场投融资事件（少数股权）与重要新闻。
+凭证在仓库所有者本机 `.secrets/itjuzi.env`（含 ITJUZI_APPID / ITJUZI_APPKEY），**该目录已被 .gitignore 排除——绝不能把 appid/appkey 提交进这个公开仓库，也不要写进任何会推送的文件**。
+具体端点与鉴权方式待官方接口文档确认后补充到本节；文档到位前此数据源不可用，少数股权板块继续用 web search。
+
 ### 2. 搜一级市场新闻（web search）
 
 按板块搜索，时间限定到最近 1-3 天，示例查询：
