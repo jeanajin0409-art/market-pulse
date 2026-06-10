@@ -131,18 +131,9 @@ curl -s "https://openapi.itjuzi.com/news/get_spider_news_list_v2?date_pattern=1&
 
 **⚠️ 最大坑：WebSearch 的时间窗不可靠**，结果里会混进几个月前的旧推（甚至去年的 status）。所以**每条都必须核对日期**——从推文正文或结果里判断发布时间，只保留最近约 3 天的；拿不准日期的宁可丢。这是用 WebSearch 扒 X 与用正经 API 的本质区别，别跳过。
 
-**watchlist**（按板块选，不要一次全扫；✓=已实测可拉到）：
+**watchlist 在单独文件 `watchlist.md`**（按板块分组、含每个 handle 喂哪个板块）。每日更新时读它、按板块挑账号扫，不要一次全扫。该文件维护着核心 track 名单（一级市场 deal 记者、VC、AI 分析）+ 候选补充。要扩名单：先用本节方法实测某 handle 能拉到内容、标 ✓ 再加。
 
-| 板块 | handle | 说明 |
-|---|---|---|
-| ai / 投融资 | `rohanpaul_ai` ✓ | AI新闻+融资聚合，高频含数字（Figure/Cognition/OpenAI轮次都出自这） |
-| ai / CAPEX | `SemiAnalysis_` ✓ | 半导体/HBM/算力CAPEX深度，数字密 |
-| ai | `kimmonismus` | AI快讯/模型发布 |
-| ai | `AYi_AInotes` `berryxia` `shao__meng` | 中文AI论文/工具/Agent |
-| bigtech | `OpenAI` `OpenAIDevs` `AnthropicAI` `GoogleDeepMind` `ChatGPTapp` | 大厂官方发布 |
-| ma / 中东deal | `WestAsiaWatch` ✓ `InvestTurkey` | 中东/海湾资本并购（实测能出中东deal）|
-
-要扩 watchlist：先用本节方法实测某 handle 能拉到内容再加进表；优先选**发推带数字、原创为主**的账号。
+补充几个 watchlist.md 之外也好用的：`kimmonismus`（AI快讯）、`AYi_AInotes` `berryxia` `shao__meng`（中文AI）、大厂官方 `OpenAI` `OpenAIDevs` `AnthropicAI` `GoogleDeepMind`、中东 deal `WestAsiaWatch` ✓。
 
 **两种查询方式**：
 - `from:<handle>` 只对**固有性强的 handle 有效**（SemiAnalysis_、rohanpaul_ai 实测准）；像 `from:business`（Bloomberg）这种通用词 handle，`from:` 会失效、返回一堆杂账号——这类不要用 from:。
