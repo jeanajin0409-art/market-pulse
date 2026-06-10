@@ -1,12 +1,27 @@
 ---
 name: dealhot
-description: 更新/维护 DealHOT 一级市场动态聚合页（/Users/jeana/Documents/market-pulse/index.html）。当用户说"更新 DealHOT"、"刷新一级市场页面"、"更新市场动态网页"、"把今天的交易新闻加到页面"、"加一条 M&A/IPO/少数股权/融资新闻"、"重新生成 market-pulse"、"今天的一级市场日报"等任何涉及这个页面的增、删、改、重建时使用。即使用户只说"更新那个网页"且上下文涉及一级市场/IPO/并购/AI投融资，也应触发本 skill。页面数据内嵌在 HTML 里，不懂结构直接改容易把页面改坏——动这个文件前必须先读本 skill。
+description: 更新/维护 DealHOT 一级市场动态聚合页（github.com/jeanajin0409-art/market-pulse 仓库的 index.html，发布于 jeanajin0409-art.github.io/market-pulse）。当用户说"更新 DealHOT"、"刷新一级市场页面"、"更新市场动态网页"、"把今天的交易新闻加到页面"、"加一条 M&A/IPO/少数股权/融资新闻"、"重新生成 market-pulse"、"今天的一级市场日报"等任何涉及这个页面的增、删、改、重建时使用。即使用户只说"更新那个网页"且上下文涉及一级市场/IPO/并购/AI投融资，也应触发本 skill。页面数据内嵌在 HTML 里，不懂结构直接改容易把页面改坏——动这个文件前必须先读本 skill。
 ---
 
 # DealHOT — 一级市场与AI动态聚合页维护指南
 
-目标文件：`/Users/jeana/Documents/market-pulse/index.html`
-单文件静态页面，无构建步骤、无依赖。所有数据内嵌在 `<script>` 里的 `const ITEMS = [...]` 数组中，前端 JS 负责筛选与渲染。改完保存即生效（浏览器刷新可见）。
+目标文件：本仓库根目录的 `index.html`（仓库：`github.com/jeanajin0409-art/market-pulse`）
+单文件静态页面，无构建步骤、无依赖。所有数据内嵌在 `<script>` 里的 `const ITEMS = [...]` 数组中，前端 JS 负责筛选与渲染。
+
+**发布机制**：push 到 `main` 分支后，GitHub Pages 约 1 分钟内自动发布到
+`https://jeanajin0409-art.github.io/market-pulse/` ——这是对外分享的正式地址。
+
+**编辑前必须 `git pull`**（可能有其他 agent 刚推送过更新）；改完按下文验证，然后 commit + push。commit message 用一行中文概括（如"新增 6/11 三条M&A + 更新导读"）。
+
+**远程 agent 接入**：不在仓库所有者电脑上的 agent，用仓库的 contributor 部署钥匙（私钥文件由所有者提供）克隆与推送：
+
+```bash
+# 私钥文件放到本机后（例如 ~/keys/market-pulse-contributor-key，权限 600）：
+GIT_SSH_COMMAND="ssh -i ~/keys/market-pulse-contributor-key -o IdentitiesOnly=yes" \
+  git clone git@github.com:jeanajin0409-art/market-pulse.git
+# 之后的 pull/push 都带同样的 GIT_SSH_COMMAND，或写进仓库配置：
+git config core.sshCommand "ssh -i ~/keys/market-pulse-contributor-key -o IdentitiesOnly=yes"
+```
 
 ## 页面是什么
 
@@ -88,9 +103,9 @@ curl -sH "User-Agent: $UA" "https://aihot.virxact.com/api/public/items?mode=sele
 
 ```bash
 # 快速语法检查：抽出 ITEMS 数组（到 let state 为止，去掉最后一行）让 node 解析
-node -e "$(sed -n '/^const ITEMS/,/^let state/p' /Users/jeana/Documents/market-pulse/index.html | sed '\$d'); console.log('ITEMS ok:', ITEMS.length)"
-# 然后浏览器目检
-open /Users/jeana/Documents/market-pulse/index.html
+node -e "$(sed -n '/^const ITEMS/,/^let state/p' index.html | sed '\$d'); console.log('ITEMS ok:', ITEMS.length)"
+# 然后浏览器目检（macOS 用 open；Linux 环境跳过，靠语法检查 + push 后看线上页面）
+open index.html
 ```
 
 最低验证标准：页面打开后侧栏计数正常、新条目出现在对应板块、点击筛选不报错（开发者工具 Console 无红字）。
