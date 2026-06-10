@@ -125,6 +125,37 @@ curl -s "https://openapi.itjuzi.com/news/get_spider_news_list_v2?date_pattern=1&
 
 **配额纪律**：限流 1800 秒/200 次，且总调用次数有限额。每日更新的标准用量 = 1 次 token + 3 次业务调用，足够；**不要翻页轰炸、不要逐条查事件详情**。
 
+### 1.6 从 X (Twitter) 扒一级市场 / AI 信号
+
+不用 Twitter API，用 Claude 内置 **WebSearch** 工具，`allowed_domains=["x.com"]` + 查询 `from:<handle> <关键词>` 即可拉到某账号的相关推文（已实测 SemiAnalysis_、rohanpaul_ai 均通）。
+
+**⚠️ 最大坑：WebSearch 的时间窗不可靠**，结果里会混进几个月前的旧推（甚至去年的 status）。所以**每条都必须核对日期**——从推文正文或结果里判断发布时间，只保留最近约 3 天的；拿不准日期的宁可丢。这是用 WebSearch 扒 X 与用正经 API 的本质区别，别跳过。
+
+**watchlist**（按板块选，不要一次全扫；✓=已实测可拉到）：
+
+| 板块 | handle | 说明 |
+|---|---|---|
+| ai / 投融资 | `rohanpaul_ai` ✓ | AI新闻+融资聚合，高频含数字（Figure/Cognition/OpenAI轮次都出自这） |
+| ai / CAPEX | `SemiAnalysis_` ✓ | 半导体/HBM/算力CAPEX深度，数字密 |
+| ai | `kimmonismus` | AI快讯/模型发布 |
+| ai | `AYi_AInotes` `berryxia` `shao__meng` | 中文AI论文/工具/Agent |
+| bigtech | `OpenAI` `OpenAIDevs` `AnthropicAI` `GoogleDeepMind` `ChatGPTapp` | 大厂官方发布 |
+| ma / 中东deal | `WestAsiaWatch` ✓ `InvestTurkey` | 中东/海湾资本并购（实测能出中东deal）|
+
+要扩 watchlist：先用本节方法实测某 handle 能拉到内容再加进表；优先选**发推带数字、原创为主**的账号。
+
+**两种查询方式**：
+- `from:<handle>` 只对**固有性强的 handle 有效**（SemiAnalysis_、rohanpaul_ai 实测准）；像 `from:business`（Bloomberg）这种通用词 handle，`from:` 会失效、返回一堆杂账号——这类不要用 from:。
+- **无 from: 的主题搜索**同样能挖 deal：如 `M&A Middle East stake billion acquire`、`私募 战略投资 亿元`，配 `x.com` domain，实测能拉到中东/全球并购推文。一级市场 deal 发掘优先用这种。
+
+**查询示例**：
+- `from:rohanpaul_ai funding OR raise OR valuation billion`、`from:SemiAnalysis_ HBM OR capex OR Blackwell`
+- 主题式：`AI startup raises billion valuation`、`Middle East sovereign fund acquire stake`
+- ✓ 留：含数字（$Xbn、+47%、估值/轮次/市占）、且与一级市场或某板块主题相关
+- ✗ 丢：纯观点/meme/转推无原创、日期核对不在最近3天、与所有板块都无关
+
+**转成 ITEMS**：`src` 写 `X：<显示名>`（与现有页面 X 条目一致），`url` 用推文链接，`sum` 提炼含数字的要点，按内容归到对应 `cat`。AIHOT 的 API 已经覆盖很多 X 热门内容（见 1.1），**X 扒取是补充**——优先填 AIHOT/IT桔子没覆盖的一级市场 deal 与大额融资，避免与 AIHOT 条目重复。
+
 ### 2. 搜一级市场新闻（web search）
 
 按板块搜索，时间限定到最近 1-3 天，示例查询：
