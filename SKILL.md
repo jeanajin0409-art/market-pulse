@@ -77,11 +77,53 @@ curl -sH "User-Agent: $UA" "https://aihot.virxact.com/api/public/items?mode=sele
 
 返回字段 `title/source/publishedAt/summary/category/score/url`。挑 score≥65 且与一级市场视角相关的条目（资本开支、融资、ARR、重要模型/产品、政策），改写为上面的 ITEMS 格式。`publishedAt`（UTC）转北京时间 = +8 小时。若用户装有 aihot skill，其文档有完整 API 说明。
 
-### 1.5 IT桔子 OpenAPI（少数股权deal + 重要新闻，接入中）
+### 1.5 IT桔子 OpenAPI（中国少数股权deal + 并购收购 + 重要新闻）
 
-数据源 `openapi.itjuzi.com`，用于拉取中国一级市场投融资事件（少数股权）与重要新闻。
-凭证在仓库所有者本机 `.secrets/itjuzi.env`（含 ITJUZI_APPID / ITJUZI_APPKEY），**该目录已被 .gitignore 排除——绝不能把 appid/appkey 提交进这个公开仓库，也不要写进任何会推送的文件**。
-具体端点与鉴权方式待官方接口文档确认后补充到本节；文档到位前此数据源不可用，少数股权板块继续用 web search。
+中国一级市场的结构化数据源，已实测可用。完整文档：`itjuzi.com/shujuapi/V2BaseComponents/explain/explain.html`
+
+**凭证**：在仓库所有者本机 `.secrets/itjuzi.env`（含 ITJUZI_APPID / ITJUZI_APPKEY）。该目录被 .gitignore 排除——**绝不能把凭证提交进这个公开仓库或写进任何会推送的文件**。远程 agent 需要所有者另行提供一份 env 文件，同样放本机 git 之外。
+
+**鉴权**（token 有效期 1 小时，每次更新流程开头取一次即可）：
+
+```bash
+source .secrets/itjuzi.env
+TOKEN=$(curl -s -X POST "https://openapi.itjuzi.com/oauth2.0/get_access_token" \
+  -d "appid=$ITJUZI_APPID&appkey=$ITJUZI_APPKEY&granttype=client_credentials" | jq -r '.data.access_token')
+# 之后所有请求带头（注意 AUTHORIZATION 全大写、Bearer 后有空格）：
+# -H "AUTHORIZATION: Bearer $TOKEN"
+```
+
+**接口与板块对应**（GET/POST 均可；`date_pattern=3` 按事件发生时间、快讯用 `1` 按发布时间；日期格式 `2026-06-10`；返回统一为 `{code:1000,info:"Success",data:[...]}`，中文是 \u 转义，用 jq 取字段自动解码）：
+
+| 端点 | 内容 | 喂哪个板块 |
+|---|---|---|
+| `/investevent/get_investevent_list_v2` | 投资事件 | minority（中国少数股权） |
+| `/merger/get_acquisition_list_v2` | 收购事件 | ma（中国） |
+| `/merger/get_merger_list_v2` | 合并事件 | ma（中国） |
+| `/news/get_spider_news_list_v2` | 快讯 | 各板块补充、大厂动态 |
+
+```bash
+Y=$(date -v-1d +%Y-%m-%d 2>/dev/null || date -d yesterday +%Y-%m-%d); T=$(date +%Y-%m-%d)
+# 最近24小时投资事件（按融资时间倒序）
+curl -s "https://openapi.itjuzi.com/investevent/get_investevent_list_v2?date_pattern=3&date_start=$Y&date_end=$T&limit=50&order=1&order_rules=1" -H "AUTHORIZATION: Bearer $TOKEN"
+# 最近24小时收购事件
+curl -s "https://openapi.itjuzi.com/merger/get_acquisition_list_v2?date_pattern=3&date_start=$Y&date_end=$T&limit=50" -H "AUTHORIZATION: Bearer $TOKEN"
+# 最近24小时快讯（可加 keywords=xxx 按标题搜）
+curl -s "https://openapi.itjuzi.com/news/get_spider_news_list_v2?date_pattern=1&date_start=$Y&date_end=$T&limit=100" -H "AUTHORIZATION: Bearer $TOKEN"
+```
+
+**关键返回字段**：
+- 投资事件：`event_title`、`event_des`、`round_name`（轮次）、`detail_amount`（**单位：万**）、`currency_name`、`leading_investor`/`following_investor`（投资方）、`com_name`/`com_industry_name`、`invest_year/month/day`、`news[]`（关联报道，含可用的原文链接）
+- 收购：另有 `purchaser[]`（收购方）、`equity_ratio`（股比）、`purchase_year/month/day`
+- 快讯：`news_title`、`news_time`、`news_source`、`news_url`、`related_party[]`（关联主体）
+
+**入选门槛**（API 一天返回上百条，页面只收重要的）：
+- 投资事件：金额 ≥1 亿元人民币（`detail_amount`≥10000，单位是万）、或知名机构领投、或 AI/硬科技明星公司；轮次为战略投资/PE/老股转让的优先归 minority，AI 公司大额融资可归 ai+投融资
+- 收购/合并：金额 ≥5 亿元、或买卖任一方知名
+- 快讯：只挑 `related_party` 含知名公司/独角兽的
+- 条目 `url` 优先用投资事件 `news[]` 里的报道链接或快讯 `news_url`；实在没有外部链接时用 `https://www.itjuzi.com/investevent` 兜底、`src` 写"IT桔子"
+
+**配额纪律**：限流 1800 秒/200 次，且总调用次数有限额。每日更新的标准用量 = 1 次 token + 3 次业务调用，足够；**不要翻页轰炸、不要逐条查事件详情**。
 
 ### 2. 搜一级市场新闻（web search）
 
