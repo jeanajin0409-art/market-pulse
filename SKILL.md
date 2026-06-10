@@ -127,9 +127,19 @@ curl -s "https://openapi.itjuzi.com/news/get_spider_news_list_v2?date_pattern=1&
 
 ### 1.6 从 X (Twitter) 扒一级市场 / AI 信号
 
-不用 Twitter API，用 Claude 内置 **WebSearch** 工具，`allowed_domains=["x.com"]` + 查询 `from:<handle> <关键词>` 即可拉到某账号的相关推文（已实测 SemiAnalysis_、rohanpaul_ai 均通）。
+**首选：twikit 抓取脚本（登录小号，拿真实日期，解决时间窗问题）**
 
-**⚠️ 最大坑：WebSearch 的时间窗不可靠**，结果里会混进几个月前的旧推（甚至去年的 status）。所以**每条都必须核对日期**——从推文正文或结果里判断发布时间，只保留最近约 3 天的；拿不准日期的宁可丢。这是用 WebSearch 扒 X 与用正经 API 的本质区别，别跳过。
+```bash
+source /opt/anaconda3/etc/profile.d/conda.sh && conda activate dealhot-x
+cd x_scan && python scan.py --group deals --days 3    # 一级市场记者
+python scan.py --group ai --days 2                    # AI 分析
+```
+
+脚本登录小号→拉 watchlist 账号近 N 天推文→按数字/deal关键词筛→输出候选 + `out/x_scan_*.json`。维护者挑命中条目改写成 ITEMS。细节见 `x_scan/README.md`。凭证在 `.secrets/x_account.env`（gitignore，绝不入库）；账号有封禁风险，**只用小号**。handles 配置在 `scan.py` 的 `HANDLES`，与 `watchlist.md` 手动同步。
+
+**备选：WebSearch（脚本不可用 / 小号被限时）**
+
+用 Claude 内置 **WebSearch**，`allowed_domains=["x.com"]` + `from:<handle> <关键词>`（实测 SemiAnalysis_、rohanpaul_ai 通）。**⚠️ 大坑：WebSearch 时间窗不可靠**，会混进几个月前甚至去年的旧推。**每条必须核对日期、只留近 3 天、拿不准就丢**。这是它和 twikit 的本质差别——能用脚本就别靠 WebSearch 猜日期。
 
 **watchlist 在单独文件 `watchlist.md`**（按板块分组、含每个 handle 喂哪个板块）。每日更新时读它、按板块挑账号扫，不要一次全扫。该文件维护着核心 track 名单（一级市场 deal 记者、VC、AI 分析）+ 候选补充。要扩名单：先用本节方法实测某 handle 能拉到内容、标 ✓ 再加。
 

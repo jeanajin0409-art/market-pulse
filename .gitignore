@@ -1,2 +1,6 @@
 .secrets/
 .DS_Store
+.venv/
+x_scan/out/
+__pycache__/
+*.pyc
