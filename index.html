@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>SpaceX今日最终定价（135美元/股，估值约1.75万亿美元），明日纳斯达克上市；Google开源DiffusionGemma扩散模型（速度4倍）；LiberAI数亿元Pre-A（顺为资本，机器人）、百奥几何数亿元战略投资（上海生物医药基金+国科+达晨财智）；琻捷电子港股招股（无线传感SoC）、金戈新材北交所今日上市。</p>
+      <p>SpaceX今日最终定价（135美元/股、估值约1.75万亿美元），明日纳斯达克上市；Anthropic 抢先 OpenAI 提交 IPO 文件；Founders Fund 新募约60亿美元基金（上期一年部署完）；前沿科技多点开花——Quantinuum 登陆纳斯达克（QNT）、Figure 量产创纪录、华为云发布端到端具身平台 CloudRobo；金戈新材今日北交所上市。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -186,6 +186,12 @@
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
 // ───────────── 少数股权 ─────────────
+{t:"6月11日",d:"2026-06-11",src:"X：The Information",cat:"minority",regions:["美国"],score:85,
+ title:"Founders Fund 募集新一期约60亿美元基金：上期仅用一年即部署完毕",
+ url:"https://x.com/TheInformation/status/2064784697595433339",
+ sum:"据 The Information，Peter Thiel 的 Founders Fund 完成新一期约60亿美元基金——上一期资金仅用约一年即部署完毕。AI 创业公司的巨额资金需求正推动头部 VC 全面加速募资节奏。",
+ why:"一级市场资金供给端信号：AI 募资军备竞赛传导至 LP-GP 层，头部基金的 deployment 周期被压缩到一年内。",
+ tags:["VC","募资","Founders Fund","AI"]},
 {t:"6月9日",d:"2026-06-09",src:"Markets Group",cat:"minority",regions:["中国","亚太"],score:84,
  title:"全球PE重新加仓中国：年内PE参与的中国公司交易已达250亿美元，创2021年以来新高",
  url:"https://www.marketsgroup.org/news/investors-shift-from-u-s-to-asia-as-pe-funds-eye-return-to-china",
@@ -358,6 +364,18 @@ const ITEMS = [
  sum:"OpenAI已秘密提交IPO申请（confidential filing），正式上市仍需较长时间。同日Altman旗下Tools for Humanity（World/Worldcoin，投后25亿美元）因营收困境裁员，肯尼亚叫停其运营、韩国开出隐私罚单。",
  why:"AI一级市场最大的潜在退出事件正式进入流程。",
  tags:["IPO","OpenAI","AI"]},
+{t:"6月10日",d:"2026-06-10",src:"X：The Information",cat:"ipo",regions:["美国"],score:87,
+ title:"Anthropic 抢先 OpenAI 提交 IPO 文件：AI 公开市场竞赛先发身位",
+ url:"https://x.com/TheInformation/status/2064724363513872875",
+ sum:"据 The Information，Anthropic 已抢在 OpenAI 之前提交 IPO 文件，在 AI 巨头的公开市场竞赛中取得先发身位。报道同时提醒：从 Uber/Lyft 到 Datadog/Dynatrace，先上市并不必然带来更强回报。结合此前约9650亿美元估值，这将是 AI 一级市场最受关注的退出之一。",
+ why:"与上条 OpenAI 秘密递表呼应——两大 AI 实验室同步推进 IPO，2026 有望成为 AI 退出大年。",
+ tags:["IPO","Anthropic","AI"]},
+{t:"6月8日",d:"2026-06-08",src:"X：Dan Primack",cat:"ipo",regions:["美国","欧洲"],score:76,
+ title:"Bending Spoons（AOL、Eventbrite 母公司）递交 IPO 申请",
+ url:"https://x.com/danprimack/status/2063956857924800792",
+ sum:"意大利软件集团 Bending Spoons（AOL、Eventbrite 等资产持有者）已递交 IPO 申请。该公司以收购成熟消费/工具类软件、再重组提效的“连环收购”模式著称，IPO 将为这一打法在公开市场定价。",
+ why:"少见的“软件连环收购者”上市案例，为同类 rollup 模式提供估值参照。",
+ tags:["IPO","Bending Spoons","软件","并购整合"]},
 {t:"6月上旬",d:"2026-06-05",src:"IndexBox / 证监会备案",cat:"ipo",regions:["中国"],score:74,
  title:"安克创新递交港股上市备案，拟发行至多6851万股境外上市股份",
  url:"https://www.indexbox.io/blog/hong-kong-ipo-market-attracts-international-investors-despite-spacex-listing/",
@@ -569,6 +587,30 @@ const ITEMS = [
  tags:["AI","ARR/商业化","监管","中国"]},
 
 // ───────────── 前沿科技 ─────────────
+{t:"6月10日",d:"2026-06-10",src:"X：华为云",cat:"frontier",regions:["中国"],score:71,
+ title:"华为云发布“全球首个端到端具身智能平台”CloudRobo",
+ url:"https://x.com/HuaweiCloud1/status/2064637581652852831",
+ sum:"华为云发布称为“全球首个端到端具身智能平台”的 CloudRobo，覆盖机器人从数据采集、训练到部署的全链路。中国云厂商正把具身智能作为差异化战场，平台化能力有望降低机器人公司的算力与数据门槛。",
+ why:"具身智能的“基础设施层”竞争开启——大厂平台化可能重塑机器人创业公司的成本结构与估值逻辑。",
+ tags:["具身智能","华为云","平台","中国"]},
+{t:"6月9日",d:"2026-06-09",src:"X：Brett Adcock",cat:"frontier",regions:["美国"],score:72,
+ title:"Figure 自建工厂 BotQ 5月创人形机器人单月产量纪录",
+ url:"https://x.com/adcock_brett/status/2064059797365006378",
+ sum:"Figure 创始人 Brett Adcock 披露其自建人形机器人工厂 BotQ 在5月创下单月产量纪录，称已多到需要为成品开辟仓储空间。从“只有2台”到规模化爬坡，具身智能的瓶颈正从“能否做出”转向“能否量产”。",
+ why:"Figure 是美国具身智能估值标杆，量产数据是验证其高估值能否兑现的关键里程碑。",
+ tags:["具身智能","人形机器人","量产","Figure"]},
+{t:"6月8日",d:"2026-06-08",src:"X：CFS",cat:"frontier",regions:["美国"],score:70,
+ title:"核聚变公司 CFS 发布5篇同行评审论文：ARC 商业电厂“无致命障碍”",
+ url:"https://x.com/CFS_energy/status/2064007185303011795",
+ sum:"Commonwealth Fusion Systems（CFS）发布5篇同行评审论文，为其 ARC 商业聚变电厂奠定等离子体物理基础，称关键挑战“均无致命障碍”。CFS 是全球私募融资规模最大的核聚变公司之一，科学验证推进是其商业化路线的关键节点。",
+ why:"私营核聚变从“融资叙事”走向“工程验证”——一级市场聚变赛道的技术里程碑。",
+ tags:["核聚变","CFS","ARC","美国"]},
+{t:"6月5日",d:"2026-06-05",src:"X：Quantinuum",cat:"frontier",regions:["美国"],score:80,
+ title:"Quantinuum 正式登陆纳斯达克，股票代码 QNT",
+ url:"https://x.com/QuantinuumQC/status/2062661779109372324",
+ sum:"霍尼韦尔旗下离子阱量子计算龙头 Quantinuum 正式在纳斯达克挂牌交易，代码 QNT（此前递表目标估值约127亿美元，见下方5月美国量子条）。量子计算由政府补贴阶段迈入公开市场定价。",
+ why:"量子计算标志性退出事件：为一级市场量子标的打通退出路径、提供公开市场估值锚点。",
+ tags:["量子计算","IPO","纳斯达克","Quantinuum"]},
 {t:"4月17日（背景）",d:"2026-04-17",src:"财新 / Crunchbase",cat:"frontier",regions:["中国"],score:86,
  title:"中国具身智能融资纪录：TARS AI完成约4.55亿美元Pre-A轮，高瓴创投+红杉中国+美团龙珠领投",
  url:"https://www.caixinglobal.com/2026-04-17/chinese-ai-robotics-startup-tars-raises-455-million-in-record-pre-a-round-102434873.html",

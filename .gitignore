@@ -4,3 +4,5 @@
 x_scan/out/
 __pycache__/
 *.pyc
+accounts.db
+.claude/

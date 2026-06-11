@@ -34,6 +34,9 @@ git config core.sshCommand "ssh -i ~/keys/market-pulse-contributor-key -o Identi
 | `ipo` | IPO | 全球 IPO 定价/上市/递表/募资数据，重点港股+美股 |
 | `bigtech` | 大厂动态 | Apple/Google/Microsoft/Meta/Amazon/Nvidia 等重要新闻、监管 |
 | `ai` | AI 动态 | 产品、模型/技术、CAPEX、ARR/商业化、投融资、政策 |
+| `frontier` | 前沿科技 | 具身智能/机器人、太空、核聚变、量子计算、国防科技的融资/IPO/里程碑 |
+
+**每日刷新必覆盖（用户 2026-06-11 明确要求）**：除一级市场三板块外，每天都要主动更新 **前沿科技（frontier）+ AI 动态（ai）+ X 上 KOL/机构观点（cmt）**。cmt 不是单独板块，而是把 X 大佬/机构的观点与独家 deal 当成内容来源，挑有料的按内容归到对应 cat（src 写 `X：<显示名>`）。前沿科技与 AI 动态要拉全，不要只放一两条充数。
 
 ## 数据结构（ITEMS 数组元素）
 
@@ -127,17 +130,28 @@ curl -s "https://openapi.itjuzi.com/news/get_spider_news_list_v2?date_pattern=1&
 
 **配额纪律**：限流 1800 秒/200 次，且总调用次数有限额。每日更新的标准用量 = 1 次 token + 3 次业务调用，足够；**不要翻页轰炸、不要逐条查事件详情**。
 
-### 1.6 从 X (Twitter) 扒一级市场 / AI 信号
+### 1.6 从 X (Twitter) 扒一级市场 / AI / 前沿科技信号（cmt 主力来源）
 
-**首选：twikit 抓取脚本（登录小号，拿真实日期，解决时间窗问题）**
+**首选：x_scan/scan.py 抓取脚本（cookie 认证，直连 X GraphQL，拿真实日期）**
 
 ```bash
 source /opt/anaconda3/etc/profile.d/conda.sh && conda activate dealhot-x
-cd x_scan && python scan.py --group deals --days 3    # 一级市场记者
-python scan.py --group ai --days 2                    # AI 分析
+python x_scan/scan.py --group deals --days 3              # 一级市场记者 → minority/ma/ipo
+python x_scan/scan.py --group ai --days 2 --loose         # AI 分析+大佬观点(cmt) → ai
+python x_scan/scan.py --group frontier --days 7 --loose   # 前沿科技 → frontier
+python x_scan/scan.py --group official --days 5 --loose   # 大厂官方产品/模型 → ai/bigtech
+python x_scan/scan.py --group cn --days 4 --loose         # 中文 AI → ai/minority
+python x_scan/scan.py --group mena --days 4               # 中东/主权基金 → ma/minority
 ```
 
-脚本登录小号→拉 watchlist 账号近 N 天推文→按数字/deal关键词筛→输出候选 + `out/x_scan_*.json`。维护者挑命中条目改写成 ITEMS。细节见 `x_scan/README.md`。凭证在 `.secrets/x_account.env`（gitignore，绝不入库）；账号有封禁风险，**只用小号**。handles 配置在 `scan.py` 的 `HANDLES`，与 `watchlist.md` 手动同步。
+脚本读 cookie → 直接调 X GraphQL（UserByScreenName→UserTweets）→ 拉 watchlist 账号近 N 天推文 → 按数字/deal关键词筛 → 输出候选 + `out/x_scan_*.json`。维护者挑命中条目改写成 ITEMS。
+
+**关键实现细节（踩过的坑）**：
+- **不要用 twikit 的 login/search**：twikit 2.3.3 的 `client_transaction.init()`（`get_indices`）已与 X 当前 JS bundle 不兼容，必坏；`search_tweet` 端点对小号也返回 404。脚本因此**绕开 twikit**，纯 httpx 直连 GraphQL，operation IDs 启动时从 X `main.*.js` 自动刷新（失效会自动回退硬编码默认值）。
+- **认证靠 cookie**，不靠密码登录。cookie 由 `.secrets/export_cookies.py chrome` 从浏览器导出到 `.secrets/x_cookies.json`（需 `auth_token`+`ct0`）。用户的登录态在 **Chrome Profile 2**（不是 Default），export 脚本已指定该 profile。cookie 失效时让用户在那个 Chrome profile 重新登录 x.com 再导一次。
+- **`--loose`**：放宽筛选（不要求含数字/deal词，只去掉<40字的短推/转推），用于 harvest 观点(cmt)、前沿科技、官方动态这类不一定带金额的内容。deals/mena 这类纯 deal 源用默认严格筛选即可。loose 会混进生活/体育闲聊，**人工挑**。
+
+凭证在 `.secrets/`（gitignore，绝不入库）；账号有封禁风险，**只用小号**。handles 配置在 `scan.py` 的 `HANDLES`（按 deals/vc/ai/official/frontier/cn/mena 分组），与 `watchlist.md` 手动同步。
 
 **备选：WebSearch（脚本不可用 / 小号被限时）**
 

@@ -50,3 +50,49 @@
 | `packyM` | Packy McCormick · Not Boring | ai / minority | 公司/赛道 deep dive |
 
 > 2026-06-10：上述 7 个候选已全部并入正式 track 名单（用户确认）。
+
+## E. 前沿科技（→ frontier）—— 用 `--group frontier --loose`
+
+具身智能/机器人、太空、核聚变、量子、国防。多为公司/创始人账号，不一定带金额，用 `--loose`。
+
+| handle | 名称 | 喂板块 | 备注 |
+|---|---|---|---|
+| `adcock_brett` ✓ | Brett Adcock · Figure CEO | frontier | 人形机器人量产进度、BotQ 工厂数据 |
+| `DrJimFan` | Jim Fan · NVIDIA | frontier / ai | 具身智能/机器人研究风向 |
+| `anduriltech` ✓ | Anduril（机构） | frontier | 国防科技、自主系统 |
+| `CFS_energy` ✓ | Commonwealth Fusion | frontier | 核聚变 ARC 电厂进展 |
+| `QuantinuumQC` ✓ | Quantinuum（机构） | frontier | 离子阱量子，已上市 QNT |
+
+## F. 大厂官方（→ ai / bigtech）—— 用 `--group official --loose`
+
+产品/模型发布第一手。多为公告体，用 `--loose`。
+
+| handle | 名称 | 喂板块 | 备注 |
+|---|---|---|---|
+| `OpenAI` ✓ | OpenAI（机构） | ai / bigtech | 产品/模型发布 |
+| `OpenAIDevs` ✓ | OpenAI Developers | ai | API/开发者动态 |
+| `AnthropicAI` ✓ | Anthropic（机构） | ai | 模型/研究/政策 |
+| `GoogleDeepMind` ✓ | Google DeepMind | ai | 模型/研究 |
+
+## G. 中文 AI（→ ai / minority）—— 用 `--group cn --loose`
+
+| handle | 名称 | 喂板块 | 备注 |
+|---|---|---|---|
+| `AYi_AInotes` ✓ | AI 笔记 | ai | 中文 AI 快讯 |
+| `berryxia` ✓ | Berry Xia | ai | 中文 AI 产品/行情解读 |
+| `shao__meng` ✓ | 邵猛 | ai | 中文 AI 工具/模型动态 |
+
+## H. 中东 / 主权基金（→ ma / minority）—— 用 `--group mena`
+
+| handle | 名称 | 喂板块 | 备注 |
+|---|---|---|---|
+| `WestAsiaWatch` ✓ | West Asia Watch | ma / minority | 中东 deal/主权基金（粉丝少但对口） |
+
+## 其他已并入 deals/vc/ai 组的补充账号
+
+`axios`、`jason`(Jason Calacanis)、`TrungTPhan`（deals 组）；`saranormous`、`dan_rasmussen`、`GavinSBaker`（vc 组）；`kimmonismus`、`swyx`、`alexandr_wang`、`_jasonwei`、`emollick`、`demishassabis`、`Kanjun`（ai 组）。
+
+---
+
+> **认证方式（2026-06-11 更新）**：scan.py 已改为 **cookie 直连 X GraphQL**，不再用 twikit 密码登录（twikit 已与 X 新版不兼容）。cookie 从 Chrome Profile 2 导出，详见 SKILL.md 1.6。
+> **2026-06-11**：用户要求每日刷新固定覆盖 前沿科技 + AI动态 + X观点(cmt)；新增 E/F/G/H 四组共约 17 个账号（已实测 resolve）。
