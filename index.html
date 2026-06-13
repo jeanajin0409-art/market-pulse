@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月12日 · 星期五</div>
+    <div class="date">2026年6月13日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>SpaceX今日正式登陆纳斯达克（SPCX，135美元/股，募资750亿美元，史上最大IPO）；Jeff Bezos旗下AI公司Prometheus以410亿美元估值完成120亿美元融资；Neura Robotics人形机器人C轮最高14亿美元（亚马逊+英伟达+高通+QIA联合押注）；全自主无人机首次实战击毙人类士兵（防务里程碑）；OpenAI拟大幅降价抢夺Anthropic客户；爱尔眼科6.96亿元收购巴西眼科龙头。</p>
+      <p>SpaceX SPCX上市首日：Morgan Stanley已"engaging stabilizers"托盘；TheInformation披露IPO前夕临时加入两笔新收购+Anthropic/Google数据中心deal；20%散户参与+Blackrock至少50亿美元认购。AI开源：MiniMax M3 428B权重模型Day-0开放（Block sparse attention 9×加速），Kimi K2.7-Code开源；字节豆包上线"任务模式"+盘古大模型余承东站台；Anthropic首次公众调查显示近半美国人盼AI治愈疾病/超六成担忧失业；Cyera G轮6亿美元；Figure F.03人形机器人2小时楼梯测试；清辉联诺A轮近2亿人民币。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -186,6 +186,21 @@
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
 // ───────────── 少数股权 ─────────────
+{t:"6月12日",d:"2026-06-12",src:"IT桔子",cat:"minority",regions:["美国"],score:82,
+ title:"AI数据安全公司 Cyera 完成6亿美元G轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"AI 数据安全公司 Cyera 完成 6 亿美元 G 轮融资，估值较上轮显著抬升。AI 安全/合规赛道在生成式 AI 普及后成为企业刚需。",
+ tags:["少数股权","G轮","AI安全","数据合规","美国"]},
+{t:"6月12日",d:"2026-06-12",src:"IT桔子",cat:"minority",regions:["美国"],score:72,
+ title:"Theker 获8500万美元战略投资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Theker 完成 8500 万美元战略投资，机构入局 AI 应用层。",
+ tags:["少数股权","战略投资","AI","美国"]},
+{t:"6月12日",d:"2026-06-12",src:"IT桔子",cat:"minority",regions:["中国"],score:71,
+ title:"清辉联诺完成A轮近2亿元人民币股权融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"清辉联诺宣布完成近 2 亿人民币 A 轮股权融资，专注生物医药领域。",
+ tags:["少数股权","A轮","生物医药","中国"]},
 {t:"6月11日",d:"2026-06-11",src:"X：The Information",cat:"minority",regions:["美国"],score:85,
  title:"Founders Fund 募集新一期约60亿美元基金：上期仅用一年即部署完毕",
  url:"https://x.com/TheInformation/status/2064784697595433339",
@@ -333,6 +348,12 @@ const ITEMS = [
  tags:["少数股权","E轮","医疗设备","美国"]},
 
 // ───────────── M&A ─────────────
+{t:"6月12日",d:"2026-06-12",src:"X：The Information",cat:"ma",regions:["美国"],score:85,
+ title:"TheInformation：SpaceX IPO前临时加入两笔新收购+Anthropic/Google数据中心deal",
+ url:"https://x.com/TheInformation/status/2065529388616044574",
+ sum:"The Information报道，Musk在75亿美元IPO前夕临时加入两笔新收购、并把Anthropic与Google列为新增数据中心合作方。Goldman Sachs与Morgan Stanley对最终条款的多次调整持'非一致意见'。路演 PPT 暗含的'近期已签'deal或将于上市后60-90天逐步披露。",
+ why:"SPCX上市后的deal pipeline——AI数据中心是最大看点，对AI基础设施一级市场定价锚（Anthropic/SPCX/Google 三角关系）有传导效应。",
+ tags:["M&A","AI数据中心","Anthropic","Google","美国"]},
 {t:"6月9日",d:"2026-06-09",src:"IT桔子",cat:"ma",regions:["美国"],score:86,
  title:"GSK 106亿美元收购 Nuvalent：年内最大生物医药并购之一",
  url:"https://www.itjuzi.com/",
@@ -403,6 +424,12 @@ const ITEMS = [
  tags:["M&A","AI","跨境","运营拆分"]},
 
 // ───────────── IPO ─────────────
+{t:"6月12日",d:"2026-06-12",src:"X：The Information / BlackRock",cat:"ipo",regions:["美国"],score:96,
+ title:"SpaceX SPCX 上市首日：BlackRock至少认购50亿美元，~20%散户——IPO史上最高零售占比",
+ url:"https://x.com/TheInformation/status/2065520667823313072",
+ sum:"The Information披露SPCX 上市首日认购结构：BlackRock至少认购50亿美元，零售占比约20%——在传统IPO中极其罕见。Morgan Stanley ECM已开始 engaging stabilizers 以稳定价格。Crypto社区通过新型代币化产品参与认购。",
+ why:"20%零售占比+BlackRock 50亿+stabilizers三方保驾——史上散户浓度最高的巨型IPO，上市后波动结构性放大（情绪驱动）。一级市场 LP 类比：12月800B接盘者下行buffer可能比纯机构主导 IPO更薄。",
+ tags:["IPO","SpaceX","散户","BlackRock","美国"]},
 {t:"6月11日定价/12日上市",d:"2026-06-12",src:"IPOX / CNBC / CoinDesk",cat:"ipo",regions:["美国"],score:95,
  title:"SpaceX 今日纳斯达克首日交易（SPCX）：135美元/股定价、募资750亿美元、估值1.75万亿美元——史上最大IPO",
  url:"https://x.com/axios/status/2065164424290124275",
@@ -476,6 +503,16 @@ const ITEMS = [
  tags:["IPO","大麻","美国"]},
 
 // ───────────── 大厂动态 ─────────────
+{t:"6月12日",d:"2026-06-12",src:"IT之家（RSS）",cat:"bigtech",regions:["中国"],score:76,
+ title:"字节豆包上线『任务模式』：支持定时执行与文件生成，『思考模式』升级为『专家模式』",
+ url:"https://www.ithome.com/",
+ sum:"字节豆包推出『任务模式』，支持定时执行任务与文件生成；同时原『思考模式』升级为『专家模式』，对标 ChatGPT 的 Deep Research / Agent 能力。",
+ tags:["大厂","字节","豆包","Agent","中国"]},
+{t:"6月12日",d:"2026-06-12",src:"IT之家（RSS）",cat:"bigtech",regions:["中国"],score:75,
+ title:"余承东：盘古大模型『世界还不知道大模型是什么时，我们就发布了』——华为全栈AI再宣示",
+ url:"https://www.ithome.com/",
+ sum:"余承东在华为云最新公开发言中表示，『世界还不知大模型是何物时，我们就发布了盘古』——盘古大模型自2021年发布，Pangu UltraMoE等版本持续迭代，与昇腾+MindSpore形成『全栈AI』叙事。",
+ tags:["大厂","华为","盘古","全栈AI","中国"]},
 {t:"6月9日 02:18",d:"2026-06-09",src:"Apple Newsroom / Tech Startups",cat:"bigtech",regions:["美国"],score:88,
  title:"WWDC 2026：新Siri AI由Google Gemini驱动，Apple每年向Google支付约10亿美元",
  url:"https://techstartups.com/2026/06/09/top-tech-news-today-june-9-2026/",
@@ -517,6 +554,23 @@ const ITEMS = [
  tags:["大厂","Anthropic","企业AI","印度"]},
 
 // ───────────── AI 动态 ─────────────
+{t:"6月13日",d:"2026-06-13",src:"X：SemiAnalysis_",cat:"ai",regions:["美国"],score:89,
+ title:"MiniMax M3 428B 开源权重模型发布，Day-0 同时上架CUDA + ROCm，Block sparse attention 9× 加速",
+ url:"https://x.com/SemiAnalysis_/status/2065584972220481568",
+ sum:"vLLM 与 LMSYS 联合在 Day-0 发布 MiniMax M3 428B 开源权重模型，CUDA + ROCm 双栈同步支持。Block sparse attention 使 prefill 速度较 M2.7 提升 9×。Inferact 也 Day-0 集成 EAGLE3 投机解码。",
+ why:"M3 428B 开源直接对标 Claude / GPT-4 级别，是 2026 年开源 LLM 体系最大增量；ROCm Day-0 对 AMD 一级估值是利好。",
+ tags:["AI","开源","MiniMax M3","vLLM","AMD"]},
+{t:"6月13日",d:"2026-06-13",src:"X：Anthropic Newsroom",cat:"ai",regions:["美国"],score:75,
+ title:"Anthropic 首次公众调查：近半美国人盼AI治愈疾病，超六成担忧失业",
+ url:"https://www.anthropic.com/news",
+ sum:"Anthropic 发布首份 AI 公众态度调查：约 49% 美国人希望 AI 治愈疾病，63% 担忧工作被替代。覆盖『AI乐观』与『AI焦虑』双线——给Anthropic的政策叙事提供了一手数据。",
+ why:"首次系统化AI舆情调研，对监管节奏与品牌策略有重要影响。",
+ tags:["AI","公众态度","政策","Anthropic"]},
+{t:"6月12日",d:"2026-06-12",src:"X：Kimi.ai",cat:"ai",regions:["中国"],score:78,
+ title:"Kimi-K2.7-Code 开源：月之暗面最强代码模型对标 Claude Code / Codex",
+ url:"https://x.com/Kimi_Moonshot",
+ sum:"月之暗面发布并开源 Kimi K2.7 Code 版本，定位代码生成 Agent，主打 agentic 编程工作流，与 Claude Code / Codex 形成直接对标。",
+ tags:["AI","开源","Kimi","K2.7","中国"]},
 {t:"6月10日 01:04",d:"2026-06-10",src:"Anthropic Newsroom",cat:"ai",regions:["美国","全球"],score:90,
  title:"Anthropic 发布 Claude Fable 5 与 Claude Mythos 5：几乎全基准SOTA，定价较Mythos Preview砍半",
  url:"https://www.anthropic.com/news/claude-fable-5-mythos-5",
@@ -745,8 +799,13 @@ const ITEMS = [
  tags:["AI","政策","多智能体","安全","全球"]},
 
 // ───────────── 前沿科技 ─────────────
+{t:"6月13日",d:"2026-06-13",src:"X：Brett Adcock",cat:"frontier",regions:["美国"],score:82,
+ title:"Figure F.03 人形机器人 2 小时楼梯测试 timelapse：每步都在为'完全自主'累积数据",
+ url:"https://x.com/adcock_brett/status/2065501115744182673",
+ sum:"Figure 公开 F.03 在总部 HQ 反复上下楼梯的 2 小时 timelapse——CEO Adcock 称这些基础测试是机器人迈向『完全自主』的核心数据闭环。结合 6/12 路演 SPCX 的 Starlink / Starship + AI 故事，具身智能一级市场关注度持续放大。",
+ tags:["前沿科技","具身智能","Figure","美国"]},
 {t:"6月10日",d:"2026-06-10",src:"X：华为云",cat:"frontier",regions:["中国"],score:71,
- title:"华为云发布“全球首个端到端具身智能平台”CloudRobo",
+ title:"华为云发布『全球首个端到端具身智能平台』CloudRobo",
  url:"https://x.com/HuaweiCloud1/status/2064637581652852831",
  sum:"华为云发布称为“全球首个端到端具身智能平台”的 CloudRobo，覆盖机器人从数据采集、训练到部署的全链路。中国云厂商正把具身智能作为差异化战场，平台化能力有望降低机器人公司的算力与数据门槛。",
  why:"具身智能的“基础设施层”竞争开启——大厂平台化可能重塑机器人创业公司的成本结构与估值逻辑。",
