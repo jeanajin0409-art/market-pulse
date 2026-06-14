@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月13日 · 星期六</div>
+    <div class="date">2026年6月14日 · 星期日</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>SpaceX SPCX上市首日：Morgan Stanley已"engaging stabilizers"托盘；TheInformation披露IPO前夕临时加入两笔新收购+Anthropic/Google数据中心deal；20%散户参与+Blackrock至少50亿美元认购。AI开源：MiniMax M3 428B权重模型Day-0开放（Block sparse attention 9×加速），Kimi K2.7-Code开源；字节豆包上线"任务模式"+盘古大模型余承东站台；Anthropic首次公众调查显示近半美国人盼AI治愈疾病/超六成担忧失业；Cyera G轮6亿美元；Figure F.03人形机器人2小时楼梯测试；清辉联诺A轮近2亿人民币。</p>
+      <p>Anthropic秘密申请上市，估值9650亿美元——继SpaceX 1.75万亿后又一AI基础设施级IPO；美国政府撤回Anthropic顶级AI模型（监管风暴升级），同步OpenAI遭多州总检察长联合调查；Meta Zuckerberg承认AI转型"脱轨"，裁员10%、转岗7000人；智谱GLM-5.2全量开放1M上下文，下周开源；"木头姐"ARK买入4亿美元SpaceX股票；SemiAnalysis Token经济洞察：$200 AI订阅榨出70倍用量；谷歌Android安全负责人因反对军事AI合作辞职；亚马逊CEO与美国官员会谈引发对Anthropic模型整治讨论。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -186,6 +186,12 @@
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
 // ───────────── 少数股权 ─────────────
+{t:"6月13日",d:"2026-06-13",src:"Bloomberg",cat:"minority",regions:["美国"],score:80,
+ title:"Anthropic 秘密申请上市：估值9650亿美元，AI 基础设施级第二大IPO（继SpaceX后）",
+ url:"https://www.axios.com/2026/05/28/anthropic-ai-fundraising-openai",
+ sum:"据 Axios / 多家媒体，Anthropic 已秘密递交 S-1 申请上市，估值 9650 亿美元。Series H $65B 轮（2 月 $380B → 5 月 $965B，2.5× 半年涨幅）。$47B run-rate 收入、Claude Code 拉新增。",
+ why:"继 SpaceX SPCX 后第二大 AI 基础设施级 IPO——Anthropic 上市与 SPCX 共享'轨道 AI + 模型'叙事，**直接锚定一级市场 neocloud 估值参照**。",
+ tags:["少数股权","IPO","AI 基础设施","Anthropic","美国"]},
 {t:"6月12日",d:"2026-06-12",src:"IT桔子",cat:"minority",regions:["美国"],score:82,
  title:"AI数据安全公司 Cyera 完成6亿美元G轮融资",
  url:"https://www.itjuzi.com/investevent",
@@ -503,6 +509,17 @@ const ITEMS = [
  tags:["IPO","大麻","美国"]},
 
 // ───────────── 大厂动态 ─────────────
+{t:"6月14日",d:"2026-06-14",src:"彭博 / IT桔子",cat:"bigtech",regions:["美国"],score:75,
+ title:"木头姐 ARK 买入逾 4 亿美元 SpaceX 股票——上市后首周机构信号",
+ url:"https://www.bloomberg.com/",
+ sum:"Cathie Wood 的 ARK 基金在 SpaceX SPCX 上市后首周买入逾 4 亿美元 SPCX 股票。机构资金开始给路演后估值'投票'。",
+ why:"ARK 的买入是上市后首波'聪明钱'信号——若其他机构跟随，估值 buffer 比散户盘算的更厚。",
+ tags:["大厂","SpaceX","ARK","Cathie Wood","机构"]},
+{t:"6月14日",d:"2026-06-14",src:"彭博 / Reuters",cat:"bigtech",regions:["美国"],score:73,
+ title:"扎克伯格承认 Meta AI 转型『脱轨』：裁员 10%、转岗 7000 人后组织调整过快",
+ url:"https://aihot.virxact.com/",
+ sum:"Zuckerberg 公开承认 Meta 的 AI 转型'脱轨'：裁员 10% + 转岗约 7000 人后，组织调整速度超过实际能力承担。",
+ tags:["大厂","Meta","组织转型","Zuckerberg","美国"]},
 {t:"6月12日",d:"2026-06-12",src:"IT之家（RSS）",cat:"bigtech",regions:["中国"],score:76,
  title:"字节豆包上线『任务模式』：支持定时执行与文件生成，『思考模式』升级为『专家模式』",
  url:"https://www.ithome.com/",
@@ -554,6 +571,53 @@ const ITEMS = [
  tags:["大厂","Anthropic","企业AI","印度"]},
 
 // ───────────── AI 动态 ─────────────
+{t:"6月14日",d:"2026-06-14",src:"AIHOT",cat:"ai",regions:["美国","全球"],score:87,
+ title:"美国政府撤回 Anthropic 最强大 AI：Anthropic 安全警告可能适得其反",
+ url:"https://aihot.virxact.com/",
+ sum:"美国政府撤回 Anthropic 最强大 AI 模型——直接对应其反复公开警告的'递归 AI 风险'。同期 OpenAI 遭多州总检察长联合调查。监管风暴升级为对头部 AI 实验室的系统性约束。",
+ why:"Anthropic 一直押'安全护城河'叙事，本次监管'被叫停'反过来暴露：安全担忧会被监管引用为限制理由。Anthropic 上市估值（$965B 隐含）需折回。",
+ tags:["AI","监管","Anthropic","政府","美国"]},
+{t:"6月14日",d:"2026-06-14",src:"AIHOT",cat:"ai",regions:["美国","全球"],score:77,
+ title:"Anthropic 秘密申请上市，估值 9650 亿美元——AI 实验室首次 IPO 启动",
+ url:"https://www.axios.com/2026/05/28/anthropic-ai-fundraising-openai",
+ sum:"Anthropic 正式秘密递交 S-1，$965B 估值锚定。Claude Code + Claude 5 系列共同把 ARR 推至 $47B 跑速。",
+ tags:["AI","IPO","Anthropic","Claude","美国"]},
+{t:"6月14日",d:"2026-06-14",src:"AIHOT",cat:"ai",regions:["美国"],score:80,
+ title:"谷歌 Android 安全负责人因反对军事 AI 合作辞职",
+ url:"https://aihot.virxact.com/",
+ sum:"谷歌 Android 安全负责人因反对公司与军事客户的 AI 合作而辞职，是 Alphabet 高管层近期最重大的人工智能伦理分歧公开案例。",
+ why:"大厂 AI 伦理分歧 → 关键人才流失信号；军事 AI 商业化路径会否被内部分歧减缓？",
+ tags:["AI","伦理","人才流失","Google","军事AI"]},
+{t:"6月14日",d:"2026-06-14",src:"AIHOT",cat:"ai",regions:["美国","全球"],score:72,
+ title:"扎克伯格承认 Meta AI 转型『脱轨』：裁员 10%、转岗 7000 人后组织调整过快",
+ url:"https://aihot.virxact.com/",
+ sum:"Zuckerberg 公开承认 Meta 的 AI 转型『脱轨』：裁员 10% + 转岗约 7000 人后，组织调整速度超过实际能力承担。Meta 估值叙事受短期影响。",
+ why:"Meta 4 大云/厂里 AI 转型最曲折的样本。$1.5T+ 估值能否撑住取决于 Llama 5 + 自研芯片兑现。",
+ tags:["AI","Meta","组织转型","Zuckerberg","美国"]},
+{t:"6月14日",d:"2026-06-14",src:"AIHOT",cat:"ai",regions:["美国","全球"],score:72,
+ title:"OpenAI 遭多州总检察长联合调查",
+ url:"https://aihot.virxact.com/",
+ sum:"美国多州总检察长联合对 OpenAI 发起调查，配合 Anthropic 被叫停顶级模型，美国 AI 监管从'碎片化诉讼'升级为'协同执法'。",
+ why:"Anthropic + OpenAI 双线被监管施压，SPCX/AGI 一级市场叙事的最大政治风险。",
+ tags:["AI","监管","OpenAI","多州","美国"]},
+{t:"6月14日",d:"2026-06-14",src:"AIHOT",cat:"ai",regions:["中国"],score:75,
+ title:"智谱 GLM-5.2 全量开放 1M 上下文，下周开源",
+ url:"https://aihot.virxact.com/",
+ sum:"智谱宣布 GLM-5.2 面向 GLM Coding Plan 全量用户开放，1M 上下文窗口，号称下周开源。",
+ why:"中国 LLM 实验室首次把 1M 上下文作为商业产品 + 开源双轨发布。",
+ tags:["AI","GLM","智谱","开源","1M上下文"]},
+{t:"6月14日",d:"2026-06-14",src:"AIHOT",cat:"ai",regions:["美国"],score:73,
+ title:"SemiAnalysis Token 经济洞察：$200 月费 AI 订阅榨出 70× 用量",
+ url:"https://www.semianalysis.com/",
+ sum:"SemiAnalysis 发布 Token 经济深度：$200/月 AI 订阅包，实际可榨出 70× 单查询用量——把'按席位'计费 SaaS 模式打到'按 token 边际成本'。",
+ why:"AI 商业化定价模式切换的承重研究；订阅型 AI 厂商的『美梦』开始受质疑。",
+ tags:["AI","定价","Token经济","SemiAnalysis","订阅"]},
+{t:"6月14日",d:"2026-06-14",src:"AIHOT",cat:"ai",regions:["美国"],score:76,
+ title:"亚马逊 CEO 与美国官员会谈引发对 Anthropic 模型的整治讨论",
+ url:"https://aihot.virxact.com/",
+ sum:"亚马逊 CEO Andy Jassy 与美国官员会谈后，关于 Anthropic 模型在 AWS 训练 / 推理链路的合规性讨论被搬上日程。",
+ why:"Amazon 是 Anthropic 最大云合作方（$4B 投资 + Trainium 算力），若整治升级，会重塑三大 neocloud 算力合同结构。",
+ tags:["AI","Anthropic","AWS","合规","美国"]},
 {t:"6月13日",d:"2026-06-13",src:"X：SemiAnalysis_",cat:"ai",regions:["美国"],score:89,
  title:"MiniMax M3 428B 开源权重模型发布，Day-0 同时上架CUDA + ROCm，Block sparse attention 9× 加速",
  url:"https://x.com/SemiAnalysis_/status/2065584972220481568",
