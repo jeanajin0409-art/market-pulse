@@ -61,4 +61,4 @@ FOOT
 } > archive/index.html
 
 n=$(ls archive/[0-9]*.html 2>/dev/null | wc -l | tr -d ' ')
-echo "已存档 → $SNAP；往期索引重建完成（共 $n 期）"
+printf '已存档 %s | 往期索引重建完成 (共 %s 期)\n' "$SNAP" "$n"
