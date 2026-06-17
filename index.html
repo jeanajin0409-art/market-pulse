@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月16日 · 星期二</div>
+    <div class="date">2026年6月17日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>五角大楼9月前清零Anthropic日常AI工作流（已切走2/3以上），Amazon CEO Jassy对Claude安全提担忧曾直接推波助澜；福克斯 $220亿收购Roku（媒体业最大并购之一）；前阿里千问负责人林俊旸新创的"卜拉格科技"完成数亿美元首轮，估值 $20亿，高榕+红杉中国各 $1亿领投、腾讯 $2000万跟投；Salesforce $36亿收购AI客服平台Fin；Nvidia 发行 $200亿AI专项债（巨头融资再加杠杆）；小红书月底前秘密赴港递表，估值曾达 $310亿；Broadcom $35B AI芯片大单为Anthropic定制，或成20GW算力融资模板；MiniMax开源M3权重+MSA技术论文；Kimi K2.7 Code 6倍速版上线；Meta在Facebook上线"AI Mode"；苹果AI版Siri确认推倒重构。</p>
+      <p>SpaceX 宣布以 $600亿全股票形式收购 AI 编程工具 Cursor——史上最大 AI 编程收购；DeepSeek 完成首轮外部融资，**投后估值 $500亿+（约 4000亿人民币）**，国产基础模型估值新高；**Anthropic 5月企业 AI 订阅份额首超 OpenAI**，特朗普政府禁令反促采用量创新高；阿里发布 Qwen-Robot 具身大模型三件套（让机器人"边走、边看、边思考"）；**AI 版支付宝**史上最大改版，一个对话框搞定缴费/转账等上万项服务，邀测启动；微软考虑为 Copilot Cowork 集成 DeepSeek V4；**Fable 遭美国政府封禁**（TechCrunch 质疑真正原因非"模型越狱"）；美国司法部援引国家安全为 xAI 未经许可的燃气轮机辩护；Meta 解散工程部门引发热议；**中国加紧筹建世界人工智能合作组织**（政策级）；小红书月底前秘密赴港递表，估值曾达 $310亿。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -186,6 +186,26 @@
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
 // ───────────── 少数股权 ─────────────
+{t:"6月17日",d:"2026-06-17",src:"IT桔子",cat:"minority",regions:["中国"],score:78,
+ title:"云天畅想完成超 10 亿元 E 轮融资（云游戏 / 云渲染）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"云天畅想（云游戏 / 云渲染）完成超 10 亿元人民币 E 轮融资。云算力 / 实时云渲染赛道持续吸金。",
+ tags:["少数股权","E轮","云游戏","中国"]},
+{t:"6月17日",d:"2026-06-17",src:"IT桔子",cat:"minority",regions:["中国"],score:74,
+ title:"安特金生物获得 9.68 亿元人民币战略投资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"安特金生物（疫苗 / 生物医药）获得 9.68 亿元人民币战略投资，机构持续加注国产疫苗赛道。",
+ tags:["少数股权","战略投资","生物医药","疫苗","中国"]},
+{t:"6月17日",d:"2026-06-17",src:"IT桔子",cat:"minority",regions:["美国"],score:72,
+ title:"Enliven Therapeutics 获得 4 亿美元战略投资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Enliven Therapeutics 获 4 亿美元战略投资（实体瘤免疫疗法）。海外 Biotech 中型融资持续活跃。",
+ tags:["少数股权","战略投资","生物医药","美国"]},
+{t:"6月17日",d:"2026-06-17",src:"IT桔子",cat:"minority",regions:["美国"],score:68,
+ title:"Shattuck Labs B 轮 1.18 亿美元（免疫/肿瘤）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Shattuck Labs 完成 1.18 亿美元 B 轮融资，免疫/肿瘤双抗管线推进。",
+ tags:["少数股权","B轮","生物医药","美国"]},
 {t:"6月15日",d:"2026-06-15",src:"IT桔子",cat:"minority",regions:["中国"],score:88,
  title:"前阿里千问负责人林俊旸新创「卜拉格科技」完成数亿美元首轮，投后估值 $20亿",
  url:"https://www.itjuzi.com/investevent",
@@ -395,6 +415,17 @@ const ITEMS = [
  tags:["少数股权","E轮","医疗设备","美国"]},
 
 // ───────────── M&A ─────────────
+{t:"6月17日",d:"2026-06-17",src:"TechCrunch",cat:"ma",regions:["美国"],score:96,
+ title:"SpaceX 宣布以约 $600亿 全股票形式收购 AI 编程工具 Cursor（史上最大 AI 编程收购）",
+ url:"https://techcrunch.com/2026/06/16/spacex-cursor-acquisition/",
+ sum:"SpaceX 宣布以 $600亿全股票形式收购 AI 编程工具 Cursor（Anysphere）。交易已超越 GitHub-Microsoft ($75亿) 的 8 倍，是 2026 年迄今 AI 编程领域最大并购。",
+ why:"**Anthropic 5月企业份额超 OpenAI + SpaceX 收 Cursor**——大厂在 AI 编程赛道从自研转向收购整合；C 端用户量级产品（Cursor）已被纳入新一级战略资产。",
+ tags:["M&A","AI编程","Cursor","SpaceX","美国"]},
+{t:"6月17日",d:"2026-06-17",src:"市场监管总局回应",cat:"ma",regions:["中国"],score:65,
+ title:"市场监管总局回应腾讯收购喜马拉雅",
+ url:"https://www.bianews.com/news/details?id=239975",
+ sum:"市场监管总局对腾讯收购喜马拉雅交易作出回应（未直接否决），在线音频赛道进入腾讯主导格局。",
+ tags:["M&A","互联网","腾讯","中国"]},
 {t:"6月15日",d:"2026-06-15",src:"X：Axios",cat:"ma",regions:["美国"],score:90,
  title:"福克斯（Fox）宣布以约 $220亿 收购 Roku（每股 $160 现金+股票）",
  url:"https://x.com/axios/status/2066496612273189004",
@@ -499,6 +530,11 @@ const ITEMS = [
  tags:["M&A","AI","跨境","运营拆分"]},
 
 // ───────────── IPO ─────────────
+{t:"6月17日",d:"2026-06-17",src:"IT桔子",cat:"ipo",regions:["中国"],score:75,
+ title:"SENASIC 琻捷电子正式登陆港交所（电池管理芯片）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"琻捷电子（SENASIC，电池管理 / 汽车芯片）正式登陆港交所，募资约 8.8 亿港元。汽车芯片国产替代持续兑现。",
+ tags:["IPO","港股","芯片","汽车电子","中国"]},
 {t:"6月15日",d:"2026-06-15",src:"IT桔子 / 36氪",cat:"ipo",regions:["中国"],score:82,
  title:"小红书计划本月底前秘密赴港递表，估值曾达 $310亿",
  url:"https://www.bianews.com/news/details?id=239968",
@@ -610,6 +646,24 @@ const ITEMS = [
  tags:["IPO","大麻","美国"]},
 
 // ───────────── 大厂动态 ─────────────
+{t:"6月17日",d:"2026-06-17",src:"阿里官方",cat:"bigtech",regions:["中国"],score:88,
+ title:"阿里发布 Qwen-Robot 具身大模型三件套：让机器人学会「边走、边看、边思考」",
+ url:"https://aihot.virxact.com/",
+ sum:"阿里通义千问团队发布 Qwen-Robot 系列具身大模型，含 VLA（视觉-语言-动作）、世界模型、决策三件套。开源路线延续。",
+ why:"国产大厂首次系统发布**具身基础模型**，与世界模型 + 强化学习 + VLA 三路并进；和 Tesla FSD、Figure Helix、英伟达 GR00T 形成同台竞争。",
+ tags:["大厂","具身智能","基础模型","阿里","中国"]},
+{t:"6月17日",d:"2026-06-17",src:"支付宝",cat:"bigtech",regions:["中国"],score:84,
+ title:"AI 版支付宝史上最大改版：一个对话框搞定缴费/转账等上万项服务（邀测启动）",
+ url:"https://aihot.virxact.com/",
+ sum:"支付宝启动 AI 版史上最大改版，一个对话框集成上万项生活/金融服务，覆盖缴费、转账、查询、政务等全场景。Agent 化金融服务的标杆案例。",
+ why:"**C 端支付龙头全面 Agent 化**——继微信/支付宝反击豆包后，金融服务进入「对话框即入口」时代，3 亿日活的国民应用成 AI Agent 落地的最大现实场景。",
+ tags:["大厂","Agent","支付宝","C端","中国"]},
+{t:"6月17日",d:"2026-06-17",src:"Hacker News / Meta 内部",cat:"bigtech",regions:["美国"],score:80,
+ title:"Meta 解散工程部门引发热议：组织结构调整的 AI 时代信号",
+ url:"https://aihot.virxact.com/",
+ sum:"Meta 据传解散/重组其核心工程部门，AI 重塑下组织结构剧烈调整，扎克伯格 AI 战略进入新阶段。",
+ why:"继 6/16 「扎克伯格承认 Meta AI 转型脱轨」后又一组织级信号——Meta 押注 Superintelligence 团队，重组工程体系。",
+ tags:["大厂","组织调整","Meta","美国"]},
 {t:"6月16日",d:"2026-06-16",src:"X：阿易 AI Notes",cat:"bigtech",regions:["美国","全球"],score:82,
  title:"五角大楼宣布已将 2/3 以上日常 AI 工作流从 Anthropic 撤出，目标 9 月前清零",
  url:"https://x.com/AYi_AInotes/status/2066679835607412846",
@@ -715,6 +769,39 @@ const ITEMS = [
  tags:["大厂","Anthropic","企业AI","印度"]},
 
 // ───────────── AI 动态 ─────────────
+{t:"6月17日",d:"2026-06-17",src:"The Decoder / 36氪",cat:"ai",regions:["中国"],score:93,
+ title:"DeepSeek 完成首轮外部融资，**投后估值超 $500亿（约 4000亿人民币）**",
+ url:"https://aihot.virxact.com/",
+ sum:"DeepSeek 完成首轮外部融资，**投后估值超 500 亿美元（≈ 4000 亿人民币）**。国产基础模型首次跨入 $500B 估值俱乐部。",
+ why:"**DeepSeek V3/R1 训练成本仅 600万美元** 的认知已被市场重新定价；估值 $500B 与 OpenAI $730-852B 仍有 30-40% 差距，但已超过大多数 A 股上市科技股。",
+ tags:["AI","融资","DeepSeek","基础模型","中国"]},
+{t:"6月17日",d:"2026-06-17",src:"TechCrunch",cat:"ai",regions:["美国","全球"],score:90,
+ title:"Anthropic 5月企业 AI 订阅份额**首超 OpenAI**，特朗普禁令反促采用量创新高",
+ url:"https://aihot.virxact.com/",
+ sum:"据 TechCrunch，Anthropic 5月企业 AI 订阅市场份额首次超越 OpenAI。特朗普政府 Fable 出口禁令意外推动企业加速采用 Claude。",
+ why:"**头部对调**：Anthropic 从「老二」变成企业首选——Claude Code + 模型质量 + 安全口碑合力，叠加政治变量反成营销。",
+ tags:["AI","Anthropic","企业市场","美国"]},
+{t:"6月17日",d:"2026-06-17",src:"Hacker News",cat:"ai",regions:["美国","全球"],score:82,
+ title:"Fable 遭美国政府封禁，TechCrunch 质疑真正原因非「模型越狱」",
+ url:"https://aihot.virxact.com/",
+ sum:"Fable 模型遭美国政府封禁（与 Mythos 同期），TechCrunch 长文质疑：表面理由是「模型越狱」，深层可能与商业竞争 + AI 安全政治化有关。",
+ tags:["AI","政策","Fable","美国"]},
+{t:"6月17日",d:"2026-06-17",src:"The Decoder",cat:"ai",regions:["美国","全球"],score:80,
+ title:"美国司法部援引国家安全为 xAI 未经许可的燃气轮机辩护",
+ url:"https://aihot.virxact.com/",
+ sum:"美国司法部公开为 xAI 未经许可使用大型燃气轮机一事辩护，理由是「国家安全优先级」。AI 算力需求与电网 / 燃气供应冲突加剧。",
+ why:"**算力 → 电力 → 国家安全**——AI 资本开支的下游瓶颈已从 GPU 转向 GW 级电力供应，监管层开始把数据中心用气纳入战略资源。",
+ tags:["AI","CAPEX","xAI","电力","政策","美国"]},
+{t:"6月17日",d:"2026-06-17",src:"公众号：小米 MiMo",cat:"ai",regions:["中国"],score:74,
+ title:"小米 MiMo Claw 正式版发布：旗舰模型 + 金山办公，全新订阅服务上线",
+ url:"https://aihot.virxact.com/",
+ sum:"小米 MiMo 团队发布 Claw 正式版（旗舰大模型），与金山办公合作推订阅服务，国产手机厂商再次下场做基础模型 + 办公 SaaS。",
+ tags:["AI","基础模型","小米","中国"]},
+{t:"6月17日",d:"2026-06-17",src:"Hacker News",cat:"ai",regions:["美国"],score:80,
+ title:"Wolfram 语言 + Mathematica 15 发布：内置 AI 助手、符号音乐等新功能",
+ url:"https://writings.stephenwolfram.com/2026/06/launching-version-15-of-wolfram-language-mathematica-built-in-useful-ai-lots-of-new-core-functionality",
+ sum:"Wolfram Research 发布 Mathematica 15 与 Wolfram 语言大版本：内置 LLM 驱动的 AI 助手、扩展符号计算、新的核心函数库。",
+ tags:["AI","Wolfram","符号计算","美国"]},
 {t:"6月15日",d:"2026-06-15",src:"The Information",cat:"ai",regions:["美国","全球"],score:84,
  title:"Broadcom 为 Anthropic 承销 $350亿 AI 芯片大单，或成 20GW 算力融资新模板",
  url:"https://x.com/TheInformation/status/2066528689639075894",
@@ -1068,6 +1155,21 @@ const ITEMS = [
  tags:["AI","政策","多智能体","安全","全球"]},
 
 // ───────────── 前沿科技 ─────────────
+{t:"6月17日",d:"2026-06-17",src:"X：Stephen Wolfram",cat:"frontier",regions:["美国"],score:78,
+ title:"Wolfram 推出内置 LLM 助手的 Mathematica 15：符号计算 + AI 结合的范式",
+ url:"https://writings.stephenwolfram.com/2026/06/launching-version-15-of-wolfram-language-mathematica-built-in-useful-ai-lots-of-new-core-functionality",
+ sum:"Mathematica 15 整合 LLM 助手 + 符号计算 + 符号音乐。Wolfram 一直走「精确计算 + AI」差异化路线。",
+ tags:["前沿科技","符号计算","Wolfram","AI","美国"]},
+{t:"6月17日",d:"2026-06-17",src:"公众号：数字生命卡兹克",cat:"frontier",regions:["中国"],score:72,
+ title:"WorkBuddy 日活飙升至行业第二的 3-4 倍：非技术用户大量涌入",
+ url:"https://aihot.virxact.com/",
+ sum:"WorkBuddy 日活飙升至中国 AI 办公赛道第二名的 3-4 倍。Agent 类应用首次出现「非技术用户主导」的增长曲线。",
+ tags:["前沿科技","Agent","AI办公","C端","中国"]},
+{t:"6月17日",d:"2026-06-17",src:"X：Testing Catalog",cat:"frontier",regions:["美国"],score:70,
+ title:"Cartesia 发布 Sonic 3.5 与 Ink 2 实时语音模型",
+ url:"https://aihot.virxact.com/",
+ sum:"Cartesia 发布 Sonic 3.5（语音合成）+ Ink 2（实时语音交互）模型。低延迟语音赛道再添新主力。",
+ tags:["前沿科技","语音模型","Cartesia","美国"]},
 {t:"6月15日",d:"2026-06-15",src:"X：Anduril",cat:"frontier",regions:["美国"],score:74,
  title:"Anduril 推出「Fight Unfair」系列装备（Anduril Gear Store 上线）",
  url:"https://x.com/anduriltech/status/2066327406059925882",
