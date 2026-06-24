@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月23日 · 星期二</div>
+    <div class="date">2026年6月24日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>OpenAI 发布 GPT-5.5-Cyber（CyberGym SOTA，AI for 安全正式进入头部模型公司主战场）。SemiAnalysis：CUDA 软件优化让 GB200 推理 70 天降本 2.5x（MoE 架构成头部标配）。智谱市值破万亿港元、GLM-5.2 跑分超 GPT-5.5 进 GDPval-AA #3（中国开源首次进入第一梯队）。Sanders 提案 7 万亿美元 AI 税，公共财富基金每年派 5% 股息（头部 AI 公司估值面临政策风险）。小米 YU7 GT 创纽北自动驾驶圈速纪录（中国新能源车首次在顶级赛道建立标杆）。安克创新港股 IPO 启动：23.11 亿港元基石轮（消费电子出海标杆回归）。SK 海力士市值首超三星成韩国一哥（HBM 主题估值溢价兑现）。</p>
+      <p>Oracle 宣布裁员 21000 人并发债数百亿美元投 AI 云基建（头部云厂商 AI 替代人力最激进案例，AI CapEx 仍处加速期）。Groq 完成 6.5 亿美元（约 47 亿人民币）战略融资（AI 推理芯片赛道最大单笔之一，对标 NVIDIA 推理侧替代路径）。五眼联盟发布联合警告：AI 驱动的网络攻击将在数月内影响普通消费者（网络安全股政策催化剂）。Stanford 研究：AI 招聘工具对黑人申请者系统性排斥 26%、亚裔 15%（HR-Tech 合规风险加剧）。字节豆包音频生成模型 1.0 发布（多模态音频抢占 ElevenLabs / Suno 市场）。星源材质港交所 IPO 募资 13.4 亿港元（锂电材料出海 A+H 双布局落地）。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -186,7 +186,69 @@
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
 
-// ───────────── AI 动态 ─────────────
+// ───────────── AI 动态（6/24 新增）─────────────
+{t:"6月24日 12:17",d:"2026-06-24",src:"Ars Technica：AI（RSS）",cat:"ai",regions:["美国"],score:80,
+ title:"Oracle 因 AI 应用裁员 21000 人，债务驱动云基础设施投资",
+ url:"https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-hel",
+ sum:"Oracle 宣布裁员 21000 人——AI 自动化是企业 IT 转型主因；同时 Oracle 通过发债融资数百亿美元投入云基础设施，与 AWS/Azure 在 AI Cloud 赛道直接竞争。",
+ why:"Oracle 是头部云厂商中 AI 替代人力最激进的案例；发债投 AI 基建说明 AI CapEx 仍处加速期，对 NVDA/AMD/AVGO 是顺风。",
+ tags:["AI","Oracle","CAPEX","裁员","云基建"]},
+{t:"6月24日 00:00",d:"2026-06-24",src:"Artificial Intelligence News（RSS）",cat:"ai",regions:["全球"],score:75,
+ title:"五眼联盟警告：AI 网络威胁数月内将影响普通用户",
+ url:"https://www.artificialintelligence-news.com/news/five-eyes-ai-cyber-threat",
+ sum:"美英加澳新五国情报联盟发布联合警告：AI 驱动的网络攻击（深度伪造、自动化钓鱼、AI 漏洞挖掘）将在未来数月内开始影响普通消费者和中小企业。",
+ why:"AI 安全威胁从企业级下沉到消费级；网络安全厂商（CRWD/PANW/OKTA/ZS）需求侧政策催化剂。",
+ tags:["AI","安全","五眼联盟","政策"]},
+{t:"6月24日",d:"2026-06-24",src:"X：Sky Computing Lab (@haoailab)",cat:"ai",regions:["中国"],score:73,
+ title:"FastWan-QAD：单卡 5090 上 1.8 秒生成 5 秒视频",
+ url:"https://x.com/haoailab/status/2069493820732170695",
+ sum:"Sky Computing Lab 开源 FastWan-QAD 视频生成模型——单张 RTX 5090 消费级显卡 1.8 秒生成 5 秒 1080p 视频，速度比 Wan2.1 快 10 倍以上。",
+ why:"消费级 GPU 实时视频生成成为开源标准能力；视频生成赛道从云端推理转向端侧/边缘部署。",
+ tags:["AI","视频生成","开源","FastWan","5090"]},
+{t:"6月24日",d:"2026-06-24",src:"Hugging Face：Blog（RSS）",cat:"ai",regions:["美国"],score:73,
+ title:"IBM 开源 CUGA：轻量级智能体框架，附 20+ 单文件示例应用",
+ url:"https://huggingface.co/blog/ibm-research/cuga-apps",
+ sum:"IBM Research 开源 CUGA（Configuration Understanding & General Agent）——轻量级 agent 框架，专注企业配置管理与多步推理，附带 20+ 单文件示例应用。",
+ why:"IBM 以企业级 agent 框架差异化切入；与 LangChain/CrewAI/AutoGen 竞争企业 agent 市场。",
+ tags:["AI","IBM","agent","开源","CUGA"]},
+{t:"6月24日",d:"2026-06-24",src:"Mistral AI：News（网页）",cat:"ai",regions:["欧洲"],score:72,
+ title:"Mistral OCR 4：多模态文档解析升级，长上下文处理能力扩展",
+ url:"https://mistral.ai/news/ocr-4",
+ sum:"Mistral 发布 OCR 4——支持 100+ 种语言、多列布局、表格解析、长上下文文档；推理速度比 OCR 3 提升 40%，对企业 RAG/文档自动化是关键升级。",
+ why:"Mistral 在多模态文档处理赛道对标 GPT-4V/Gemini 2.5 Pro；欧洲主权 AI 落地路径之一。",
+ tags:["AI","Mistral","OCR","多模态","欧洲"]},
+{t:"6月24日",d:"2026-06-24",src:"Hacker News 热门（buzzing.cc 中文翻译）",cat:"ai",regions:["美国"],score:71,
+ title:"Stanford 研究：AI 招聘工具存在种族偏见，黑人申请者遭系统性排斥",
+ url:"https://hai.stanford.edu/news/ai-hiring-tools-can-yield-racial-bias-and-systemic-rejection",
+ sum:"Stanford HAI 大规模实地研究覆盖 340 万人 / 400 万份申请 / 150 雇主：AI 招聘工具对黑人申请者系统性排斥 26%、亚裔 15%；多数雇主依赖同一第三方算法形成“算法单一文化”。",
+ why:"AI 招聘合规风险加剧——Workday/Indeed 等 HR-Tech 公司面临 EEOC 监管；推动企业 AI 治理投入。",
+ tags:["AI","招聘","政策","偏见","监管"]},
+{t:"6月24日",d:"2026-06-24",src:"X：Krea AI (@krea_ai)",cat:"ai",regions:["美国"],score:71,
+ title:"Krea 2 技术报告正式发布：实时可控图像/视频生成",
+ url:"https://x.com/krea_ai/status/2069473417804591191",
+ sum:"Krea AI 发布 Krea 2 技术报告——实时可控图像生成、风格迁移、视频关键帧编辑；主打“创作者友好”的低延迟交互。",
+ why:"Krea 用“实时可控”差异化切入 vs Midjourney/Stability；创作者工具赛道持续升温。",
+ tags:["AI","Krea","图像生成","创作者工具"]},
+{t:"6月24日",d:"2026-06-24",src:"X：Runway (@runwayml)",cat:"ai",regions:["美国"],score:72,
+ title:"Runway 推出 Seedance 4K / Seedance Mini / Kling 3.0 Turbo 三款模型",
+ url:"https://x.com/runwayml/status/2069535148450705517",
+ sum:"Runway 同步上线三款视频生成模型：Seedance 4K（高分辨率）、Seedance Mini（轻量快版）、Kling 3.0 Turbo（快手可灵加速版）——“全球最佳模型，一处可用”。",
+ why:"Runway 把头部视频模型打包成订阅——视频生成赛道模型聚合 + 渠道分发路径。",
+ tags:["AI","Runway","视频生成","Seedance","Kling"]},
+{t:"6月24日",d:"2026-06-24",src:"IT之家（RSS）",cat:"ai",regions:["中国"],score:72,
+ title:"网易有道开源 Confucius4-TTS：14 语种跨语种无口音语音克隆",
+ url:"https://www.ithome.com/0/967/636.htm",
+ sum:"网易有道发布并开源 Confucius4-TTS——支持 14 种语言的跨语种无口音语音克隆；模型权重与训练数据全部开源。",
+ why:"语音克隆赛道进入开源 + 多语种新阶段；ElevenLabs 等闭源公司面临中文市场开源竞争。",
+ tags:["AI","网易有道","语音克隆","TTS","开源"]},
+{t:"6月24日",d:"2026-06-24",src:"公众号：火山引擎",cat:"ai",regions:["中国"],score:71,
+ title:"豆包音频生成模型 1.0 发布，重新定义 AI 音频创作",
+ url:"https://mp.weixin.qq.com/s/iL0uyUjOMUEfudeuDP6wQQ",
+ sum:"字节跳动火山引擎发布豆包音频生成模型 1.0——支持音乐生成、音效设计、语音克隆、配音四合一；面向创作者与企业。",
+ why:"字节把豆包从对话模型扩展到多模态音频——抢占 ElevenLabs/Suno/UDIO 市场份额。",
+ tags:["AI","字节跳动","豆包","音频生成","火山引擎"]},
+
+// ───────────── AI 动态（6/23 既有）─────────────
 {t:"6月23日",d:"2026-06-23",src:"X：Sam Altman",cat:"ai",regions:["美国"],score:88,
  title:"OpenAI 发布 GPT-5.5-Cyber：CyberGym SOTA，与 USG 安全生态合作",
  url:"https://x.com/sama/status/2069121360744550796",
@@ -326,7 +388,21 @@ const ITEMS = [
  why:"政治人脉 + VC 资本的新型混合模式；DOGE 履历为基金带来合规与政府合同的隐性资产。",
  tags:["M&A","Banner VC","DOGE","Musk","募资"]},
 
-// ───────────── IPO ─────────────
+// ───────────── IPO（6/24 新增）─────────────
+{t:"6月24日",d:"2026-06-24",src:"IT桔子",cat:"ipo",regions:["中国"],score:78,
+ title:"星源材质港交所 IPO 上市，募资 13.4 亿港元加码锂电隔膜",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"锂电池隔膜龙头星源材质港交所主板上市，募资 13.4 亿港元——A+H 双重上市格局落地，资金用于欧洲基地扩产 + 干法/湿法隔膜产能。",
+ why:"锂电材料出海标杆港股回归；隔膜行业全球前三集中度提升，欧盟反补贴后欧洲本土产能溢价。",
+ tags:["IPO","星源材质","锂电池","港股","A+H"]},
+{t:"6月24日",d:"2026-06-24",src:"IT桔子",cat:"ipo",regions:["中国"],score:72,
+ title:"华健未来港交所上市：11.1 亿港元募资，自身免疫 + 代谢双线",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"临床阶段生物科技公司华健未来港交所上市，募资 11.1 亿港元——核心产品 HJ787/HJ178/HJ891 聚焦自身免疫 / 代谢 / 肿瘤学三大领域，均为国产 1 类新药。",
+ why:"港股 Biotech IPO 持续回暖；自免 + 代谢双线是港股 18A 板块少有的非肿瘤标的。",
+ tags:["IPO","华健未来","港股","Biotech","18A"]},
+
+// ───────────── IPO（6/23 既有）─────────────
 {t:"6月23日",d:"2026-06-23",src:"IT桔子",cat:"ipo",regions:["中国"],score:85,
  title:"安克创新今起招股：23.11 亿港元基石轮，泰康人寿等领投",
  url:"https://www.itjuzi.com/investevent",
@@ -358,7 +434,27 @@ const ITEMS = [
  why:"谐波减速器是人形机器人核心零部件；来福谐波是国内少数突破海外技术封锁的厂商。",
  tags:["IPO","基石轮","来福谐波","谐波减速器","机器人零部件"]},
 
-// ───────────── 少数股权 ─────────────
+// ───────────── 少数股权（6/24 新增）─────────────
+{t:"6月24日",d:"2026-06-24",src:"IT桔子",cat:"minority",regions:["美国"],score:86,
+ title:"Groq 获 6.5 亿美元战略投资，加速 AI 推理芯片产能扩张",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"AI 推理芯片公司 Groq 完成 6.5 亿美元（约 47 亿人民币）战略融资——单芯片 400TOP/s 性能、8TOP/s/W 能效，对标 Google TPU；资金将用于 LPU 产能扩张与下一代架构研发。",
+ why:"Groq 是 NVIDIA 推理侧最直接挑战者，6.5 亿规模说明推理芯片赛道融资热度持续；LPU 替代 GPU 路径在 enterprise / cloud 推理场景加速渗透。",
+ tags:["AI","芯片","Groq","LPU","推理"]},
+{t:"6月24日",d:"2026-06-24",src:"IT桔子",cat:"minority",regions:["中国"],score:80,
+ title:"光轮智能完成 10 亿元战略融资：仿真 + 合成数据驱动机器人落地",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"机器人仿真与合成数据公司光轮智能完成新一轮 10 亿元人民币战略融资——提供 Sim2Real 全流程服务，覆盖数据采集 / 策略训练 / 仿真评测 / 部署。",
+ why:"具身智能进入“高质量数据为王”阶段；光轮是物理 AI / Sim2Real 基础设施层关键玩家，对宇树 / 智元 / Figure 等本体公司是刚需供给。",
+ tags:["AI","机器人","光轮智能","仿真","合成数据","具身智能"]},
+{t:"6月24日",d:"2026-06-24",src:"IT桔子",cat:"minority",regions:["亚太"],score:75,
+ title:"Meta 9 亿美元战略投资印度金融科技公司 Cred",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"印度会员制信用卡支付平台 Cred 完成 Meta 9 亿美元（约 65 亿人民币）战略投资——Cred 是印度 UPI / 信用卡账单支付龙头，月活过亿；Meta 入局意在 WhatsApp Pay 印度市场拓展。",
+ why:"Meta 用少数股权投资切入印度金融科技——为 WhatsApp 商业化寻找新增长极；Cred 是印度 unicorn 中少有的高 ARPU 消费金融标的。",
+ tags:["投资","Meta","Cred","印度","金融科技"]},
+
+// ───────────── 少数股权（6/23 既有）─────────────
 {t:"6月23日",d:"2026-06-23",src:"IT桔子",cat:"minority",regions:["中国"],score:82,
  title:"通威股份 50.6 亿元战略增资通威太阳能，光伏龙头资本运作加速",
  url:"https://www.itjuzi.com/investevent",
