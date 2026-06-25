@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月24日 · 星期三</div>
+    <div class="date">2026年6月25日 · 星期四</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>Oracle 宣布裁员 21000 人并发债数百亿美元投 AI 云基建（头部云厂商 AI 替代人力最激进案例，AI CapEx 仍处加速期）。Groq 完成 6.5 亿美元（约 47 亿人民币）战略融资（AI 推理芯片赛道最大单笔之一，对标 NVIDIA 推理侧替代路径）。五眼联盟发布联合警告：AI 驱动的网络攻击将在数月内影响普通消费者（网络安全股政策催化剂）。Stanford 研究：AI 招聘工具对黑人申请者系统性排斥 26%、亚裔 15%（HR-Tech 合规风险加剧）。字节豆包音频生成模型 1.0 发布（多模态音频抢占 ElevenLabs / Suno 市场）。星源材质港交所 IPO 募资 13.4 亿港元（锂电材料出海 A+H 双布局落地）。</p>
+      <p>Gemini 3.5 Flash 上线 Computer Use（agent 操作电脑能力下沉到 Flash 轻量模型）。NSA 因与 Anthropic 商业纠纷失去 Mythos 5 访问权限（顶级模型成国家级基础设施议题）。人形机器人零部件公司「临界点 AGILINK」完成近 10 亿元融资（具身智能刚需供给链）。Nearfield 3.8 亿美元 D 轮 + Upscale AI 1.9 亿美元 A+ 轮（欧洲+美国 AI infra 大额融资同日落地）。臻宝科技今日 A 股上市募资 17.3 亿元 / 仙工智能港股 10.7 亿 / 麦科医药港股 10.6 亿（A 股 + 港股 IPO 三连发）。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -474,7 +474,39 @@ const ITEMS = [
  why:"AI 数据中心推高电力需求，燃气轮机作为分布式快速电力供应的关键设备国产化价值凸显；明星机构押注。",
  tags:["少数股权","Pre-A+","清启动力","燃气轮机","电力"]},
 
-// ───────────── AI 动态 ─────────────
+// ───────────── AI 动态（6/25 新增）─────────────
+{t:"6月25日 05:56",d:"2026-06-25",src:"AIHOT",cat:"ai",regions:["美国"],score:70,
+ title:"AI 被认为会取代工程岗位，但新数据显示工程是 2025 年最具韧性的岗位",
+ url:"https://aihot.virxact.com/",
+ sum:"最新数据反驳“AI 取代工程师”叙事：工程岗位在 2025 年表现出最强就业韧性，远超其他白领岗位。AI 工具更多是增强而非替代。",
+ why:"为当前 AI 失业叙事提供反向证据；对程序员工种（软件/数据/AI 工程）的中长期需求是支撑。",
+ tags:["AI","就业","工程师","软件"]},
+{t:"6月25日 05:16",d:"2026-06-25",src:"AIHOT",cat:"ai",regions:["美国"],score:71,
+ title:"Gemini 3.5 Flash 上线 Computer Use（计算机使用）能力",
+ url:"https://aihot.virxact.com/",
+ sum:"Google 发布 Gemini 3.5 Flash 计算机使用功能——模型可直接操作浏览器/桌面 UI 完成复杂任务，对标 Anthropic Claude Computer Use。",
+ why:"Flash 模型首次加入 Computer Use 是关键——把“AI agent 操作电脑”能力下沉到轻量模型端，agent 落地成本再降。",
+ tags:["AI","Gemini","Computer Use","agent","Google"]},
+{t:"6月25日 04:08",d:"2026-06-25",src:"AIHOT",cat:"ai",regions:["美国"],score:71,
+ title:"NSA 在与 Anthropic 的纠纷中失去对 Mythos 的访问权限",
+ url:"https://aihot.virxact.com/",
+ sum:"NSA 因与 Anthropic 的商业纠纷，被切断 Mythos 5 模型访问权限——安全机构对头部模型的依赖成为国家安全议题。",
+ why:"顶级模型已成国家级基础设施；商业纠纷可能直接影响政府 AI 能力（对比 Mistral / Cohere 多供应商策略）。",
+ tags:["AI","Anthropic","Mythos","NSA","安全"]},
+{t:"6月25日 03:34",d:"2026-06-25",src:"AIHOT",cat:"ai",regions:["美国"],score:65,
+ title:"Perplexity 推出 Computer for Counsel（律师专用 AI）",
+ url:"https://aihot.virxact.com/",
+ sum:"Perplexity 推出法律行业垂直 AI 产品——Computer for Counsel，专注律师场景的深度研究 + 判例检索。",
+ why:"Perplexity 从通用搜索向垂直行业产品扩展；法律/医疗/金融是 AI agent 的高价值垂直落地场景。",
+ tags:["AI","Perplexity","法律","agent","垂直"]},
+{t:"6月25日 04:55",d:"2026-06-25",src:"AIHOT",cat:"ai",regions:["全球"],score:65,
+ title:"Notion 使用 Cursor SDK 嵌入编码智能体",
+ url:"https://aihot.virxact.com/",
+ sum:"Notion 通过集成 Cursor SDK 在文档编辑器内嵌入编码 agent——文档→代码无缝衔接，对 AI 工具生态是双赢。",
+ why:"AI agent 之间的 SDK 互操作开始形成生态；Cursor / Anthropic / Notion 三方合作是 agent 编排重要信号。",
+ tags:["AI","Notion","Cursor","agent","SDK"]},
+
+// ───────────── AI 动态（6/22 既有）─────────────
 {t:"6月22日",d:"2026-06-22",src:"AIHOT",cat:"ai",regions:["美国"],score:80,
  title:"NSA 局长：Mythos 数小时内攻破其几乎所有机密系统",
  url:"https://aihot.virxact.com/",
@@ -493,7 +525,27 @@ const ITEMS = [
  sum:"腾讯元宝父亲节活动——AI 图像生成 + 情感营销触达 C 端用户。",
  why:"中国 AI 应用持续做 C 端破圈——情感 + AI 工具 + 社交传播。",
  tags:["bigtech","腾讯","元宝","AI应用","C端"]},
-// ───────────── 少数股权 ─────────────
+// ───────────── 少数股权（6/25 新增）─────────────
+{t:"6月25日",d:"2026-06-25",src:"IT桔子",cat:"minority",regions:["中国"],score:80,
+ title:"临界点 AGILINK 完成近 10 亿元融资：人形机器人核心零部件",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"人形机器人核心零部件公司「临界点 AGILINK」完成近 10 亿元人民币融资——具体轮次/领投方待核。",
+ why:"人形机器人赛道 10 亿级融资持续；临界点专注核心零部件（关节/减速器/伺服等），对本体公司是刚需供给。",
+ tags:["人形机器人","临界点","AGILINK","零部件","融资"]},
+{t:"6月25日",d:"2026-06-25",src:"IT桔子",cat:"minority",regions:["欧洲"],score:75,
+ title:"Nearfield 完成 3.8 亿美元 D 轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Nearfield 完成 3.8 亿美元（约 27 亿人民币）D 轮融资——AI/半导体方向（具体业务待核）。",
+ why:"欧洲 AI/半导体大额融资；中国一级市场跨境关注度提升。",
+ tags:["Nearfield","欧洲","D轮","AI","半导体"]},
+{t:"6月25日",d:"2026-06-25",src:"IT桔子",cat:"minority",regions:["美国"],score:73,
+ title:"Upscale AI 完成 1.9 亿美元 A+ 轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Upscale AI 完成 1.9 亿美元（约 14 亿人民币）A+ 轮融资——AI 基础设施方向（具体产品待核）。",
+ why:"A+ 轮 1.9 亿规模说明项目融资节奏快；AI infra 是头部 VC 重点布局方向。",
+ tags:["Upscale","AI","基础设施","A+轮"]},
+
+// ───────────── 少数股权（6/22 既有）─────────────
 {t:"6月22日",d:"2026-06-22",src:"IT桔子",cat:"minority",regions:["中国"],score:60,
  title:"某中国一级市场项目（6/22 数据）",
  url:"https://www.itjuzi.com/investevent",
@@ -1107,7 +1159,27 @@ const ITEMS = [
  why:"Manus 案是2026年AI一级市场最敏感的跨境并购事件之一，运营拆分作为Plan B，对中、美AI资产跨境交易具有重要示范意义。",
  tags:["M&A","AI","跨境","运营拆分"]},
 
-// ───────────── IPO ─────────────
+// ───────────── IPO（6/25 新增）─────────────
+{t:"6月25日",d:"2026-06-25",src:"IT桔子",cat:"ipo",regions:["中国"],score:75,
+ title:"臻宝科技今日上市：发行价 44.56 元/股，募资 17.3 亿元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"臻宝科技今日 A 股上市，发行价 44.56 元/股，募资约 17.3 亿元人民币——具体业务/赛道待核。",
+ why:"A 股 IPO 持续回暖；中等规模募资项目密集上市反映一级市场退出通道改善。",
+ tags:["IPO","臻宝科技","A股","上市"]},
+{t:"6月25日",d:"2026-06-25",src:"IT桔子",cat:"ipo",regions:["中国"],score:72,
+ title:"仙工智能港交所上市：募资 10.7 亿元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"仙工智能港交所上市，募资约 10.7 亿元人民币——移动机器人/AMR 赛道（具体业务待核）。",
+ why:"移动机器人赛道港股上市兑现；与国内工业自动化升级趋势同步。",
+ tags:["IPO","仙工智能","港股","移动机器人","AMR"]},
+{t:"6月25日",d:"2026-06-25",src:"IT桔子",cat:"ipo",regions:["中国"],score:72,
+ title:"麦科医药港交所上市：募资 10.6 亿元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"麦科医药港交所上市，募资约 10.6 亿元人民币——创新药方向（具体赛道待核）。",
+ why:"港股 18A 板块持续承接中国 biotech 上市；麦科加入创新药 IPO 队列。",
+ tags:["IPO","麦科医药","港股","18A","创新药"]},
+
+// ───────────── IPO（6/17 既有）─────────────
 {t:"6月17日",d:"2026-06-17",src:"IT桔子",cat:"ipo",regions:["中国"],score:75,
  title:"SENASIC 琻捷电子正式登陆港交所（电池管理芯片）",
  url:"https://www.itjuzi.com/investevent",
