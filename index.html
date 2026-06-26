@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月25日 · 星期四</div>
+    <div class="date">2026年6月26日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>Gemini 3.5 Flash 上线 Computer Use（agent 操作电脑能力下沉到 Flash 轻量模型）。NSA 因与 Anthropic 商业纠纷失去 Mythos 5 访问权限（顶级模型成国家级基础设施议题）。人形机器人零部件公司「临界点 AGILINK」完成近 10 亿元融资（具身智能刚需供给链）。Nearfield 3.8 亿美元 D 轮 + Upscale AI 1.9 亿美元 A+ 轮（欧洲+美国 AI infra 大额融资同日落地）。臻宝科技今日 A 股上市募资 17.3 亿元 / 仙工智能港股 10.7 亿 / 麦科医药港股 10.6 亿（A 股 + 港股 IPO 三连发）。</p>
+      <p>@exponentialview 发布《State of the AI Economy》：AI 经济年化收入超 **1750 亿美元**（首次统一量化框架）。Anthropic 公开指控阿里巴巴非法获取 Claude 能力（中美 AI 摩擦从芯片延伸到模型层）。IBM 研究院推出亚纳米级芯片技术（&lt;1nm 栅极，摩尔定律再延续）。General Intuition 完成 3.2 亿美元融资用游戏数据训练通用 agent（3D agent 新路线）。AppsFlyer 10 亿美元 E 轮 + Baseten 15 亿美元战略投资（marketing-tech + AI 推理基础设施同日大额）。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -552,11 +552,41 @@ const ITEMS = [
  sum:"6/22 中国一级市场数据。AI/硬科技方向。",
  tags:["少数股权","中国"]},
 
-// ───────────── AI 动态 ─────────────
-{t:"6月21日",d:"2026-06-21",src:"AIHOT",cat:"bigtech",regions:["美国"],score:75,
- title:"微软双向转售 GPT 与 DeepSeek 成全球最大 AI 中间商",
+// ───────────── AI 动态（6/26 新增）─────────────
+{t:"6月26日 07:29",d:"2026-06-26",src:"AIHOT",cat:"ai",regions:["全球"],score:82,
+ title:"@exponentialview 发布《State of the AI Economy》报告：AI 经济年化收入超 1750 亿美元",
  url:"https://aihot.virxact.com/",
- sum:"微软 Azure 同时转售 OpenAI 的 GPT 与 DeepSeek 模型——OpenAI 与 DeepSeek 之间的“转售套利”成为微软新收入来源。",
+ sum:"Azeem Azhar 发布《State of the AI Economy》年度报告：AI 经济年化收入超 1750 亿美元——纯 AI 公司 + AI 应用层 + AI 基础设施三层估算。",
+ why:"为 AI 产业首次提供统一量化框架；1750 亿数字给一级市场 / 二级市场 / 政策制定者共同参照。",
+ tags:["AI","产业规模","State of AI","AZE"]},
+{t:"6月26日 03:07",d:"2026-06-26",src:"AIHOT",cat:"ai",regions:["美国"],score:75,
+ title:"Anthropic 称阿里巴巴非法获取了 Claude AI 模型的功能",
+ url:"https://aihot.virxact.com/",
+ sum:"Anthropic 公开指控阿里巴巴通过蒸馏/微调手段非法获取 Claude 的核心能力——中国大模型「师夷长技」路径首次被美方公开点名。",
+ why:"中美 AI 摩擦从芯片/算力延伸到模型层；阿里 + Qwen 团队需要正式回应，可能影响其在海外市场的合规性。",
+ tags:["AI","Anthropic","阿里","Qwen","蒸馏","地缘"]},
+{t:"6月26日 03:00",d:"2026-06-26",src:"AIHOT",cat:"ai",regions:["美国"],score:78,
+ title:"IBM 首度推出亚纳米级芯片技术（<1nm）",
+ url:"https://aihot.virxact.com/",
+ sum:"IBM 研究院发布亚纳米级芯片技术路线——晶体管栅极长度进入 <1nm 时代，为 2nm 之后的摩尔定律延续提供路径。",
+ why:"IBM 此前已把 2nm GAA 工艺路线图放出，这次亚纳米直接定义下一代；与 Intel 18A / TSMC A16 / Samsung 2GAP 形成新竞争维度。",
+ tags:["芯片","IBM","亚纳米","先进制程"]},
+{t:"6月26日 02:00",d:"2026-06-26",src:"AIHOT",cat:"ai",regions:["美国"],score:71,
+ title:"General Intuition 完成 3.2 亿美元融资，用游戏数据训练通用 AI 智能体",
+ url:"https://aihot.virxact.com/",
+ sum:"General Intuition 完成 3.2 亿美元（约 23 亿人民币）融资——用大规模游戏数据训练可在 3D 环境操作的通用 AI agent。",
+ why:"游戏数据 + agent 训练结合的新路线；类似 Physical Intelligence / Skild AI 路线但用合成 3D 数据替代真机。",
+ tags:["AI","agent","游戏","General Intuition"]},
+{t:"6月25日 21:15",d:"2026-06-26",src:"AIHOT",cat:"ai",regions:["美国"],score:66,
+ title:"Codex 在 ChatGPT 移动 App 正式可用",
+ url:"https://aihot.virxact.com/",
+ sum:"OpenAI 的 Codex agent 工具正式接入 ChatGPT 移动 App——iOS / Android 端可以直接调用 agent 任务。",
+ why:"OpenAI 把 agent 能力下沉到消费端移动 App；与 Anthropic Claude 移动端的竞争升级到 agent 形态。",
+ tags:["AI","OpenAI","Codex","ChatGPT","移动"]},
+
+// ───────────── AI 动态（6/25 既有）─────────────
+{t:"6月25日",d:"2026-06-25",src:"AIHOT",cat:"ai",regions:["全球"],score:82,
+ title:"Gemini 3.5 Flash 上线 Computer Use（agent 操作电脑能力下沉到 Flash 轻量模型）",
  why:"微软是两家头部模型公司共同的“云分销渠道”——中间商地位带来差异化议价能力。",
  tags:["bigtech","Microsoft","Azure","OpenAI","DeepSeek"]},
 {t:"6月21日",d:"2026-06-21",src:"AIHOT",cat:"ai",regions:["全球"],score:75,
@@ -596,7 +626,39 @@ const ITEMS = [
  sum:"坤达自动化完成 A 轮融资（金额未披露）。自动化设备/工业方向。",
  tags:["少数股权","A轮","自动化","中国"]},
 
-// ───────────── AI 动态 ─────────────
+// ───────────── 少数股权（6/26 新增）─────────────
+{t:"6月26日",d:"2026-06-26",src:"IT桔子",cat:"minority",regions:["美国"],score:85,
+ title:"AppsFlyer 完成 10 亿美元 E 轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"AppsFlyer 完成 10 亿美元（约 70 亿人民币）E 轮融资——全球移动归因与营销分析平台，长期服务 Meta/Google/TikTok 等大客户。",
+ why:"Marketing-tech 大额融资回归；AppsFlyer 是全球 MMP 龙头之一，在 iOS 14 ATT 隐私政策后转型成功，10 亿 E 轮验证商业模式。",
+ tags:["AppsFlyer","MMP","10亿美元","E轮"]},
+{t:"6月26日",d:"2026-06-26",src:"IT桔子",cat:"minority",regions:["美国"],score:82,
+ title:"Baseten 完成 15 亿美元战略投资（AI 推理基础设施）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Baseten 完成 15 亿美元（约 105 亿人民币）战略投资——AI 推理基础设施平台，为企业提供生产级 AI 模型部署。",
+ why:"AI 推理层（非训练层）出现首个 15 亿美元级别融资；与 Together AI / Anyscale / Modal 形成「推理平台」赛道。",
+ tags:["Baseten","AI推理","15亿美元","基础设施"]},
+{t:"6月26日",d:"2026-06-26",src:"IT桔子",cat:"minority",regions:["亚太"],score:80,
+ title:"Airwallex 空中云汇完成 3.2 亿美元 H 轮，估值 110 亿美元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Airwallex 空中云汇完成 3.2 亿美元 H 轮融资，估值达 110 亿美元——跨境支付与金融基础设施，覆盖 150+ 国家。",
+ why:"跨境支付赛道最大融资之一；H 轮估值 110 亿接近独角兽顶端，IPO 时间表渐近。",
+ tags:["Airwallex","跨境支付","110亿美元","H轮"]},
+{t:"6月26日",d:"2026-06-26",src:"IT桔子",cat:"minority",regions:["美国"],score:75,
+ title:"Ollin Bio 获得 3.3 亿美元 B 轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Ollin Bio 完成 3.3 亿美元 B 轮融资——AI 制药 / 生物科技方向（具体业务待核）。",
+ why:"AI for Bio 大额融资持续；继 2024 Insitro / Cradle 之后又一标杆轮。",
+ tags:["AI","生物科技","Ollin Bio","B轮"]},
+{t:"6月26日",d:"2026-06-26",src:"IT桔子",cat:"minority",regions:["中国"],score:60,
+ title:"赛那德获得 3 亿人民币 C 轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"赛那德完成 3 亿人民币 C 轮融资（具体业务待核）。",
+ why:"中后期轮次，金额中等。",
+ tags:["赛那德","C轮","人民币"]},
+
+// ───────────── AI 动态（6/20 既有）─────────────
 {t:"6月20日",d:"2026-06-20",src:"AIHOT",cat:"ai",regions:["美国"],score:78,
  title:"Figure 机器人数首超人类员工（具身智能里程碑）",
  url:"https://aihot.virxact.com/",
