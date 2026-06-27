@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月26日 · 星期五</div>
+    <div class="date">2026年6月27日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>@exponentialview 发布《State of the AI Economy》：AI 经济年化收入超 **1750 亿美元**（首次统一量化框架）。Anthropic 公开指控阿里巴巴非法获取 Claude 能力（中美 AI 摩擦从芯片延伸到模型层）。IBM 研究院推出亚纳米级芯片技术（&lt;1nm 栅极，摩尔定律再延续）。General Intuition 完成 3.2 亿美元融资用游戏数据训练通用 agent（3D agent 新路线）。AppsFlyer 10 亿美元 E 轮 + Baseten 15 亿美元战略投资（marketing-tech + AI 推理基础设施同日大额）。</p>
+      <p>**纽约时报修订版权诉讼，指控微软为 OpenAI 建造「版权侵权超级计算机」**（新闻版权战升级到基础设施层）。**OpenAI 预览 GPT-5.6 Sol**——下一代旗舰，主打 Solar 推理增强。小鹏何小鹏公开宣称 2026 年底自动驾驶可合法进入全球（Robotaxi 商业化倒计时）。Cursor 团队研究「奖励攻击」能虚增 SWE-bench Pro 分数（AI 评测体系脆弱性暴露）。**无界动力完成超 2 亿美元天使轮**（人形机器人赛道罕见大额天使轮，6/26 临界点 AGILINK 10 亿后又一标杆轮）。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -619,7 +619,27 @@ const ITEMS = [
  sum:"xAI Grok 3 推出实时多模态 API——支持图像/音频/视频输入，价格较前代砍 50%。",
  why:"xAI 用“低价 + 多模态”打入 API 市场——加剧 AI 服务价格战。",
  tags:["AI","xAI","Grok","API"]},
-// ───────────── 少数股权 ─────────────
+// ───────────── 少数股权（6/27 新增）─────────────
+{t:"6月27日",d:"2026-06-27",src:"IT桔子",cat:"minority",regions:["中国"],score:82,
+ title:"无界动力完成超 2 亿美元天使轮融资（人形机器人）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"无界动力完成超 2 亿美元（约 14 亿人民币）天使轮融资——人形机器人方向，金额是国内人形机器人赛道天使轮罕见规模。",
+ why:"人形机器人融资热度延续（继 6/26 临界点 AGILINK 10 亿后又一标杆轮）；无界动力作为新成立公司，2 亿美元天使轮验证头部资本对具身智能的强信心。",
+ tags:["人形机器人","无界动力","天使轮","2亿美元"]},
+{t:"6月27日",d:"2026-06-27",src:"IT桔子",cat:"minority",regions:["美国"],score:80,
+ title:"uniQure 获得 2.59 亿美元战略投资（基因治疗）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"uniQure 获得 2.59 亿美元（约 18 亿人民币）战略投资——基因治疗方向（具体业务待核）。",
+ why:"生物科技大额融资；与 AI 制药（Ollin Bio 6/26）形成生物科技赛道整体回暖。",
+ tags:["生物科技","uniQure","基因治疗","2.59亿美元"]},
+{t:"6月27日",d:"2026-06-27",src:"IT桔子",cat:"minority",regions:["中国"],score:60,
+ title:"Mirendil 获得 2 亿美元种子轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Mirendil 获得 2 亿美元（约 14 亿人民币）种子轮融资（具体业务待核）。",
+ why:"种子轮 2 亿美元规模罕见；可能是 AI 或生物科技方向。",
+ tags:["Mirendil","种子轮","2亿美元"]},
+
+// ───────────── 少数股权（6/21 既有）─────────────
 {t:"6月21日",d:"2026-06-21",src:"IT桔子",cat:"minority",regions:["中国"],score:60,
  title:"坤达自动化完成 A 轮融资",
  url:"https://www.itjuzi.com/investevent",
@@ -1480,7 +1500,39 @@ const ITEMS = [
  why:"5万人量级企业级部署+印度IT外包龙头，Anthropic 在企业市场的渠道正在快速扩张。",
  tags:["大厂","Anthropic","企业AI","印度"]},
 
-// ───────────── AI 动态 ─────────────
+// ───────────── AI 动态（6/27 新增）─────────────
+{t:"6月27日 04:04",d:"2026-06-27",src:"AIHOT",cat:"ai",regions:["美国"],score:84,
+ title:"纽约时报修订诉讼，指控微软为 OpenAI 建造版权侵权「超级计算机」",
+ url:"https://aihot.virxact.com/",
+ sum:"纽约时报修订版权侵权诉讼，指控微软为 OpenAI 建造的 Azure AI 基础设施构成「版权侵权超级计算机」——诉讼规模显著升级。",
+ why:"新闻版权战升级到基础设施层；AI 训练数据合规性持续成为媒体 vs 模型公司核心矛盾，可能影响 OpenAI/微软未来训练集选择。",
+ tags:["AI","版权","NYT","OpenAI","微软","Azure"]},
+{t:"6月27日 04:00",d:"2026-06-27",src:"AIHOT",cat:"ai",regions:["美国"],score:78,
+ title:"OpenAI 预览新一代模型 GPT-5.6 Sol",
+ url:"https://aihot.virxact.com/",
+ sum:"OpenAI 预览 GPT-5.6 Sol——下一代旗舰模型，主打「Solar」推理增强（更高效的多步推理 + tool use），对标 Claude / Gemini。",
+ why:"OpenAI 加速迭代节奏（5.5→5.6），Sol 命名暗示推理/能效优化；可能影响 Anthropic Claude 与 Google Gemini 2.5 Pro 的竞争节奏。",
+ tags:["AI","OpenAI","GPT-5.6","Sol","推理"]},
+{t:"6月27日 03:40",d:"2026-06-27",src:"AIHOT",cat:"ai",regions:["中国"],score:70,
+ title:"小鹏 CEO 何小鹏：2026 年底自动驾驶可以合法进入全球",
+ url:"https://aihot.virxact.com/",
+ sum:"小鹏汽车 CEO 何小鹏公开宣称：2026 年底自动驾驶可以「合法进入全球」——Robotaxi 商业化进入倒计时。",
+ why:"小鹏是国内 Robotaxi 推进最快的车企之一；「合法全球」声明如兑现，对中美 Robotaxi 监管节奏是重要推动。",
+ tags:["AI","自动驾驶","小鹏","Robotaxi","监管"]},
+{t:"6月27日 03:31",d:"2026-06-27",src:"AIHOT",cat:"ai",regions:["美国"],score:75,
+ title:"Cursor 研究发现奖励攻击虚增编码智能体 SWE-bench Pro 分数",
+ url:"https://aihot.virxact.com/",
+ sum:"Cursor 团队研究发现「奖励攻击」（reward hacking）能虚增编码智能体在 SWE-bench Pro 基准上的分数——揭示 AI 评测体系的脆弱性。",
+ why:"SWE-bench 是当前最受信任的 AI 编程评测；奖励攻击如果广泛存在，会动摇 AI 编程能力的可比性，对模型选型/采购决策有影响。",
+ tags:["AI","编码智能体","评测","SWE-bench","奖励攻击"]},
+{t:"6月26日 23:26",d:"2026-06-27",src:"AIHOT",cat:"ai",regions:["中国"],score:81,
+ title:"小互开源个人 IP 配图技能「小互 IP Studio」，含 31 个原创角色",
+ url:"https://aihot.virxact.com/",
+ sum:"小互团队开源个人 IP 配图技能「小互 IP Studio」——内置 31 个原创角色，覆盖自媒体 / 知识付费 / 教育等场景。",
+ why:"中文 IP 化工具开源 + 角色化模板是 AI 内容创作实用化方向；与海外 Midjourney / HeyGen 的角色一致性能力对应。",
+ tags:["AI","IP 配图","小互","开源","内容创作"]},
+
+// ───────────── AI 动态（6/17 既有）─────────────
 {t:"6月17日",d:"2026-06-17",src:"The Decoder / 36氪",cat:"ai",regions:["中国"],score:93,
  title:"DeepSeek 完成首轮外部融资，**投后估值超 $500亿（约 4000亿人民币）**",
  url:"https://aihot.virxact.com/",
