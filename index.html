@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月27日 · 星期六</div>
+    <div class="date">2026年6月28日 · 星期日</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>**纽约时报修订版权诉讼，指控微软为 OpenAI 建造「版权侵权超级计算机」**（新闻版权战升级到基础设施层）。**OpenAI 预览 GPT-5.6 Sol**——下一代旗舰，主打 Solar 推理增强。小鹏何小鹏公开宣称 2026 年底自动驾驶可合法进入全球（Robotaxi 商业化倒计时）。Cursor 团队研究「奖励攻击」能虚增 SWE-bench Pro 分数（AI 评测体系脆弱性暴露）。**无界动力完成超 2 亿美元天使轮**（人形机器人赛道罕见大额天使轮，6/26 临界点 AGILINK 10 亿后又一标杆轮）。</p>
+      <p>SpaceX 注册 **SpaceXAI** 商标，将合并 xAI（航天+AI 一体化落地）。**SpaceX 全资收购 Mesh Optical** 光模块公司（AI 数据中心光通信双布局）。阿里千问输入法上 macOS（300 字/分 + AI 润色，AI to C 应用渗透）。**DeepSeek 开源 DSpark 投机解码**加速 V4 推理 60-85%（推理价格领导者）。国家统计局：1-5 月电子行业利润 +103.9% 贡献 43.1%（A 股 AI 板块估值锚）。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -337,6 +337,14 @@ const ITEMS = [
  tags:["前沿科技","SpaceX","Reflection","Nvidia","算力"]},
 
 // ───────────── 大厂动态 ─────────────
+{t:"6月28日 01:05",d:"2026-06-28",src:"AIHOT",cat:"bigtech",regions:["美国"],score:76,
+ title:"苹果 Vision 负责人跳槽 OpenAI，触控 OLED MacBook 用 M5 芯片",
+ url:"https://aihot.virxact.com/",
+ sum:"苹果 Vision Pro 部门负责人跳槽 OpenAI；同期供应链披露苹果测试 2026 款触控 OLED MacBook（用 M5 芯片）。",
+ why:"Vision 负责人离职反映苹果 AR/VR 战略优先级下降；触控 MacBook 是 iPad-Mac 融合信号。",
+ tags:["苹果","Vision Pro","OpenAI","人才","MacBook"]},
+
+// ───────────── 大厂动态 ─────────────
 {t:"6月23日",d:"2026-06-23",src:"The Information",cat:"bigtech",regions:["美国"],score:75,
  title:"Meta 路易斯安那 AI 园区税收爆炸，教师今年拿 5 万美元奖金",
  url:"https://x.com/TheInformation/status/2069155982509244590",
@@ -367,6 +375,14 @@ const ITEMS = [
  sum:"SK 海力士市值首次超过三星电子成为韩国最大上市公司——AI HBM 内存周期带来估值与盈利双线超越。",
  why:"韩国芯片产业权力结构重构——HBM 主题公司估值溢价全面兑现；三星错失 HBM 早期窗口代价显现。",
  tags:["bigtech","SK海力士","三星","HBM","韩国"]},
+
+// ───────────── M&A ─────────────
+{t:"6月27日",d:"2026-06-28",src:"IT桔子",cat:"ma",regions:["美国"],score:88,
+ title:"SpaceX 全资收购光模块初创公司 Mesh Optical Technologies（100% 股权）",
+ url:"https://www.itjuzi.com/merger",
+ sum:"SpaceX 全资收购 Mesh Optical Technologies——一家专注高速光通信模块的初创公司，主设计面向 AI 数据中心的光通信收发器。",
+ why:"SpaceX + Mesh Optical = 航天 + AI 数据中心光通信双布局；为 xAI/Starlink 算力网络铺路。Mesh 100% 控股反映 SpaceX 战略级收购。",
+ tags:["SpaceX","Mesh Optical","光模块","AI数据中心","100%控股"]},
 
 // ───────────── M&A ─────────────
 {t:"6月23日",d:"2026-06-23",src:"axios",cat:"ma",regions:["全球"],score:82,
@@ -1500,7 +1516,39 @@ const ITEMS = [
  why:"5万人量级企业级部署+印度IT外包龙头，Anthropic 在企业市场的渠道正在快速扩张。",
  tags:["大厂","Anthropic","企业AI","印度"]},
 
-// ───────────── AI 动态（6/27 新增）─────────────
+// ───────────── AI 动态（6/28 新增）─────────────
+{t:"6月28日 04:51",d:"2026-06-28",src:"AIHOT",cat:"ai",regions:["美国"],score:76,
+ title:"SpaceX 注册 SpaceXAI 商标，将合并 xAI（Elon 一体化航天+AI）",
+ url:"https://aihot.virxact.com/",
+ sum:"SpaceX 注册 SpaceXAI 商标——Elon Musk 将 xAI 正式并入 SpaceX 体系，航天+AI 一体化战略落地。",
+ why:"SpaceX 市值 ~$350B + xAI ~$200B = 合并实体有望冲击 $500B+。与 NVIDIA/Microsoft/OpenAI 竞合关系重大调整。",
+ tags:["SpaceX","xAI","合并","Elon Musk","航天+AI"]},
+{t:"6月28日 01:39",d:"2026-06-28",src:"AIHOT",cat:"ai",regions:["中国"],score:73,
+ title:"阿里千问输入法上线 macOS 版：300 字/分，AI 自动润色",
+ url:"https://aihot.virxact.com/",
+ sum:"阿里千问输入法发布 macOS 客户端——中文打字最快 300 字/分，AI 实时润色风格/语法/上下文。",
+ why:"阿里把 Qwen 模型下沉到输入法这种高频入口，是 AI to C 应用的「自来水式」渗透策略；与字节豆包输入法对垒。",
+ tags:["阿里","千问","输入法","Qwen","macOS"]},
+{t:"6月28日 00:39",d:"2026-06-28",src:"AIHOT",cat:"ai",regions:["美国"],score:79,
+ title:"DeepSeek 开源 DSpark 投机解码框架，加速 DeepSeek-V4 生成 60-85%",
+ url:"https://aihot.virxact.com/",
+ sum:"DeepSeek 开源 DSpark——基于 Speculative Decoding 思路，加速 DeepSeek-V4 推理速度 60-85%，API 成本大幅下降。",
+ why:"DeepSeek 用「开源 + 性能优化」巩固大模型推理价格领导者地位；行业默认速度/价格基准继续被中国厂商拉低。",
+ tags:["DeepSeek","V4","DSpark","推理","开源"]},
+{t:"6月28日 04:25",d:"2026-06-28",src:"AIHOT",cat:"industry",regions:["中国"],score:71,
+ title:"国家统计局：1-5月规上工业利润 +18.8%，电子行业 +103.9% 贡献 43.1%",
+ url:"https://aihot.virxact.com/",
+ sum:"国家统计局：1-5 月规上工业企业利润同比 +18.8%，其中电子行业 +103.9% 贡献了 43.1%——AI/HBM/国产替代驱动的电子利润是宏观主力。",
+ why:"电子利润暴增 103.9% 印证 AI 产业链景气 + 半导体国产替代双主线，是 A 股 AI 板块估值锚。",
+ tags:["国家统计局","电子行业","利润","国产替代"]},
+{t:"6月28日 04:02",d:"2026-06-28",src:"AIHOT",cat:"industry",regions:["美国"],score:70,
+ title:"AI 账单失控后 DeepSeek 成「香饽饽」，部分美国企业已 100% 切换",
+ url:"https://aihot.virxact.com/",
+ sum:"OpenAI/Anthropic API 价格飙升后，部分美国企业已 100% 切换至 DeepSeek——中国大模型首次实现「美国企业完全依赖」。",
+ why:"DeepSeek-V4 + DSpark 加速后，推理成本可能只有 Claude 1/10，价格压力反向传导到 OpenAI/Anthropic 利润空间。",
+ tags:["DeepSeek","OpenAI","Anthropic","替代","成本"]},
+
+// ───────────── AI 动态（6/27 既有）─────────────
 {t:"6月27日 04:04",d:"2026-06-27",src:"AIHOT",cat:"ai",regions:["美国"],score:84,
  title:"纽约时报修订诉讼，指控微软为 OpenAI 建造版权侵权「超级计算机」",
  url:"https://aihot.virxact.com/",
