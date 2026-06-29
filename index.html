@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月28日 · 星期日</div>
+    <div class="date">2026年6月29日 · 星期一</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>SpaceX 注册 **SpaceXAI** 商标，将合并 xAI（航天+AI 一体化落地）。**SpaceX 全资收购 Mesh Optical** 光模块公司（AI 数据中心光通信双布局）。阿里千问输入法上 macOS（300 字/分 + AI 润色，AI to C 应用渗透）。**DeepSeek 开源 DSpark 投机解码**加速 V4 推理 60-85%（推理价格领导者）。国家统计局：1-5 月电子行业利润 +103.9% 贡献 43.1%（A 股 AI 板块估值锚）。</p>
+      <p>**Wayfinder Router** 开源：本地+云端 LLM 确定性查询路由（混合架构基础设施成型）。Grok 4.5 在 SpaceX/Tesla 私测，性能接近 Opus（Elon 闭环加速）。学术研究：500 天创业模拟中**仅 3 个 AI 模型盈利超过起始资本**（模型强 ≠ 商业化可行）。新浪开源 **VibeThinker-3B** 小模型（推理可压缩、事实不能 — agent 落地工程权衡）。四大顶级 AI 对决《文明VI》，**Claude 多次核平法国仍输**，暴露长程博弈+多代理短板。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -1515,6 +1515,38 @@ const ITEMS = [
  sum:"印度IT服务巨头塔塔咨询服务（TCS，印股代码 TCS）宣布与 Anthropic 达成战略合作，将为公司5万名员工配备 Claude。这是 Anthropic 在企业市场的最大单笔部署之一，也是大厂/外包巨头与AI实验室直接合作的典型样本。",
  why:"5万人量级企业级部署+印度IT外包龙头，Anthropic 在企业市场的渠道正在快速扩张。",
  tags:["大厂","Anthropic","企业AI","印度"]},
+
+// ───────────── AI 动态（6/29 新增）─────────────
+{t:"6月28日 18:58",d:"2026-06-29",src:"AIHOT",cat:"ai",regions:["美国"],score:75,
+ title:"Wayfinder Router：在本地和云端 LLM 之间做确定性查询路由",
+ url:"https://aihot.virxact.com/",
+ sum:"Wayfinder Router 开源工具——在本地 + 多家云端 LLM 之间做「确定性查询路由」，按规则分流任务、保证延迟/成本/隐私。",
+ why:"本地 LLM（如 Llama 3 70B）+ 云端最强模型（如 Claude Mythos）的混合架构开始成型；路由层是关键基础设施。",
+ tags:["Wayfinder","LLM路由","本地模型","混合架构","开源"]},
+{t:"6月28日 18:50",d:"2026-06-29",src:"AIHOT",cat:"ai",regions:["美国"],score:70,
+ title:"Grok 4.5 私测于 SpaceX/Tesla，性能接近 Opus",
+ url:"https://aihot.virxact.com/",
+ sum:"Grok 4.5 在 SpaceX 和 Tesla 内部私测——基准测试显示性能接近 Claude Opus 4.x 系列。",
+ why:"Grok 4.5 终于追到头部；结合 SpaceX + Tesla 部署，Elon 内部生态闭环加速。",
+ tags:["Grok","xAI","SpaceX","Tesla","Opus"]},
+{t:"6月28日 18:16",d:"2026-06-29",src:"AIHOT",cat:"ai",regions:["全球"],score:70,
+ title:"仅 3 个 AI 模型在 500 天创业测试中盈利超过起始资本",
+ url:"https://aihot.virxact.com/",
+ sum:"学术研究：500 天创业模拟中，仅 3 个 AI 模型能盈利超过起始资本——其余都烧完钱或亏损。",
+ why:"AI agent 创业的现实：模型能力 ≠ 商业可行；提示选 AI 应用层标的时要警惕「技术强但商业模型跑不通」。",
+ tags:["AI","创业","商业化","agent"]},
+{t:"6月28日 15:44",d:"2026-06-29",src:"AIHOT",cat:"ai",regions:["中国"],score:70,
+ title:"新浪开源 VibeThinker-3B：推理可压缩，事实知识不能",
+ url:"https://aihot.virxact.com/",
+ sum:"新浪开源 VibeThinker-3B 小模型——核心观点：推理能力可压缩（蒸馏到小模型），但事实知识不能压缩（仍需大模型）。",
+ why:"小模型路线（≤3B）的实用边界：「逻辑任务」可用，但「事实性问答」必须大模型——是 agent 落地的关键工程权衡。",
+ tags:["VibeThinker","3B小模型","新浪","开源","推理"]},
+{t:"6月28日 11:55",d:"2026-06-29",src:"AIHOT",cat:"ai",regions:["美国"],score:76,
+ title:"四大顶级 AI 对决《文明VI》：Claude 核平法国仍输，暴露感知/执行短板",
+ url:"https://aiHOT.virxact.com/",
+ sum:"Claude / GPT / Gemini / Grok 四模型玩《文明VI》对战——Claude 多次核平法国但仍输，暴露 AI 在「长程规划 + 多代理博弈」的短板。",
+ why:"AI 评测从「答题」转向「长程博弈」——这对 agent 商业化是核心难题；不是模型参数问题，是记忆+规划+对局的问题。",
+ tags:["AI评测","文明VI","博弈","agent","Claude","GPT","Gemini","Grok"]},
 
 // ───────────── AI 动态（6/28 新增）─────────────
 {t:"6月28日 04:51",d:"2026-06-28",src:"AIHOT",cat:"ai",regions:["美国"],score:76,
