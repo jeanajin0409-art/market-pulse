@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月29日 · 星期一</div>
+    <div class="date">2026年6月30日 · 星期二</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>**Wayfinder Router** 开源：本地+云端 LLM 确定性查询路由（混合架构基础设施成型）。Grok 4.5 在 SpaceX/Tesla 私测，性能接近 Opus（Elon 闭环加速）。学术研究：500 天创业模拟中**仅 3 个 AI 模型盈利超过起始资本**（模型强 ≠ 商业化可行）。新浪开源 **VibeThinker-3B** 小模型（推理可压缩、事实不能 — agent 落地工程权衡）。四大顶级 AI 对决《文明VI》，**Claude 多次核平法国仍输**，暴露长程博弈+多代理短板。</p>
+      <p>美团 **LongCat Owl Alpha**（1.6T MoE + 国产 ASIC 训练，OpenRouter 最流行）——美团跨界 AI 大模型 + 训练不卡英伟达路线成立。NVIDIA **Rubin Ultra 取消**（尺寸/性能减半）——AMD / 国产 AI 算力供给侧重新洗牌。Anthropic 推出 **Claude apps gateway for Bedrock/GCP**（multi-cloud 入口战略）。Qwen 3.6 27B 是**消费级 GPU 跑接近旗舰**的甜点组合。Anthropic 工程师官方解读 **prompt engineering = 评估驱动**。智平方完成近 50 亿元 C 轮（具身智能头部）+ 海光芯创港股上市 15.3 亿港元。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,44 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+
+// ───────────── AI 动态（6/30 新增）─────────────
+{t:"6月29日 21:06",d:"2026-06-30",src:"AIHOT",cat:"ai",regions:["中国"],score:79,
+ title:"美团 LongCat Owl Alpha：OpenRouter 最流行模型，1.6 万亿 MoE，国产 ASIC 训练",
+ url:"https://aihot.virxact.com/",
+ sum:"美团发布 LongCat Owl Alpha——1.6 万亿参数 MoE 模型，OpenRouter 上线即成最流行；用国产 ASIC 训练（不依赖 NVIDIA）。",
+ why:"美团从外卖跨界做万亿 MoE 是大新闻；国产 ASIC 训练意味着「训练不卡英伟达」路线成立。",
+ tags:["美团","LongCat","MoE","1.6T","国产ASIC"]},
+{t:"6月29日 21:00",d:"2026-06-30",src:"AIHOT",cat:"ai",regions:["美国"],score:77,
+ title:"Rubin Ultra 取消，新版尺寸/性能减半",
+ url:"https://aihot.virxact.com/",
+ sum:"NVIDIA 取消原计划 Rubin Ultra 路线——发布「尺寸/性能减半」新版本。这给 AMD MI400 + 国产替代更多时间窗口。",
+ why:"NVIDIA 路线调整对 AMD / 国产芯片（华为 / 中芯 / 海光）都是结构性利好；AI 算力供给侧重新洗牌。",
+ tags:["NVIDIA","Rubin","AMD","AI算力","国产替代"]},
+{t:"6月29日 21:22",d:"2026-06-30",src:"AIHOT",cat:"ai",regions:["美国"],score:66,
+ title:"为 Amazon Bedrock 和 Google Cloud 推出的 Claude apps gateway",
+ url:"https://aihot.virxact.com/",
+ sum:"Anthropic 推出官方 Claude apps gateway——让 Amazon Bedrock 和 Google Cloud 用户能更丝滑接入 Claude 应用。",
+ why:"Anthropic 走「multi-cloud 入口」战略：让 Claude 能在 AWS / GCP / Azure 三大云上都是「一等公民」，降低客户绑定。",
+ tags:["Anthropic","Bedrock","GCP","Claude","多云"]},
+{t:"6月29日 18:03",d:"2026-06-30",src:"AIHOT",cat:"ai",regions:["中国"],score:75,
+ title:"Qwen 3.6 27B 是本地开发的理想选择",
+ url:"https://aihot.virxact.com/",
+ sum:"Qwen 团队发布 27B 中等尺寸版本——在代码 + 推理任务上接近 70B+ 旗舰表现，**特别适合本地 RTX 4090/5090 部署**。",
+ why:"Qwen 3.6 27B 是「消费级 GPU 跑接近旗舰」的现实方案——Nan-jin 24GB 显存 + 27B 模型是甜点组合。",
+ tags:["Qwen","3.6","27B","本地部署","RTX"]},
+{t:"6月29日 15:04",d:"2026-06-30",src:"AIHOT",cat:"ai",regions:["全球"],score:77,
+ title:"Anthropic 工程师 Margot Van Laar：提示词工程实战——调试生产提示词为主，评估是唯一严谨方式",
+ url:"https://aihot.virxact.com/",
+ sum:"Anthropic 工程师 Margot Van Laar 分享提示词工程实战——核心观点：**「评估（evals）是唯一严谨的提示词优化方式」，调试 > 文档化 > 凭感觉。",
+ why:"这是 Anthropic 官方对「prompt engineering 该怎么做」的最权威解读——给所有用 Claude 做生产场景的团队划重点：搭 eval 体系 > 经验调整。",
+ tags:["prompt engineering","Anthropic","evals","调试","Margo Van Laar"]},
+{t:"6月29日 12:30",d:"2026-06-30",src:"AIHOT",cat:"ai",regions:["美国"],score:75,
+ title:"美军用 AI 选目标却误炸伊朗学校，Anthropic Claude 嵌入 Palantir 系统首日建议约 1000 目标",
+ url:"https://aihot.virxact.com/",
+ sum:"美军用 AI 选打击目标——Anthropic Claude 嵌入 Palantir 系统首日即建议约 1000 个目标，但实际操作中误炸了伊朗一所学校。",
+ why:"Anthropic + Palantir 军用集成是真实落地；误炸事件引发「AI 选目标 = 大规模杀伤」道德争议，可能影响 Anthropic 商业客户。",
+ tags:["AI军事","Palantir","Anthropic","地缘","伦理"]},
 
 // ───────────── AI 动态（6/24 新增）─────────────
 {t:"6月24日 12:17",d:"2026-06-24",src:"Ars Technica：AI（RSS）",cat:"ai",regions:["美国"],score:80,
@@ -449,6 +487,34 @@ const ITEMS = [
  sum:"来福谐波港股 IPO 启动招股——4.31 亿港元基石轮，全球发售 1344.19 万股 H 股，谐波减速器龙头挂牌在即。",
  why:"谐波减速器是人形机器人核心零部件；来福谐波是国内少数突破海外技术封锁的厂商。",
  tags:["IPO","基石轮","来福谐波","谐波减速器","机器人零部件"]},
+
+// ───────────── 少数股权（6/30 新增）─────────────
+{t:"6月30日",d:"2026-06-30",src:"IT桔子",cat:"minority",regions:["中国"],score:80,
+ title:"智平方完成近 50 亿元 C 轮融资，估值超 200 亿元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"机器人公司智平方完成近 50 亿元 C 轮融资，估值超 200 亿元——具身智能 / 工业机器人方向大额融资。",
+ why:"中国具身智能大额融资持续；智平方是波士顿动力后中国具身智能头部公司之一。",
+ tags:["智平方","具身智能","C轮","200亿估值"]},
+{t:"6月30日",d:"2026-06-30",src:"IT桔子",cat:"minority",regions:["中国"],score:75,
+ title:"视比特机器人完成亿元级 B++ 轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"视比特机器人完成亿元级 B++ 轮融资——工业 3D 视觉 + 机器人方向（具体业务待核）。",
+ why:"工业视觉 + 机器人赛道大额融资。",
+ tags:["视比特","机器人","3D视觉"]},
+
+// ───────────── IPO（6/30 新增）─────────────
+{t:"6月30日",d:"2026-06-30",src:"IT桔子",cat:"ipo",regions:["中国"],score:80,
+ title:"海光芯创（海光信息关联）港交所上市，募资 15.3 亿港元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"海光芯创港交所上市，募资 15.3 亿港元——海光信息关联企业（DCU / 国产 AI 芯片）。",
+ why:"海光信息（688041）A 股 + 海光芯创港股 = 海光系双平台；国产 AI 芯片港股稀缺点。",
+ tags:["海光","IPO","港股","国产AI芯片"]},
+{t:"6月30日",d:"2026-06-30",src:"IT桔子",cat:"ipo",regions:["中国"],score:72,
+ title:"白鸽在线 / 礼邦医药港交所上市，募资 5.2 亿 / 12.8 亿港元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"白鸽在线（保险科技）港股上市募 5.2 亿；礼邦医药（创新药）港股上市募 12.8 亿。",
+ why:"港股创新药 + 保险科技 IPO 持续。",
+ tags:["港股","IPO","保险","创新药"]},
 
 // ───────────── 少数股权（6/24 新增）─────────────
 {t:"6月24日",d:"2026-06-24",src:"IT桔子",cat:"minority",regions:["美国"],score:86,
