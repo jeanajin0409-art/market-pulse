@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年6月30日 · 星期二</div>
+    <div class="date">2026年7月1日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>美团 **LongCat Owl Alpha**（1.6T MoE + 国产 ASIC 训练，OpenRouter 最流行）——美团跨界 AI 大模型 + 训练不卡英伟达路线成立。NVIDIA **Rubin Ultra 取消**（尺寸/性能减半）——AMD / 国产 AI 算力供给侧重新洗牌。Anthropic 推出 **Claude apps gateway for Bedrock/GCP**（multi-cloud 入口战略）。Qwen 3.6 27B 是**消费级 GPU 跑接近旗舰**的甜点组合。Anthropic 工程师官方解读 **prompt engineering = 评估驱动**。智平方完成近 50 亿元 C 轮（具身智能头部）+ 海光芯创港股上市 15.3 亿港元。</p>
+      <p>**Claude Sonnet 5 发布**（Anthropic 中端主战，AI 中端模型战升级）。AI 用 prover-verifier 循环**攻克 9 个未解数学难题**（LLM 形式化证明新高度）。**跨维智能 10 亿元融资**（具身智能 + 3D 视觉）。**星核聚变 8.3 亿元首轮**（可控核聚变商业化加速）。**立讯精密 117.5 亿港元港股招股启动**（A 股果链龙头二次上市）。Tim Cook 与欧盟 AI Act 主管会谈（Apple Intelligence 进入欧盟节奏）。ADK Go 2.0 多智能体框架（图工作流 + HIL）。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,56 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+
+// ───────────── AI 动态（7/1 新增）─────────────
+{t:"6月30日 18:02",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["美国"],score:81,
+ title:"Claude Sonnet 5 发布",
+ url:"https://aihot.virxact.com/",
+ sum:"Anthropic 发布 Claude Sonnet 5——Sonnet 系列重大升级。",
+ why:"Sonnet 5 是 Anthropic 中端模型主战产品，对标 GPT-4o / Gemini 2.5 Pro；这一代 API 价格、推理速度、agent 能力会决定下半年开发者生态天平。",
+ tags:["Claude","Sonnet 5","Anthropic","LLM"]},
+{t:"6月30日 22:32",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["全球"],score:76,
+ title:"AI 用 prover-verifier LLM 循环攻克 9 个未解数学难题",
+ url:"https://aihot.virxact.com/",
+ sum:"学术研究：AI 用 prover-verifier 循环框架成功攻克**9 个长期未解的数学难题**——证明 LLM 不只是「写代码」，而能「形式化证明」。",
+ why:"AI for Math 是新增长极：LLM + 形式化证明系统（Lean/Coq）+ prover-verifier 框架的组合可能颠覆数学研究范式。",
+ tags:["AI","数学","prover-verifier","Lean","形式化证明"]},
+{t:"6月30日 17:32",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["美国"],score:66,
+ title:"Claude Science 科研工作台正式上线",
+ url:"https://aihot.virxact.com/",
+ sum:"Anthropic 上线 Claude Science 科研工作台——专为科研场景设计：文献综述 + 实验设计 + 论文写作。",
+ why:"Anthropic 在「垂直 agent 工具」上加注：Sonnet 5 + Claude Science 切入「学界 AI」市场，对标 OpenAI Deep Research + Google Scholar Labs。",
+ tags:["Anthropic","Claude Science","科研","Deep Research"]},
+{t:"6月30日 17:28",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["美国"],score:72,
+ title:"Claude Code 入门：智能体循环",
+ url:"https://aihot.virxact.com/",
+ sum:"Anthropic 官方推 Claude Code 入门教程——核心模式「**agent loop**」：plan → execute → verify → iterate。",
+ why:"Claude Code 不只是 CLI 工具，**agent loop 模式**是 agent 系统的通用骨架——值得所有做 agent 工程的团队学。",
+ tags:["Claude Code","agent loop","Anthropic"]},
+{t:"6月30日 23:43",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["欧洲"],score:72,
+ title:"库克与欧盟科技主管就新版 Siri AI 举行建设性会谈",
+ url:"https://aihot.virxact.com/",
+ sum:"Tim Cook 与欧盟科技主管 Henna Virkkunen 就 Apple Intelligence + 欧盟 AI Act 实施细节会谈。",
+ why:"Apple 在欧盟 AI 监管关键期主动游说，**Apple Intelligence 进入欧盟市场节奏**会决定 Apple 能否在 AI 时代保住硬件护城河。",
+ tags:["Apple","Siri","欧盟","AI Act","Tim Cook"]},
+{t:"6月30日 17:17",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["美国"],score:67,
+ title:"ADK Go 2.0 发布：构建可靠多智能体应用，新增基于图的工作流引擎 + 人在环 + 动态编排",
+ url:"https://aihot.virxact.com/",
+ sum:"Agent Development Kit (ADK) Go 2.0 发布——多智能体框架加入**图工作流引擎**、人在环（Human-in-the-loop）、动态编排能力。",
+ why:"多 agent 框架开始收敛到「图 + 状态机 + HIL」的标准范式；ADK 是 Google 推出的开源 agent 框架，对标 LangGraph。",
+ tags:["ADK","Google","多智能体","图工作流","HIL"]},
+{t:"6月30日 19:44",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["美国"],score:68,
+ title:"NotebookLM Short Video Overviews 全量上线 Web 英文版",
+ url:"https://aihot.virxact.com/",
+ sum:"Google NotebookLM 推出 **Short Video Overviews**——自动把长文档/音频生成短视频摘要。",
+ why:"AI 把「论文→短视频」自动化——教育/研究内容传播新范式，挑战短视频制作门槛。",
+ tags:["NotebookLM","Google","短视频","AI摘要"]},
+{t:"6月30日 17:52",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["美国"],score:72,
+ title:"Acti 将 AI 智能体直接放入手机键盘",
+ url:"https://aihot.virxact.com/",
+ sum:"Acti 把 AI 智能体集成进**手机输入法**——打字时直接调用 agent 完成复杂任务。",
+ why:"AI 输入法 / 智能体嵌入到 OS 入口级是 2026 关键战场——**iOS/Android 双方都把 AI 智能体从 App 提升到输入法层**。",
+ tags:["AI","输入法","智能体","Acti","iOS"]},
 
 // ───────────── AI 动态（6/30 新增）─────────────
 {t:"6月29日 21:06",d:"2026-06-30",src:"AIHOT",cat:"ai",regions:["中国"],score:79,
@@ -487,6 +537,34 @@ const ITEMS = [
  sum:"来福谐波港股 IPO 启动招股——4.31 亿港元基石轮，全球发售 1344.19 万股 H 股，谐波减速器龙头挂牌在即。",
  why:"谐波减速器是人形机器人核心零部件；来福谐波是国内少数突破海外技术封锁的厂商。",
  tags:["IPO","基石轮","来福谐波","谐波减速器","机器人零部件"]},
+
+// ───────────── 少数股权（7/1 新增）─────────────
+{t:"7月1日",d:"2026-07-01",src:"IT桔子",cat:"minority",regions:["中国"],score:82,
+ title:"跨维智能官宣 10 亿元融资，具身智能 / 3D 视觉",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"跨维智能官宣 10 亿元融资——具身智能 + 3D 视觉方向（具体业务待核）。",
+ why:"具身智能大额融资持续——跨维智能对标智平方（200 亿），加速赛道头部洗牌。",
+ tags:["跨维智能","10亿","具身智能","3D视觉"]},
+{t:"7月1日",d:"2026-07-01",src:"IT桔子",cat:"minority",regions:["中国"],score:78,
+ title:"星核聚变完成 8.3 亿元首轮融资，可控核聚变商业化",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"星核聚变完成 8.3 亿元首轮融资——可控核聚变商业化（具体技术路径待核）。",
+ why:"核聚变 2026 投资热持续；与 Commonwealth Fusion / Helion / TAE 海外核聚变初创形成全球第三波。",
+ tags:["星核聚变","核聚变","8.3亿","首轮"]},
+{t:"7月1日",d:"2026-07-01",src:"IT桔子",cat:"minority",regions:["美国"],score:73,
+ title:"Quantifind 获 2 亿美元战略投资（AI 商业洞察）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Quantifind 获 2 亿美元战略投资——AI 商业洞察 / 实体图谱平台。",
+ why:"AI for 商业情报（BI 增强）+ 实体图谱 + 大模型整合是 B2B 趋势；Quantifind 是这个方向的标杆。",
+ tags:["Quantifind","2亿","AI情报","实体图谱"]},
+
+// ───────────── IPO（7/1 新增）─────────────
+{t:"7月1日",d:"2026-07-01",src:"IT桔子",cat:"ipo",regions:["中国"],score:75,
+ title:"立讯精密（002475.SZ 关联）港交所招股启动，募资 117.5 亿港元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"立讯精密港交所招股启动，拟募资 117.5 亿港元——A 股 002475.SZ 关联企业（H 股二次上市）。",
+ why:"立讯是 A 股果链 / 消费电子龙头之一；港股二次上市是「A+H」结构性配置，H 股折让可能 5-15%。",
+ tags:["立讯精密","港股","117.5亿","果链","A+H"]},
 
 // ───────────── 少数股权（6/30 新增）─────────────
 {t:"6月30日",d:"2026-06-30",src:"IT桔子",cat:"minority",regions:["中国"],score:80,
