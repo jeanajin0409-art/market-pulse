@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年7月1日 · 星期三</div>
+    <div class="date">2026年7月3日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>**Claude Sonnet 5 发布**（Anthropic 中端主战，AI 中端模型战升级）。AI 用 prover-verifier 循环**攻克 9 个未解数学难题**（LLM 形式化证明新高度）。**跨维智能 10 亿元融资**（具身智能 + 3D 视觉）。**星核聚变 8.3 亿元首轮**（可控核聚变商业化加速）。**立讯精密 117.5 亿港元港股招股启动**（A 股果链龙头二次上市）。Tim Cook 与欧盟 AI Act 主管会谈（Apple Intelligence 进入欧盟节奏）。ADK Go 2.0 多智能体框架（图工作流 + HIL）。</p>
+      <p>Microsoft 成立 **Frontier Company**，**斥资 25 亿美元派 6000 名 AI 工程师到企业客户**——SaaS 从『卖软件』转『卖结果 + 卖人』的转型。蚂蚁 **阿宝**（支付级 AI Agent）开放公测，**支付 + 信用 + 政务完整生态 GMV** 是 Copilot / Assistant 没做到的。**宇树科技科创板 IPO** 获证监会同意——中国具身/人形机器人产业化『信号弹』，**你持仓五洲新春 603667 受益**。OpenAI 提议美国政府持股 5% 估值 4260 亿美元。Google 2025 用电量增长 **37%**（AI 数据中心驱动）—— VST / GEV / NEE 主线 100% 共识。花旗/Adobe 限制员工使用旗舰模型——**AI 推理成本失控**首次成 CFO 痛点。快手可灵 20 亿美元融资 / 估值 180 亿美元（PS 130-260x 透支严重）。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,62 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+
+// ───────────── AI 动态（7/3 新增）─────────────
+{t:"7月2日 19:18",d:"2026-07-03",src:"AIHOT",cat:"bigtech",regions:["美国"],score:78,
+ title:"Microsoft 成立『Frontier Company』，斥资 25 亿美元派驻 6000 名 AI 工程师到企业客户",
+ url:"https://aihot.virxact.com/",
+ sum:"Microsoft 成立新部门『Frontier Company』，未来 3 年投入 25 亿美元，向企业客户派驻 6000 名 AI 工程师做深度集成服务（订阅 + 咨询）—— 标志 SaaS 从『卖软件』到『卖结果 + 卖人』的转型。",
+ why:"对 Microsoft 意义重大：AI 部署从『自我服务 SaaS』转『深度服务』，提高客户锁定 + 渗透率。对 AWS / Google Cloud 形成竞争压力。Figma 收购失败后 Microsoft 又一次大手笔。",
+ tags:["Microsoft","Frontier Company","AI咨询","企业AI","25亿美元"]},
+{t:"7月2日 16:24",d:"2026-07-03",src:"AIHOT",cat:"ai",regions:["美国"],score:75,
+ title:"Anthropic 与五角大楼控权之争：Claude 军事用途护栏分歧",
+ url:"https://aihot.virxact.com/",
+ sum:"Anthropic 与五角大楼就 Claude 军事用途护栏拉锯：Anthropic 拒绝将 Claude 用于『自主武器系统』，五角大楼希望更宽松使用条款。",
+ why:"Anthropic 商业护城河=『安全 + 价值观』品牌定位；与五角大楼冲突可强化公众形象但损失大客户。OpenAI 走得快（已签 DoD 合同）—— Anthropic 风险是『被踢出政府合同』vs『丢失安全护城河』。",
+ tags:["Anthropic","五角大楼","军事","Claude","护栏"]},
+{t:"7月2日 15:36",d:"2026-07-03",src:"AIHOT",cat:"ai",regions:["中国"],score:71,
+ title:"快手可灵 AI 获初始投资者 20.28 亿美元注资，投后估值 180 亿美元",
+ url:"https://aihot.virxact.com/",
+ sum:"快手可灵（视频生成 AI）获 20.28 亿美元首轮融资，投后估值 180 亿美元（折人民币 1300 亿）—— 国内视频生成 AI 单笔最大融资。",
+ why:"可灵是 Sora 中国版最大对手，本轮融资证明视频生成 AI 商业化信心。但**估值透支严重**（年化营收 5-10 亿 / 估值 1300 亿 = PS 130-260x），需用 Sora 2 / Pika 2 行业演进验证。",
+ tags:["快手","可灵","视频生成AI","20亿美元","180亿估值"]},
+{t:"7月2日 14:22",d:"2026-07-03",src:"AIHOT",cat:"ai",regions:["美国"],score:74,
+ title:"花旗、Adobe 等企业限制员工使用 AI 旗舰模型以控制成本",
+ url:"https://aihot.virxact.com/",
+ sum:"花旗、Adobe、Shopify 等企业开始限制员工使用 Claude Mythos 5 / GPT-5 / Claude Sonnet 5 等顶级模型，仅开放 cheaper 模型——**AI 推理成本失控**首次成为企业 CFO 痛点。",
+ why:"AI 应用层最大变量 =『推理成本 vs 性能』平衡。当 flagship model 单次对话 $0.5+ 时，企业开始权衡『用 Opus 是否真的 ROI > Sonnet 3-5 倍』。OpenAI / Anthropic 必须**分层定价 + distillation 模型**对抗。",
+ tags:["AI成本","企业AI","花旗","Adobe","推理成本"]},
+{t:"7月2日 11:15",d:"2026-07-03",src:"AIHOT",cat:"ai",regions:["美国"],score:70,
+ title:"谷歌 AI 建设导致 2025 年用电量增长 37%",
+ url:"https://aihot.virxact.com/",
+ sum:"Google 2025 年总用电量增长 37%，主要由 AI 训练 / 推理数据中心驱动。",
+ why:"AI『电力饥渴』首次以主流公司财报数字形式确认。**你的 VST / GEV / CEG / NEE 持仓** 全部直接受益——AI 算力卖电主线 2026 仍是 100% 共识方向。",
+ tags:["谷歌","AI用电","电力","VST","GEV"]},
+{t:"7月2日 09:10",d:"2026-07-03",src:"AIHOT",cat:"ai",regions:["中国"],score:70,
+ title:"证监会同意宇树科技科创板 IPO 注册申请",
+ url:"https://aihot.virxact.com/",
+ sum:"证监会同意宇树科技（Unitree）科创板 IPO 注册申请——人形机器人第一家进入 IPO 实操阶段。",
+ why:"宇树 IPO 进度 = 中国具身/人形机器人产业化的『信号弹』。发行价 / 估值 / 上市首日表现 会成为后续厂商（智元 / 银河通用 / 优必选）的估值锚。你的持仓五洲新春（603667）做核心丝杠，**宇树 IPO 后会带动整个产业链**。",
+ tags:["宇树","科创板","IPO","人形机器人","五洲新春"]},
+{t:"7月2日 07:39",d:"2026-07-03",src:"AIHOT",cat:"ai",regions:["美国"],score:75,
+ title:"OpenAI 提议美国政府持股 5% 估值 426 亿美元",
+ url:"https://aihot.virxact.com/",
+ sum:"OpenAI 提议美国政府以非稀释方式持股 5%，估值 4260 亿美元。",
+ why:"OpenAI 政府关系 + 估值锚的标志性事件。4260 亿（合人民币 3 万亿）估值是 GPT-5 全速商业化的『市场口径上限』。如果落地，OpenAI 融资估值进一步上行 → Sam Altman 个人身价过百亿美元。",
+ tags:["OpenAI","政府持股","4260亿估值","Sam Altman"]},
+{t:"7月2日 02:51",d:"2026-07-03",src:"AIHOT",cat:"ai",regions:["中国"],score:80,
+ title:"AI 版支付宝开放公测，蚂蚁阿宝无需邀请码即可体验",
+ url:"https://aihot.virxact.com/",
+ sum:"蚂蚁集团『阿宝』AI 智能体开放公测，**无需邀请码**——支付级 AI 智能体从灰度进入公开期。",
+ why:"**支付级 AI Agent 商业化突破**：阿宝有支付宝完整生态（电商 + 支付 + 信用 + 出行 + 政务），**实际 GMV 与交易闭环**—— 是 Microsoft Copilot / Google Assistant 都没做到的。蚂蚁 IPO 估值重估有支点。",
+ tags:["蚂蚁阿宝","AI Agent","支付级","公开公测"]},
+{t:"7月1日 21:00",d:"2026-07-03",src:"AIHOT",cat:"ai",regions:["美国"],score:79,
+ title:"browser-use 发布开源 AI 视频剪辑 Skill『video-use』",
+ url:"https://aihot.virxact.com/",
+ sum:"browser-use 开源 video-use Skill：让 AI 编码工具具备视频剪辑与生成能力（直接操控视频编辑软件 + 自动化剧本）。",
+ why:"browser-use（v0.1 即 GitHub 6k+ stars）从『网页操控』扩展到『视频操控』—— agent 能力边界再扩张。Runway / Sora / Pika 之外的『AI 编辑视频』新入口。",
+ tags:["browser-use","video-use","AI视频编辑","agent","开源"]},
 
 // ───────────── AI 动态（7/1 新增）─────────────
 {t:"6月30日 18:02",d:"2026-07-01",src:"AIHOT",cat:"ai",regions:["美国"],score:81,
@@ -537,6 +593,32 @@ const ITEMS = [
  sum:"来福谐波港股 IPO 启动招股——4.31 亿港元基石轮，全球发售 1344.19 万股 H 股，谐波减速器龙头挂牌在即。",
  why:"谐波减速器是人形机器人核心零部件；来福谐波是国内少数突破海外技术封锁的厂商。",
  tags:["IPO","基石轮","来福谐波","谐波减速器","机器人零部件"]},
+
+// ───────────── 少数股权（7/3 新增）─────────────
+{t:"7月3日",d:"2026-07-03",src:"IT桔子",cat:"minority",regions:["中国"],score:75,
+ title:"鸿擎科技获 13 亿元 Pre-B 轮融资（具身智能/多模态）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"鸿擎科技获得 13 亿人民币 Pre-B 轮融资——具身智能 / 多模态大模型方向。",
+ why:"宇树 IPO 通过 + 鸿擎 / 乐享 / VAST 等密集融资 = 中国具身智能赛道 2026 H2 集中爆发。",
+ tags:["鸿擎","具身智能","13亿","Pre-B"]},
+{t:"7月3日",d:"2026-07-03",src:"IT桔子",cat:"minority",regions:["中国"],score:72,
+ title:"VAST 完成 10 亿元 A3 轮融资（3D / 视觉基础模型）",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"VAST 完成超 10 亿人民币 A3 轮融资——3D / 视觉基础模型方向（具身/数字孪生应用）。",
+ why:"3D 基础模型是 2026 创投新热点（World Labs / Odyssey / VAST 并起），下游具身 + 数字孪生 + 影视。",
+ tags:["VAST","3D基础模型","10亿","A3"]},
+{t:"7月3日",d:"2026-07-03",src:"IT桔子",cat:"ipo",regions:["中国"],score:75,
+ title:"华润新能源 A 股上市，募资 213 亿元",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"华润新能源今日 A 股上市，发行价 10.11 元/股，募资 213 亿人民币。",
+ why:"华润集团新能源旗舰平台 A 股 IPO，215 亿募资是今年 A 股最大单之一（仅次于 6 月中芯系）。碳中和+央国企背景=稀缺性。",
+ tags:["华润新能源","A 股","213亿","IPO","央国企"]},
+{t:"7月3日",d:"2026-07-03",src:"IT桔子",cat:"minority",regions:["中国"],score:70,
+ title:"Twelve Labs 视频基础模型获 1 亿美元 B 轮融资",
+ url:"https://www.itjuzi.com/investevent",
+ sum:"Twelve Labs 获得 1 亿美元 B 轮融资——视频基础模型方向（多模态理解 / 长视频 embedding）。",
+ why:"视频理解（不是生成）是被忽视的赛道。Twelve Labs 路线与可灵 / Sora 不同（embedding 派），做企业级视频搜索 / 监控 / 内容审核。",
+ tags:["Twelve Labs","视频理解","1亿美元","B轮"]},
 
 // ───────────── 少数股权（7/1 新增）─────────────
 {t:"7月1日",d:"2026-07-01",src:"IT桔子",cat:"minority",regions:["中国"],score:82,
