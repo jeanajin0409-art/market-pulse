@@ -12,7 +12,7 @@
 set -uo pipefail
 
 TASK="${1:-unknown}"
-REVIEW_DIR="/Users/jeana/Documents/market-pulse/logs/reviews"
+REVIEW_DIR="/Users/mac/Documents/market-pulse/logs/reviews"
 mkdir -p "$REVIEW_DIR"
 
 NOW=$(date '+%Y-%m-%d %H:%M:%S')
@@ -27,7 +27,7 @@ echo
 # ─── dealhot checklist ───
 review_dealhot() {
     local log="/tmp/aihot_22.json"  # latest aihot
-    local page="/Users/jeana/Documents/market-pulse/index.html"
+    local page="/Users/mac/Documents/market-pulse/index.html"
     local today=$(date '+%Y-%m-%d')
 
     echo "📊 [dealhot] 检查项"
