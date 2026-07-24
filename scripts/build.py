@@ -447,6 +447,10 @@ def main():
     b = sub.add_parser('build', help='Full build: index.html + archive + archive index')
     b.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
     b.set_defaults(func=cmd_build)
+    f = sub.add_parser('fetch', help='Fetch IT焦 events for date and import to DB')
+    f.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
+    f.add_argument('--dry-run', action='store_true', help='Only fetch, do not insert')
+    f.set_defaults(func=cmd_fetch)
     p = sub.add_parser('post', help='Generate #dealhot channel post in 5c42a5a6 template format')
     p.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
     p.set_defaults(func=cmd_post)
@@ -513,8 +517,5 @@ def cmd_post(args):
     return 0
 
 
-if __name__ == '__main__':
-    main()
 
 
-# --- 8 步硬闸门 SOP（5c42a5a6 模板）---
