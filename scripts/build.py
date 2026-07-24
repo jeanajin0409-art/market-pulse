@@ -355,7 +355,7 @@ def cmd_dry_run(args):
     print(f'\nPreview of generated main page (dry-run, NOT writing):')
     new_html = update_main_header(today)
     items_out = generate_main()
-    print(f'  ITEMS array: {len(items_out.split("{\\n")) - 1} items (would write {len(items_out)} chars)')
+    print(f'  ITEMS array: {len([s for s in items_out.split(chr(123) + chr(10)) if s.strip()]) - 1} items (would write {len(items_out)} chars)')
     print(f'  index.html would change: {len(new_html) - len(INDEX_PATH.read_text())} bytes')
     # Check archive
     archive_path = ARCHIVE_DIR / f'{today}.html'
@@ -447,8 +447,74 @@ def main():
     b = sub.add_parser('build', help='Full build: index.html + archive + archive index')
     b.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
     b.set_defaults(func=cmd_build)
+    p = sub.add_parser('post', help='Generate #dealhot channel post in 5c42a5a6 template format')
+    p.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
+    p.set_defaults(func=cmd_post)
     args = parser.parse_args()
     sys.exit(args.func(args))
 
+def build_dealhot_post(date_str):
+    """Generate #dealhot 频道 post 文本（per 5c42a5a6 模板）."""
+    c = get_conn().cursor()
+    rows = c.execute('''
+        SELECT title, score, cat, src, regions, sum
+        FROM items
+        WHERE date = ?
+        ORDER BY score DESC, id ASC
+    ''', (date_str,)).fetchall()
+    if not rows:
+        return None
+    cats = {}
+    for title, score, cat, src, regions, sum_ in rows:
+        cats.setdefault(cat, []).append((title, score, src))
+    lead_lines = []
+    for title, score, cat, src, regions, sum_ in rows[:5]:
+        label = title.replace('。', '').replace('，', ',')[:50]
+        lead_lines.append(f'- **{label}**')
+    cat_lines = []
+    for cat, items in cats.items():
+        cat_lines.append(f'**{cat}（{len(items)}）**')
+        for i, (title, score, src) in enumerate(items, 1):
+            cat_lines.append(f'{i}. {title}（{score}）')
+        cat_lines.append('')
+    from collections import Counter
+    srcs = Counter(r[3] for r in rows)
+    src_text = ' / '.join(f'{s} {c}条' for s, c in srcs.most_common(3))
+    # Beijing time for CST stamp
+    dt = datetime.strptime(date_str, '%Y-%m-%d')
+    bj_tz = timezone(timedelta(hours=8))
+    dt_bj = dt.replace(tzinfo=bj_tz)
+    weekday_cn = ['星期一','星期二','星期三','星期四','星期五','星期六','星期日'][dt_bj.weekday()]
+    month_eng = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][dt_bj.month-1]
+    cst_stamp = f'{dt_bj.month}/{dt_bj.day} {weekday_cn}'  # 5c42a5a6 用了 6/24 周二 格式
+    post = f"""📊 **DealHOT {cst_stamp} 更新**（{len(rows)} 条新条目） · {dt_bj.year}-{dt_bj.month:02d}-{dt_bj.day:02d} 08:10 CST
+
+🔗 <https://jeanajin0409-art.github.io/market-pulse/>
+
+## 今日导读
+{chr(10).join(lead_lines)}
+
+## {date_str.replace("-","-")} 新增 {len(rows)} 条按板块
+
+{chr(10).join(cat_lines)}来源：{src_text}
+
+—— Mimi-Timer-Mini（post-cutover 新端 dealhot daily job, 08:10 CST）
+"""
+    return post
+
+def cmd_post(args):
+    """Generate #dealhot channel post in 5c42a5a6 template format. Prints to stdout."""
+    date_str = args.date or bj_today_str()
+    post = build_dealhot_post(date_str)
+    if post is None:
+        print(f'\u274c No items for {date_str} in DB. Aborting.')
+        return 2
+    print(post)
+    return 0
+
+
 if __name__ == '__main__':
     main()
+
+
+# --- 8 步硬闸门 SOP（5c42a5a6 模板）---
