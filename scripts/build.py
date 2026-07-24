@@ -440,7 +440,7 @@ def cmd_build(args):
 
 
 def fetch_itjuzi(target_date):
-    """Fetch IT焦 events for a date. Returns list of dicts."""
+    """Fetch IT桔子 events for a date. Returns list of dicts."""
     import urllib.request, os
     env_path = DEALHOT_DIR / '.secrets' / 'itjuzi.env'
     if env_path.exists():
@@ -462,7 +462,7 @@ def fetch_itjuzi(target_date):
 
 
 def import_itjuzi_to_db(target_date, commit_sha):
-    """Import IT焦 events for date into dealhot.db."""
+    """Import IT桔子 events for date into dealhot.db."""
     items = fetch_itjuzi(target_date)
     if not items:
         return 0
@@ -488,14 +488,14 @@ def import_itjuzi_to_db(target_date, commit_sha):
         ROUND_NAMES = {1:'天使',2:'A',3:'A+',4:'B',5:'B+',6:'C',7:'D',8:'E',9:'Pre-IPO',10:'战略',11:'种子',12:'Pre-A',13:'Pre-A+',14:'B++',15:'C++',16:'被收购'}
         round_name = ROUND_NAMES.get(round_id, f'#{round_id}')
         ind_name = it.get('com_sub_industry_name', '')
-        sum_text = f"{d} IT焦披露，{it.get('com_name','')}完成{round_name}。属\"{ind} > {ind_name}\"。"
-        c.execute('SELECT id FROM items WHERE date=? AND src=? AND title=?', (d, 'IT焦', title))
+        sum_text = f"{d} IT桔子披露，{it.get('com_name','')}完成{round_name}。属\"{ind} > {ind_name}\"。"
+        c.execute('SELECT id FROM items WHERE date=? AND src=? AND title=?', (d, 'IT桔子', title))
         if c.fetchone():
             continue
         try:
             c.execute(
                 'INSERT INTO items (date, t, src, cat, regions, score, title, url, sum, ma_cap, tags, commit_sha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                (d, f"{d[5:7].lstrip('0')}月{d[8:10].lstrip('0')}日", 'IT焦', cat,
+                (d, f"{d[5:7].lstrip('0')}月{d[8:10].lstrip('0')}日", 'IT桔子', cat,
                  '["中国"]', 80, title, url, sum_text, '未披露',
                  '["投融资", "' + ind_name + '"]', commit_sha)
             )
@@ -508,9 +508,9 @@ def import_itjuzi_to_db(target_date, commit_sha):
 
 
 def cmd_fetch(args):
-    """Fetch IT焦 events for date and import to DB. No file writes."""
+    """Fetch IT桔子 events for date and import to DB. No file writes."""
     target_date = args.date or bj_today_str()
-    print(f'=== fetch IT焦 for {target_date} ===\n')
+    print(f'=== fetch IT桔子 for {target_date} ===\n')
     items = fetch_itjuzi(target_date)
     print(f'Found {len(items)} events')
     for it in items:
@@ -532,7 +532,7 @@ def main():
     b = sub.add_parser('build', help='Full build: index.html + archive + archive index')
     b.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
     b.set_defaults(func=cmd_build)
-    f = sub.add_parser('fetch', help='Fetch IT焦 events for date and import to DB')
+    f = sub.add_parser('fetch', help='Fetch IT桔子 events for date and import to DB')
     f.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
     f.add_argument('--dry-run', action='store_true', help='Only fetch, do not insert')
     f.set_defaults(func=cmd_fetch)
