@@ -264,7 +264,7 @@ def generate_archive_html(date_str, today_only=True):
     # Update lead
     lead_p = build_lead_p(date_str, top_n=3)
     new_html = re.sub(
-        r'<div class="lead">\s*<h1>今日导读</h1>\s*<p>[^<]*</p>\s*</div>',
+        r'<div class="lead">\s*<h1>今日导读</h1>\s*<p>[\s\S]*?</p>\s*</div>',
         f'<div class="lead">\n      <h1>今日导读</h1>\n      <p>{lead_p}</p>\n    </div>',
         new_html, count=1
     )
@@ -319,7 +319,7 @@ def update_main_header(date_str):
     )
     lead_p = build_lead_p(date_str, top_n=3)
     new_html = re.sub(
-        r'<div class="lead">\s*<h1>今日导读</h1>\s*<p>[^<]*</p>\s*</div>',
+        r'<div class="lead">\s*<h1>今日导读</h1>\s*<p>[\s\S]*?</p>\s*</div>',
         f'<div class="lead">\n      <h1>今日导读</h1>\n      <p>{lead_p}</p>\n    </div>',
         new_html, count=1
     )
