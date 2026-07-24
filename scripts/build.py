@@ -438,6 +438,91 @@ def cmd_build(args):
     print(f'  ✓ Archive page items: {arch_count}')
     return 0
 
+
+def fetch_itjuzi(target_date):
+    """Fetch IT焦 events for a date. Returns list of dicts."""
+    import urllib.request, os
+    env_path = DEALHOT_DIR / '.secrets' / 'itjuzi.env'
+    if env_path.exists():
+        for line in env_path.read_text().strip().split('\n'):
+            k, v = line.split('=', 1)
+            os.environ[k.strip()] = v.strip()
+    if not os.environ.get('ITJUZI_APPID'):
+        return []
+    req = urllib.request.Request(
+        'https://openapi.itjuzi.com/oauth2.0/get_access_token',
+        data=f"appid={os.environ['ITJUZI_APPID']}&appkey={os.environ['ITJUZI_APPKEY']}&granttype=client_credentials".encode()
+    )
+    tok = json.loads(urllib.request.urlopen(req, timeout=15).read())['data']['access_token']
+    req2 = urllib.request.Request(
+        f"https://openapi.itjuzi.com/investevent/get_investevent_list_v2?d={target_date}&d={target_date}&limit=20&order=1&order_rules=1",
+        headers={'AUTHORIZATION': f'Bearer {tok}'}
+    )
+    return json.loads(urllib.request.urlopen(req2, timeout=15).read()).get('data', [])
+
+
+def import_itjuzi_to_db(target_date, commit_sha):
+    """Import IT焦 events for date into dealhot.db."""
+    items = fetch_itjuzi(target_date)
+    if not items:
+        return 0
+    conn = get_conn()
+    c = conn.cursor()
+    inserted = 0
+    for it in items:
+        d = it.get('d') or target_date
+        title = it.get('event_title', '').strip()
+        if not title:
+            continue
+        round_id = it.get('round_id', 0)
+        ind = it.get('com_industry_name', '')
+        if ind in ('先进制造', '前沿科技', '机器人', '汽车交通'):
+            cat = 'frontier'
+        elif ind in ('医疗健康', '企业服务', '传统制造', '教育'):
+            cat = 'bigtech'
+        elif ind in ('金融', '消费'):
+            cat = 'minority'
+        else:
+            cat = 'bigtech'
+        url = 'https://www.itjuzi.com/'
+        ROUND_NAMES = {1:'天使',2:'A',3:'A+',4:'B',5:'B+',6:'C',7:'D',8:'E',9:'Pre-IPO',10:'战略',11:'种子',12:'Pre-A',13:'Pre-A+',14:'B++',15:'C++',16:'被收购'}
+        round_name = ROUND_NAMES.get(round_id, f'#{round_id}')
+        ind_name = it.get('com_sub_industry_name', '')
+        sum_text = f"{d} IT焦披露，{it.get('com_name','')}完成{round_name}。属\"{ind} > {ind_name}\"。"
+        c.execute('SELECT id FROM items WHERE date=? AND src=? AND title=?', (d, 'IT焦', title))
+        if c.fetchone():
+            continue
+        try:
+            c.execute(
+                'INSERT INTO items (date, t, src, cat, regions, score, title, url, sum, ma_cap, tags, commit_sha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                (d, f"{d[5:7].lstrip('0')}月{d[8:10].lstrip('0')}日", 'IT焦', cat,
+                 '["中国"]', 80, title, url, sum_text, '未披露',
+                 '["投融资", "' + ind_name + '"]', commit_sha)
+            )
+            inserted += 1
+        except Exception as e:
+            print(f'  err: {e}')
+    conn.commit()
+    conn.close()
+    return inserted
+
+
+def cmd_fetch(args):
+    """Fetch IT焦 events for date and import to DB. No file writes."""
+    target_date = args.date or bj_today_str()
+    print(f'=== fetch IT焦 for {target_date} ===\n')
+    items = fetch_itjuzi(target_date)
+    print(f'Found {len(items)} events')
+    for it in items:
+        print(f'  - {it.get("event_title", "?")[:80]}')
+    if not args.dry_run and items:
+        commit_sha = f'fetch-{datetime.now().strftime("%Y%m%d-%H%M%S")}'
+        n = import_itjuzi_to_db(target_date, commit_sha)
+        print(f'\n✓ Imported {n} events to DB (commit_sha={commit_sha})')
+    return 0 if items else 2
+
+
+
 def main():
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest='cmd', required=True)
@@ -519,3 +604,6 @@ def cmd_post(args):
 
 
 
+
+if __name__ == '__main__':
+    main()
