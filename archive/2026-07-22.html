@@ -114,7 +114,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年7月20日 · 星期一</div>
+    <div class="date">2026年7月22日 · 星期三</div>
     <a class="nav-link" href="./">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -160,7 +160,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>**Qwen3.8 开源 2.4T 参数**（阿里）——「可与 Fable 5 媲美」官方表述，中国大厂首次突破 2T+ 体量。**黄仁勋访日**为日本建『Vera Rubin AI 工厂』（13,750 Vera CPU + 27,500 Rubin GPU，预计 2028 投运）—— Nvidia 全球 AI 算力布局的日本一站。**面壁智能开源 MiniCPM-Robot**（1.5B VLA + PhyAI 推理框架）—— 中国端侧 VLA 新头部。**昆仑万维宣布 2026 为『世界模型元年』**（Matrix-Game 3.5，5B 模型 720p 单卡 20FPS 实时生成）。**Valar Atomics 寻求 10 亿美元融资，pre-money 50 亿估值**（Sequoia 在谈领投）—— 核能 / 聚变创业超大额融资。</p>
+      <p><strong>瑞莱智慧获 A+ 轮</strong>，可信 AI 与模型安全融资升温；<strong>Infinity 获 Pre-A+ 轮</strong>，通用推理软件基础设施获资本关注；<strong>史河机器人获战略融资</strong>，高空作业机器人进入工程场景；<strong>Neo.ai 获 A 轮</strong>，通用 AI 技术研发继续吸金；<strong>格陆博科技获战略融资</strong>，汽车智能驾驶系统产业化加速。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -3716,11 +3716,13 @@ function counts(){
 
 function matches(i){
   if(state.cat!=="all" && i.cat!==state.cat) return false;
-  if(state.region && !i.regions.includes(state.region)) return false;
-  if(state.topic && !i.tags.some(t=>t.includes(state.topic))) return false;
+  const regions = i.regions || [];
+  const tags = i.tags || [];
+  if(state.region && !regions.includes(state.region)) return false;
+  if(state.topic && !tags.some(t=>t.includes(state.topic))) return false;
   if(state.q){
     const q = state.q.toLowerCase();
-    const hay = (i.title+i.sum+(i.why||"")+i.tags.join(" ")+i.src).toLowerCase();
+    const hay = (i.title+i.sum+(i.why||"")+tags.join(" ")+i.src).toLowerCase();
     if(!hay.includes(q)) return false;
   }
   return true;
@@ -3755,8 +3757,8 @@ function render(){
       <p class="sum">${i.sum}</p>
       ${i.why?`<p class="why">${i.why}</p>`:""}
       <div class="tags">
-        ${i.regions.map(r=>`<span class="tag region" onclick="setRegion('${r}')">${r}</span>`).join("")}
-        ${i.tags.map(t=>`<span class="tag" onclick="tagSearch('${t}')">${t}</span>`).join("")}
+        ${(i.regions||[]).map(r=>`<span class="tag region" onclick="setRegion('${r}')">${r}</span>`).join("")}
+        ${(i.tags||[]).map(t=>`<span class="tag" onclick="tagSearch('${t}')">${t}</span>`).join("")}
       </div>
     </article>`;
 
