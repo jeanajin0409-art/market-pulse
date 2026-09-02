@@ -66,6 +66,9 @@ def schema_gate(item):
     for k in REQUIRED_FIELDS:
         if k not in item or item.get(k) in (None, ''):
             issues.append(f'missing {k}')
+    # why (推荐理由) 推荐但不强制
+    if not item.get('why'):
+        issues.append('why (推荐理由) missing - should be added for context')
     if 'score' in item:
         ok, msg = validate_score(item['score'])
         if not ok: issues.append(msg)
@@ -109,6 +112,9 @@ def render_item(it):
         parts.append(f'  url:{js_escape(it["url"])}')
     if it.get("sum"):
         parts.append(f'  sum:{js_escape(it["sum"])}')
+    # 推荐理由 (投资信号 / 行业拐点 / 持仓相关 / 风险信号)
+    if it.get("why"):
+            parts.append(f'  why:{js_escape(it["why"])}')
     if it.get("ma_cap"):
         parts.append(f'  ma_cap:{js_escape(it["ma_cap"])}')
     if it.get("tags"):
