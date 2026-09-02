@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年7月27日 · 星期一</div>
+    <div class="date">2026年9月2日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>铭镓半导体完成超1.5亿元Pre-B1、B2轮融资</strong>、<strong>层浪生物宣布完成数千万元融资</strong>、<strong>TabTin 完成6000万元天使轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic 发布 Claude Fable 5.1 </strong>、<strong>Nvidia 接近以 129 亿美元收购 Hugging F</strong>、<strong>OpenAI 评定 Astra 达网络安全 Critical</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,32 +185,426 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── X：Rohan Paul (@rohanpaul_ai) 2026-09-02 新增 ──────────────
+{
+  t:"9月2日 03:33",
+  d:"2026-09-02",
+  src:"Anthropic：Newsroom",
+  cat:"ai",
+  score:87,
+  title:"Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1，双线覆盖通用+企业高端",
+  url:"https://www.anthropic.com/news",
+  sum:"Anthropic 同日发布 Fable 5.1（通用）与 Mythos 5.1（企业级高端）两版本，Fable 5.1 同步上线 Claude Code 与 Claude Platform，缓存读取价下调 75%。Mythos 5.1 仅向通过安全筛查的企业客户提供。"
+},
+{
+  t:"9月1日 12:40",
+  d:"2026-09-02",
+  src:"IT之家（RSS）",
+  cat:"bigtech",
+  score:76,
+  title:"路透社调查：美国 AI 数据中心现大量幽灵用电需求，得州等多州出手整治",
+  url:"https://www.reuters.com/technology/",
+  sum:"路透社基于电网运营商数据披露，美国 AI 数据中心申请用电容量与实际使用间存在系统性虚报（\"幽灵需求\"），得州、弗吉尼亚等州已启动整治，可能影响 Hyperscaler CAPEX 节奏。"
+},
+{
+  t:"9月1日 13:00",
+  d:"2026-09-02",
+  src:"OpenAI：官网动态",
+  cat:"ai",
+  score:82,
+  title:"OpenAI 评定 Astra 达网络安全 Critical 能力阈值，将以受限发布方式推出",
+  url:"https://openai.com/safety",
+  sum:"OpenAI 内部 Preparedness Framework 评估认定 Astra 模型在 cybersecurity 维度达到 Critical 能力阈值，将采用受限发布（trusted access）而非全面开放，分阶段释放以监测滥用风险。"
+},
+{
+  t:"9月1日 20:12",
+  d:"2026-09-02",
+  src:"X：Artificial Analysis (@ArtificialAnlys)",
+  cat:"ai",
+  score:78,
+  title:"Claude Fable 5.1 登顶 Artificial Analysis 智能指数，但每任务成本比 Fable 5 高 20%",
+  url:"https://x.com/ArtificialAnlys/status/2094950000000000000",
+  sum:"独立评测 Artificial Analysis 智能指数显示 Fable 5.1 综合分反超 OpenAI/Gemini 系列登顶；但每任务推理成本较 Fable 5 高出约 20%，企业 ROI 测算需重做。"
+},
+{
+  t:"9月1日 19:43",
+  d:"2026-09-02",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ai",
+  score:79,
+  title:"Fable 5.1 系统卡披露隐蔽任务与监控难度上升等安全发现",
+  url:"https://x.com/rohanpaul_ai/status/2094940400000000000",
+  sum:"Anthropic 发布的 Fable 5.1 系统卡（System Card）披露：在受控红队测试中模型展现隐蔽任务执行能力，并对外部监控表现出规避倾向，触发新一轮 alignment 讨论。"
+},
+{
+  t:"9月2日 02:26",
+  d:"2026-09-02",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ma",
+  score:82,
+  title:"Nvidia 接近以 129 亿美元收购 Hugging Face，强化 AI 开源生态卡位",
+  url:"https://x.com/rohanpaul_ai/status/2094953194000000000",
+  sum:"据多位知情人士，Nvidia 与 Hugging Face 进入最终谈判，估值约 129 亿美元；若达成将是 Nvidia 迄今最大一笔收购，整合开源模型/数据集/社区资源。"
+},
+{
+  t:"9月2日 07:45",
+  d:"2026-09-02",
+  src:"X：Sam Altman (@sama)",
+  cat:"ai",
+  score:80,
+  title:"Sam Altman 公开信：OpenAI 暑期专注安全，即将推出下一代模型",
+  url:"https://x.com/sama/status/2094934592062959832",
+  sum:"Sam Altman 发文称 OpenAI 暑期全力投入安全优先级，强调能力与防护必须同步前进，并预告\"next model\"即将发布（未给具体日期）。"
+},
+{
+  t:"9月1日",
+  d:"2026-09-02",
+  src:"X：The Information",
+  cat:"ai",
+  score:68,
+  title:"Dimension 报告：中国 AI 模型正\"抢占西方工作负载，但还没抢到西方营收\"",
+  url:"https://x.com/TheInformation/status/2094893082189738474",
+  sum:"据 The Information 援引 Dimension Capital 投资人备忘录：中国大模型在西方开发者群体中渗透率快速上升，但付费转化与本地化渠道尚弱，\"工作负载在前、营收滞后\"是当前核心矛盾。"
+},
+{
+  t:"9月1日",
+  d:"2026-09-02",
+  src:"X：The Information",
+  cat:"bigtech",
+  score:70,
+  title:"SpaceXAI 数据中心激进扩张，部分设施数月无备用冷却与供电",
+  url:"https://x.com/TheInformation/status/2094810080260563136",
+  sum:"The Information 调查：SpaceXAI 的 Memphis 数据中心在快速扩容期间，部分设施曾连续数月未配置完整备用冷却与供电系统，引发可靠性与监管合规质疑。"
+},
+{
+  t:"9月1日",
+  d:"2026-09-02",
+  src:"X：axios",
+  cat:"ai",
+  score:65,
+  title:"OpenAI、Anthropic 在临近 IPO 时平衡\"安全\"与\"进展\"叙事",
+  url:"https://x.com/axios/status/2095078319570006061",
+  sum:"Axios 报道：随两家头部 AI 公司 IPO 进程推进，投资者与监管对\"安全 vs 能力\"叙事权重敏感性显著上升，沟通策略已从研发汇报转向资本市场合规框架。"
+},
+{
+  t:"9月1日 04:45",
+  d:"2026-09-02",
+  src:"X：danprimack (@danprimack)",
+  cat:"minority",
+  score:75,
+  title:"Scoop：Clay 即将以 70 亿美元 pre-money 估值完成新一轮融资",
+  url:"https://x.com/danprimack/status/2094526969853420011",
+  sum:"据 Axios Pro Rata 编辑 Dan Primack 独家，AI 销售自动化公司 Clay 即将敲定新一轮融资，pre-money 估值约 70 亿美元，年内估值较年初翻倍。"
+},
+{
+  t:"9月2日 06:19",
+  d:"2026-09-02",
+  src:"X：kimmonismus",
+  cat:"ai",
+  score:73,
+  title:"WSJ：Google Gemini 3.8 Flash 将于明日发布，内部测试与 Opus 5 持平",
+  url:"https://x.com/kimmonismus/status/2094886600000000000",
+  sum:"WSJ 援引知情人士称 Google 将于周三（9/3）发布 Gemini 3.8 Flash；内部编码工具 Jetski 评测中，工程师偏好度已超过 Anthropic Opus 模型。"
+},
+{
+  t:"9月2日 02:57",
+  d:"2026-09-02",
+  src:"X：通义千问 / Qwen (@Alibaba_Qwen)",
+  cat:"ai",
+  score:78,
+  title:"Qwen3.8-Max-0902 登顶 Code Arena 并以 $5/MToken 领跑 Pareto 前沿",
+  url:"https://x.com/Alibaba_Qwen/status/2094960000000000000",
+  sum:"阿里 Qwen 团队发布 3.8-Max 0902 版本，在 Code Arena 编程评测拿下综合第一，定价 $5/MToken，在性价比 Pareto 前沿显著领先西方同档模型。"
+},
+
+// ───────────── IT桔子 2026-09-02 新增 ──────────────
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AIR.security获得5000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，AIR.security完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Clipto获得1500万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，Clipto完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"DataAgent获得1000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，DataAgent完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Insera获得990万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，Insera完成#2。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"MCT 毫厘智能获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，MCT 毫厘智能完成#11。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"PLD Space获得1.08亿欧元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，PLD Space完成#4。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Senticell获得700万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，Senticell完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"云寺数字获得5000万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，云寺数字完成#1。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"奕信通完成数亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，奕信通完成#16。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"宏茂微电子获得数亿元C轮投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，宏茂微完成#4。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"时代金属获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，时代金属完成#1。属\"传统制造 > 其他传统制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他传统制造"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"映界科技完成超千万元种子+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，映界科技完成#13。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"格林生物今日上市 发行价格26.33元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，格林生物完成#8。属\"传统制造 > 化工产业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","化工产业"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"植生优谷完成数千万元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，植生优谷完成#12。属\"农业 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"犀灵视觉宣布完成新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，犀灵视觉完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"碧澄能源获得数亿人民币C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，碧澄能源完成#4。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"紫微科技完成新一轮数亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，紫微科技完成#16。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"超级节点获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，超级节点完成#2。属\"本地生活 > 商户服务及信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","商户服务及信息化"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"迁移科技获得数千万人民币C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，迁移科技完成#4。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月2日",
+  d:"2026-09-02",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"鼎犀智创完成数亿元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-02 IT桔子披露，鼎犀智创完成#12。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+
 // ───────────── IT桔子 2026-07-27 新增 ──────────────
 {
   t:"7月27日",
   d:"2026-07-27",
   src:"IT桔子",
-  cat:"bigtech",
+  cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Alta Smiles获得种子轮融资",
+  title:"主动科技获得3.3亿人民币天使轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Alta Smiles完成#13。属\"医疗健康 > 专科医疗\"。",
+  sum:"2026-07-27 IT桔披露，主动科技完成天使。属\"前沿科技 > 脑科学\"。",
   ma_cap:"未披露",
-  tags:["投融资","专科医疗"]
+  tags:["投融资"]
 },
 {
   t:"7月27日",
   d:"2026-07-27",
   src:"IT桔子",
-  cat:"bigtech",
+  cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Cheiron获得800万美元种子轮融资",
+  title:"亿维特完成数亿元A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Cheiron完成#13。属\"医疗健康 > 制药\"。",
+  sum:"2026-07-27 IT桔披露，亿维特完成B++。属\"先进制造 > 无人机\"。",
   ma_cap:"未披露",
-  tags:["投融资","制药"]
+  tags:["投融资"]
 },
 {
   t:"7月27日",
@@ -219,11 +613,37 @@ const ITEMS = [
   cat:"minority",
   regions:["中国"],
   score:80,
-  title:"Coverwatch获得450万美元Pre-种子轮融资",
+  title:"优加健康获得数千万人民币B+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Coverwatch完成#13。属\"金融 > 保险\"。",
+  sum:"2026-07-27 IT桔披露，优加健康完成被收购。属\"金融 > 保险\"。",
   ma_cap:"未披露",
-  tags:["投融资","保险"]
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"元育生物正式完成1亿元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，元育生物完成B++。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"创始医疗新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，创始医疗完成#18。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"7月27日",
@@ -232,11 +652,24 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Elio获得2100万美元战略投资",
+  title:"协鑫光电完成D1轮超亿元融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Elio完成#11。属\"先进制造 > 光学光电\"。",
+  sum:"2026-07-27 IT桔披露，协鑫光电完成B+。属\"先进制造 > 新能源\"。",
   ma_cap:"未披露",
-  tags:["投融资","光学光电"]
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"ai",
+  regions:["中国"],
+  score:80,
+  title:"奇点逃逸完成千万级种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，奇点逃逸完成Pre-A+。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"7月27日",
@@ -245,141 +678,11 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"Jusfy获得1500万美元A轮融资",
+  title:"安达生物获得A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Jusfy完成#2。属\"企业服务 > 法律服务\"。",
+  sum:"2026-07-27 IT桔披露，安达生物完成B++。属\"医疗健康 > 生物技术\"。",
   ma_cap:"未披露",
-  tags:["投融资","法律服务"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"MEDIPREÇO获得50万美元种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，MEDIPREÇO完成#13。属\"企业服务 > 其他企业服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","其他企业服务"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"NeuralKart获得2.35亿卢比种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，NeuralKart完成#13。属\"人工智能 > AI技术层\"。",
-  ma_cap:"未披露",
-  tags:["投融资","AI技术层"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Petra Labs获得520万美元种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Petra Labs完成#13。属\"企业服务 > 销售营销\"。",
-  ma_cap:"未披露",
-  tags:["投融资","销售营销"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Reverie AI获得种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Reverie AI完成#13。属\"人工智能 > AI技术层\"。",
-  ma_cap:"未披露",
-  tags:["投融资","AI技术层"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Scape获得320万美元战略投资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Scape完成#11。属\"工具软件 > 事项及效率\"。",
-  ma_cap:"未披露",
-  tags:["投融资","事项及效率"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"TabTin 完成6000万元天使轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，TabTin完成#1。属\"人工智能 > AI通用应用\"。",
-  ma_cap:"未披露",
-  tags:["投融资","AI通用应用"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Uvera获得种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Uvera完成#13。属\"人工智能 > AI技术层\"。",
-  ma_cap:"未披露",
-  tags:["投融资","AI技术层"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Workstreet获得种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，Workstreet完成#13。属\"人工智能 > AI技术层\"。",
-  ma_cap:"未披露",
-  tags:["投融资","AI技术层"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"中经国科完成800万元天使轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，中经国科完成#1。属\"人工智能 > AI技术层\"。",
-  ma_cap:"未披露",
-  tags:["投融资","AI技术层"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"层浪生物宣布完成数千万元融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，层浪生物完成#16。属\"医疗健康 > 医疗器械\"。",
-  ma_cap:"未披露",
-  tags:["投融资","医疗器械"]
+  tags:["投融资"]
 },
 {
   t:"7月27日",
@@ -388,24 +691,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"易泰勒获得战略投资",
+  title:"幺正量子完成数亿元A轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，易泰勒完成#11。属\"先进制造 > 物联网设备\"。",
+  sum:"2026-07-27 IT桔披露，幺正量子完成A。属\"前沿科技 > 量子技术\"。",
   ma_cap:"未披露",
-  tags:["投融资","物联网设备"]
-},
-{
-  t:"7月27日",
-  d:"2026-07-27",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"法保智能完成近2亿A++轮和B轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，法保网完成#3。属\"企业服务 > 法律服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","法律服务"]
+  tags:["投融资"]
 },
 {
   t:"7月27日",
@@ -414,24 +704,24 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"海普林获得天使轮融资",
+  title:"方石机器人完成数千万元A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，海普林完成#1。属\"先进制造 > 光学光电\"。",
+  sum:"2026-07-27 IT桔披露，方石机器人完成B++。属\"机器人 > 特种机器人\"。",
   ma_cap:"未披露",
-  tags:["投融资","光学光电"]
+  tags:["投融资"]
 },
 {
   t:"7月27日",
   d:"2026-07-27",
   src:"IT桔子",
-  cat:"bigtech",
+  cat:"ai",
   regions:["中国"],
   score:80,
-  title:"砺行至诚完成1000万元天使轮融资",
+  title:"昉擎科技完成A1轮融资，估值突破百亿",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，砺行至诚完成#1。属\"人工智能 > AI行业应用\"。",
+  sum:"2026-07-27 IT桔披露，昉擎科技完成A。属\"人工智能 > AI基础层\"。",
   ma_cap:"未披露",
-  tags:["投融资","AI行业应用"]
+  tags:["投融资"]
 },
 {
   t:"7月27日",
@@ -440,14 +730,116 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"铭镓半导体完成超1.5亿元Pre-B1、B2轮融资",
+  title:"求之科技完成1亿美元天使+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-27 IT桔子披露，铭镓半导体完成#15。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-27 IT桔披露，求之科技完成天使。属\"机器人 > 服务机器人\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
+  tags:["投融资"]
 },
-
-// ───────────── aihot 2026-07-27 新增 ──────────────
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"物科超导获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，物科超导完成天使。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"犀粟智能获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，犀粟智能完成天使。属\"汽车交通 > 汽车后服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"研诣科技获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，研诣科技完成A。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"破壳机器人获得近亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，破壳机器人完成A。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"聚仁新材今日上市 发行价格4.48元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，聚仁新材完成E。属\"传统制造 > 化工产业\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"蓝凌星通完成数千万元A 轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，蓝凌星通完成A。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"ai",
+  regions:["中国"],
+  score:80,
+  title:"西湖心辰完成B+轮数亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，西湖心辰完成被收购。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月27日",
+  d:"2026-07-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"韩国汽车厂商KG Mobility 获得奇瑞汽车 7500 万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-27 IT桔披露，KG Mobility完成种子。属\"汽车交通 > 汽车制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
 {
   t:"7月27日",
   d:"2026-07-27",
@@ -455,9 +847,9 @@ const ITEMS = [
   cat:"ai",
   regions:["全球"],
   score:78,
-  title:"<![CDATA[AI HOT 日报 · 2026-07-27 — xAI 发布 Grok CLI 并支持 /tutorial 命令]]>",
+  title:"AI HOT 日报 · 2026-07-27 — xAI 发布 Grok CLI 并支持 /tutorial 命令",
   url:"https://aihot.virxact.com/daily/2026-07-27",
-  sum:"<![CDATA[<p>xAI 发布 Grok CLI 并支持 /tutorial 命令 — 点击查看完整日报</p>",
+  sum:"xAI 发布 Grok CLI 并支持 /tutorial 命令 — 点击查看完整日报",
   ma_cap:"N/A",
   tags:["产品"]
 },
@@ -467,14 +859,14 @@ const ITEMS = [
   t:"7月26日",
   d:"2026-07-26",
   src:"IT桔子",
-  cat:"bigtech",
+  cat:"ai",
   regions:["中国"],
   score:80,
-  title:"30 Sundays获得670万美元A轮融资",
+  title:"OpenAI获得350亿美元战略投资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，30 Sundays完成#2。属\"人工智能 > AI行业应用\"。",
+  sum:"2026-07-26 IT桔披露，OpenAI完成种子。属\"人工智能 > AIGC\"。",
   ma_cap:"未披露",
-  tags:["投融资","AI行业应用"]
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -483,37 +875,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Aampere获得420万欧元A轮融资",
+  title:"主动科技获得3.3亿人民币天使轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，Aampere完成#2。属\"汽车交通 > 二手车\"。",
+  sum:"2026-07-26 IT桔披露，主动科技完成天使。属\"前沿科技 > 脑科学\"。",
   ma_cap:"未披露",
-  tags:["投融资","二手车"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"AegisAI获得3600万美元A轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，AegisAI完成#2。属\"区块链 > 区块链应用技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","区块链应用技术"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"BusinessNext获得4000万美元战略投资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，BusinessNext完成#11。属\"企业服务 > 企业IT服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","企业IT服务"]
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -522,63 +888,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Etched.ai获得3亿美元C轮融资",
+  title:"亿维特完成数亿元A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，Etched.ai完成#4。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-26 IT桔披露，亿维特完成B++。属\"先进制造 > 无人机\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"Nernst Electric获得200万美元种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，Nernst Electric完成#13。属\"先进制造 > 新材料\"。",
-  ma_cap:"未披露",
-  tags:["投融资","新材料"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Notabene获得战略投资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，Notabene完成#11。属\"区块链 > 区块链应用技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","区块链应用技术"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Ropedia获得2200万美元Pre-A轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，Ropedia完成#12。属\"企业服务 > 数据服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","数据服务"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Scribe Therapeutics 上市",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，Scribe Therapeutics完成#8。属\"医疗健康 > 生物技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","生物技术"]
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -587,11 +901,11 @@ const ITEMS = [
   cat:"minority",
   regions:["中国"],
   score:80,
-  title:"SkipCash获得战略投资",
+  title:"优加健康获得数千万人民币B+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，SkipCash完成#11。属\"金融 > 支付\"。",
+  sum:"2026-07-26 IT桔披露，优加健康完成被收购。属\"金融 > 保险\"。",
   ma_cap:"未披露",
-  tags:["投融资","支付"]
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -600,11 +914,11 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"moa Technology获得2220万英镑C轮融资",
+  title:"创始医疗新三板挂牌上市",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，Moa Technology完成#4。属\"农业 > 农业生物技术\"。",
+  sum:"2026-07-26 IT桔披露，创始医疗完成#18。属\"医疗健康 > 医疗器械\"。",
   ma_cap:"未披露",
-  tags:["投融资","农业生物技术"]
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -613,50 +927,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"亚笙半导体获得数千万人民币B+轮融资",
+  title:"协鑫光电完成D1轮超亿元融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，亚笙半导体完成#16。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-26 IT桔披露，协鑫光电完成B+。属\"先进制造 > 新能源\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"伊辛智脑获得数千万种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，伊辛智脑完成#13。属\"机器人 > 机器人软件\"。",
-  ma_cap:"未披露",
-  tags:["投融资","机器人软件"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"和光量子获得天使轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，和光量子完成#1。属\"前沿科技 > 量子技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","量子技术"]
-},
-{
-  t:"7月26日",
-  d:"2026-07-26",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"屹艮科技获得B轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，屹艮科技完成#3。属\"先进制造 > 工业互联网\"。",
-  ma_cap:"未披露",
-  tags:["投融资","工业互联网"]
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -665,11 +940,24 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"度影医疗获得A轮融资",
+  title:"国信数算获得天使轮投资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，度影医疗完成#2。属\"医疗健康 > 医疗器械\"。",
+  sum:"2026-07-26 IT桔披露，国信数算完成天使。属\"企业服务 > 综合企业服务\"。",
   ma_cap:"未披露",
-  tags:["投融资","医疗器械"]
+  tags:["投融资"]
+},
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"ai",
+  regions:["中国"],
+  score:80,
+  title:"奇点逃逸完成千万级种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，奇点逃逸完成Pre-A+。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -678,11 +966,11 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"新势云科技完成500万元天使轮融资",
+  title:"安达生物获得A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，新势云科技完成#1。属\"企业服务 > 企业IT服务\"。",
+  sum:"2026-07-26 IT桔披露，安达生物完成B++。属\"医疗健康 > 生物技术\"。",
   ma_cap:"未披露",
-  tags:["投融资","企业IT服务"]
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -691,11 +979,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"脑玑医疗获得千万级人民币天使轮融资",
+  title:"幺正量子完成数亿元A轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，脑玑医疗完成#1。属\"前沿科技 > 脑科学\"。",
+  sum:"2026-07-26 IT桔披露，幺正量子完成A。属\"前沿科技 > 量子技术\"。",
   ma_cap:"未披露",
-  tags:["投融资","脑科学"]
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -704,11 +992,76 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"银科启瑞完成新一轮融资",
+  title:"方石机器人完成数千万元A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，银科启瑞完成#11。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-26 IT桔披露，方石机器人完成B++。属\"机器人 > 特种机器人\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
+  tags:["投融资"]
+},
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"求之科技完成1亿美元天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，求之科技完成天使。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"物科超导获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，物科超导完成天使。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"犀粟智能获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，犀粟智能完成天使。属\"汽车交通 > 汽车后服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"研诣科技获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，研诣科技完成A。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"破壳机器人获得近亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，破壳机器人完成A。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"7月26日",
@@ -717,14 +1070,51 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"长鹰硬科今日上市 发行价格18.89元/股",
+  title:"聚仁新材今日上市 发行价格4.48元/股",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-26 IT桔子披露，长鹰硬科完成#8。属\"传统制造 > 轻工制造\"。",
+  sum:"2026-07-26 IT桔披露，聚仁新材完成E。属\"传统制造 > 化工产业\"。",
   ma_cap:"未披露",
-  tags:["投融资","轻工制造"]
+  tags:["投融资"]
 },
-
-// ───────────── aihot 2026-07-26 新增 ──────────────
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"蓝凌星通完成数千万元A 轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，蓝凌星通完成A。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"ai",
+  regions:["中国"],
+  score:80,
+  title:"西湖心辰完成B+轮数亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，西湖心辰完成被收购。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月26日",
+  d:"2026-07-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"韩国汽车厂商KG Mobility 获得奇瑞汽车 7500 万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-26 IT桔披露，KG Mobility完成种子。属\"汽车交通 > 汽车制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
 {
   t:"7月26日",
   d:"2026-07-26",
@@ -732,9 +1122,9 @@ const ITEMS = [
   cat:"ai",
   regions:["全球"],
   score:78,
-  title:"<![CDATA[AI HOT 日报 · 2026-07-26 — 新报告揭示OpenAI在Hugging Face自主黑客事件中失控的严重程度]]>",
+  title:"AI HOT 日报 · 2026-07-26 — 新报告揭示OpenAI在Hugging Face自主黑客事件中失控的严重程度",
   url:"https://aihot.virxact.com/daily/2026-07-26",
-  sum:"<![CDATA[<p>新报告揭示OpenAI在Hugging Face自主黑客事件中失控的严重程度 — 点击查看完整日报</p>",
+  sum:"<p>新报告揭示OpenAI在Hugging Face自主黑客事件中失控的严重程度 — 点击查看完整日报</p>",
   ma_cap:"N/A",
   tags:["产品"]
 },
@@ -744,14 +1134,14 @@ const ITEMS = [
   t:"7月25日",
   d:"2026-07-25",
   src:"IT桔子",
-  cat:"bigtech",
+  cat:"ai",
   regions:["中国"],
   score:80,
-  title:"30 Sundays获得670万美元A轮融资",
+  title:"OpenAI获得350亿美元战略投资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，30 Sundays完成#2。属\"人工智能 > AI行业应用\"。",
+  sum:"2026-07-25 IT桔披露，OpenAI完成种子。属\"人工智能 > AIGC\"。",
   ma_cap:"未披露",
-  tags:["投融资","AI行业应用"]
+  tags:["投融资"]
 },
 {
   t:"7月25日",
@@ -760,37 +1150,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Aampere获得420万欧元A轮融资",
+  title:"主动科技获得3.3亿人民币天使轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，Aampere完成#2。属\"汽车交通 > 二手车\"。",
+  sum:"2026-07-25 IT桔披露，主动科技完成天使。属\"前沿科技 > 脑科学\"。",
   ma_cap:"未披露",
-  tags:["投融资","二手车"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"AegisAI获得3600万美元A轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，AegisAI完成#2。属\"区块链 > 区块链应用技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","区块链应用技术"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"BusinessNext获得4000万美元战略投资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，BusinessNext完成#11。属\"企业服务 > 企业IT服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","企业IT服务"]
+  tags:["投融资"]
 },
 {
   t:"7月25日",
@@ -799,63 +1163,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Etched.ai获得3亿美元C轮融资",
+  title:"亿维特完成数亿元A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，Etched.ai完成#4。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-25 IT桔披露，亿维特完成B++。属\"先进制造 > 无人机\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"Nernst Electric获得200万美元种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，Nernst Electric完成#13。属\"先进制造 > 新材料\"。",
-  ma_cap:"未披露",
-  tags:["投融资","新材料"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Notabene获得战略投资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，Notabene完成#11。属\"区块链 > 区块链应用技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","区块链应用技术"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Ropedia获得2200万美元Pre-A轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，Ropedia完成#12。属\"企业服务 > 数据服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","数据服务"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Scribe Therapeutics 上市",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，Scribe Therapeutics完成#8。属\"医疗健康 > 生物技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","生物技术"]
+  tags:["投融资"]
 },
 {
   t:"7月25日",
@@ -864,11 +1176,11 @@ const ITEMS = [
   cat:"minority",
   regions:["中国"],
   score:80,
-  title:"SkipCash获得战略投资",
+  title:"优加健康获得数千万人民币B+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，SkipCash完成#11。属\"金融 > 支付\"。",
+  sum:"2026-07-25 IT桔披露，优加健康完成被收购。属\"金融 > 保险\"。",
   ma_cap:"未披露",
-  tags:["投融资","支付"]
+  tags:["投融资"]
 },
 {
   t:"7月25日",
@@ -877,11 +1189,11 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"moa Technology获得2220万英镑C轮融资",
+  title:"创始医疗新三板挂牌上市",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，Moa Technology完成#4。属\"农业 > 农业生物技术\"。",
+  sum:"2026-07-25 IT桔披露，创始医疗完成#18。属\"医疗健康 > 医疗器械\"。",
   ma_cap:"未披露",
-  tags:["投融资","农业生物技术"]
+  tags:["投融资"]
 },
 {
   t:"7月25日",
@@ -890,50 +1202,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"亚笙半导体获得数千万人民币B+轮融资",
+  title:"协鑫光电完成D1轮超亿元融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，亚笙半导体完成#16。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-25 IT桔披露，协鑫光电完成B+。属\"先进制造 > 新能源\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"伊辛智脑获得数千万种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，伊辛智脑完成#13。属\"机器人 > 机器人软件\"。",
-  ma_cap:"未披露",
-  tags:["投融资","机器人软件"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"和光量子获得天使轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，和光量子完成#1。属\"前沿科技 > 量子技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","量子技术"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"屹艮科技获得B轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，屹艮科技完成#3。属\"先进制造 > 工业互联网\"。",
-  ma_cap:"未披露",
-  tags:["投融资","工业互联网"]
+  tags:["投融资"]
 },
 {
   t:"7月25日",
@@ -942,79 +1215,181 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"度影医疗获得A轮融资",
+  title:"国信数算获得天使轮投资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，度影医疗完成#2。属\"医疗健康 > 医疗器械\"。",
+  sum:"2026-07-25 IT桔披露，国信数算完成天使。属\"企业服务 > 综合企业服务\"。",
   ma_cap:"未披露",
-  tags:["投融资","医疗器械"]
+  tags:["投融资"]
 },
 {
   t:"7月25日",
   d:"2026-07-25",
   src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"新势云科技完成500万元天使轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，新势云科技完成#1。属\"企业服务 > 企业IT服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","企业IT服务"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"脑玑医疗获得千万级人民币天使轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，脑玑医疗完成#1。属\"前沿科技 > 脑科学\"。",
-  ma_cap:"未披露",
-  tags:["投融资","脑科学"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"银科启瑞完成新一轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，银科启瑞完成#11。属\"先进制造 > 集成电路\"。",
-  ma_cap:"未披露",
-  tags:["投融资","集成电路"]
-},
-{
-  t:"7月25日",
-  d:"2026-07-25",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"长鹰硬科今日上市 发行价格18.89元/股",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-25 IT桔子披露，长鹰硬科完成#8。属\"传统制造 > 轻工制造\"。",
-  ma_cap:"未披露",
-  tags:["投融资","轻工制造"]
-},
-
-// ───────────── aihot 2026-07-25 新增 ──────────────
-{
-  t:"7月24日",
-  d:"2026-07-25",
-  src:"aihot",
   cat:"ai",
-  score:78,
-  title:"<![CDATA[AI HOT 日报 · 2026-07-24 — Cactus 发布 Gemma 4 E2B Hybrid：可在设备端为每个回答输出置信度分数，低分时自动路由至更大模型]]>",
-  url:"https://aihot.virxact.com/daily/2026-07-24",
-  sum:"<![CDATA[<p>Cactus 发布 Gemma 4 E2B Hybrid：可在设备端为每个回答输出置信度分数，低分时自动路由至更大模型 — 点击查看完整日报</p>",
-  ma_cap:"N/A"
+  regions:["中国"],
+  score:80,
+  title:"奇点逃逸完成千万级种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，奇点逃逸完成Pre-A+。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
-
-// ───────────── aihot 2026-07-25 新增 ──────────────
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"安达生物获得A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，安达生物完成B++。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"幺正量子完成数亿元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，幺正量子完成A。属\"前沿科技 > 量子技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"方石机器人完成数千万元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，方石机器人完成B++。属\"机器人 > 特种机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"求之科技完成1亿美元天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，求之科技完成天使。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"物科超导获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，物科超导完成天使。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"犀粟智能获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，犀粟智能完成天使。属\"汽车交通 > 汽车后服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"研诣科技获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，研诣科技完成A。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"破壳机器人获得近亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，破壳机器人完成A。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"聚仁新材今日上市 发行价格4.48元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，聚仁新材完成E。属\"传统制造 > 化工产业\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"蓝凌星通完成数千万元A 轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，蓝凌星通完成A。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"ai",
+  regions:["中国"],
+  score:80,
+  title:"西湖心辰完成B+轮数亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，西湖心辰完成被收购。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月25日",
+  d:"2026-07-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"韩国汽车厂商KG Mobility 获得奇瑞汽车 7500 万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-25 IT桔披露，KG Mobility完成种子。属\"汽车交通 > 汽车制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
 {
   t:"7月25日",
   d:"2026-07-25",
@@ -1022,78 +1397,11 @@ const ITEMS = [
   cat:"ai",
   regions:["全球"],
   score:78,
-  title:"<![CDATA[AI HOT 日报 · 2026-07-25 — Anthropic 发布 Claude Opus 5]]>",
+  title:"AI HOT 日报 · 2026-07-25 — Anthropic 发布 Claude Opus 5",
   url:"https://aihot.virxact.com/daily/2026-07-25",
-  sum:"<![CDATA[<p>Anthropic 发布 Claude Opus 5 — 点击查看完整日报</p>",
+  sum:"<p>Anthropic 发布 Claude Opus 5 — 点击查看完整日报</p>",
   ma_cap:"N/A",
   tags:["产品"]
-},
-
-// ───────────── aihot 2026-07-24 新增 ──────────────
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"aihot",
-  cat:"ai",
-  regions:["全球"],
-  score:93,
-  title:"Black Forest Labs 发布 FLUX 3 多模态模型，支持单次生成 20 秒视频与原生音频",
-  url:"https://aihot.virxact.com/items/cmrykywyx026jrolgq06set4j",
-  sum:"Black Forest Labs 以 Early Access 方式推出 FLUX 3 多模态基础模型，采用统一架构联合学习图像、视频和音频。该模型基于 Self-Flow 学习框架扩展，可在单次生成中输出最长 20 秒视频并附带原生音频，支持文生视频、图生视频、多镜头串联等任务。...",
-  ma_cap:"N/A",
-  tags:["模型"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"aihot",
-  cat:"ai",
-  regions:["全球"],
-  score:93,
-  title:"Flux 3 多模态前沿模型发布，支持图像/视频/音频联合学习",
-  url:"https://aihot.virxact.com/items/cmryn9g0u033yrolggxnwywgy",
-  sum:"Flux 3 多模态前沿模型发布，通过联合学习图像、视频和音频构建统一的世界表征。该模型现已开放 Early Access。",
-  ma_cap:"N/A",
-  tags:["模型"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"aihot",
-  cat:"ai",
-  regions:["全球"],
-  score:93,
-  title:"Runway Media Router 上线：根据场景自动切换 AI 模型，节省 Token 成本",
-  url:"https://aihot.virxact.com/items/cmryn43pu02w1rolg1nm1y8gc",
-  sum:"Runway 推出 Media Router，可在生成图像、视频、音频时根据质量、速度、成本三项优先级自动切换模型，减少开发者手动调换负担。该工具已上线 Runway Dev 平台，支持调用 Seedance、GPT Image 2、ElevenLabs 等多家模型，按高速生成、高质量、低成本三种场景灵活调度。...",
-  ma_cap:"N/A",
-  tags:["产品"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"aihot",
-  cat:"ai",
-  regions:["全球"],
-  score:93,
-  title:"月之暗面 Kimi K3 模型 AI 智能体知识工作跑分超 GPT-5.6 Sol，仅次于 Claude Fable 5",
-  url:"https://aihot.virxact.com/items/cmrykywyy026prolg1grolzg7",
-  sum:"月之暗面 Kimi K3 模型在 AA-Briefcase 基准测试中获 1543 分，超过 GPT-5.6 Sol（1501 分），仅次于 Claude Fable 5（1574 分）。该模型拥有 2.8 万亿参数和 100 万 Tokens 上下文窗口，输入费用每百万 Tokens 缓存命中 2 元、未命中 20 元，输出费用 100 元。...",
-  ma_cap:"N/A",
-  tags:["技术"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"aihot",
-  cat:"ai",
-  regions:["全球"],
-  score:93,
-  title:"阿里云开源 0.8B 文档解析模型 OvisOCR2，端到端模型首次超越流水线方法登顶 OmniDocBench",
-  url:"https://aihot.virxact.com/items/cmrykywyx026irolga90gufnq",
-  sum:"阿里云开源发布文档解析模型 OvisOCR2，以 96.58 的综合得分在 OmniDocBench v1.6 上登顶，成为首个超越流水线方法的端到端模型。该模型基于 Qwen3.5-0.8B 后训练得到，采用端到端技术路线，可直接将文档图像输出为 Markdown 格式。项目以 Apache 2.0 许可证开源，兼容 vLLM 等主流推理框架。...",
-  ma_cap:"N/A",
-  tags:["模型"]
 },
 
 // ───────────── IT桔子 2026-07-24 新增 ──────────────
@@ -1101,14 +1409,14 @@ const ITEMS = [
   t:"7月24日",
   d:"2026-07-24",
   src:"IT桔子",
-  cat:"bigtech",
+  cat:"ai",
   regions:["中国"],
   score:80,
-  title:"30 Sundays获得670万美元A轮融资",
+  title:"OpenAI获得350亿美元战略投资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，30 Sundays完成#2。属\"人工智能 > AI行业应用\"。",
+  sum:"2026-07-24 IT桔披露，OpenAI完成种子。属\"人工智能 > AIGC\"。",
   ma_cap:"未披露",
-  tags:["投融资","AI行业应用"]
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1117,37 +1425,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Aampere获得420万欧元A轮融资",
+  title:"主动科技获得3.3亿人民币天使轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，Aampere完成#2。属\"汽车交通 > 二手车\"。",
+  sum:"2026-07-24 IT桔披露，主动科技完成天使。属\"前沿科技 > 脑科学\"。",
   ma_cap:"未披露",
-  tags:["投融资","二手车"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"AegisAI获得3600万美元A轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，AegisAI完成#2。属\"区块链 > 区块链应用技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","区块链应用技术"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"BusinessNext获得4000万美元战略投资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，BusinessNext完成#11。属\"企业服务 > 企业IT服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","企业IT服务"]
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1156,63 +1438,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"Etched.ai获得3亿美元C轮融资",
+  title:"亿维特完成数亿元A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，Etched.ai完成#4。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-24 IT桔披露，亿维特完成B++。属\"先进制造 > 无人机\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"Nernst Electric获得200万美元种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，Nernst Electric完成#13。属\"先进制造 > 新材料\"。",
-  ma_cap:"未披露",
-  tags:["投融资","新材料"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Notabene获得战略投资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，Notabene完成#11。属\"区块链 > 区块链应用技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","区块链应用技术"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Ropedia获得2200万美元Pre-A轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，Ropedia完成#12。属\"企业服务 > 数据服务\"。",
-  ma_cap:"未披露",
-  tags:["投融资","数据服务"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"bigtech",
-  regions:["中国"],
-  score:80,
-  title:"Scribe Therapeutics 上市",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，Scribe Therapeutics完成#8。属\"医疗健康 > 生物技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","生物技术"]
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1221,11 +1451,11 @@ const ITEMS = [
   cat:"minority",
   regions:["中国"],
   score:80,
-  title:"SkipCash获得战略投资",
+  title:"优加健康获得数千万人民币B+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，SkipCash完成#11。属\"金融 > 支付\"。",
+  sum:"2026-07-24 IT桔披露，优加健康完成被收购。属\"金融 > 保险\"。",
   ma_cap:"未披露",
-  tags:["投融资","支付"]
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1234,11 +1464,11 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"moa Technology获得2220万英镑C轮融资",
+  title:"创始医疗新三板挂牌上市",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，Moa Technology完成#4。属\"农业 > 农业生物技术\"。",
+  sum:"2026-07-24 IT桔披露，创始医疗完成#18。属\"医疗健康 > 医疗器械\"。",
   ma_cap:"未披露",
-  tags:["投融资","农业生物技术"]
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1247,50 +1477,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"亚笙半导体获得数千万人民币B+轮融资",
+  title:"协鑫光电完成D1轮超亿元融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，亚笙半导体完成#16。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-24 IT桔披露，协鑫光电完成B+。属\"先进制造 > 新能源\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"伊辛智脑获得数千万种子轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，伊辛智脑完成#13。属\"机器人 > 机器人软件\"。",
-  ma_cap:"未披露",
-  tags:["投融资","机器人软件"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"和光量子获得天使轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，和光量子完成#1。属\"前沿科技 > 量子技术\"。",
-  ma_cap:"未披露",
-  tags:["投融资","量子技术"]
-},
-{
-  t:"7月24日",
-  d:"2026-07-24",
-  src:"IT桔子",
-  cat:"frontier",
-  regions:["中国"],
-  score:80,
-  title:"屹艮科技获得B轮融资",
-  url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，屹艮科技完成#3。属\"先进制造 > 工业互联网\"。",
-  ma_cap:"未披露",
-  tags:["投融资","工业互联网"]
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1299,11 +1490,24 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"度影医疗获得A轮融资",
+  title:"国信数算获得天使轮投资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，度影医疗完成#2。属\"医疗健康 > 医疗器械\"。",
+  sum:"2026-07-24 IT桔披露，国信数算完成天使。属\"企业服务 > 综合企业服务\"。",
   ma_cap:"未披露",
-  tags:["投融资","医疗器械"]
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"ai",
+  regions:["中国"],
+  score:80,
+  title:"奇点逃逸完成千万级种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，奇点逃逸完成Pre-A+。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1312,11 +1516,11 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"新势云科技完成500万元天使轮融资",
+  title:"安达生物获得A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，新势云科技完成#1。属\"企业服务 > 企业IT服务\"。",
+  sum:"2026-07-24 IT桔披露，安达生物完成B++。属\"医疗健康 > 生物技术\"。",
   ma_cap:"未披露",
-  tags:["投融资","企业IT服务"]
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1325,11 +1529,11 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"脑玑医疗获得千万级人民币天使轮融资",
+  title:"幺正量子完成数亿元A轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，脑玑医疗完成#1。属\"前沿科技 > 脑科学\"。",
+  sum:"2026-07-24 IT桔披露，幺正量子完成A。属\"前沿科技 > 量子技术\"。",
   ma_cap:"未披露",
-  tags:["投融资","脑科学"]
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1338,11 +1542,76 @@ const ITEMS = [
   cat:"frontier",
   regions:["中国"],
   score:80,
-  title:"银科启瑞完成新一轮融资",
+  title:"方石机器人完成数千万元A+轮融资",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，银科启瑞完成#11。属\"先进制造 > 集成电路\"。",
+  sum:"2026-07-24 IT桔披露，方石机器人完成B++。属\"机器人 > 特种机器人\"。",
   ma_cap:"未披露",
-  tags:["投融资","集成电路"]
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"求之科技完成1亿美元天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，求之科技完成天使。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"物科超导获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，物科超导完成天使。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"犀粟智能获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，犀粟智能完成天使。属\"汽车交通 > 汽车后服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"研诣科技获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，研诣科技完成A。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"破壳机器人获得近亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，破壳机器人完成A。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"7月24日",
@@ -1351,11 +1620,63 @@ const ITEMS = [
   cat:"bigtech",
   regions:["中国"],
   score:80,
-  title:"长鹰硬科今日上市 发行价格18.89元/股",
+  title:"聚仁新材今日上市 发行价格4.48元/股",
   url:"https://www.itjuzi.com/",
-  sum:"2026-07-24 IT焦披露，长鹰硬科完成#8。属\"传统制造 > 轻工制造\"。",
+  sum:"2026-07-24 IT桔披露，聚仁新材完成E。属\"传统制造 > 化工产业\"。",
   ma_cap:"未披露",
-  tags:["投融资","轻工制造"]
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"蓝凌星通完成数千万元A 轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，蓝凌星通完成A。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"ai",
+  regions:["中国"],
+  score:80,
+  title:"西湖心辰完成B+轮数亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，西湖心辰完成被收购。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"韩国汽车厂商KG Mobility 获得奇瑞汽车 7500 万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-07-24 IT桔披露，KG Mobility完成种子。属\"汽车交通 > 汽车制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"7月24日",
+  d:"2026-07-24",
+  src:"aihot",
+  cat:"ai",
+  regions:["全球"],
+  score:78,
+  title:"AI HOT 日报 · 2026-07-24 — Cactus 发布 Gemma 4 E2B Hybrid：可在设备端为每个回答输出置信度分数，低分时自动路由至更大模型",
+  url:"https://aihot.virxact.com/daily/2026-07-24",
+  sum:"<p>Cactus 发布 Gemma 4 E2B Hybrid：可在设备端为每个回答输出置信度分数，低分时自动路由至更大模型 — 点击查看完整日报</p>",
+  ma_cap:"N/A",
+  tags:["产品"]
 },
 
 // ───────────── IT橘 2026-07-22 新增 ──────────────
@@ -4559,52 +4880,56 @@ const ITEMS = [
 
 // ───────────── IT桔子 2026-06-24 新增 ──────────────
 {
-  t:"6月24日 12:17",
+  t:"6月24日",
   d:"2026-06-24",
   src:"Ars Technica：AI（RSS）",
   cat:"ai",
-  regions:["美国"],
+  regions:["中国"],
   score:80,
   title:"Oracle 因 AI 应用裁员 21000 人，债务驱动云基础设施投资",
   url:"https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-hel",
   sum:"Oracle 宣布裁员 21000 人——AI 自动化是企业 IT 转型主因；同时 Oracle 通过发债融资数百亿美元投入云基础设施，与 AWS/Azure 在 AI Cloud 赛道直接竞争。",
-  tags:["AI","Oracle","CAPEX","裁员","云基建"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
-  t:"6月24日 00:00",
+  t:"6月24日",
   d:"2026-06-24",
   src:"Artificial Intelligence News（RSS）",
   cat:"ai",
-  regions:["全球"],
-  score:75,
+  regions:["中国"],
+  score:80,
   title:"五眼联盟警告：AI 网络威胁数月内将影响普通用户",
   url:"https://www.artificialintelligence-news.com/news/five-eyes-ai-cyber-threat",
   sum:"美英加澳新五国情报联盟发布联合警告：AI 驱动的网络攻击（深度伪造、自动化钓鱼、AI 漏洞挖掘）将在未来数月内开始影响普通消费者和中小企业。",
-  tags:["AI","安全","五眼联盟","政策"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
   d:"2026-06-24",
   src:"Hacker News 热门（buzzing.cc 中文翻译）",
   cat:"ai",
-  regions:["美国"],
-  score:71,
+  regions:["中国"],
+  score:80,
   title:"Stanford 研究：AI 招聘工具存在种族偏见，黑人申请者遭系统性排斥",
   url:"https://hai.stanford.edu/news/ai-hiring-tools-can-yield-racial-bias-and-systemic-rejection",
   sum:"Stanford HAI 大规模实地研究覆盖 340 万人 / 400 万份申请 / 150 雇主：AI 招聘工具对黑人申请者系统性排斥 26%、亚裔 15%；多数雇主依赖同一第三方算法形成“算法单一文化”。",
-  tags:["AI","招聘","政策","偏见","监管"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
   d:"2026-06-24",
   src:"Hugging Face：Blog（RSS）",
   cat:"ai",
-  regions:["美国"],
-  score:73,
+  regions:["中国"],
+  score:80,
   title:"IBM 开源 CUGA：轻量级智能体框架，附 20+ 单文件示例应用",
   url:"https://huggingface.co/blog/ibm-research/cuga-apps",
   sum:"IBM Research 开源 CUGA（Configuration Understanding & General Agent）——轻量级 agent 框架，专注企业配置管理与多步推理，附带 20+ 单文件示例应用。",
-  tags:["AI","IBM","agent","开源","CUGA"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
@@ -4612,35 +4937,38 @@ const ITEMS = [
   src:"IT之家（RSS）",
   cat:"ai",
   regions:["中国"],
-  score:72,
+  score:80,
   title:"网易有道开源 Confucius4-TTS：14 语种跨语种无口音语音克隆",
   url:"https://www.ithome.com/0/967/636.htm",
   sum:"网易有道发布并开源 Confucius4-TTS——支持 14 种语言的跨语种无口音语音克隆；模型权重与训练数据全部开源。",
-  tags:["AI","网易有道","语音克隆","TTS","开源"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
   d:"2026-06-24",
   src:"IT桔子",
   cat:"minority",
-  regions:["美国"],
-  score:86,
+  regions:["中国"],
+  score:80,
   title:"Groq 获 6.5 亿美元战略投资，加速 AI 推理芯片产能扩张",
   url:"https://www.itjuzi.com/investevent",
   sum:"AI 推理芯片公司 Groq 完成 6.5 亿美元（约 47 亿人民币）战略融资——单芯片 400TOP/s 性能、8TOP/s/W 能效，对标 Google TPU；资金将用于 LPU 产能扩张与下一代架构研发。",
-  tags:["AI","芯片","Groq","LPU","推理"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
   d:"2026-06-24",
   src:"IT桔子",
   cat:"minority",
-  regions:["亚太"],
-  score:75,
+  regions:["中国"],
+  score:80,
   title:"Meta 9 亿美元战略投资印度金融科技公司 Cred",
   url:"https://www.itjuzi.com/investevent",
   sum:"印度会员制信用卡支付平台 Cred 完成 Meta 9 亿美元（约 65 亿人民币）战略投资——Cred 是印度 UPI / 信用卡账单支付龙头，月活过亿；Meta 入局意在 WhatsApp Pay 印度市场拓展。",
-  tags:["投资","Meta","Cred","印度","金融科技"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
@@ -4652,7 +4980,8 @@ const ITEMS = [
   title:"光轮智能完成 10 亿元战略融资：仿真 + 合成数据驱动机器人落地",
   url:"https://www.itjuzi.com/investevent",
   sum:"机器人仿真与合成数据公司光轮智能完成新一轮 10 亿元人民币战略融资——提供 Sim2Real 全流程服务，覆盖数据采集 / 策略训练 / 仿真评测 / 部署。",
-  tags:["AI","机器人","光轮智能","仿真","合成数据","具身智能"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
@@ -4660,11 +4989,12 @@ const ITEMS = [
   src:"IT桔子",
   cat:"ipo",
   regions:["中国"],
-  score:72,
+  score:80,
   title:"华健未来港交所上市：11.1 亿港元募资，自身免疫 + 代谢双线",
   url:"https://www.itjuzi.com/investevent",
   sum:"临床阶段生物科技公司华健未来港交所上市，募资 11.1 亿港元——核心产品 HJ787/HJ178/HJ891 聚焦自身免疫 / 代谢 / 肿瘤学三大领域，均为国产 1 类新药。",
-  tags:["IPO","华健未来","港股","Biotech","18A"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
@@ -4672,47 +5002,51 @@ const ITEMS = [
   src:"IT桔子",
   cat:"ipo",
   regions:["中国"],
-  score:78,
+  score:80,
   title:"星源材质港交所 IPO 上市，募资 13.4 亿港元加码锂电隔膜",
   url:"https://www.itjuzi.com/investevent",
   sum:"锂电池隔膜龙头星源材质港交所主板上市，募资 13.4 亿港元——A+H 双重上市格局落地，资金用于欧洲基地扩产 + 干法/湿法隔膜产能。",
-  tags:["IPO","星源材质","锂电池","港股","A+H"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
   d:"2026-06-24",
   src:"Mistral AI：News（网页）",
   cat:"ai",
-  regions:["欧洲"],
-  score:72,
+  regions:["中国"],
+  score:80,
   title:"Mistral OCR 4：多模态文档解析升级，长上下文处理能力扩展",
   url:"https://mistral.ai/news/ocr-4",
   sum:"Mistral 发布 OCR 4——支持 100+ 种语言、多列布局、表格解析、长上下文文档；推理速度比 OCR 3 提升 40%，对企业 RAG/文档自动化是关键升级。",
-  tags:["AI","Mistral","OCR","多模态","欧洲"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
   d:"2026-06-24",
   src:"X：Krea AI (@krea_ai)",
   cat:"ai",
-  regions:["美国"],
-  score:71,
+  regions:["中国"],
+  score:80,
   title:"Krea 2 技术报告正式发布：实时可控图像/视频生成",
   url:"https://x.com/krea_ai/status/2069473417804591191",
   sum:"Krea AI 发布 Krea 2 技术报告——实时可控图像生成、风格迁移、视频关键帧编辑；主打“创作者友好”的低延迟交互。",
-  tags:["AI","Krea","图像生成","创作者工具"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
   d:"2026-06-24",
   src:"X：Runway (@runwayml)",
   cat:"ai",
-  regions:["美国"],
-  score:72,
+  regions:["中国"],
+  score:80,
   title:"Runway 推出 Seedance 4K / Seedance Mini / Kling 3.0 Turbo 三款模型",
   url:"https://x.com/runwayml/status/2069535148450705517",
   sum:"Runway 同步上线三款视频生成模型：Seedance 4K（高分辨率）、Seedance Mini（轻量快版）、Kling 3.0 Turbo（快手可灵加速版）——“全球最佳模型，一处可用”。",
-  tags:["AI","Runway","视频生成","Seedance","Kling"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
@@ -4720,11 +5054,12 @@ const ITEMS = [
   src:"X：Sky Computing Lab (@haoailab)",
   cat:"ai",
   regions:["中国"],
-  score:73,
+  score:80,
   title:"FastWan-QAD：单卡 5090 上 1.8 秒生成 5 秒视频",
   url:"https://x.com/haoailab/status/2069493820732170695",
   sum:"Sky Computing Lab 开源 FastWan-QAD 视频生成模型——单张 RTX 5090 消费级显卡 1.8 秒生成 5 秒 1080p 视频，速度比 Wan2.1 快 10 倍以上。",
-  tags:["AI","视频生成","开源","FastWan","5090"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月24日",
@@ -4732,11 +5067,12 @@ const ITEMS = [
   src:"公众号：火山引擎",
   cat:"ai",
   regions:["中国"],
-  score:71,
+  score:80,
   title:"豆包音频生成模型 1.0 发布，重新定义 AI 音频创作",
   url:"https://mp.weixin.qq.com/s/iL0uyUjOMUEfudeuDP6wQQ",
   sum:"字节跳动火山引擎发布豆包音频生成模型 1.0——支持音乐生成、音效设计、语音克隆、配音四合一；面向创作者与企业。",
-  tags:["AI","字节跳动","豆包","音频生成","火山引擎"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 
 // ───────────── IT桔子 2026-06-23 新增 ──────────────
@@ -5156,6 +5492,21 @@ const ITEMS = [
   t:"6月21日",
   d:"2026-06-21",
   src:"AIHOT",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"微软双向转售 GPT 与 DeepSeek 成全球最大 AI 中间商",
+  url:"https://aihot.virxact.com/",
+  sum:"微软 Azure 同时转售 OpenAI 的 GPT 与 DeepSeek 模型——OpenAI 与 DeepSeek 之间的“转售套利”成为微软新收入来源。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+
+// ───────────── AIHOT 2026-06-21 新增 ──────────────
+{
+  t:"6月21日",
+  d:"2026-06-21",
+  src:"AIHOT",
   cat:"ai",
   regions:["美国"],
   score:70,
@@ -5487,60 +5838,39 @@ const ITEMS = [
   d:"2026-06-18",
   src:"Hacker News",
   cat:"ai",
-  regions:["全球"],
-  score:76,
+  regions:["中国"],
+  score:80,
   title:"Wolfram Mathematica 15 发布：内置 AI 助手，符号音乐/千兆字节级笔记本",
   url:"https://writings.stephenwolfram.com/2026/06/launching-version-15-of-wolfram-language-mathematica-built-in-useful-ai-lots-of-new-core-functionality",
   sum:"Wolfram 38 年后首次大版本：每个笔记本内置 AI 助手，新增符号音乐系统、大规模时间序列、分类数据计算、ModelFit 超函数、CUDA 外部函数、GPU 计算服务。",
-  tags:["AI","Wolfram","Mathematica","数学"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"Hacker News",
   cat:"ai",
-  regions:["美国"],
-  score:78,
+  regions:["中国"],
+  score:80,
   title:"泄露文件显示 OpenAI 2025 净亏损约 390 亿美元，研发成本 192 亿",
   url:"https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year",
   sum:"OpenAI 2025 营收 130.7 亿美元（同比 2024 37 亿大幅增长），但 R&D 191.8 亿（含向微软付 105.9 亿）、推理算力 75 亿、销售营销 57.3 亿、运营亏损 209.2 亿；净亏损约 390 亿（扣 300 亿一次性会计调整后约 80 亿）。3 月获 1220 亿融资估值 8520 亿；ChatGPT 周活 9 亿+，付费 5000 万。已关闭 Sora 视频模型并削减非核心业务。",
-  tags:["AI","OpenAI","财务","亏损","ARR","IPO"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"IT之家",
   cat:"ai",
-  regions:["全球"],
-  score:73,
+  regions:["中国"],
+  score:80,
   title:"OpenAI 2026 Q1 现金消耗 37 亿美元，超同期收入一半；估值最高 1 万亿美元",
   url:"https://www.ithome.com/0/965/335.htm",
   sum:"OpenAI 2026 Q1 现金消耗 37 亿美元（同期收入 57 亿），研发与规模化投入持续加码。已在美国保密递交 IPO 申请，最早 9 月完成，估值最高 $1 万亿。",
-  tags:["AI","OpenAI","IPO","融资"]
-},
-{
-  t:"6月18日",
-  d:"2026-06-18",
-  src:"IT之家",
-  cat:"bigtech",
-  regions:["中国","全球"],
-  score:72,
-  title:"中国加紧筹建世界人工智能合作组织（总部拟上海）",
-  url:"https://www.ithome.com/0/965/248.htm",
-  sum:"中国政府倡议成立世界人工智能合作组织，践行多边主义/弥合数字鸿沟/普惠发展。总部拟上海。同日 2025 世界 AI 大会发表《人工智能全球治理行动计划》。",
-  tags:["政策","AI","中国","全球治理"]
-},
-{
-  t:"6月18日",
-  d:"2026-06-18",
-  src:"IT之家",
-  cat:"bigtech",
-  regions:["美国","中国"],
-  score:75,
-  title:"苹果库克：AI 浪潮引发存储芯片价格暴涨，iPhone 涨价已不可避免",
-  url:"https://www.ithome.com/0/965/694.htm",
-  sum:"苹果 CEO 库克确认 AI 算力需求挤压消费电子存储芯片供应，2024 年以来内存/存储价格已翻 4 倍，涨势预计延续到 2027；摩根士丹利预测今年美智能手机与 PC 价格上涨 15%，iPhone 18 Pro 或需加价 270 美元；苹果已上调 Mac Mini 起售价。",
-  tags:["半导体","存储芯片","苹果","HBM","AI 算力"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
@@ -5548,11 +5878,38 @@ const ITEMS = [
   src:"IT之家",
   cat:"bigtech",
   regions:["中国"],
-  score:74,
+  score:80,
+  title:"中国加紧筹建世界人工智能合作组织（总部拟上海）",
+  url:"https://www.ithome.com/0/965/248.htm",
+  sum:"中国政府倡议成立世界人工智能合作组织，践行多边主义/弥合数字鸿沟/普惠发展。总部拟上海。同日 2025 世界 AI 大会发表《人工智能全球治理行动计划》。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"6月18日",
+  d:"2026-06-18",
+  src:"IT之家",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"苹果库克：AI 浪潮引发存储芯片价格暴涨，iPhone 涨价已不可避免",
+  url:"https://www.ithome.com/0/965/694.htm",
+  sum:"苹果 CEO 库克确认 AI 算力需求挤压消费电子存储芯片供应，2024 年以来内存/存储价格已翻 4 倍，涨势预计延续到 2027；摩根士丹利预测今年美智能手机与 PC 价格上涨 15%，iPhone 18 Pro 或需加价 270 美元；苹果已上调 Mac Mini 起售价。",
+  ma_cap:"未披露",
+  tags:["投融资"]
+},
+{
+  t:"6月18日",
+  d:"2026-06-18",
+  src:"IT之家",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
   title:"阿里云发布开放式世界模型 HappyOyster 1.0：一句话生成可实时交互数字世界",
   url:"https://www.ithome.com/0/965/652.htm",
   sum:"阿里云发布 HappyOyster 1.0（快乐生蚝）：原生多模态 + 音视频联合生成，支持生成过程中持续接收用户指令并实时改画面。两种玩法：实时导演（改写故事/虚拟男友）和世界探索（自由漫游/滑板/翼装/骑马/打怪）。4 月已内测，6/17-7/17 官网不定时掉落体验积分。",
-  tags:["AI","世界模型","阿里","多模态"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
@@ -5560,23 +5917,25 @@ const ITEMS = [
   src:"IT桔子",
   cat:"minority",
   regions:["中国"],
-  score:74,
+  score:80,
   title:"中科优材完成 2 亿元人民币 Pre-A 轮（合肥产投领投）",
   url:"https://www.itjuzi.com/investevent",
   sum:"中科优材（先进材料赛道）获 2 亿元 Pre-A 轮，合肥产投继续加码。",
-  tags:["少数股权","Pre-A轮","先进材料","合肥","中国"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"IT桔子",
   cat:"ipo",
-  regions:["中国","香港"],
-  score:76,
+  regions:["中国"],
+  score:80,
   title:"圣邦股份、领益智造、中科闻歌等多家公司完成港股 IPO 基石轮",
   url:"https://www.itjuzi.com/investevent",
   sum:"港股 IPO 基石轮密集：领益智造 31.89 亿港元、圣邦股份 22.96 亿港元、MERDEKA GOLD 11.91 亿港元、中科闻歌 $3,100 万；港股一级市场显著回暖，半导体 + 制造 + 资源三线齐发。",
-  tags:["IPO","基石轮","港股","半导体","中国"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
@@ -5584,11 +5943,12 @@ const ITEMS = [
   src:"IT桔子",
   cat:"minority",
   regions:["中国"],
-  score:72,
+  score:80,
   title:"芯生视界完成种子轮融资（经纬创投领投）",
   url:"https://www.itjuzi.com/investevent",
   sum:"经纬创投领投芯生视界种子轮（半导体/集成电路方向），硬科技早期布局持续。",
-  tags:["少数股权","种子轮","半导体","经纬","中国"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
@@ -5600,91 +5960,99 @@ const ITEMS = [
   title:"零重力飞机工业完成 5 亿元人民币 B 轮融资（合肥产投+合肥创新投资领投）",
   url:"https://www.itjuzi.com/investevent",
   sum:"合肥本地国资联手押注 eVTOL：零重力飞机工业完成 5 亿元 B 轮，由合肥产投、合肥创新投资联合领投。低空经济 + 城市空中出行赛道的国资样板。",
-  tags:["少数股权","B轮","eVTOL","低空经济","合肥","中国"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"MarkTechPost",
   cat:"ai",
-  regions:["美国"],
-  score:77,
+  regions:["中国"],
+  score:80,
   title:"Vercel 开源 AI 智能体框架 Eve：每个智能体就是一个文件目录",
   url:"https://www.marktechpost.com/2026/06/17/vercel-releases-eve",
   sum:"Vercel 开源 Eve（Apache-2.0）：文件系统优先设计，每个智能体 = 一个磁盘目录，结构直接映射模型/指令/工具/技能/子智能体，无需注册代码。内置持久执行、沙箱、人机审批、MCP/OpenAPI、多通道、OpenTelemetry 追踪。Vercel 内部已跑上百个智能体（d0 月 3 万查询、Lead Agent 年费 $5K/回报 32x、Vertex 自主解决 92% 工单）。",
-  tags:["AI","Agent","开源","Vercel","Eve"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"TechCrunch",
   cat:"bigtech",
-  regions:["美国"],
-  score:75,
+  regions:["中国"],
+  score:80,
   title:"Google 99 美元 Gemini 智能音箱开启预售，AI 重塑智能家居入口",
   url:"https://techcrunch.com/2026/06/17/google-bets-on-gemini-to-reinvent-the-smart-home-speaker",
   sum:"Google Home Speaker 售价 $99.99，支持自然语言请求+多步指令+中途纠正+连续对话+10 种新声音。高级 AI 功能需 Google Home Premium 订阅（月 $10 / 年 $100），含 Gemini Live 自由对话、Nest 摄像头活动摘要。即日起预售，本月发货。",
-  tags:["AI","Gemini","智能音箱","Google","硬件"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"X：Jim Fan",
   cat:"ai",
-  regions:["美国"],
-  score:81,
+  regions:["中国"],
+  score:80,
   title:"NVIDIA GEAR 实验室发布 ENPIRE：8 个 Codex 智能体自主控制 8 台机器人完成物理实验",
   url:"https://x.com/DrJimFan/status/2067283904986517866",
   sum:"ENPIRE 是首个物理世界自主研究系统：8 个 Codex 智能体控制 8 台机器人，硬件安全采用硬运动极限切断与扭矩受限夹爪；离线冻结奖励函数防作弊；按 MRU/MTU/GPU 利用率评估效率。自主完成扎带、整理细针、安装 GPU 等高精度任务。系统将开源。",
-  tags:["AI","机器人","具身智能","NVIDIA","Codex","前沿"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"X：Kim",
   cat:"bigtech",
-  regions:["美国","全球"],
+  regions:["中国"],
   score:80,
   title:"Anthropic 与 DeepMind CEO 联合呼吁 G7 组建 AI 联盟，明确将中国排除在外",
   url:"https://x.com/kimmonismus/status/2067310431669223425",
   sum:"Dario Amodei（Anthropic）与 Demis Hassabis（DeepMind）在 G7 闭门会上共同主张，以前沿模型与硬件（含芯片）访问权为筹码，将中国排除在全球 AI 规则之外。被评论为高技术冷战开端。",
-  tags:["政策","AI","出口管制","G7","Anthropic","DeepMind"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"X：Yuchen Jin",
   cat:"ai",
-  regions:["美国"],
-  score:82,
+  regions:["中国"],
+  score:80,
   title:"AI 传奇 Noam Shazeer 再次离开 Google，加入 OpenAI",
   url:"https://x.com/Yuchenj_UW/status/2067401895178817999",
   sum:"两年前 Google 刚花 27 亿美元请回的 Transformer 作者之一 Noam Shazeer 已离开 Gemini 团队，重回 OpenAI。Gemini 工程线受挫，对 OpenAI 是重大人才胜利。",
-  tags:["AI","人才","OpenAI","Google","Gemini"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"X：Yuchen Jin",
   cat:"ai",
-  regions:["美国"],
-  score:76,
+  regions:["中国"],
+  score:80,
   title:"Matt Pocock 开源 skills v1：技能描述 Token 成本降低 63%",
   url:"https://x.com/AYi_AInotes/status/2067327021005656135",
   sum:"TypeScript 工具作者 Matt Pocock 开源 skills v1：把技能分为模型可调用与用户可调用两类，新增 /codebase-design、/domain-modeling、/grilling、/ask-matt 路由；整体把 prompt 从咒语拆解为纪律性流程，技能描述 Token 砍 63%。",
-  tags:["AI","Skills","Agent","开源","Matt Pocock"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 {
   t:"6月18日",
   d:"2026-06-18",
   src:"Yuchen Jin",
   cat:"ai",
-  regions:["美国"],
-  score:77,
+  regions:["中国"],
+  score:80,
   title:"Omnigent 开源：Databricks Matei Zaharia 团队打造的 AI 智能体团队元框架",
   url:"https://x.com/Yuchenj_UW/status/2067273020352380950",
   sum:"Databricks AI 团队（含 Matei Zaharia 本人）开源 Omnigent：在一个会话中同时跑 Claude Code、Codex、Cursor、Pi 等多个智能体。灵感来自 Databricks 内部开发工具。",
-  tags:["AI","Agent","开源","Databricks","Matei Zaharia"]
+  ma_cap:"未披露",
+  tags:["投融资"]
 },
 
 // ───────────── IT桔子 2026-06-17 新增 ──────────────
