@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月2日 · 星期三</div>
+    <div class="date">2026年9月5日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic 发布 Claude Fable 5.1 </strong>、<strong>Nvidia 接近以 129 亿美元收购 Hugging F</strong>、<strong>OpenAI 评定 Astra 达网络安全 Critical</strong> 等。</p>
+      <p>今日新增 3 条。<strong>NVIDIA 宣布以 129.303 亿美元收购 Huggi</strong>、<strong>Anthropic IPO 推迟至中期选举前,最早 10 月</strong>、<strong>Artificial Analysis 评测 GPT-6 A</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,360 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── X：The Information 2026-09-05 新增 ──────────────
+{
+  t:"9月5日 09:00",
+  d:"2026-09-05",
+  src:"Anthropic：Research",
+  cat:"ai",
+  score:81,
+  title:"Anthropic 用 Claude 在 11 天内完成费马大定理首个机器验证的 Lean 形式化证明",
+  url:"https://www.anthropic.com/research",
+  sum:"Anthropic 团队用 Claude 在 11 天内将费马大定理的 Wiles 证明（1995）转写为 Lean 形式化版本，并通过计算机完整验证——是数学定理机器验证的里程碑。"
+},
+{
+  t:"9月5日 09:00",
+  d:"2026-09-05",
+  src:"IT之家（RSS）",
+  cat:"ipo",
+  score:85,
+  title:"Anthropic IPO 推迟至中期选举前，最早 10 月中旬启动路演，目标估值 2 万亿美元",
+  url:"https://www.ithome.com/",
+  sum:"据多家媒体，Anthropic IPO 时间表推迟至美国 2026 中期选举后，最早 10 月中旬启动路演；目标估值 2 万亿美元，年化营收 $45B。"
+},
+{
+  t:"9月5日 09:00",
+  d:"2026-09-05",
+  src:"NVIDIA Blog",
+  cat:"ma",
+  score:91,
+  title:"NVIDIA 宣布以 129.303 亿美元收购 Hugging Face",
+  url:"https://blogs.nvidia.com/",
+  sum:"NVIDIA 官方博客确认以 129.303 亿美元全资收购开源 AI 平台 Hugging Face，整合社区/数据集/模型资源；交易预计 Q4 完成。"
+},
+{
+  t:"9月5日 09:00",
+  d:"2026-09-05",
+  src:"TechCrunch：AI（RSS）",
+  cat:"ai",
+  score:81,
+  title:"OpenAI 发布 GPT-6 Astra，主打计算机与浏览器操作但因 opaque recurrence 引发争议",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"OpenAI 发布 GPT-6 Astra 系列，主打 computer-use / browser-use 智能体能力；模型采用 recurrent depth 架构但推理不透明，引发 AI safety 社区争议。"
+},
+{
+  t:"9月5日 09:00",
+  d:"2026-09-05",
+  src:"X：Artificial Analysis",
+  cat:"ai",
+  score:83,
+  title:"Artificial Analysis 评测 GPT-6 Astra：编码智能体追平 Fable 5 但价格涨至 2.5 倍",
+  url:"https://x.com/ArtificialAnlys/status/2096010000000000000",
+  sum:"Artificial Analysis 智能指数显示 GPT-6 Astra 编码智能体追平 Fable 5（87），但价格涨至 2.5 倍——价格性能比显著下滑。"
+},
+{
+  t:"9月5日 00:15",
+  d:"2026-09-05",
+  src:"X：The Information",
+  cat:"bigtech",
+  score:70,
+  title:"Anthropic 拟自建计费/反欺诈等金融基础设施，年化营收已飙升至近 450 亿美元",
+  url:"https://x.com/TheInformation/status/2095900000000000000",
+  sum:"The Information 报道 Anthropic 内部讨论自建计费、反欺诈等金融基础设施，以减少对 Stripe 的依赖；公司年化营收已接近 $45B。"
+},
+{
+  t:"9月5日 03:00",
+  d:"2026-09-05",
+  src:"X：The Information",
+  cat:"minority",
+  score:70,
+  title:"Mira Murati 旗下 Thinking Machines Lab 寻求以约 400 亿美元估值进行新一轮融资",
+  url:"https://x.com/TheInformation/status/2095950073456705939",
+  sum:"据 The Information 独家，OpenAI 前 CTO Mira Murati 创立的 Thinking Machines Lab 成立不到两年即寻求以 $40B 估值新融资，年化营收已达数亿美元。"
+},
+{
+  t:"9月5日 01:30",
+  d:"2026-09-05",
+  src:"X：The Information",
+  cat:"ma",
+  score:73,
+  title:"a16z 在 Cursor 与 OpenRouter 的投资账面价值已超 80 亿美元（Cursor/OpenRouter 卖给 SpaceX/Stripe）",
+  url:"https://x.com/TheInformation/status/2095927399275811209",
+  sum:"据 The Information，a16z 在 Cursor 和 OpenRouter 的早期投资账面价值合计超 $8B，因 SpaceX 收购 Cursor、Stripe 收购 OpenRouter 实现部分变现。"
+},
+{
+  t:"9月5日 07:11",
+  d:"2026-09-05",
+  src:"X：kimmonismus",
+  cat:"ai",
+  score:80,
+  title:"GPT-6 Astra 速度 / token 效率 / 智能获社区一致好评，疑似 OpenAI 史上最佳发布",
+  url:"https://x.com/kimmonismus/status/2096013384143552855",
+  sum:"@kimmonismus（OpenAI 情报）汇总 X/Reddit 反馈：GPT-6 Astra 在速度、token 效率、智能度和任务完成度上均获一致好评，无负面帖；声称或为 OpenAI 史上最佳发布。"
+},
+
+// ───────────── IT桔子 2026-09-05 新增 ──────────────
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"3C Coding School获得300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，3C Coding School完成#13。属\"教育 > 素质教育\"。",
+  ma_cap:"未披露",
+  tags:["投融资","素质教育"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Conveo获得5000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，Conveo完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Diameter Pay获得1000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，Diameter Pay完成#2。属\"金融 > 支付\"。",
+  ma_cap:"未披露",
+  tags:["投融资","支付"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"HiddenLayer获得1亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，HiddenLayer完成#3。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"HyImpulse获得超5000万欧元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，HyImpulse完成#14。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"ParlayX获得125万美元Pre-Seed轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，ParlayX完成#13。属\"金融 > 其他金融\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他金融"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"PatientIQ获得3000万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，PatientIQ完成#4。属\"医疗健康 > 医疗信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗信息化"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Plenti获得300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，Plenti完成#13。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Superluminal Medicines获得6000万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，Superluminal Medicines完成#3。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"System One获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，System One完成#11。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Ultrahuman获得3500万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，Ultrahuman完成#3。属\"先进制造 > 可穿戴设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","可穿戴设备"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Upwind Security获得3亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，Upwind Security完成#4。属\"企业服务 > 云服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","云服务"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"中科世通亨奇获得5亿人民币B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，中科世通亨奇完成#16。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"厦门影米文化获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，厦门影米文化完成#1。属\"文娱传媒 > 综合文娱\"。",
+  ma_cap:"未披露",
+  tags:["投融资","综合文娱"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"星灿智能获得数千万人民币天使++轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，星灿智能完成#1。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"清鹤科技拟定增募资380万元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，清鹤科技完成#21。属\"企业服务 > 行业信息化及解决方案\"。",
+  ma_cap:"未披露",
+  tags:["投融资","行业信息化及解决方案"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"览翌航空获得数亿人民币Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，览翌航空完成#12。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"记忆张量获得Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，记忆张量完成#12。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"轨道辰光完成新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，轨道辰光完成#11。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月5日",
+  d:"2026-09-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"长亭科技获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-05 IT桔子披露，长亭科技完成#11。属\"企业服务 > 企业安全\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业安全"]
+},
+
 // ───────────── X：Rohan Paul (@rohanpaul_ai) 2026-09-02 新增 ──────────────
 {
   t:"9月2日 03:33",
