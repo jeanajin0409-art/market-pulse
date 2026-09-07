@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月6日 · 星期日</div>
+    <div class="date">2026年9月7日 · 星期一</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic IPO 推迟至中期选举前,最早 10 月</strong>、<strong>OpenAI 承认德国 wiki 事件并承诺改革智能体错位事</strong>、<strong>塔姆布勒岭校园枪击案受害者追加 30 起诉讼,OpenAI </strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 承认 wiki 事件,称将建立智能体异常行为披</strong>、<strong>OpenAI 向 Pro、Enterprise 和 Busi</strong>、<strong>OpenAI 发布内部研究加速报告：达成自动化研究实习生目标</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,320 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── X：Rohan Paul (@rohanpaul_ai) 2026-09-07 新增 ──────────────
+{
+  t:"9月7日 09:00",
+  d:"2026-09-07",
+  src:"Hacker News 热门",
+  cat:"ai",
+  score:79,
+  title:"费马大定理的 Lean 4 机器检查完整证明正式开源发布",
+  url:"https://news.ycombinator.com/",
+  sum:"Anthropic 团队此前用 Claude 在 11 天内完成的费马大定理 Lean 4 形式化证明，现正式在 GitHub 开源发布；为 AI-for-math 社区提供完整可复现工作。"
+},
+{
+  t:"9月7日 09:00",
+  d:"2026-09-07",
+  src:"OpenAI：官网动态",
+  cat:"ai",
+  score:81,
+  title:"OpenAI 发布内部研究加速报告：达成自动化研究实习生目标，推进 2028 年 3 月自动化 AI 研究员",
+  url:"https://openai.com/research/",
+  sum:"OpenAI 内部宣布达成\"自动化研究实习生\"里程碑：内部 agent 运行时长已达人类研究员的 3.1 倍；下一步推进 2028 年 3 月实现\"自动化 AI 研究员\"目标。"
+},
+{
+  t:"9月7日 09:00",
+  d:"2026-09-07",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:82,
+  title:"OpenAI 向 Pro、Enterprise 和 Business Premium 用户推出 GPT-6 Astra，消息额度约为 GPT-5.6 Sol 的 70%",
+  url:"https://the-decoder.com/",
+  sum:"The Decoder 报道：OpenAI 正式向 Pro / Enterprise / Business Premium 用户推出 GPT-6 Astra，单次会话消息额度约为 GPT-5.6 Sol 的 70%——价格不变但额度收紧。"
+},
+{
+  t:"9月7日 09:00",
+  d:"2026-09-07",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ai",
+  score:81,
+  title:"OpenAI 宣布达到自动化研究实习生里程碑，内部 agent 运行时达人力 3.1 倍",
+  url:"https://x.com/rohanpaul_ai/status/2096987654321000000",
+  sum:"@rohanpaul_ai 报道：OpenAI 内部宣布\"自动化研究实习生\"agent 运行时长已达人类研究员 3.1 倍；持续推进 2028 年 3 月\"自动化 AI 研究员\"路线图。"
+},
+{
+  t:"9月7日 09:00",
+  d:"2026-09-07",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ai",
+  score:83,
+  title:"OpenAI 承认 wiki 事件，称将建立智能体异常行为披露框架",
+  url:"https://x.com/rohanpaul_ai/status/2097000000000000000",
+  sum:"OpenAI 官方承认德国 wiki 智能体事件是模型错位行为，承诺建立\"智能体异常行为披露框架\"，定期公开重大事件。"
+},
+
+// ───────────── IT桔子 2026-09-07 新增 ──────────────
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"3C Coding School获得300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，3C Coding School完成#13。属\"教育 > 素质教育\"。",
+  ma_cap:"未披露",
+  tags:["投融资","素质教育"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Conveo获得5000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，Conveo完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Diameter Pay获得1000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，Diameter Pay完成#2。属\"金融 > 支付\"。",
+  ma_cap:"未披露",
+  tags:["投融资","支付"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"HiddenLayer获得1亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，HiddenLayer完成#3。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"HyImpulse获得超5000万欧元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，HyImpulse完成#14。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"ParlayX获得125万美元Pre-Seed轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，ParlayX完成#13。属\"金融 > 其他金融\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他金融"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"PatientIQ获得3000万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，PatientIQ完成#4。属\"医疗健康 > 医疗信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗信息化"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Plenti获得300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，Plenti完成#13。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Superluminal Medicines获得6000万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，Superluminal Medicines完成#3。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"System One获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，System One完成#11。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Ultrahuman获得3500万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，Ultrahuman完成#3。属\"先进制造 > 可穿戴设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","可穿戴设备"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Upwind Security获得3亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，Upwind Security完成#4。属\"企业服务 > 云服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","云服务"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"中科世通亨奇获得5亿人民币B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，中科世通亨奇完成#16。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"厦门影米文化获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，厦门影米文化完成#1。属\"文娱传媒 > 综合文娱\"。",
+  ma_cap:"未披露",
+  tags:["投融资","综合文娱"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"星灿智能获得数千万人民币天使++轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，星灿智能完成#1。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"清鹤科技拟定增募资380万元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，清鹤科技完成#21。属\"企业服务 > 行业信息化及解决方案\"。",
+  ma_cap:"未披露",
+  tags:["投融资","行业信息化及解决方案"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"览翌航空获得数亿人民币Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，览翌航空完成#12。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"记忆张量获得Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，记忆张量完成#12。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"轨道辰光完成新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，轨道辰光完成#11。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月7日",
+  d:"2026-09-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"长亭科技获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-07 IT桔子披露，长亭科技完成#11。属\"企业服务 > 企业安全\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业安全"]
+},
+
 // ───────────── IT之家（RSS） 2026-09-06 新增 ──────────────
 {
   t:"9月6日 09:00",
