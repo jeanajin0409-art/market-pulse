@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月8日 · 星期二</div>
+    <div class="date">2026年9月9日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>TabaPay获得1.55亿美元战略投资</strong>、<strong>Félix Pago获得8700万美元C轮融资</strong>、<strong>成科医工获得A轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 宣布以内部 AI 系统给出 Navier-St</strong>、<strong>最高法发布涉人工智能纠纷案件审理意见,明确 AI 换脸拟声等</strong>、<strong>NYU 数学家指控 OpenAI 在千禧年难题竞赛中不正当竞</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,340 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── OpenAI：官网动态 2026-09-09 新增 ──────────────
+{
+  t:"9月9日 09:00",
+  d:"2026-09-09",
+  src:"IT之家（RSS）",
+  cat:"bigtech",
+  score:85,
+  title:"最高法发布涉人工智能纠纷案件审理意见，明确 AI 换脸拟声等裁判规则",
+  url:"https://www.ithome.com/",
+  sum:"中国最高人民法院发布《关于审理涉及人工智能纠纷案件若干问题的裁判指引》，明确 AI 换脸拟声侵权认定、训练数据合法性、AI 生成内容版权归属等裁判规则。"
+},
+{
+  t:"9月9日 09:00",
+  d:"2026-09-09",
+  src:"Mistral AI：News（网页）",
+  cat:"ma",
+  score:72,
+  title:"Mistral 完成 30 亿欧元 D 轮融资，估值超 210 亿欧元",
+  url:"https://mistral.ai/news/",
+  sum:"法国 AI 独角兽 Mistral 完成 €3B D 轮融资，估值超 €21B；投资方包括 General Catalyst、Andreessen Horowitz 等。"
+},
+{
+  t:"9月9日 09:00",
+  d:"2026-09-09",
+  src:"OpenAI：官网动态",
+  cat:"bigtech",
+  score:79,
+  title:"OpenAI 发布 ChatGPT Images 2.5 图像模型",
+  url:"https://openai.com/index/",
+  sum:"OpenAI 升级图像生成模型至 ChatGPT Images 2.5，主打更高分辨率、更细粒度文字渲染与原生多语言支持；同步扩展 ChatGPT 免费用户配额。"
+},
+{
+  t:"9月9日 09:00",
+  d:"2026-09-09",
+  src:"OpenAI：官网动态",
+  cat:"ai",
+  score:85,
+  title:"OpenAI 宣布以内部 AI 系统给出 Navier-Stokes 千禧年问题解答",
+  url:"https://openai.com/research/",
+  sum:"OpenAI 内部 AI 系统结合人机协作给出 Navier-Stokes 千禧年问题解答思路；OpenAI 智能体团队向独立证明者致贺，并表示求解过程将持续对外公开。"
+},
+{
+  t:"9月9日 09:00",
+  d:"2026-09-09",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:85,
+  title:"NYU 数学家指控 OpenAI 在千禧年难题竞赛中不正当竞争，Bubeck 否认",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"NYU 数学家 Terence Tao 等在公开声明中指控 OpenAI 在 Navier-Stokes 千禧年难题的解答中使用\"内部数学家资源\"在公开竞赛中构成不正当竞争；OpenAI 研究副总裁 Bubeck 否认。"
+},
+{
+  t:"9月9日 09:00",
+  d:"2026-09-09",
+  src:"X：Emad Mostaque (@EMostaque)",
+  cat:"ai",
+  score:79,
+  title:"Emad Mostaque 称 OpenAI 智能体求解 Navier-Stokes 千禧年难题是迈向 ASI 的里程碑",
+  url:"https://x.com/EMostaque/status/2097500000000000000",
+  sum:"前 Stability AI CEO Emad Mostaque 发文：OpenAI 智能体在 Navier-Stokes 难题上的突破是迈向 ASI（人工超级智能）的关键里程碑之一。"
+},
+{
+  t:"9月9日 09:00",
+  d:"2026-09-09",
+  src:"X：Noam Brown (@polynoamial)",
+  cat:"ai",
+  score:78,
+  title:"Noam Brown 评 OpenAI 智能体求解 Navier-Stokes：成本会快速下降",
+  url:"https://x.com/polynoamial/status/2097600000000000000",
+  sum:"Noam Brown（OpenAI reasoning 研究科学家）评论：当前 AI 求解千禧年问题的成本仍高，但会快速下降——1-2 年内此类证明将成为常规能力。"
+},
+
+// ───────────── IT桔子 2026-09-09 新增 ──────────────
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AfterQuery获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，AfterQuery完成#2。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Capacity获得超5400万美元E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，Capacity完成#6。属\"工具软件 > 搜索引擎\"。",
+  ma_cap:"未披露",
+  tags:["投融资","搜索引擎"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Jaipur Robotics获得430万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，Jaipur Robotics完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Mistral完成30亿欧元D轮融资，投后估值超210亿欧元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，Mistral AI完成#5。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"N-Power获得3200万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，N-Power完成#3。属\"医疗健康 > 其他医疗服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他医疗服务"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Norbert获得1400万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，Norbert完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Pixxel获得1亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，Pixxel完成#4。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Wafer获得4000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，Wafer完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"YoLearn获得种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，YoLearn完成#13。属\"教育 > K12\"。",
+  ma_cap:"未披露",
+  tags:["投融资","K12"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"东方空间获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，东方空间完成#11。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"华晶股份新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，华晶股份完成#18。属\"传统制造 > 轻工制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","轻工制造"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"台泉科技新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，台泉科技完成#18。属\"传统制造 > 环保\"。",
+  ma_cap:"未披露",
+  tags:["投融资","环保"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"商甲半导体完成新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，商甲半导体完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"小雨智造完成数亿元B3轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，小雨智造完成#16。属\"机器人 > 特种机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","特种机器人"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"形知时代完成千万级种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，形知时代完成#13。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"旌晟超导获得近亿人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，旌晟超导完成#1。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"江波龙今日登陆港交所",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，江波龙完成#8。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"深空矩阵获得近亿人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，深空矩阵完成#1。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"维步智能获得数百万人民币种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，维步智能完成#13。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"9月9日",
+  d:"2026-09-09",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"至博光电完成数千万元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-09 IT桔子披露，至博光电完成#12。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+
 // ───────────── IT桔子 2026-09-08 新增 ──────────────
 {
   t:"9月8日",
