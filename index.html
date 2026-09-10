@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月9日 · 星期三</div>
+    <div class="date">2026年9月10日 · 星期四</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>OpenAI 宣布以内部 AI 系统给出 Navier-St</strong>、<strong>最高法发布涉人工智能纠纷案件审理意见,明确 AI 换脸拟声等</strong>、<strong>NYU 数学家指控 OpenAI 在千禧年难题竞赛中不正当竞</strong> 等。</p>
+      <p>今日新增 3 条。<strong>DeepSeek AI 发布 DeepSeek-V4.1-F</strong>、<strong>Nathan Lambert 评 Nvidia 收购 Hug</strong>、<strong>OpenAI 纳维-斯托克斯方程证明争议：Buckmaste</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── The Decoder：AI News（RSS） 2026-09-10 新增 ──────────────
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"DeepSeek：API 更新日志",
+  cat:"bigtech",
+  score:79,
+  title:"DeepSeek 发布 V4.1-Flash，API 价格同步下调",
+  url:"https://api-docs.deepseek.com/news/",
+  sum:"DeepSeek V4.1-Flash 同步降价：输入 ¥1/M token（降 25%），输出 ¥3/M token（降 40%）；继续走\"开源 + 低价\"竞争策略。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"MarkTechPost（RSS）",
+  cat:"ai",
+  score:87,
+  title:"DeepSeek AI 发布 DeepSeek-V4.1-Flash：1M 上下文、FP4 KV 缓存与跨层注意力复用",
+  url:"https://deepseek.ai/",
+  sum:"DeepSeek 发布 V4.1-Flash：1M 上下文窗口、FP4 KV cache、跨层注意力复用（CLA）；API 同步降价。推理端 KV 内存占用大幅降低，agent 类长上下文场景性价比显著改善。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:79,
+  title:"DeepSeek 发布 V4.1-Flash，大幅降低 AI Agent 的 KV cache 内存需求",
+  url:"https://the-decoder.com/",
+  sum:"DeepSeek 技术博客披露 V4.1-Flash 的 KV cache 内存占用较 V3.2 降低约 60%（FP4 + CLA 双重优化），使 1M 上下文在单卡 80GB GPU 上可运行。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:83,
+  title:"OpenAI 纳维-斯托克斯方程证明争议：Buckmaster 指控不当行为，各方回应引出开放科学之问",
+  url:"https://the-decoder.com/",
+  sum:"数学家 Buckmaster 在博客详细披露与 OpenAI 智能体团队的通信时间线，指控 OpenAI 在 Navier-Stokes 千禧年问题解答过程中\"未明确披露内部数学家参与\"；OpenAI Bubeck 否认。各方回应涉及\"AI vs 人类贡献如何在论文中署名\"的标准空白。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"X：Nathan Lambert (@natolambert)",
+  cat:"bigtech",
+  score:85,
+  title:"Nathan Lambert 评 Nvidia 收购 HuggingFace：软实力每年值约 100 亿美元",
+  url:"https://x.com/natolambert/status/2098000000000000000",
+  sum:"AI 研究者 Nathan Lambert 发文评 Nvidia $129.303B 收购 HuggingFace：硬件龙头支付的 30%+ 溢价是对 HuggingFace 软实力（开源生态 + 开发者社区 + 数据集 + 模型 zoo）的估值，每年约 $10B 量级。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  score:81,
+  title:"美国政府指控 DeepSeek 等 6 家中国 AI 公司工业规模蒸馏美国模型",
+  url:"https://x.com/rohanpaul_ai/status/2098100000000000000",
+  sum:"据 @rohanpaul_ai：美国政府正式指控 DeepSeek、Moonshot、MiniMax、智谱等 6 家中国 AI 公司\"工业规模蒸馏美国 frontier model\"，可能启动新一轮出口管制与制裁。"
+},
+
+// ───────────── IT桔子 2026-09-10 新增 ──────────────
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Allogenetics获得380万欧元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Allogenetics完成#12。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Fab2获得5亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Fab2完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"HelmGuard获得730万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，HelmGuard完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Onix获得500万美元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Onix完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Solstice Oncology获得2.25亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Solstice Oncology完成#2。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"The Boring Company获得30亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，The Boring Company完成#5。属\"汽车交通 > 交通出行\"。",
+  ma_cap:"未披露",
+  tags:["投融资","交通出行"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"TwoStep获得6250万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，TwoStep完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Vibu获得15万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Vibu完成#13。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"九章智电完成首轮数千万战略融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，九章智电完成#11。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华拟智能宣布完成数千万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，华拟智能完成#1。属\"机器人 > 人形机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人形机器人"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"听象科技获得数千万人民币A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，听象科技完成#14。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"大鱼智行完成近亿元Pre-B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，大鱼智行车完成#15。属\"汽车交通 > 出行设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","出行设备"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"御枢智能宣布完成千万融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，御枢智能完成#1。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"斯特纳无人机获得Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，斯特纳无人机完成#12。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"星语智能完成千万级天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，星语智能完成#1。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"瑞幸咖啡获得战略投资，大钲资本、穆巴达拉Mubadala Investment Company投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，瑞幸咖啡完成#11。属\"本地生活 > 餐饮业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","餐饮业"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"电科思仪今日上市 发行价格16.0元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，电科思仪完成#8。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"紫讯技术获得Pre-IPO融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，紫讯技术完成#27。属\"电商零售 > 跨境电商\"。",
+  ma_cap:"未披露",
+  tags:["投融资","跨境电商"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"讯兔科技获得3亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，讯兔科技完成#3。属\"金融 > 金融信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融信息化"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"镭昱半导体获得近亿人民币Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，镭昱半导体完成#12。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+
 // ───────────── OpenAI：官网动态 2026-09-09 新增 ──────────────
 {
   t:"9月9日 09:00",

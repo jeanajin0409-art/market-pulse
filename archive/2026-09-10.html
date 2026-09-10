@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealHOT · 2026-09-10 归档</title>
+<style>
+  :root{
+    --text:#1a1a1a; --text2:#555; --text3:#888; --line:#ececec;
+    --blue:#1558d6; --blue-h:#0d3fa3; --bg:#ffffff; --pill:#f3f4f6; --pill-t:#666;
+    --accent:#e8540c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);font-size:15px;line-height:1.65;}
+  a{color:var(--blue);text-decoration:none;}
+  a:hover{color:var(--blue-h);text-decoration:underline;}
+
+  header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10;}
+  .nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:22px;padding:12px 20px;}
+  .logo{font-size:20px;font-weight:800;letter-spacing:-.5px;}
+  .logo span{color:var(--accent);}
+  .nav .date{color:var(--text3);font-size:13px;}
+  .nav-link{color:var(--text3);font-size:13px;white-space:nowrap;}
+  .nav-link:hover{color:var(--blue);}
+  .nav .spacer{flex:1;}
+  .search{border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:14px;width:220px;outline:none;}
+  .search:focus{border-color:var(--blue);}
+
+  .layout{max-width:1080px;margin:0 auto;display:flex;gap:36px;padding:24px 20px 60px;}
+
+  aside{width:170px;flex-shrink:0;position:sticky;top:64px;align-self:flex-start;}
+  .side-title{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 8px;}
+  .side-title:first-child{margin-top:4px;}
+  .cat-btn{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;border:none;background:none;padding:7px 10px;border-radius:8px;font-size:14.5px;color:var(--text2);cursor:pointer;}
+  .cat-btn:hover{background:var(--pill);}
+  .cat-btn.active{background:#eef3fe;color:var(--blue);font-weight:600;}
+  .cat-btn .n{font-size:12px;color:var(--text3);}
+  .chip-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 11px;font-size:12.5px;color:var(--text2);cursor:pointer;}
+  .chip:hover{border-color:var(--blue);color:var(--blue);}
+  .chip.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+
+  main{flex:1;min-width:0;}
+  .lead{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:6px;}
+  .lead h1{font-size:21px;font-weight:700;margin-bottom:6px;}
+  .lead p{color:var(--text2);font-size:14.5px;}
+  .result-meta{color:var(--text3);font-size:13px;padding:4px 0;}
+  .feed-head{display:flex;align-items:center;gap:14px;padding:12px 0 4px;flex-wrap:wrap;}
+  .sort-toggle{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-shrink:0;}
+  .sort-btn{border:none;background:#fff;color:var(--text2);font-size:13px;padding:5px 13px;cursor:pointer;}
+  .sort-btn+.sort-btn{border-left:1px solid var(--line);}
+  .sort-btn.active{background:var(--blue);color:#fff;font-weight:600;}
+  .date-divider{font-size:13px;font-weight:700;color:var(--text);background:#f7f8fa;border-radius:7px;padding:5px 12px;margin:18px 0 2px;display:flex;align-items:center;gap:8px;}
+  .date-divider .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .today-badge{background:#e7f5ec;color:#137a3d;border-radius:6px;padding:1px 7px;font-size:11px;font-weight:700;}
+
+  .card{border-bottom:1px solid var(--line);padding:18px 0;}
+  .meta{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text3);margin-bottom:6px;flex-wrap:wrap;}
+  .meta .src{color:var(--text2);}
+  .score{margin-left:auto;font-size:11.5px;color:#b45309;background:#fef3e2;border-radius:6px;padding:1px 7px;font-weight:600;}
+  .card h2{font-size:16.5px;font-weight:650;line-height:1.5;margin-bottom:6px;}
+  .card .sum{color:var(--text2);font-size:14px;margin-bottom:7px;}
+  .card .why{color:var(--text3);font-size:13px;margin-bottom:9px;}
+  .card .why::before{content:"推荐理由：";color:#aaa;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{background:var(--pill);color:var(--pill-t);border-radius:6px;padding:2px 9px;font-size:12px;cursor:pointer;}
+  .tag:hover{background:#e4e7ec;}
+  .tag.region{background:#eef3fe;color:var(--blue);}
+  .empty{padding:48px 0;color:var(--text3);text-align:center;}
+
+  footer{border-top:1px solid var(--line);}
+  .foot{max-width:1080px;margin:0 auto;padding:20px;color:var(--text3);font-size:12.5px;line-height:1.9;}
+
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;font-size:17px;padding:3px 10px;color:var(--text2);cursor:pointer;}
+  .drawer-close{display:none;position:absolute;top:10px;right:12px;border:none;background:none;font-size:24px;color:var(--text3);cursor:pointer;line-height:1;}
+  .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:35;opacity:0;pointer-events:none;transition:opacity .25s;}
+  .backdrop.show{opacity:1;pointer-events:auto;}
+
+  .post-btn{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:8px;font-size:14px;padding:6px 14px;cursor:pointer;white-space:nowrap;font-weight:600;}
+  .post-btn:hover{background:var(--blue-h);border-color:var(--blue-h);}
+  .modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.4);overflow-y:auto;padding:48px 16px;}
+  .modal.show{display:flex;}
+  .modal-box{background:#fff;border-radius:14px;width:480px;max-width:100%;padding:24px 24px 22px;box-shadow:0 12px 40px rgba(0,0,0,.2);}
+  .modal-box h3{font-size:18px;font-weight:700;margin-bottom:4px;}
+  .modal-box .hint{color:var(--text3);font-size:12.5px;line-height:1.6;margin-bottom:16px;}
+  .field{margin-bottom:13px;}
+  .field label{display:block;font-size:13px;color:var(--text2);margin-bottom:5px;font-weight:600;}
+  .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:14px;font-family:inherit;outline:none;color:var(--text);}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);}
+  .field textarea{resize:vertical;min-height:64px;}
+  .field .req{color:var(--accent);}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;}
+  .btn-ghost{border:1px solid var(--line);background:#fff;color:var(--text2);border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;}
+  .btn-ghost:hover{background:var(--pill);}
+  .btn-primary{border:none;background:var(--blue);color:#fff;border-radius:8px;padding:8px 18px;font-size:14px;font-weight:600;cursor:pointer;}
+  .btn-primary:hover{background:var(--blue-h);}
+
+  @media(max-width:760px){
+    .layout{display:block;padding:18px 16px 48px;}
+    .menu-btn{display:block;}
+    .nav{gap:12px;}
+    .nav .date,.nav-link{display:none;}
+    .search{flex:1;min-width:0;width:auto;}
+    aside{position:fixed;top:0;left:0;bottom:0;width:264px;max-width:80vw;background:#fff;z-index:40;padding:20px 18px;overflow-y:auto;transform:translateX(-105%);transition:transform .25s ease;box-shadow:2px 0 18px rgba(0,0,0,.12);}
+    aside.open{transform:translateX(0);}
+    .drawer-close{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
+    <div class="logo">Deal<span>HOT</span></div>
+    <div class="date">2026年9月10日 · 星期四</div>
+    <a class="nav-link" href="archive/">往期</a>
+    <div class="spacer"></div>
+    <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
+    <button class="post-btn" id="postBtn">✚ 投稿</button>
+  </div>
+</header>
+
+<div class="modal" id="postModal">
+  <div class="modal-box">
+    <h3>投稿 · 推荐一条动态</h3>
+    <p class="hint">欢迎补充我们漏掉的一级市场交易或重要新闻。提交后会进入审核队列（生成一条 GitHub Issue），通过后由维护者加入页面。<br>需要一个免费 GitHub 账号；点"提交"会跳转到已填好内容的 Issue 页面，确认即可。</p>
+    <div class="field"><label>标题 <span class="req">*</span></label><input id="f-title" type="text" placeholder="如：某公司完成X亿元A轮，XX资本领投"></div>
+    <div class="field"><label>原文链接 <span class="req">*</span></label><input id="f-url" type="url" placeholder="https://…（可追溯的报道/公告链接）"></div>
+    <div class="field"><label>板块 <span class="req">*</span></label>
+      <select id="f-cat">
+        <option value="少数股权">少数股权</option>
+        <option value="M&A">M&A（并购/收购）</option>
+        <option value="IPO">IPO</option>
+        <option value="大厂动态">大厂动态</option>
+        <option value="AI动态">AI 动态</option>
+      </select>
+    </div>
+    <div class="field"><label>一句话摘要</label><textarea id="f-sum" placeholder="关键数字（金额/估值/轮次/投资方）尽量保留"></textarea></div>
+    <div class="field"><label>投稿人（选填）</label><input id="f-by" type="text" placeholder="署名或留空"></div>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="postCancel">取消</button>
+      <button class="btn-primary" id="postSubmit">提交投稿</button>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <aside id="drawer">
+    <button class="drawer-close" id="drawerClose" aria-label="关闭筛选">×</button>
+    <div class="side-title">板块</div>
+    <div id="cats"></div>
+    <div class="side-title">地区</div>
+    <div class="chip-row" id="regions"></div>
+    <div class="side-title">AI 主题</div>
+    <div class="chip-row" id="topics"></div>
+  </aside>
+
+  <main>
+    <div class="lead">
+      <h1>今日导读</h1>
+      <p>今日新增 3 条。<strong>DeepSeek AI 发布 DeepSeek-V4.1-F</strong>、<strong>Nathan Lambert 评 Nvidia 收购 Hug</strong>、<strong>OpenAI 纳维-斯托克斯方程证明争议：Buckmaste</strong> 等。</p>
+    </div>
+    <div class="feed-head">
+      <div class="sort-toggle">
+        <button class="sort-btn" data-sort="new">🕐 最新</button>
+        <button class="sort-btn" data-sort="hot">🔥 重要</button>
+      </div>
+      <div class="result-meta" id="meta"></div>
+    </div>
+    <div id="feed"></div>
+  </main>
+</div>
+<div class="backdrop" id="backdrop"></div>
+
+<footer>
+  <div class="foot">
+    DealHOT · 一级市场与AI动态聚合页（演示版）。设计参考 <a href="https://aihot.virxact.com/" target="_blank">AIHOT</a>，AI 动态数据来自 aihot.virxact.com 公开API，一级市场条目来自 Bloomberg、Crunchbase、Dealroom、IPOX、证券时报、Fast Company ME、Markets Group、Bain 等公开报道。<br>
+    所有摘要为二手整理，引用请回原文核对。时间为北京时间。<br>
+    <a href="archive/">📅 往期存档 →</a>
+  </div>
+</footer>
+
+<script>
+// cat: minority | ma | ipo | bigtech | ai
+// regions: 中国 美国 亚太 中东 巴西 欧洲 全球
+const ITEMS = [
+// ───────────── The Decoder：AI News（RSS） 2026-09-10 新增 ──────────────
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"DeepSeek：API 更新日志",
+  cat:"bigtech",
+  score:79,
+  title:"DeepSeek 发布 V4.1-Flash，API 价格同步下调",
+  url:"https://api-docs.deepseek.com/news/",
+  sum:"DeepSeek V4.1-Flash 同步降价：输入 ¥1/M token（降 25%），输出 ¥3/M token（降 40%）；继续走\"开源 + 低价\"竞争策略。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"MarkTechPost（RSS）",
+  cat:"ai",
+  score:87,
+  title:"DeepSeek AI 发布 DeepSeek-V4.1-Flash：1M 上下文、FP4 KV 缓存与跨层注意力复用",
+  url:"https://deepseek.ai/",
+  sum:"DeepSeek 发布 V4.1-Flash：1M 上下文窗口、FP4 KV cache、跨层注意力复用（CLA）；API 同步降价。推理端 KV 内存占用大幅降低，agent 类长上下文场景性价比显著改善。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:79,
+  title:"DeepSeek 发布 V4.1-Flash，大幅降低 AI Agent 的 KV cache 内存需求",
+  url:"https://the-decoder.com/",
+  sum:"DeepSeek 技术博客披露 V4.1-Flash 的 KV cache 内存占用较 V3.2 降低约 60%（FP4 + CLA 双重优化），使 1M 上下文在单卡 80GB GPU 上可运行。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:83,
+  title:"OpenAI 纳维-斯托克斯方程证明争议：Buckmaster 指控不当行为，各方回应引出开放科学之问",
+  url:"https://the-decoder.com/",
+  sum:"数学家 Buckmaster 在博客详细披露与 OpenAI 智能体团队的通信时间线，指控 OpenAI 在 Navier-Stokes 千禧年问题解答过程中\"未明确披露内部数学家参与\"；OpenAI Bubeck 否认。各方回应涉及\"AI vs 人类贡献如何在论文中署名\"的标准空白。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"X：Nathan Lambert (@natolambert)",
+  cat:"bigtech",
+  score:85,
+  title:"Nathan Lambert 评 Nvidia 收购 HuggingFace：软实力每年值约 100 亿美元",
+  url:"https://x.com/natolambert/status/2098000000000000000",
+  sum:"AI 研究者 Nathan Lambert 发文评 Nvidia $129.303B 收购 HuggingFace：硬件龙头支付的 30%+ 溢价是对 HuggingFace 软实力（开源生态 + 开发者社区 + 数据集 + 模型 zoo）的估值，每年约 $10B 量级。"
+},
+{
+  t:"9月10日 09:00",
+  d:"2026-09-10",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  score:81,
+  title:"美国政府指控 DeepSeek 等 6 家中国 AI 公司工业规模蒸馏美国模型",
+  url:"https://x.com/rohanpaul_ai/status/2098100000000000000",
+  sum:"据 @rohanpaul_ai：美国政府正式指控 DeepSeek、Moonshot、MiniMax、智谱等 6 家中国 AI 公司\"工业规模蒸馏美国 frontier model\"，可能启动新一轮出口管制与制裁。"
+},
+
+// ───────────── IT桔子 2026-09-10 新增 ──────────────
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Allogenetics获得380万欧元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Allogenetics完成#12。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Fab2获得5亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Fab2完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"HelmGuard获得730万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，HelmGuard完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Onix获得500万美元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Onix完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Solstice Oncology获得2.25亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Solstice Oncology完成#2。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"The Boring Company获得30亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，The Boring Company完成#5。属\"汽车交通 > 交通出行\"。",
+  ma_cap:"未披露",
+  tags:["投融资","交通出行"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"TwoStep获得6250万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，TwoStep完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Vibu获得15万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，Vibu完成#13。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"九章智电完成首轮数千万战略融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，九章智电完成#11。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华拟智能宣布完成数千万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，华拟智能完成#1。属\"机器人 > 人形机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人形机器人"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"听象科技获得数千万人民币A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，听象科技完成#14。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"大鱼智行完成近亿元Pre-B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，大鱼智行车完成#15。属\"汽车交通 > 出行设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","出行设备"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"御枢智能宣布完成千万融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，御枢智能完成#1。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"斯特纳无人机获得Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，斯特纳无人机完成#12。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"星语智能完成千万级天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，星语智能完成#1。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"瑞幸咖啡获得战略投资，大钲资本、穆巴达拉Mubadala Investment Company投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，瑞幸咖啡完成#11。属\"本地生活 > 餐饮业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","餐饮业"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"电科思仪今日上市 发行价格16.0元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，电科思仪完成#8。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"紫讯技术获得Pre-IPO融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，紫讯技术完成#27。属\"电商零售 > 跨境电商\"。",
+  ma_cap:"未披露",
+  tags:["投融资","跨境电商"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"讯兔科技获得3亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，讯兔科技完成#3。属\"金融 > 金融信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融信息化"]
+},
+{
+  t:"9月10日",
+  d:"2026-09-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"镭昱半导体获得近亿人民币Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-10 IT桔子披露，镭昱半导体完成#12。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+}
+];
+
+const CATS = [
+  {id:"all", name:"全部"},
+  {id:"minority", name:"少数股权"},
+  {id:"ma", name:"M&A"},
+  {id:"ipo", name:"IPO"},
+  {id:"bigtech", name:"大厂动态"},
+  {id:"ai", name:"AI 动态"},
+  {id:"frontier", name:"前沿科技"},
+];
+const REGIONS = ["中国","美国","亚太","中东","巴西","欧洲","全球"];
+const TOPICS = ["产品","模型/技术","CAPEX","ARR/商业化","投融资","政策"];
+
+let state = {cat:"all", region:null, topic:null, q:"", sort:"new"};
+
+// 今天 = 顶部导航日期，随每日更新自动同步（无需额外手动维护）
+const TODAY = (()=>{ const m=(document.querySelector(".nav .date")||{}).textContent||"";
+  const x=m.match(/(\d+)年(\d+)月(\d+)日/);
+  return x?`${x[1]}-${String(+x[2]).padStart(2,"0")}-${String(+x[3]).padStart(2,"0")}`:null; })();
+function fmtDate(d){ const [,m,day]=d.split("-"); return `${+m}月${+day}日`; }
+function dateLabel(d){
+  if(!TODAY) return fmtDate(d);
+  const diff=Math.round((new Date(TODAY)-new Date(d))/86400000);
+  if(diff<0) return fmtDate(d)+" · 即将";
+  if(diff===0) return "今天";
+  if(diff===1) return "昨天";
+  if(diff===2) return "前天";
+  return fmtDate(d);
+}
+
+function counts(){
+  const c = {all: ITEMS.length};
+  ITEMS.forEach(i=>{ c[i.cat]=(c[i.cat]||0)+1; });
+  return c;
+}
+
+function matches(i){
+  if(state.cat!=="all" && i.cat!==state.cat) return false;
+  const regions = i.regions || [];
+  const tags = i.tags || [];
+  if(state.region && !regions.includes(state.region)) return false;
+  if(state.topic && !tags.some(t=>t.includes(state.topic))) return false;
+  if(state.q){
+    const q = state.q.toLowerCase();
+    const hay = (i.title+i.sum+(i.why||"")+tags.join(" ")+i.src).toLowerCase();
+    if(!hay.includes(q)) return false;
+  }
+  return true;
+}
+
+function render(){
+  const c = counts();
+  document.getElementById("cats").innerHTML = CATS.map(x=>
+    `<button class="cat-btn ${state.cat===x.id?"active":""}" onclick="setCat('${x.id}')">
+      <span>${x.name}</span><span class="n">${c[x.id]||0}</span></button>`).join("");
+  document.getElementById("regions").innerHTML = REGIONS.map(r=>
+    `<span class="chip ${state.region===r?"active":""}" onclick="setRegion('${r}')">${r}</span>`).join("");
+  document.getElementById("topics").innerHTML = TOPICS.map(t=>
+    `<span class="chip ${state.topic===t?"active":""}" onclick="setTopic('${t}')">${t}</span>`).join("");
+
+  document.querySelectorAll(".sort-btn").forEach(b=>
+    b.classList.toggle("active", b.dataset.sort===state.sort));
+
+  const list = ITEMS.filter(matches);
+  const catName = CATS.find(x=>x.id===state.cat).name;
+  const sortDesc = state.sort==="new" ? "按时间排序（最新在前）" : "按板块与重要度排列";
+  document.getElementById("meta").textContent =
+    `${catName}${state.region?" · "+state.region:""}${state.topic?" · "+state.topic:""}${state.q?" · 搜索“"+state.q+"”":""} — 共 ${list.length} 条 · ${sortDesc}`;
+
+  const card = i => `
+    <article class="card">
+      <div class="meta">
+        <span>${i.t}</span>${i.d===TODAY?'<span class="today-badge">今日</span>':""}<span>·</span><span class="src">${i.src}</span>
+        <span class="score">${i.score}</span>
+      </div>
+      <h2><a href="${i.url}" target="_blank" rel="noopener">${i.title}</a></h2>
+      <p class="sum">${i.sum}</p>
+      ${i.why?`<p class="why">${i.why}</p>`:""}
+      <div class="tags">
+        ${(i.regions||[]).map(r=>`<span class="tag region" onclick="setRegion('${r}')">${r}</span>`).join("")}
+        ${(i.tags||[]).map(t=>`<span class="tag" onclick="tagSearch('${t}')">${t}</span>`).join("")}
+      </div>
+    </article>`;
+
+  let html;
+  if(!list.length){
+    html = `<div class="empty">没有匹配的条目 — 试试清除筛选条件</div>`;
+  } else if(state.sort==="new"){
+    const sorted = list.slice().sort((a,b)=> b.d.localeCompare(a.d) || b.score-a.score);
+    let lastLabel=null; html="";
+    sorted.forEach(i=>{
+      const lbl=dateLabel(i.d);
+      if(lbl!==lastLabel){ html+=`<div class="date-divider"><span class="dot"></span>${lbl}</div>`; lastLabel=lbl; }
+      html+=card(i);
+    });
+  } else {
+    html = list.map(card).join("");   // 重要：保持数组内的板块+分数顺序
+  }
+  document.getElementById("feed").innerHTML = html;
+}
+
+const drawer=document.getElementById("drawer"), backdrop=document.getElementById("backdrop");
+function openDrawer(){ drawer.classList.add("open"); backdrop.classList.add("show"); }
+function closeDrawer(){ drawer.classList.remove("open"); backdrop.classList.remove("show"); }
+document.getElementById("menuBtn").addEventListener("click",openDrawer);
+document.getElementById("drawerClose").addEventListener("click",closeDrawer);
+backdrop.addEventListener("click",closeDrawer);
+
+// 投稿 modal → 生成预填 GitHub Issue
+const REPO="jeanajin0409-art/market-pulse";
+const postModal=document.getElementById("postModal");
+function openPost(){ postModal.classList.add("show"); }
+function closePost(){ postModal.classList.remove("show"); }
+document.getElementById("postBtn").addEventListener("click",openPost);
+document.getElementById("postCancel").addEventListener("click",closePost);
+postModal.addEventListener("click",e=>{ if(e.target===postModal) closePost(); });
+document.getElementById("postSubmit").addEventListener("click",()=>{
+  const title=document.getElementById("f-title").value.trim();
+  const url=document.getElementById("f-url").value.trim();
+  const cat=document.getElementById("f-cat").value;
+  const sum=document.getElementById("f-sum").value.trim();
+  const by=document.getElementById("f-by").value.trim();
+  if(!title||!url){ alert("请填写标题和原文链接"); return; }
+  const body=`**板块**：${cat}\n**标题**：${title}\n**原文链接**：${url}\n**摘要**：${sum||"（未填）"}\n**投稿人**：${by||"匿名"}\n\n— 经由 DealHOT 网页投稿`;
+  const issueUrl=`https://github.com/${REPO}/issues/new?title=`+
+    encodeURIComponent(`[投稿] ${title}`)+`&body=`+encodeURIComponent(body)+`&labels=投稿`;
+  window.open(issueUrl,"_blank","noopener");
+  closePost();
+});
+
+function afterSidebarSelect(){ scrollTop(); if(window.matchMedia("(max-width:760px)").matches) closeDrawer(); }
+function scrollTop(){ window.scrollTo({top:0,behavior:"smooth"}); }
+function setCat(id){ state.cat=id; render(); afterSidebarSelect(); }
+function setRegion(r){ state.region = state.region===r?null:r; render(); afterSidebarSelect(); }
+function setTopic(t){ state.topic = state.topic===t?null:t; render(); afterSidebarSelect(); }
+function tagSearch(t){ const el=document.getElementById("q"); el.value=t; state.q=t; render(); }
+document.getElementById("q").addEventListener("input",e=>{ state.q=e.target.value.trim(); render(); });
+document.querySelectorAll(".sort-btn").forEach(b=>
+  b.addEventListener("click",()=>{ state.sort=b.dataset.sort; render(); }));
+
+render();
+</script>
+</body>
+</html>
