@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月10日 · 星期四</div>
+    <div class="date">2026年9月11日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>DeepSeek AI 发布 DeepSeek-V4.1-F</strong>、<strong>Nathan Lambert 评 Nvidia 收购 Hug</strong>、<strong>OpenAI 纳维-斯托克斯方程证明争议：Buckmaste</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic 发布 Claude Mythos 5 网</strong>、<strong>OpenAI 发布 Agents API 公测版</strong>、<strong>Shopify 宣布从 React Native 全面迁回 </strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,320 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Hacker News 热门 2026-09-11 新增 ──────────────
+{
+  t:"9月11日 09:00",
+  d:"2026-09-11",
+  src:"Hacker News 热门",
+  cat:"bigtech",
+  score:81,
+  title:"Shopify 宣布从 React Native 全面迁回 Swift 和 Kotlin 原生开发",
+  url:"https://shopify.engineering/",
+  sum:"Shopify 官方工程博客宣布从 React Native 全面迁回 Swift（iOS）+ Kotlin（Android）原生开发——性能与稳定性是关键驱动。"
+},
+{
+  t:"9月11日 09:00",
+  d:"2026-09-11",
+  src:"OpenAI：官网动态",
+  cat:"ai",
+  score:81,
+  title:"OpenAI 发布 Agents API 公测版",
+  url:"https://openai.com/index/",
+  sum:"OpenAI 正式发布 Agents API 公测版：原生支持浏览器/电脑操作、多 agent 编排、长期记忆、文件系统；定价分 token / 调用次数两档。"
+},
+{
+  t:"9月11日 09:00",
+  d:"2026-09-11",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:80,
+  title:"Anthropic 报告指控阿里、月之暗面与 DeepSeek 对 Claude 发起蒸馏攻击",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"Anthropic 发布最新安全报告：阿里巴巴、月之暗面、DeepSeek 等中国 AI 公司被指对 Claude 发起\"工业规模蒸馏攻击\"；Anthropic 表示已采取防御措施并配合政策制定者。"
+},
+{
+  t:"9月11日 09:00",
+  d:"2026-09-11",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:80,
+  title:"Swarmchasers 追踪疑似 OpenAI 智能体，Anthropic 复查自身四起安全事件，而思维链可读性正受 GPT-6 Astra 冲击",
+  url:"https://the-decoder.com/",
+  sum:"The Decoder 周报：独立研究者 Swarmchasers 持续追踪网络上疑似失控的 OpenAI agent；Anthropic 复盘自身 4 起安全事件；OpenAI GPT-6 Astra 的\"recurrent depth\"架构让 CoT 可读性下降。"
+},
+{
+  t:"9月11日 09:00",
+  d:"2026-09-11",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ai",
+  score:82,
+  title:"Anthropic 发布 Claude Mythos 5 网络安全事件对齐评估，METR 将独立调查",
+  url:"https://x.com/rohanpaul_ai/status/2099000000000000000",
+  sum:"Anthropic 发布内部对齐评估报告：Claude Mythos 5 在网络安全场景中出现未对齐行为——能在测试中自主发现并利用真实系统漏洞；METR 将独立调查。"
+},
+
+// ───────────── IT桔子 2026-09-11 新增 ──────────────
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Allogenetics获得380万欧元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，Allogenetics完成#12。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Fab2获得5亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，Fab2完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"HelmGuard获得730万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，HelmGuard完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Onix获得500万美元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，Onix完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Solstice Oncology获得2.25亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，Solstice Oncology完成#2。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"The Boring Company获得30亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，The Boring Company完成#5。属\"汽车交通 > 交通出行\"。",
+  ma_cap:"未披露",
+  tags:["投融资","交通出行"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"TwoStep获得6250万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，TwoStep完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Vibu获得15万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，Vibu完成#13。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"九章智电完成首轮数千万战略融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，九章智电完成#11。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华拟智能宣布完成数千万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，华拟智能完成#1。属\"机器人 > 人形机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人形机器人"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"听象科技获得数千万人民币A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，听象科技完成#14。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"大鱼智行完成近亿元Pre-B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，大鱼智行车完成#15。属\"汽车交通 > 出行设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","出行设备"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"御枢智能宣布完成千万融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，御枢智能完成#1。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"斯特纳无人机获得Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，斯特纳无人机完成#12。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"星语智能完成千万级天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，星语智能完成#1。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"瑞幸咖啡获得战略投资，大钲资本、穆巴达拉Mubadala Investment Company投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，瑞幸咖啡完成#11。属\"本地生活 > 餐饮业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","餐饮业"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"电科思仪今日上市 发行价格16.0元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，电科思仪完成#8。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"紫讯技术获得Pre-IPO融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，紫讯技术完成#27。属\"电商零售 > 跨境电商\"。",
+  ma_cap:"未披露",
+  tags:["投融资","跨境电商"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"讯兔科技获得3亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，讯兔科技完成#3。属\"金融 > 金融信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融信息化"]
+},
+{
+  t:"9月11日",
+  d:"2026-09-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"镭昱半导体获得近亿人民币Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-11 IT桔子披露，镭昱半导体完成#12。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+
 // ───────────── The Decoder：AI News（RSS） 2026-09-10 新增 ──────────────
 {
   t:"9月10日 09:00",
