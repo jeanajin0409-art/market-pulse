@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月14日 · 星期一</div>
+    <div class="date">2026年9月15日 · 星期二</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic 报告称胡塞组织用 Claude Code</strong>、<strong>政道光电获得A+轮融资,翌昕资本投资</strong>、<strong>星测未来连续完成两轮数亿元融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔</strong>、<strong>Tandem Health获得8650万欧元B轮融资</strong>、<strong>Ayar Labs获得1.5亿美元E轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Apple：Newsroom（RSS） 2026-09-15 新增 ──────────────
+{
+  t:"9月15日 09:00",
+  d:"2026-09-15",
+  src:"Apple：Newsroom（RSS）",
+  cat:"bigtech",
+  score:77,
+  title:"Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
+  url:"https://www.apple.com/newsroom/",
+  sum:"Apple 发布新一代 Apple Intelligence 套件：Siri AI（测试版）、图像生成、写作辅助、智能摘要、跨 app 任务编排；与 OpenAI/Anthropic 模型深度集成，iOS / macOS 全平台推送。"
+},
+{
+  t:"9月15日 09:00",
+  d:"2026-09-15",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ipo",
+  score:78,
+  title:"Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
+  url:"https://the-decoder.com/",
+  sum:"Anthropic 据报道计划登陆纳斯达克 IPO，已连续第二季度盈利（年化营收 ~$45B）；目标估值 $2T；路演最早 10 月中旬启动；Nvidia 拟以基石投资者身份参与（投资至多 $10B）。"
+},
+{
+  t:"9月15日 09:00",
+  d:"2026-09-15",
+  src:"The Verge：AI（RSS）",
+  cat:"bigtech",
+  score:83,
+  title:"科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔",
+  url:"https://www.theverge.com/",
+  sum:"The Verge 评论：OpenAI / Anthropic / Google DeepMind / Meta 等头部 AI 实验室最近\"放缓前沿\"的公开共识，是真正的安全对齐共识，还是市场卡特尔协调减投？反垄断视角正在评估。"
+},
+{
+  t:"9月15日 09:00",
+  d:"2026-09-15",
+  src:"公众号：小红书技术（dots.llm）",
+  cat:"bigtech",
+  score:68,
+  title:"小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
+  url:"https://mp.weixin.qq.com/",
+  sum:"小红书 dots.llm 团队开源 Search Agent 模型 Iris：35B 与 397B 两档，benchmark 同量级 SOTA；面向搜索 agent 应用，已在 Hugging Face 上发布。"
+},
+
+// ───────────── IT桔子 2026-09-15 新增 ──────────────
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Ayar Labs获得1.5亿美元E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，Ayar Labs完成#6。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Edgify获得900万美元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，Edgify完成#14。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"HVR Energy获得2000万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，HVR Energy完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Mach Industries获得6亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，Mach Industries完成#4。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Maven Robotics获得1亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，Maven Robotics完成#2。属\"机器人 > 工业机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业机器人"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Positron AI获得5亿美元C+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，Positron AI完成#19。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Tandem Health获得8650万欧元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，Tandem Health完成#3。属\"医疗健康 > 医疗信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗信息化"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Wint获得3500万美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，Wint完成#5。属\"传统制造 > 环保\"。",
+  ma_cap:"未披露",
+  tags:["投融资","环保"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"东劢医疗获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，东劢医疗完成#2。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华恺航空技术完成2000万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，华恺航空完成#1。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"因克斯ENCOS获得3亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，因克斯ENCOS完成#3。属\"机器人 > 机器人零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人零部件"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"威邦震电获得近亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，威邦震电完成#3。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"山东聚合能源完成5000万元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，山东聚合能源完成#2。属\"传统制造 > 采矿业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","采矿业"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"屹艮科技完成亿元级战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，屹艮科技完成#11。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"微路智能获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，微路智能完成#1。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"桥彼道获得总计3亿美元资金注资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，桥彼道Qupital完成#4。属\"金融 > 供应链金融\"。",
+  ma_cap:"未披露",
+  tags:["投融资","供应链金融"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"红杉领投AI机器人创企Mecka AI，估值5亿美元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，MeckaAI完成#3。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"芯界光核完成数亿元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，芯界光核完成#1。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"鑫精诚传感器完成数亿元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，鑫精诚传感完成#3。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","传感设备"]
+},
+{
+  t:"9月15日",
+  d:"2026-09-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"零差云控获得C+++轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-15 IT桔子披露，零差云控完成#19。属\"机器人 > 机器人零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人零部件"]
+},
+
 // ───────────── Hacker News：AI 热帖 2026-09-14 新增 ──────────────
 {
   t:"9月14日 09:00",
