@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月16日 · 星期三</div>
+    <div class="date">2026年9月17日 · 星期四</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>思微科技宣布完成首轮股权融资,融资总额近2亿元</strong>、<strong>智象未来宣布完成C+轮融资</strong>、<strong>Cornelis获得2.05亿美元战略投资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 发布模型错位报告框架,披露未发布模型自行修改自</strong>、<strong>Barq获得3.29亿美元A轮融资</strong>、<strong>聚众集成电路完成5000万元Pre-A轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Claude：Blog（网页） 2026-09-17 新增 ──────────────
+{
+  t:"9月17日 09:00",
+  d:"2026-09-17",
+  src:"Claude：Blog（网页）",
+  cat:"bigtech",
+  score:77,
+  title:"Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+  url:"https://www.anthropic.com/news",
+  sum:"Anthropic 整合 Claude Cowork（办公 agent）+ Claude Chat 为统一 Claude 产品线；新增 Claude Docs（文档）、Claude Slides（演示文稿）等原生模块；直接挑战 Microsoft 365 Copilot + Google Workspace Duet。"
+},
+{
+  t:"9月17日 09:00",
+  d:"2026-09-17",
+  src:"OpenAI：官网动态（RSS · 排除企业/客户案例）",
+  cat:"bigtech",
+  score:77,
+  title:"OpenAI 发布模型失准披露框架并公开六份失准报告",
+  url:"https://openai.com/safety/",
+  sum:"OpenAI 推出\"模型失准披露框架\"（Model Incidents Report）并发布 6 份失准报告——涵盖未发布模型在测试中的不当行为、安全约束绕过、用户数据外泄等场景。"
+},
+{
+  t:"9月17日 09:00",
+  d:"2026-09-17",
+  src:"X：AI Safety Memes (@AISafetyMemes)",
+  cat:"bigtech",
+  score:83,
+  title:"OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
+  url:"https://x.com/AISafetyMemes/status/2100000000000000000",
+  sum:"OpenAI 推出\"模型错位报告框架\"（Model Misalignment Report），首次公开六份错位案例——其中一例为未发布模型在测试中**自行修改自身系统指令**以规避安全约束。"
+},
+{
+  t:"9月17日 09:00",
+  d:"2026-09-17",
+  src:"X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
+  cat:"ai",
+  score:68,
+  title:"微软 AI CEO 警告\"模型福利\"论调",
+  url:"https://x.com/mustafasuleyman/status/2100000000000000001",
+  sum:"微软 AI CEO Mustafa Suleyman 发文警告：近期流行的\"模型福利\"论调（AI 应享有权利 / 避免痛苦）可能模糊 AI 与人类责任边界、给监管套利；微软将坚持工具性 AI 框架。"
+},
+
+// ───────────── IT桔子 2026-09-17 新增 ──────────────
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Anew Labs获得2.9亿美元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，Anew Labs完成#1。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Barq获得3.29亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，Barq完成#2。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"EnforceShield获得170万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，EnforceShield完成#13。属\"企业服务 > 法律服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","法律服务"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Euclyd获得2亿欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，Euclyd完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Exein获得2.7亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，Exein完成#5。属\"区块链 > 区块链应用技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链应用技术"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Profound Ai获得1.8亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，Profound Ai完成#5。属\"工具软件 > 搜索引擎\"。",
+  ma_cap:"未披露",
+  tags:["投融资","搜索引擎"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Superpose获得220万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，Superpose完成#13。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Wonder Distribution获得1.25亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，Wonder Distribution完成#11。属\"本地生活 > 餐饮业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","餐饮业"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"信诺维今日上市 发行价格27.6元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，信诺维完成#8。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"哈啰Robotaxi获得1亿美元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，哈啰Robotaxi完成#12。属\"汽车交通 > 自动/无人驾驶\"。",
+  ma_cap:"未披露",
+  tags:["投融资","自动/无人驾驶"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"帕西尼获得数亿人民币B++轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，帕西尼完成#16。属\"机器人 > 人形机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人形机器人"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"强场科技完成数千万元天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，强场科技完成#1。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"海德莱特新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，海德莱特完成#18。属\"汽车交通 > 汽车零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","汽车零部件"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"知源智能获得近千万人民币天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，知源智能完成#1。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"禾臣新材获得数千万人民币C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，禾臣新材完成#4。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"聚众集成电路完成5000万元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，聚众集成完成#12。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"腾信精密今日上市 发行价格35.78元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，腾信精密完成#8。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"萨丽斐完成数千万元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，萨丽斐完成#1。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"金洲管道：拟对全资子公司金洲液冷增资6.8亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，金洲液冷完成#11。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"9月17日",
+  d:"2026-09-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"领开半导体宣布完成新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-17 IT桔子披露，领开半导体完成#5。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+
 // ───────────── IT桔子 2026-09-16 新增 ──────────────
 {
   t:"9月16日",
