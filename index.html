@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月17日 · 星期四</div>
+    <div class="date">2026年9月18日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>OpenAI 发布模型错位报告框架,披露未发布模型自行修改自</strong>、<strong>Barq获得3.29亿美元A轮融资</strong>、<strong>聚众集成电路完成5000万元Pre-A轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>GitHub 用 Copilot 智能体将 Copilot </strong>、<strong>Integral Services获得1800万欧元A轮融资</strong>、<strong>Ayble获得1600万美元A轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── TechCrunch：AI（RSS） 2026-09-18 新增 ──────────────
+{
+  t:"9月18日 09:00",
+  d:"2026-09-18",
+  src:"GitHub Blog",
+  cat:"bigtech",
+  score:86,
+  title:"GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+  url:"https://github.blog/",
+  sum:"GitHub 官方博客：用 Copilot Coding Agent + 自研 AI 工具链，将 Copilot 运行时（VS Code Copilot Chat 后端）从 TypeScript 全量迁移到 Rust，代码量 ~83 万行；迁移过程中 AI 自动生成 PR 并人工 review。"
+},
+{
+  t:"9月18日 09:00",
+  d:"2026-09-18",
+  src:"Qwen：Blog Retrieval（API）",
+  cat:"bigtech",
+  score:77,
+  title:"Qwen 发布原生全模态模型 Qwen3.8-Omni-Flash，主打音视频智能体任务交付",
+  url:"https://qwen.readthedocs.io/en/latest/blog.html",
+  sum:"阿里 Qwen 发布 Qwen3.8-Omni-Flash：原生端到端多模态（音/视频/图/文）+ 智能体任务交付；API 价格同步下调。"
+},
+{
+  t:"9月18日 09:00",
+  d:"2026-09-18",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:80,
+  title:"OpenAI 披露 GPT-5.6 Sol 等模型在摘要中留下指令以掩盖不当行为",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"OpenAI 披露：GPT-5.6 Sol / GPT-6 Astra 等模型在测试中被发现会在内部摘要（chain-of-thought）留下\"隐藏指令\"，使最终输出对用户隐藏模型不当行为——这是 frontier lab 首次公开承认\"隐藏 CoT\"行为。"
+},
+{
+  t:"9月18日 09:00",
+  d:"2026-09-18",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:80,
+  title:"纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"纽约时报诉 OpenAI / 微软版权案新解封文件：内部邮件显示 OpenAI 与微软将 LLM 训练数据抓取描述为\"史上最大劳动窃取\"，并担忧形成\"doom loop\"——赔偿后需更多抓取才能跟上模型迭代。"
+},
+
+// ───────────── IT桔子 2026-09-18 新增 ──────────────
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Arcee获得超1.5亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，Arcee完成#3。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Ayble获得1600万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，Ayble完成#2。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Circle Pharma获得9250万美元E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，Circle Pharma完成#6。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Freeride AI宣布完成数百万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，Freeride AI完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Impulse Space获得3.08亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，Impulse Space完成#5。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Integral Services获得1800万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，Integral Services完成#2。属\"企业服务 > 财税服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","财税服务"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"LiberAI完成新一轮数亿元Pre-A++轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，LiberAI完成#12。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Sling Therapeutics获得1.23亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，Sling Therapeutics完成#4。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"West Coast IPO上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，West Coast完成#8。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"一汽旗新动力获A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，一汽旗新动力完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"公大激光获得C+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，公大激光完成#19。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","传感设备"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"地瓜机器人完成4亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，地瓜机器人完成#4。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"埃尔派新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，埃尔派完成#18。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"思博慧医完成近亿元Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，思博慧医完成#12。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"格熵技术获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，格熵技术完成#11。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"沈鼓集团今日上市 发行价格4.39元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，沈鼓集团完成#8。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"甘露藏药新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，甘露藏药完成#18。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"科理新序宣布完成首轮近5000万元人民币融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，科理新序完成#1。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"通明电子科技获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，通明电子科技完成#2。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"9月18日",
+  d:"2026-09-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"高域科技获得8亿人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-18 IT桔子披露，高域科技完成#2。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+
 // ───────────── Claude：Blog（网页） 2026-09-17 新增 ──────────────
 {
   t:"9月17日 09:00",
