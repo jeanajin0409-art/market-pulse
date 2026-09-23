@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月22日 · 星期二</div>
+    <div class="date">2026年9月23日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>欢创科技今起招股 发售价为每股58.85港元</strong>、<strong>中塑股份在深交所创业板上市</strong>、<strong>世纪数码北交所上市</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic 发布 Claude Opus 5.5,成</strong>、<strong>五角大楼内部审查：过度依赖 Palantir Maven A</strong>、<strong>OpenAI 发布 GPT-6 Sol 和 GPT-6 Lu</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Anthropic：Newsroom（网页） 2026-09-23 新增 ──────────────
+{
+  t:"9月23日 09:00",
+  d:"2026-09-23",
+  src:"Anthropic：Newsroom（网页）",
+  cat:"bigtech",
+  score:86,
+  title:"Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
+  url:"https://www.anthropic.com/news",
+  sum:"Anthropic 发布 Claude Opus 5.5：性能对标 Fable 5.1 / GPT-6 Sol，登顶 Artificial Analysis 智能指数（58）；运行成本比 Opus 5 低 40%，对客户保持 1:1 性能 + 价格下调组合。"
+},
+{
+  t:"9月23日 09:00",
+  d:"2026-09-23",
+  src:"Hacker News 热门（buzzing.cc 中文翻译）",
+  cat:"ai",
+  score:79,
+  title:"Meta Muse 助手曝出严重 0-day 漏洞，Amazon 已开始封禁 Muse",
+  url:"https://news.ycombinator.com/",
+  sum:"Meta Muse 智能体曝出严重 0-day 漏洞（可被远程利用执行恶意操作），Amazon 已开始封禁 Muse 代用户在其平台上下单；同时 Anthropic 报告 Muse 滥用率 12%。"
+},
+{
+  t:"9月23日 09:00",
+  d:"2026-09-23",
+  src:"Hacker News：AI 热帖",
+  cat:"bigtech",
+  score:86,
+  title:"五角大楼内部审查：过度依赖 Palantir Maven AI 系统导致误击伊朗学校、123 名儿童死亡",
+  url:"https://news.ycombinator.com/",
+  sum:"五角大楼内部审查认定：美军过度依赖 Palantir Maven AI 系统是误击伊朗米纳布学校（123 名儿童死亡）原因之一；指挥链过度信任 AI 推荐。"
+},
+{
+  t:"9月23日 09:00",
+  d:"2026-09-23",
+  src:"OpenAI：官网动态（RSS · 排除企业/客户案例）",
+  cat:"bigtech",
+  score:82,
+  title:"OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+  url:"https://openai.com/index/",
+  sum:"OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna 两档：Sol 偏强智能，Luna 偏成本（token 价格仅为 GPT-5.6 的 50%）；API 价格同步降 50%。"
+},
+
+// ───────────── IT桔子 2026-09-23 新增 ──────────────
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Enhans获得C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，Enhans完成#4。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Fluxnium获得700万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，Fluxnium完成#13。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"HydroSight获得500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，HydroSight完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Kastle获得2400万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，Kastle完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Mazama获得1.35亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，Mazama完成#3。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Radian Forge获得250万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，Radian Forge完成#13。属\"先进制造 > 海洋工程与船舶\"。",
+  ma_cap:"未披露",
+  tags:["投融资","海洋工程与船舶"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Rainmaker获得1亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，Rainmaker完成#3。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Travix.DEX获得种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，Travix.DEX完成#13。属\"区块链 > 区块链应用技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链应用技术"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Zap Medical获得约1100万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，Zap Medical完成#11。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"一品制药获数千万元股权融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，一品制药完成#3。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"云征动力获得数千万人民币A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，云征动力完成#14。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"亿推科技完成1000万元人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，亿推科技完成#1。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"伟禾生物获得B+轮融资，康裕资本投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，伟禾生物完成#16。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"前《梦幻西游》端游主策创业项目肥啾科技获得天使投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，肥啾科技完成#1。属\"游戏 > 游戏开发商\"。",
+  ma_cap:"未披露",
+  tags:["投融资","游戏开发商"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"富信科技：拟定增募资不超2.7亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，富信科技完成#17。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"正烯金属完成2000万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，正烯金属完成#1。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"科旸完成力鼎资本融资，推进先进碳材料产业化",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，科旸新材料完成#1。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"金誉股份拟定增募资1.61亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，金誉股份完成#21。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"驰芯半导体完成超两亿元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，驰芯半导体完成#14。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月23日",
+  d:"2026-09-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"龙讯旷腾获得1亿人民币B轮融资，中新集团、国泰海通、同创伟业投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-23 IT桔子披露，龙讯旷腾完成#3。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+
 // ───────────── IT桔子 2026-09-22 新增 ──────────────
 {
   t:"9月22日",
