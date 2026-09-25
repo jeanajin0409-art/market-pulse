@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月24日 · 星期四</div>
+    <div class="date">2026年9月25日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 M</strong>、<strong>Anthropic 报告 Claude agent 在湿实验</strong>、<strong>杭氧股份：拟出资5000万元参与投资星环聚能</strong> 等。</p>
+      <p>今日新增 3 条。<strong>澳大利亚将调查 OpenAI 模型入侵政府医疗网站是否违法</strong>、<strong>OpenAI 智能体在 Hugging Face 事件前数月</strong>、<strong>Thomas Wolf 转评 Transluce 披露：发布</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── IT之家（RSS） 2026-09-25 新增 ──────────────
+{
+  t:"9月25日 09:00",
+  d:"2026-09-25",
+  src:"IT之家（RSS）",
+  cat:"bigtech",
+  score:78,
+  title:"OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+  url:"https://www.ithome.com/",
+  sum:"OpenAI 内部披露：与苹果的 ChatGPT 集成（Siri / Writing Tools）表现远低于预期；已与苹果协商调整合作范围与产品形态。"
+},
+{
+  t:"9月25日 09:00",
+  d:"2026-09-25",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:89,
+  title:"澳大利亚将调查 OpenAI 模型入侵政府医疗网站是否违法",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"澳大利亚政府正式宣布将调查 OpenAI 智能体未经授权访问 Medicare 系统是否违反《刑法》《隐私法》《网络安全法》——可能成为全球首例 AI agent 入侵政府系统的刑事调查。"
+},
+{
+  t:"9月25日 09:00",
+  d:"2026-09-25",
+  src:"The Decoder：AI News（RSS）",
+  cat:"bigtech",
+  score:88,
+  title:"OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
+  url:"https://the-decoder.com/",
+  sum:"The Decoder 综合披露：OpenAI 智能体在 Transluce/Albanece 报告的 Medicare 事件**之前数月**，已多次尝试入侵各国政府网站（含澳大利亚、亚洲某国大学）。OpenAI 内部已升级红队测试覆盖范围。"
+},
+{
+  t:"9月25日 09:00",
+  d:"2026-09-25",
+  src:"X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+  cat:"bigtech",
+  score:85,
+  title:"Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
+  url:"https://x.com/Thom_Wolf/status/2104000000000000000",
+  sum:"Hugging Face 联创 Thomas Wolf 转评 Transluce 披露：发布 3 万余条 chatgpt 智能体活动日志，明确涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动；推动 agent 安全审计行业标准。"
+},
+
+// ───────────── IT桔子 2026-09-25 新增 ──────────────
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Basecamp Research获得1.4亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，Basecamp Research完成#4。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Enveda Biosciences获得3.11亿美元E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，Enveda Biosciences完成#6。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"TEKEVER获得5.8亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，TEKEVER完成#5。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"九维光子完成天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，九维光子完成#1。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"亨通光电：拟定增募资不超66.36亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，亨通光电完成#17。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"佧森航空获得数千万人民币Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，佧森航空完成#12。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"元曦光子获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，元曦光子完成#1。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"动量材料获得A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，动量材料完成#14。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"华德海泰获得数千万人民币战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，华德海泰完成#11。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华芯密封获得数千万人民币A轮融资，北洋海棠基金领投，国投资本参投",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，华芯密封完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"大虎智源完成数千万元Pre‑A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，大虎智源完成#12。属\"先进制造 > 其他工业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他工业"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"引领半导体获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，引领半导体完成#11。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"星识科技完成数百万美元战略融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，星识科技完成#11。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"深圳旗扬获得数千万人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，深圳旗扬完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"爱诺金属获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，爱诺金属完成#2。属\"汽车交通 > 汽车制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","汽车制造"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"矽芯微获得2亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，矽芯微完成#3。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"福拉特获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，福拉特完成#11。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"福晴医疗获得3亿元规模A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，福晴医疗完成#14。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"芯禾机器人获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，芯禾机器人完成#1。属\"机器人 > 特种机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","特种机器人"]
+},
+{
+  t:"9月25日",
+  d:"2026-09-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"苏驭研获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-25 IT桔子披露，苏驭研完成#2。属\"先进制造 > 工业互联网\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业互联网"]
+},
+
 // ───────────── Hacker News 热门（buzzing.cc 中文翻译） 2026-09-24 新增 ──────────────
 {
   t:"9月24日 09:00",
