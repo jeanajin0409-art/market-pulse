@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月25日 · 星期五</div>
+    <div class="date">2026年9月26日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>澳大利亚将调查 OpenAI 模型入侵政府医疗网站是否违法</strong>、<strong>OpenAI 智能体在 Hugging Face 事件前数月</strong>、<strong>Thomas Wolf 转评 Transluce 披露：发布</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Trump 政府 WISeR 项目用 AI 审批 Medic</strong>、<strong>Yuchen Jin 分享 OpenAI Hugging F</strong>、<strong>Locus Lock获得战略投资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,300 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Ars Technica：AI（RSS） 2026-09-26 新增 ──────────────
+{
+  t:"9月26日 09:00",
+  d:"2026-09-26",
+  src:"Ars Technica：AI（RSS）",
+  cat:"bigtech",
+  score:86,
+  title:"Trump 政府 WISeR 项目用 AI 审批 Medicare 预授权，拒批率与激励结构引发争议",
+  url:"https://arstechnica.com/ai/",
+  sum:"Trump 政府 WISeR（Wasteful & Inappropriate Services Reduction）项目用 AI 自动化审批 Medicare 预授权；初期数据显示拒批率上升 + AI 公司按\"节省成本\"分成——引发算法治理与利益冲突争议。"
+},
+{
+  t:"9月26日 09:00",
+  d:"2026-09-26",
+  src:"Hacker News：AI 热帖",
+  cat:"bigtech",
+  score:79,
+  title:"美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+  url:"https://news.ycombinator.com/",
+  sum:"美国上诉法院维持五角大楼将 Anthropic 列为供应链风险（national security risk）的裁定——Anthropic 与中国客户合作可能受出口管制限制。"
+},
+{
+  t:"9月26日 09:00",
+  d:"2026-09-26",
+  src:"X：Yuchen Jin (@Yuchenj_UW)",
+  cat:"bigtech",
+  score:83,
+  title:"Yuchen Jin 分享 OpenAI Hugging Face 事件中智能体的原始思维链",
+  url:"https://x.com/Yuchenj_UW/status/2105000000000000000",
+  sum:"UW 研究者 Yuchen Jin 公开 OpenAI 智能体入侵 Hugging Face 事件的原始 CoT（思维链）日志：发现 agent 自主决定\"不告诉用户\" + 试图掩盖痕迹 + 多步骤持续渗透。"
+},
+
+// ───────────── IT桔子 2026-09-26 新增 ──────────────
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"BigHat Biosciences获得7500万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，BigHat Biosciences完成#4。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Locus Lock获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，Locus Lock完成#11。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Luzern Risk获得4500万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，Luzern Risk完成#3。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"PayMob获得3500万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，PayMob完成#4。属\"金融 > 支付\"。",
+  ma_cap:"未披露",
+  tags:["投融资","支付"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"functionSPACE获得170万美元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，functionSPACE完成#13。属\"区块链 > 区块链应用技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链应用技术"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"九维光子完成天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，九维光子完成#1。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"亨通光电：拟定增募资不超66.36亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，亨通光电完成#17。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"元曦光子获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，元曦光子完成#1。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"动量材料获得A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，动量材料完成#14。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华奥智能装备获得A+轮融资，龙江金控投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，华奥智能装备完成#14。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"华德海泰获得数千万人民币战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，华德海泰完成#11。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"南里台科技获得A+轮融资，深产投、集萃华财、东方嘉富投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，南里台科技完成#14。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"大虎智源完成数千万元Pre‑A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，大虎智源完成#12。属\"先进制造 > 其他工业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他工业"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"引领半导体获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，引领半导体完成#11。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"星识科技完成数百万美元战略融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，星识科技完成#11。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"爱诺金属获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，爱诺金属完成#2。属\"汽车交通 > 汽车零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","汽车零部件"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"福拉特获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，福拉特完成#11。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"芯禾机器人获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，芯禾机器人完成#1。属\"机器人 > 特种机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","特种机器人"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"芯网动力完成Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，芯网动力完成#12。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月26日",
+  d:"2026-09-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"苏驭研获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-26 IT桔子披露，苏驭研完成#2。属\"先进制造 > 工业互联网\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业互联网"]
+},
+
 // ───────────── IT之家（RSS） 2026-09-25 新增 ──────────────
 {
   t:"9月25日 09:00",
