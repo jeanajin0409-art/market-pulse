@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月28日 · 星期一</div>
+    <div class="date">2026年9月29日 · 星期二</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Locus Lock获得战略投资</strong>、<strong>functionSPACE获得170万美元Pre-种子轮融资</strong>、<strong>Luzern Risk获得4500万美元B轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>英伟达联合超100家伙伴推出开放代理安全平台</strong>、<strong>Anthropic IPO 招股书曝光：2025 年净亏损 </strong>、<strong>Anthropic 发布 Claude Sonnet 5.5</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Hacker News：AI 热帖 2026-09-29 新增 ──────────────
+{
+  t:"9月29日 09:00",
+  d:"2026-09-29",
+  src:"Hacker News：AI 热帖",
+  cat:"bigtech",
+  score:86,
+  title:"Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+  url:"https://news.ycombinator.com/",
+  sum:"Anthropic 发布 Claude Sonnet 5.5：速度 +30%+，每任务成本最高 -30%；Terminal-Bench 4.0 得分 70.6%；价格不变。"
+},
+{
+  t:"9月29日 09:00",
+  d:"2026-09-29",
+  src:"IT之家（RSS）",
+  cat:"ipo",
+  score:86,
+  title:"Anthropic IPO 招股书曝光：2025 年净亏损 420 亿美元，估值有望突破 2 万亿美元",
+  url:"https://www.ithome.com/",
+  sum:"Anthropic 提交 IPO 招股书（S-1）：2025 年净亏损 $42B（巨幅投入算力 + 训练 + 销售）；IPO 目标估值 $2T；Nvidia 拟以基石投资者身份参与（投资至多 $10B）；预计 11 月中旬路演。"
+},
+{
+  t:"9月29日 09:00",
+  d:"2026-09-29",
+  src:"TechCrunch：AI（RSS）",
+  cat:"ma",
+  score:84,
+  title:"AMD 以 82 亿美元收购李飞飞的世界模型公司 World Labs",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"AMD 以 82 亿美元收购李飞飞联合创办的 World Labs（空间智能 / 世界模型公司）；李飞飞将出任 AMD 执行副总裁兼首席科学家。"
+},
+{
+  t:"9月29日 09:00",
+  d:"2026-09-29",
+  src:"X：Jensen Huang (@JensenHuang)",
+  cat:"bigtech",
+  score:88,
+  title:"英伟达联合超100家伙伴推出开放代理安全平台",
+  url:"https://x.com/JensenHuang/status/2107000000000000000",
+  sum:"Jensen Huang 公告：英伟达联合超 100 家伙伴（包括 OpenAI、Anthropic、Google、Microsoft、Meta、Cisco 等）推出开放代理安全平台（Open Agent Safety Platform）—— 统一 agent 行为监控、红队测试与事件报告标准。"
+},
+
+// ───────────── IT桔子 2026-09-29 新增 ──────────────
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Anaconda Biomed获得5600万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，Anaconda Biomed完成#4。属\"金融 > 投融资\"。",
+  ma_cap:"未披露",
+  tags:["投融资","投融资"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Metris获得500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，Metris完成#13。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Overlord Labs获得种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，Overlord Labs完成#13。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"p°Motion获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，p°Motion完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"世子合德完成A轮7500万元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，合德科技完成#2。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"世子合德获得7500万人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，世子合德完成#2。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"中科荣熠获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，中科荣熠完成#1。属\"传统制造 > 电力电气设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电力电气设备"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"利德健康获得数千万人民币Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，利德健康完成#12。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"天复康完成数千万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，天复康完成#1。属\"前沿科技 > 脑科学\"。",
+  ma_cap:"未披露",
+  tags:["投融资","脑科学"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"川润股份：下调定增募资额至5.15亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，川润股份完成#17。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"挪客股份新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，挪客Naturehike完成#18。属\"体育运动 > 体育用品及装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","体育用品及装备"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"斯莱普泰获得5000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，斯莱普泰完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"杰普特：拟7000万元增资控股子公司奥杰微电子",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，奥杰微电子完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"浩瀚能源获得蔚来汽车的战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，浩瀚能源完成#11。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"荆龙航天新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，荆龙航天完成#18。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"西鸽完成近亿元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，西鸽酒庄完成#14。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"西鸽观兰集团获得近亿人民币A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，西鸽观兰集团完成#14。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"途见科技完成亿元级Pre-A++轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，途见科技完成#12。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","传感设备"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"鑫云生命获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，鑫云生命完成#1。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"9月29日",
+  d:"2026-09-29",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"高拓讯达新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-29 IT桔子披露，高拓讯达完成#18。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+
 // ───────────── IT桔子 2026-09-28 新增 ──────────────
 {
   t:"9月28日",
