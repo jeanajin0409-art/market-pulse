@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年9月29日 · 星期二</div>
+    <div class="date">2026年9月30日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>英伟达联合超100家伙伴推出开放代理安全平台</strong>、<strong>Anthropic IPO 招股书曝光：2025 年净亏损 </strong>、<strong>Anthropic 发布 Claude Sonnet 5.5</strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 取消 GPT-6.1 下月发布计划,称其安全性</strong>、<strong>路透审阅 Anthropic IPO 招股书：收入增长 12</strong>、<strong>OpenAI 发布 GPT-6.1 Sol,以约五分之一价格</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,300 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Ars Technica：AI（RSS） 2026-09-30 新增 ──────────────
+{
+  t:"9月30日 09:00",
+  d:"2026-09-30",
+  src:"Ars Technica：AI（RSS）",
+  cat:"bigtech",
+  score:87,
+  title:"OpenAI 取消 GPT-6.1 下月发布计划，称其安全性未达标",
+  url:"https://arstechnica.com/ai/",
+  sum:"OpenAI 内部公告：原定 10 月发布的 GPT-6.1 取消——独立 red team 评估发现其对齐测试未达标；改为推迟到安全审计完成后。"
+},
+{
+  t:"9月30日 09:00",
+  d:"2026-09-30",
+  src:"OpenAI：官网动态（RSS · 排除企业/客户案例）",
+  cat:"bigtech",
+  score:86,
+  title:"OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+  url:"https://openai.com/index/",
+  sum:"OpenAI DevDay 2026 发布 GPT-6.1 Sol：API 价格仅 GPT-6 Astra 的约 1/5，但智能度接近 GPT-6 Astra；同时发布常驻智能体 Dots 等 20 余项更新。"
+},
+{
+  t:"9月30日 09:00",
+  d:"2026-09-30",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ipo",
+  score:87,
+  title:"路透审阅 Anthropic IPO 招股书：收入增长 12 倍，IPO 估值或超 2 万亿美元",
+  url:"https://x.com/rohanpaul_ai/status/2108000000000000000",
+  sum:"路透社详细审阅 Anthropic S-1 招股书：2024 → 2025 营收增长 12 倍，年化 ~$45B；2025 净亏损 $42B；预计 IPO 估值 $2T+；Nvidia 拟以基石投资者身份参与。"
+},
+
+// ───────────── IT桔子 2026-09-30 新增 ──────────────
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AIHG获得750万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，AIHG完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Apollon获得50亿韩元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，Apollon完成#2。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"CarIX.AI获得种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，CarIX.AI完成#13。属\"汽车交通 > 汽车后服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","汽车后服务"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Erad获得2200万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，Erad完成#2。属\"金融 > 投融资\"。",
+  ma_cap:"未披露",
+  tags:["投融资","投融资"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Feather Robotics获得760万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，Feather Robotics完成#13。属\"机器人 > 机器人零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人零部件"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"HiringCafe获得680万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，HiringCafe完成#13。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Instinct获得10亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，Instinct完成#4。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Outmarket获得3450万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，Outmarket完成#3。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"SiMa获得1.5亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，SiMa完成#4。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Summit Therapeutics获得阿斯利康20亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，Summit Therapeutics完成#11。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"东科农业完成1000万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，东科农业完成#1。属\"农业 > 农业生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","农业生物技术"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"南京十精科技完成A轮数千万元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，十精科技完成#2。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"宏芯气体完成数亿元Pre-B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，宏芯气体完成#15。属\"传统制造 > 化工产业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","化工产业"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"彤程新材今日在港交所上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，彤程新材完成#8。属\"传统制造 > 化工产业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","化工产业"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"微桥检测获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，微桥检测完成#11。属\"先进制造 > 工业互联网\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业互联网"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"景旺电子正式登陆港交所",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，景旺电子完成#8。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"本末科技首挂上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，本末科技完成#8。属\"机器人 > 机器人零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人零部件"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"罗博特科正式在香港联交所主板挂牌",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，罗博特科完成#8。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"联威创元获得1.6亿人民币Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，联威创元完成#12。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"9月30日",
+  d:"2026-09-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"蓝虫具身完成数千万天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-09-30 IT桔子披露，蓝虫具身完成#1。属\"机器人 > 人形机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人形机器人"]
+},
+
 // ───────────── Hacker News：AI 热帖 2026-09-29 新增 ──────────────
 {
   t:"9月29日 09:00",
