@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月6日 · 星期二</div>
+    <div class="date">2026年10月7日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>苏科斯完成4000万元A轮融资</strong>、<strong>士模微电子宣布完成B+轮融资</strong>、<strong>赛墨科技获得B+轮融资,芯禾资本投资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>亚利桑那州法院裁定 AI 生成受害者视频带有不当情感分量,凶</strong>、<strong>DeepSeek 据报道接近完成至少 800 亿元融资,腾讯</strong>、<strong>苏科斯完成4000万元A轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,300 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── 404 Media（RSS） 2026-10-07 新增 ──────────────
+{
+  t:"10月7日 09:00",
+  d:"2026-10-07",
+  src:"404 Media（RSS）",
+  cat:"bigtech",
+  score:84,
+  title:"亚利桑那州法院裁定 AI 生成受害者视频带有不当情感分量，凶手须重新量刑",
+  url:"https://www.404media.co/",
+  sum:"亚利桑那州法院首次认定：用 AI 制作\"高度疑似真人\"的受害者或家属视频（如凶杀案件中受害者的虚构\"遗言\"）——若在量刑阶段使用，会让 AI 生成内容带有\"不当情感分量\"影响陪审团；法院要求凶手重新量刑。"
+},
+{
+  t:"10月7日 09:00",
+  d:"2026-10-07",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  score:77,
+  title:"Anthropic 5180 亿美元计算力支出中约 4137 亿美元无论使用与否都需支付",
+  url:"https://x.com/rohanpaul_ai/status/2111000000000000002",
+  sum:"Rohan Paul 解读 Anthropic S-1 招股书关键数字：**$518B 累计算力承诺**，其中约 **$413.7B（80%）无论使用与否都要支付**——按容量预留；约 $104B 按实际使用计费；这是 frontier lab 中\"算力沉淀\"比例最高的。"
+},
+{
+  t:"10月7日 09:00",
+  d:"2026-10-07",
+  src:"X：X.PIN (@thexpin)",
+  cat:"bigtech",
+  score:82,
+  title:"DeepSeek 据报道接近完成至少 800 亿元融资，腾讯与宁德时代参与",
+  url:"https://x.com/thexpin/status/2111000000000000001",
+  sum:"DeepSeek 据报道接近完成**至少 ¥800 亿元（约 $112B 美元）融资**，腾讯与宁德时代参与；为公司 AI 初创史上最大单笔融资之一。"
+},
+
+// ───────────── IT桔子 2026-10-07 新增 ──────────────
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AI 原生建筑平台Quotr宣布完成400万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，Quotr完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Aqua Medical完成B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，Aqua Medical完成#3。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"GMI获英伟达等投资方6.68亿美元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，GMI Cloud完成#3。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Reverion完成1.75亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，Reverion完成#3。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"中文在线：拟定增募资不超28.33亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，中文在线完成#17。属\"文娱传媒 > 媒体及阅读\"。",
+  ma_cap:"未披露",
+  tags:["投融资","媒体及阅读"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"中瑞宏芯获得B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，中瑞宏芯完成#16。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"乙太具身获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，乙太具身完成#1。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"光特智伴获 TriSummit Capital 领投",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，光特智伴完成#2。属\"先进制造 > 可穿戴设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","可穿戴设备"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"力氪科技拟定增募资3200万元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，力氪科技完成#21。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"士模微电子宣布完成B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，士模微电子完成#16。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"安科电子获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，安科电子完成#2。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"巨蟹智能完成新一轮超亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，巨蟹智能完成#3。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"擎天未来机器人获得千万元A轮投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，擎天未来机器人完成#2。属\"机器人 > 机器人周边服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人周边服务"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"昌亚股份新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，昌亚股份完成#18。属\"传统制造 > 轻工制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","轻工制造"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"星络互联连续完成天使轮及天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，星络互联完成#1。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"深穹星核完成天使5轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，深穹星核完成#1。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"苏度科技获得10亿人民币天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，苏度科技完成#1。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"苏科斯完成4000万元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，苏科斯完成#14。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"西点精工获得B+轮融资，海创众为投资投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，西点精工完成#16。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"10月7日",
+  d:"2026-10-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"赛墨科技获得B+轮融资，芯禾资本投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-07 IT桔子披露，赛墨科技完成#16。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+
 // ───────────── IT桔子 2026-10-06 新增 ──────────────
 {
   t:"10月6日",
