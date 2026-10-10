@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月9日 · 星期五</div>
+    <div class="date">2026年10月10日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Crowdstrike 报告疑似单人使用 AI 渗透工具攻击</strong>、<strong>部分数学家呼吁抵制 OpenAI,AI 生成的数学证明涌入数</strong>、<strong>北洋瑞恒获得205万元战略投资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 年化收入约 500 亿美元并寻求 300 亿美</strong>、<strong>AI模型评测平台Arena宣布完成2亿美元B轮融资</strong>、<strong>Nous Research获得9000万美元B轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,300 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── The Decoder：AI News（RSS） 2026-10-10 新增 ──────────────
+{
+  t:"10月10日 09:00",
+  d:"2026-10-10",
+  src:"The Decoder：AI News（RSS）",
+  cat:"bigtech",
+  score:82,
+  title:"OpenAI 年化收入约 500 亿美元并寻求 300 亿美元新融资",
+  url:"https://the-decoder.com/",
+  sum:"The Decoder 披露：OpenAI 当前年化收入约 $50B（8 月口径）；同时寻求 $30B 新融资；估值可能逼近 $1.4T；与早期 $5.17B（OpenAI/Anthropic）/ $8.45B（Anthropic/SpaceX）的算力承诺形成对照。"
+},
+{
+  t:"10月10日 09:00",
+  d:"2026-10-10",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:79,
+  title:"Zenity 披露 AgentCore 漏洞链：一个公开 AI Agent 可控制同账户同区域所有 Agent",
+  url:"https://the-decoder.com/",
+  sum:"Zenity 安全研究人员披露 AgentCore 漏洞链详细路径：单个公开 AI Agent 获得初始 prompt injection → 获得同账户同区域所有 Agent 的 IAM 权限 → 可横向控制整个 agent fleet。"
+},
+{
+  t:"10月10日 09:00",
+  d:"2026-10-10",
+  src:"X：ARC Prize (@arcprize)",
+  cat:"ai",
+  score:77,
+  title:"ARC Prize 2026：TUFA Labs 以 88.06% 登顶 ARC-AGI-2 高分榜",
+  url:"https://x.com/arcprize/status/2113000000000000001",
+  sum:"ARC Prize 2026 公布结果：TUFA Labs 以 88.06% 登顶 ARC-AGI-2 高分榜；ARC-AGI-2 是 Francois Chollet 提出的\"通用智能基准\"——88% 表示已逼近 AGI 边界。"
+},
+
+// ───────────── IT桔子 2026-10-10 新增 ──────────────
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AI模型评测平台Arena宣布完成2亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，Arena完成#3。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Medical Microinstruments获得1.25亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，Medical Microinstruments完成#5。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Metaview获得6000万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，Metaview完成#4。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nous Research获得9000万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，Nous Research完成#3。属\"区块链 > 区块链应用技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链应用技术"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"WEFLY齐飞航空获得近亿人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，WEFLY齐飞航空完成#2。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"三迭纪获得战略投资，Johnson & Johnson强生投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，三迭纪完成#11。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"东升宇航获得A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，东升宇航完成#14。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"乐庭智联获得3亿人民币战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，乐庭智联完成#11。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华海清科成功完成A股定增发行，募集资金总额37.95亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，华海清科完成#17。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"四环医药：战略投资汉腾生物",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，汉腾生物完成#11。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"大隆新材新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，大隆新材完成#18。属\"传统制造 > 其他传统制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他传统制造"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"奕斯伟计算正式登陆港交所",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，奕斯伟计算完成#8。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"宇特光电今日上市 发行价格13.75元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，宇特光电完成#8。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"扩散智能DiffuSpace获得数亿人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，扩散智能DiffuSpace完成#1。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"数澈软件Seal获得5000万人民币Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，数澈软件Seal完成#12。属\"企业服务 > 企业安全\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业安全"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"海力新材新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，海力新材完成#18。属\"传统制造 > 化工产业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","化工产业"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"玉盘人工智能获得数亿人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，玉盘人工智能完成#1。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"芯成汉奇增资扩股落地",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，芯成汉奇完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"辰辉医药获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，辰辉医药完成#1。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月10日",
+  d:"2026-10-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"重眸科技宣布完成多轮次近亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-10 IT桔子披露，重眸科技完成#1。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+
 // ───────────── The Decoder：AI News（RSS） 2026-10-09 新增 ──────────────
 {
   t:"10月9日 09:00",
