@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月15日 · 星期四</div>
+    <div class="date">2026年10月16日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>OBZ获得2000万美元A轮融资</strong>、<strong>ID Finance获得5.54亿欧元战略投资</strong>、<strong>Mistlabs获得2600万美元Pre-A轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Meta 发布开源权重模型 Muse Spark Open,</strong>、<strong>Anthropic Q3 营收达 168 亿美元但增速放缓,</strong>、<strong>Veir获得2490万美元A+轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,300 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── PyTorch：Blog（RSS） 2026-10-16 新增 ──────────────
+{
+  t:"10月16日 09:00",
+  d:"2026-10-16",
+  src:"PyTorch：Blog（RSS）",
+  cat:"bigtech",
+  score:83,
+  title:"Meta 发布开源权重模型 Muse Spark Open，816B 参数、1M 上下文",
+  url:"https://pytorch.org/blog/",
+  sum:"Meta 在 PyTorch 官方博客发布开源权重模型 **Muse Spark Open**：816B 总参数、1M 上下文；上架 OpenRouter 与 Arena。"
+},
+{
+  t:"10月16日 09:00",
+  d:"2026-10-16",
+  src:"The Decoder：AI News（RSS）",
+  cat:"bigtech",
+  score:81,
+  title:"Anthropic Q3 营收达 168 亿美元但增速放缓，11月 IPO 前估值预期或下调",
+  url:"https://the-decoder.com/",
+  sum:"The Decoder 披露：Anthropic Q3 营收 $16.8B，年增 50% 但环比放缓；11 月 IPO 前估值预期可能从 $2T 下调至 $1.5T。"
+},
+{
+  t:"10月16日 09:00",
+  d:"2026-10-16",
+  src:"X：ChatGPT (@ChatGPT)",
+  cat:"bigtech",
+  score:80,
+  title:"ChatGPT 为 Chrome 用户新增标签页读取与控制能力",
+  url:"https://x.com/ChatGPT/status/2116000000000000001",
+  sum:"ChatGPT 为 Chrome 用户新增\"标签页读取与控制\"能力——用户授权后，agent 可跨标签页访问 + 操作内容。"
+},
+
+// ───────────── IT桔子 2026-10-16 新增 ──────────────
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Albert Invent获得5500万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Albert Invent完成#3。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"CereGate获得C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，CereGate完成#4。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Flae Robotics获得约100万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Flae Robotics完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Forgepoint获得980万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Forgepoint完成#13。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"GOFO Express获得超亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，GOFO Express完成#11。属\"物流 > 货运物流\"。",
+  ma_cap:"未披露",
+  tags:["投融资","货运物流"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Golbriak Space获得400万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Golbriak Space完成#13。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"MIRAVA获得近5000万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，MIRAVA完成#1。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Modal Labs获得7.5亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Modal Labs完成#5。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"OMass获得3.1亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，OMass完成#4。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"ParkMundo获得230万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，ParkMundo完成#13。属\"旅游 > 旅游综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","旅游综合服务"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Reebuild获得300万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Reebuild完成#13。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Skeleton获得E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Skeleton完成#6。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Ubitium获得1400万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Ubitium完成#13。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Undecimal Bio获得1800万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Undecimal Bio完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Veir获得2490万美元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，Veir完成#14。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"传音控股登陆港交所主板",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，‌‌传音控股完成#8。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"元环智能获得数亿人民币种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，元环智能完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"可视科学获得数千万人民币天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，可视科学完成#1。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"艾斐智药获得数千万元PreA轮投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，艾斐智药完成#12。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月16日",
+  d:"2026-10-16",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"莫森泰克今日上市 发行价格17.37元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-16 IT桔子披露，莫森泰克完成#8。属\"汽车交通 > 汽车零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","汽车零部件"]
+},
+
 // ───────────── IT桔子 2026-10-15 新增 ──────────────
 {
   t:"10月15日",
