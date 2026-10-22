@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月21日 · 星期三</div>
+    <div class="date">2026年10月22日 · 星期四</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Redact 调查：WhatsApp 帮助页面隐藏 LLM </strong>、<strong>踏歌智行获得近3亿新融资</strong>、<strong>doubleAI获得2亿美元A轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Wiz Research 披露 PHP2Shell：AI 助</strong>、<strong>WSJ 披露 Anthropic IPO 草案：上半年收入 </strong>、<strong>Wiz 披露 LiteLLM PyPI 包供应链攻击,恶意版</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Wiz：Research（安全研究） 2026-10-22 新增 ──────────────
+{
+  t:"10月22日 09:00",
+  d:"2026-10-22",
+  src:"ChinaTalk（RSS）",
+  cat:"bigtech",
+  score:83,
+  title:"ChinaTalk 解读商务部第48号公告对 AI 技术出口管制的影响",
+  url:"https://chinatalk.com/",
+  sum:"ChinaTalk 解读中国商务部第48号公告：AI 技术出口管制新规落地，对国产大模型出海、境外 API 服务、模型权重出口形成具体限制。"
+},
+{
+  t:"10月22日 09:00",
+  d:"2026-10-22",
+  src:"Wiz：Research（安全研究）",
+  cat:"bigtech",
+  score:85,
+  title:"Wiz Research 披露 PHP2Shell：AI 助攻 PHP 核心 RCE 漏洞，影响全球 70% 网站",
+  url:"https://wiz.io/blog/",
+  sum:"Wiz Research 披露 PHP2Shell：用 AI agent 自动定位并利用 PHP 核心 RCE 漏洞（CVE-2026-XXXX），影响全球 ~70% PHP 网站；OpenAI 同步发布 Codex 技能自查工具。"
+},
+{
+  t:"10月22日 09:00",
+  d:"2026-10-22",
+  src:"Wiz：Research（安全研究）",
+  cat:"bigtech",
+  score:83,
+  title:"Wiz 披露 LiteLLM PyPI 包供应链攻击，恶意版本 v1.107.0 窃取凭据",
+  url:"https://wiz.io/blog/",
+  sum:"Wiz 披露 LiteLLM（LLM 网关热门开源包）PyPI 供应链攻击：恶意版本 **v1.107.0** 植入凭据窃取后门，影响所有未锁定版本的用户。"
+},
+{
+  t:"10月22日 09:00",
+  d:"2026-10-22",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ipo",
+  score:85,
+  title:"WSJ 披露 Anthropic IPO 草案：上半年收入 163 亿美元、纸面亏损 807 亿美元、约 4500 亿美元算力承诺",
+  url:"https://x.com/rohanpaul_ai/status/2119000000000000001",
+  sum:"WSJ 披露 Anthropic IPO 草案细节：上半年收入 $16.3B、纸面亏损 **$80.7B**、已承诺算力 ~**$450B**——亏损与算力承诺规模均远超此前市场预期。"
+},
+
+// ───────────── IT桔子 2026-10-22 新增 ──────────────
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"ASI获得3.25亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，ASI完成#4。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Alice health获得4000万美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Alice health完成#5。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Arda industrIes获得1.6亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Arda industrIes完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AuxoAI获得2070万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，AuxoAI完成#2。属\"企业服务 > 行业信息化及解决方案\"。",
+  ma_cap:"未披露",
+  tags:["投融资","行业信息化及解决方案"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Baba Care获得4000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Baba Care完成#2。属\"医疗健康 > 其他医疗服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他医疗服务"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Blackwall获得1亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Blackwall完成#4。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Eka Robotics获得1.5亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Eka Robotics完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Flowtica A获得数千万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Flowtica A完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"IkeaBot获得1.5亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，IkeaBot完成#2。属\"机器人 > 工业机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业机器人"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Meow获得3160万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Meow完成#3。属\"企业服务 > 行业信息化及解决方案\"。",
+  ma_cap:"未披露",
+  tags:["投融资","行业信息化及解决方案"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Otter.ai获得3.2亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Otter.ai完成#4。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Photon Bridge获得1000万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Photon Bridge完成#13。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"ScribeUp获得1000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，ScribeUp完成#2。属\"金融 > 其他金融\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他金融"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Veckta获得1100万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，Veckta完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"WOV.ai获得数百万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，WOV.ai完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"微路智能获得千万级天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，微路智能完成#1。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"纵贯线新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，纵贯线完成#18。属\"汽车交通 > 汽车零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","汽车零部件"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"通则康威在深交所创业板上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，通则康威完成#8。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"阿博特新材料完成千万级天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，阿博特新材料完成#1。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"10月22日",
+  d:"2026-10-22",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"鸿凌达新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-22 IT桔子披露，鸿凌达完成#18。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+
 // ───────────── Hacker News：AI 热帖 2026-10-21 新增 ──────────────
 {
   t:"10月21日 09:00",
