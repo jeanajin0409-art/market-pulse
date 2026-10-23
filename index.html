@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月22日 · 星期四</div>
+    <div class="date">2026年10月23日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Wiz Research 披露 PHP2Shell：AI 助</strong>、<strong>WSJ 披露 Anthropic IPO 草案：上半年收入 </strong>、<strong>Wiz 披露 LiteLLM PyPI 包供应链攻击,恶意版</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic 用 Claude 对 123 个开源库完</strong>、<strong>Microsoft Research 与合作者证明 31 年</strong>、<strong>NSA 就 AI 发现的 PHP2Shell 关键漏洞发布修</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,300 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Anthropic：Research（发表成果 · 网页） 2026-10-23 新增 ──────────────
+{
+  t:"10月23日 09:00",
+  d:"2026-10-23",
+  src:"Anthropic：Research（发表成果 · 网页）",
+  cat:"ai",
+  score:85,
+  title:"Anthropic 用 Claude 对 123 个开源库完成汇编级形式化安全证明",
+  url:"https://www.anthropic.com/research",
+  sum:"Anthropic 披露用 Claude 完成 **123 个开源库**的汇编级（assembly-level）形式化安全证明——覆盖 memset / memcpy 等 libc 核心函数，逐条验证内存安全。"
+},
+{
+  t:"10月23日 09:00",
+  d:"2026-10-23",
+  src:"Microsoft Research 博客（RSS）",
+  cat:"ai",
+  score:83,
+  title:"Microsoft Research 与合作者证明 31 年历史的 KLS 猜想",
+  url:"https://www.microsoft.com/en-us/research/blog/",
+  sum:"Microsoft Research 与合作者证明 KLS 猜想（Kahn–Lax–Sarnak 猜想）——**31 年悬案**；证明过程中使用了 AI 辅助的形式化与验证工具。"
+},
+{
+  t:"10月23日 09:00",
+  d:"2026-10-23",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  score:83,
+  title:"NSA 就 AI 发现的 PHP2Shell 关键漏洞发布修复警告",
+  url:"https://x.com/rohanpaul_ai/status/2121000000000000001",
+  sum:"NSA 就 Wiz 披露的 PHP2Shell（AI 助攻发现的 PHP 核心 RCE）发布**国家级修复警告**；影响全球 ~70% PHP 网站，OpenAI 同步提供 Codex 自查工具。"
+},
+
+// ───────────── IT桔子 2026-10-23 新增 ──────────────
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Aries获得700万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Aries完成#13。属\"金融 > 股票\"。",
+  ma_cap:"未披露",
+  tags:["投融资","股票"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Blacksmith获得6000万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Blacksmith完成#4。属\"企业服务 > 开发者服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","开发者服务"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"DeepSeek获得A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，DeepSeek完成#14。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Firstwork获得1500万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Firstwork完成#2。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Flapping Airplanes获得10亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Flapping Airplanes完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"IDL获得1500万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，IDL完成#2。属\"体育运动 > 赛事运营及经纪\"。",
+  ma_cap:"未披露",
+  tags:["投融资","赛事运营及经纪"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Kaminashi获得22.1亿日元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Kaminashi完成#4。属\"企业服务 > 行业信息化及解决方案\"。",
+  ma_cap:"未披露",
+  tags:["投融资","行业信息化及解决方案"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Legora获得5.5亿美元E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Legora完成#6。属\"企业服务 > 法律服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","法律服务"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Mach9获得3400万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Mach9完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Peak Energy获得1.08亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Peak Energy完成#3。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Rulen获得180万欧元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Rulen完成#11。属\"企业服务 > 财税服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","财税服务"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"SendCutSend获得B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，SendCutSend完成#3。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Whop获得2亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，Whop完成#5。属\"区块链 > 区块链行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链行业应用"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"YGO获得800万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，YGO完成#2。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"九天睿芯宣布半年完成累计10亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，九天睿芯完成#16。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"微光科技完成近亿元A轮融资 梁创投领投",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，微光电子科技完成#2。属\"先进制造 > 可穿戴设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","可穿戴设备"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"恺英网络战略投资梦象智能",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，梦象智能完成#11。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"环天智慧获得12亿人民币C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，环天智慧完成#4。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"观复芯正式完成种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，观复芯完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月23日",
+  d:"2026-10-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"辉羲智能获得B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-23 IT桔子披露，辉羲智能完成#3。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+
 // ───────────── Wiz：Research（安全研究） 2026-10-22 新增 ──────────────
 {
   t:"10月22日 09:00",
