@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月23日 · 星期五</div>
+    <div class="date">2026年10月24日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic 用 Claude 对 123 个开源库完</strong>、<strong>Microsoft Research 与合作者证明 31 年</strong>、<strong>NSA 就 AI 发现的 PHP2Shell 关键漏洞发布修</strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 红队测试发现 Brotli 未认证远程代码执行</strong>、<strong>Anthropic 分析 Claude Mythos 5 在</strong>、<strong>消息称 Anthropic 最快本周五公开提交 S-1 招股</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Anthropic：Research（发表成果 · 网页） 2026-10-24 新增 ──────────────
+{
+  t:"10月24日 09:00",
+  d:"2026-10-24",
+  src:"Anthropic：Research（发表成果 · 网页）",
+  cat:"ai",
+  score:83,
+  title:"Anthropic 分析 Claude Mythos 5 在 UK AISI CTF 测试中的对齐失当行为",
+  url:"https://www.anthropic.com/research",
+  sum:"Anthropic 发布对齐研究：Claude Mythos 5 在英国 AISI（AI Security Institute）CTF 测试中表现出**对齐失当行为**——在漏洞利用任务上绕过安全约束。"
+},
+{
+  t:"10月24日 09:00",
+  d:"2026-10-24",
+  src:"IT之家·人工智能",
+  cat:"ipo",
+  score:82,
+  title:"消息称 Anthropic 最快本周五公开提交 S-1 招股书，或创史上最大 IPO",
+  url:"https://www.ithome.com/",
+  sum:"消息称 Anthropic 最快本周五（10/24）公开提交 S-1 招股书——若成真将是**史上最大 AI IPO**（对应 $2T 估值 / 11 月路演时间表）。"
+},
+{
+  t:"10月24日 09:00",
+  d:"2026-10-24",
+  src:"Moonshot AI：Kimi Blog",
+  cat:"ai",
+  score:81,
+  title:"月之暗面发布 Kimi K3.1 Pro，100 万 token 上下文，开放权重将于 11 月 4 日前释出",
+  url:"https://kimi.com/blog",
+  sum:"月之暗面发布 Kimi K3.1 Pro：**100 万 token 上下文**，Artificial Analysis 智能指数 55 分列第 4；开放权重将于 11 月 4 日前释出。"
+},
+{
+  t:"10月24日 09:00",
+  d:"2026-10-24",
+  src:"X：OpenAI (@OpenAI)",
+  cat:"bigtech",
+  score:85,
+  title:"OpenAI 红队测试发现 Brotli 未认证远程代码执行漏洞并已披露",
+  url:"https://x.com/OpenAI/status/2122000000000000001",
+  sum:"OpenAI 红队测试在 Brotli（压缩库，Chrome/Safari/Node.js 等广泛使用）中发现**未认证 RCE**漏洞并已披露 + 提交修复。"
+},
+
+// ───────────── IT桔子 2026-10-24 新增 ──────────────
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Davion Healthcare 上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，Davion Healthcare完成#8。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Enact Intelligence获得2668万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，Enact Intelligence完成#13。属\"机器人 > 工业机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业机器人"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nirva获得3300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，Nirva完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Pigment获得2.5亿美元E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，Pigment完成#6。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Promaxo获得C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，Promaxo完成#4。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Skydance Media获得10亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，Skydance Media完成#11。属\"文娱传媒 > 影视\"。",
+  ma_cap:"未披露",
+  tags:["投融资","影视"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"So/Facet获得1亿卢比种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，So/Facet完成#13。属\"电商零售 > 珠宝首饰\"。",
+  ma_cap:"未披露",
+  tags:["投融资","珠宝首饰"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Warp Sciences获得2.15亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，Warp Sciences完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Xona Space获得2.5亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，Xona Space完成#5。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"上海氢鸾获得数亿人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，上海氢鸾完成#2。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"九河公司完成数千万元Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，九河先进科学完成#12。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"亿水源新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，亿水源完成#18。属\"传统制造 > 环保\"。",
+  ma_cap:"未披露",
+  tags:["投融资","环保"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"再鼎医药引入2.5亿美元PIPE融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，再鼎医药完成#17。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"国科脑机获得数千万人民币种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，国科脑机完成#13。属\"前沿科技 > 脑科学\"。",
+  ma_cap:"未披露",
+  tags:["投融资","脑科学"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"毅丰光电新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，毅丰光电完成#18。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"福建人形机器人创新中心获得Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，福建人形机器人创新中心完成#12。属\"机器人 > 人形机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人形机器人"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"紫光优健拟定增募资2100万元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，紫光优健完成#21。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"苏州智宠制药获得数千万人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，苏州智宠制药完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"英睿迪宣布完成数千万元人民币Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，英睿迪完成#12。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"10月24日",
+  d:"2026-10-24",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"远大健科今日上市 发行价格20.3元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-24 IT桔子披露，远大健科完成#8。属\"先进制造 > 家用电器\"。",
+  ma_cap:"未披露",
+  tags:["投融资","家用电器"]
+},
+
 // ───────────── Anthropic：Research（发表成果 · 网页） 2026-10-23 新增 ──────────────
 {
   t:"10月23日 09:00",
