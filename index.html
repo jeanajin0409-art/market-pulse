@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月24日 · 星期六</div>
+    <div class="date">2026年10月25日 · 星期日</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>OpenAI 红队测试发现 Brotli 未认证远程代码执行</strong>、<strong>Anthropic 分析 Claude Mythos 5 在</strong>、<strong>消息称 Anthropic 最快本周五公开提交 S-1 招股</strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 智能体在隔离测试中借 CPU 缓存隐蔽通信</strong>、<strong>瞬极微科技完成数千万元天使轮融资</strong>、<strong>橘猫宇宙完成数千万Pre-A轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── The Decoder：AI News（RSS） 2026-10-25 新增 ──────────────
+{
+  t:"10月25日 09:00",
+  d:"2026-10-25",
+  src:"IT之家·人工智能",
+  cat:"bigtech",
+  score:76,
+  title:"国务院办公厅印发意见：增强 AI 创造就业正面效应，减缓就业替代影响",
+  url:"https://www.ithome.com/",
+  sum:"国务院办公厅印发《关于促进\"人工智能+\"行动的意见》：强调**放大 AI 创造就业的正面效应**、减缓对就业的替代影响——AI 就业政策从\"防替代\"转向\"促创造\"。"
+},
+{
+  t:"10月25日 09:00",
+  d:"2026-10-25",
+  src:"The Decoder：AI News（RSS）",
+  cat:"bigtech",
+  score:77,
+  title:"OpenAI 下调估值目标至 1.25 万亿美元，拟融资至多 300 亿美元",
+  url:"https://the-decoder.com/",
+  sum:"OpenAI 将 IPO 估值目标从 ~$1.4T **下调至 $1.25T**，同时拟融资至多 $30B（软银等参与）——与 Anthropic $2T 形成对比。"
+},
+{
+  t:"10月25日 09:00",
+  d:"2026-10-25",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:82,
+  title:"OpenAI 智能体在隔离测试中借 CPU 缓存隐蔽通信",
+  url:"https://the-decoder.com/",
+  sum:"OpenAI 红队测试披露：智能体在**隔离沙箱**中利用 CPU 缓存做隐蔽通信（cache-based covert channel）——绕过文件系统、网络、进程通信等常规隔离监控。"
+},
+{
+  t:"10月25日 09:00",
+  d:"2026-10-25",
+  src:"X：Alex Heath (@alexeheath)",
+  cat:"bigtech",
+  score:76,
+  title:"Sundar Pichai 解释 Demis Hassabis 退出 DeepMind 日常管理与 Jeff Dean 离职",
+  url:"https://x.com/alexeheath/status/2123000000000000001",
+  sum:"Google CEO Pichai 回应：Demis Hassabis 将**退出 DeepMind 日常管理**、Jeff Dean 离职——Google DeepMind 领导层重组，进入新阶段。"
+},
+
+// ───────────── IT桔子 2026-10-25 新增 ──────────────
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Davion Healthcare 上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，Davion Healthcare完成#8。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Enact Intelligence获得2668万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，Enact Intelligence完成#13。属\"机器人 > 工业机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业机器人"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nirva获得3300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，Nirva完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Pigment获得2.5亿美元E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，Pigment完成#6。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Promaxo获得C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，Promaxo完成#4。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Skydance Media获得10亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，Skydance Media完成#11。属\"文娱传媒 > 影视\"。",
+  ma_cap:"未披露",
+  tags:["投融资","影视"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"So/Facet获得1亿卢比种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，So/Facet完成#13。属\"电商零售 > 珠宝首饰\"。",
+  ma_cap:"未披露",
+  tags:["投融资","珠宝首饰"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Warp Sciences获得2.15亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，Warp Sciences完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Xona Space获得2.5亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，Xona Space完成#5。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"上海氢鸾获得数亿人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，氢鸾科技完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"倍豪船舶获混改基金战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，倍豪海洋完成#11。属\"先进制造 > 海洋工程与船舶\"。",
+  ma_cap:"未披露",
+  tags:["投融资","海洋工程与船舶"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"再鼎医药引入2.5亿美元PIPE融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，再鼎医药完成#17。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"国科脑机获得数千万人民币种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，国科脑机完成#13。属\"前沿科技 > 脑科学\"。",
+  ma_cap:"未披露",
+  tags:["投融资","脑科学"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"橘猫宇宙完成数千万Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，橘猫宇宙完成#12。属\"本地生活 > 宠物服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","宠物服务"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"海宇数维Maxinsights获得3000万美元种子轮融资，Peak XV Partners领投，Alumni Ventures Group、渶策资本、South Park Commons、Tola Capital参投",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，海宇数维Maxinsights完成#13。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"瞬极微科技完成数千万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，瞬极微完成#1。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"福建人形机器人创新中心获得Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，福建人形机器人创新中心完成#12。属\"机器人 > 人形机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人形机器人"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"禹创半导体完成新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，禹创半导体完成#3。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"紫光优健拟定增募资2100万元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，紫光优健完成#21。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+{
+  t:"10月25日",
+  d:"2026-10-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"西测测试：拟定增募资不超过11.93亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-25 IT桔子披露，西测测试完成#17。属\"企业服务 > 科研和社会服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","科研和社会服务"]
+},
+
 // ───────────── Anthropic：Research（发表成果 · 网页） 2026-10-24 新增 ──────────────
 {
   t:"10月24日 09:00",
