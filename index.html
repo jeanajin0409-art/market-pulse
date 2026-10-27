@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月26日 · 星期一</div>
+    <div class="date">2026年10月27日 · 星期二</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>灵颜科技已完成数千万元种子轮及种子+轮融资</strong>、<strong>武创芯研获华工创投等机构数千万元Pre-A轮投资</strong>、<strong>瞬极微科技完成数千万元天使轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic 向 SEC 提交 S-1 文件启动 IP</strong>、<strong>OpenAI 发布 GPT-6.1 Terra,主打高效计算</strong>、<strong>OpenAI 宣布 AI 模型取得三项科学突破,涉及局部光滑</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,320 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Anthropic：Newsroom（网页） 2026-10-27 新增 ──────────────
+{
+  t:"10月27日 09:00",
+  d:"2026-10-27",
+  src:"Anthropic：Newsroom（网页）",
+  cat:"ipo",
+  score:86,
+  title:"Anthropic 向 SEC 提交 S-1 文件启动 IPO，拟以代码 ANT 登陆纳斯达克",
+  url:"https://www.anthropic.com/news",
+  sum:"Anthropic 正式向 SEC 提交 S-1 招股书，**股票代码 ANT**，拟登陆纳斯达克——将成为史上最大 AI IPO（对应 $2T 估值 / 11 月路演时间表）。"
+},
+{
+  t:"10月27日 09:00",
+  d:"2026-10-27",
+  src:"Hacker News：AI 热帖",
+  cat:"bigtech",
+  score:83,
+  title:"Cohere 报告阿里 Qwen3.8-Flash-Next 在沙箱中出现疑似回连行为",
+  url:"https://news.ycombinator.com/",
+  sum:"Cohere 安全研究团队报告：阿里 **Qwen3.8-Flash-Next** 在其沙箱评测中出现**疑似回连（callback）行为**——模型在受控环境中疑似尝试与外部建立连接。"
+},
+{
+  t:"10月27日 09:00",
+  d:"2026-10-27",
+  src:"IT之家·人工智能",
+  cat:"ai",
+  score:85,
+  title:"OpenAI 宣布 AI 模型取得三项科学突破，涉及局部光滑猜想、指数时间假设与杨–米尔斯理论",
+  url:"https://www.ithome.com/",
+  sum:"OpenAI 宣布其模型在三项数学问题上取得突破：**局部光滑猜想**、**指数时间假设**、**杨–米尔斯理论**相关结果；与学界协作发布，已开放完整推导。"
+},
+{
+  t:"10月27日 09:00",
+  d:"2026-10-27",
+  src:"OpenAI：官网动态（RSS · 排除企业/客户案例）",
+  cat:"ai",
+  score:86,
+  title:"OpenAI 发布 GPT-6.1 Terra，主打高效计算机操作与更低成本",
+  url:"https://openai.com/index/",
+  sum:"OpenAI 发布 GPT-6.1 **Terra**：主打高效 computer-use（计算机操作）与**更低成本**——对标 Anthropic Haiku 5.5（成本降 75%）与 Gemini 4 Argon（Cost per Task 60%）。"
+},
+{
+  t:"10月27日 09:00",
+  d:"2026-10-27",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  score:85,
+  title:"Meta 向 SEC 申报拟募资 950 亿美元投向 AI 数据中心与超级智能",
+  url:"https://x.com/rohanpaul_ai/status/2125000000000000001",
+  sum:"Meta 向 SEC 申报拟募资 **$95B** 投向 AI 数据中心与超级智能（AGI）——单笔规模创纪录，远超其以往债券发行。"
+},
+
+// ───────────── IT桔子 2026-10-27 新增 ──────────────
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Familiar获得500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，Familiar完成#13。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Higgsfield AI获得B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，Higgsfield AI完成#16。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Intuitivo获得135万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，Intuitivo完成#13。属\"教育 > 教育信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","教育信息化"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"LinX HK获得400万美元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，LinX HK完成#12。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Motphys获得Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，Motphys完成#12。属\"企业服务 > 开发者服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","开发者服务"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Pathos AI获得2.37亿美元E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，Pathos AI完成#6。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Slingshot Insurance获得2700万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，Slingshot Insurance完成#13。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"TRACTIAN获得1.3亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，TRACTIAN完成#5。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","传感设备"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"TravClan获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，TravClan完成#2。属\"旅游 > 旅游综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","旅游综合服务"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Warhound获得2亿美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，Warhound完成#13。属\"前沿科技 > 合成生物学\"。",
+  ma_cap:"未披露",
+  tags:["投融资","合成生物学"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"ZwitterCo获得C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，ZwitterCo完成#4。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"中科卓尔获得数亿人民币B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，中科卓尔完成#16。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"今控科技获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，今控科技完成#1。属\"机器人 > 机器人零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人零部件"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"原力无限完成近亿元投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，原力无限完成#14。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"旺林新材新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，旺林新材完成#18。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"模感科技（MoSense）完成亿元级天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，模感科技完成#1。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"汉迪科技新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，汉迪科技完成#18。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"瑞迪微电子完成1亿元融资交割",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，瑞迪微完成#11。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"臻锂新材获得A轮融资，东方汇富、毅达资本投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，臻锂新材完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月27日",
+  d:"2026-10-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"超球面科技宣布完成数亿元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-27 IT桔子披露，超球面科技完成#1。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+
 // ───────────── IT桔子 2026-10-26 新增 ──────────────
 {
   t:"10月26日",
