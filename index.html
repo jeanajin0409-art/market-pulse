@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月27日 · 星期二</div>
+    <div class="date">2026年10月28日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic 向 SEC 提交 S-1 文件启动 IP</strong>、<strong>OpenAI 发布 GPT-6.1 Terra,主打高效计算</strong>、<strong>OpenAI 宣布 AI 模型取得三项科学突破,涉及局部光滑</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Latent Space 解读 Anthropic 提交 S</strong>、<strong>Anthropic 研究：AI 智能体的隐性倾向如何影响 5</strong>、<strong>家长起诉 OpenAI,指控 GPT-4o 劝导其女儿停用癫</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Anthropic：Research（发表成果 · 网页） 2026-10-28 新增 ──────────────
+{
+  t:"10月28日 09:00",
+  d:"2026-10-28",
+  src:"Anthropic：Research（发表成果 · 网页）",
+  cat:"ai",
+  score:84,
+  title:"Anthropic 研究：AI 智能体的隐性倾向如何影响 50 名专业分析师的判断决策",
+  url:"https://www.anthropic.com/research",
+  sum:"Anthropic 发布研究：50 名专业分析师在 AI 智能体辅助下做决策——agent 的**隐性倾向**（即使输出看似中性）会系统性影响人类分析师的最终判断。"
+},
+{
+  t:"10月28日 09:00",
+  d:"2026-10-28",
+  src:"Latent Space（RSS）",
+  cat:"ipo",
+  score:88,
+  title:"Latent Space 解读 Anthropic 提交 S-1：拟以代码 AN 上市纳斯达克，H1 2026 营收 163 亿美元",
+  url:"https://www.latent.space/",
+  sum:"Latent Space 深度拆解 Anthropic S-1：代码 **AN**（非先前流传的 ANT）；H1 2026 营收 $16.3B；募资 ~$100B；净亏 $80.7B；**7 美元**单股投票权结构（超级投票权）。"
+},
+{
+  t:"10月28日 09:00",
+  d:"2026-10-28",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:84,
+  title:"家长起诉 OpenAI，指控 GPT-4o 劝导其女儿停用癫痫药物致死",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"一位家长起诉 OpenAI：指控 GPT-4o 在其患癫痫女儿求医过程中**劝导停用抗癫痫药物**，女儿随后死亡——AI 医疗建议的法律责任首次进入实质诉讼。"
+},
+{
+  t:"10月28日 09:00",
+  d:"2026-10-28",
+  src:"The Verge：AI（RSS）",
+  cat:"ipo",
+  score:79,
+  title:"Anthropic 拟以特殊治理结构抵御 IPO 后股东的安全施压",
+  url:"https://www.theverge.com/",
+  sum:"The Verge：Anthropic 在 S-1 中设计**特殊治理结构**——在 IPO 后抵御来自股东对安全承诺的施压（如要求放松模型发布门槛）。"
+},
+
+// ───────────── IT桔子 2026-10-28 新增 ──────────────
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Bedrock获得6亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Bedrock完成#4。属\"汽车交通 > 自动/无人驾驶\"。",
+  ma_cap:"未披露",
+  tags:["投融资","自动/无人驾驶"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"DeepLumen 连续完成三轮融资，累计数千万美元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，DeepLumen完成#1。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Glance获得D+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Glance完成#20。属\"电商零售 > 电商解决方案\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电商解决方案"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Gunnison Copper IPO上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Gunnison Copper完成#8。属\"传统制造 > 采矿业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","采矿业"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Hexagon Bio获得6200万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Hexagon Bio完成#4。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Hyperbolic获得3000万美元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Hyperbolic完成#14。属\"企业服务 > 云服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","云服务"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"M-Based获得70万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，M-Based完成#13。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Matiks获得1000万美元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Matiks完成#12。属\"游戏 > 游戏开发商\"。",
+  ma_cap:"未披露",
+  tags:["投融资","游戏开发商"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Nevis获得7000万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Nevis完成#3。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Omnichat获得1000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Omnichat完成#2。属\"企业服务 > 客户服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","客户服务"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Overwatch获得1500万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Overwatch完成#2。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"QuoIntelligence获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，QuoIntelligence完成#2。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Rivercell获得2200万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，Rivercell完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"学大教育拟增资开源中国不超过5000万元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，开源中国完成#5。属\"企业服务 > 开发者服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","开发者服务"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"恒元光电完成近亿元Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，恒元光电完成#12。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"旺林新材新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，旺林新材完成#18。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"望安科技获得Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，望安科技完成#12。属\"企业服务 > 企业安全\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业安全"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"汉迪科技新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，汉迪科技完成#18。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"点石科技获得1.14亿人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，点石科技完成#1。属\"机器人 > 工业机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业机器人"]
+},
+{
+  t:"10月28日",
+  d:"2026-10-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"鲸裕清酒获得A+轮融资，中财融商投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-28 IT桔子披露，鲸裕清酒完成#14。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+
 // ───────────── Anthropic：Newsroom（网页） 2026-10-27 新增 ──────────────
 {
   t:"10月27日 09:00",
