@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月29日 · 星期四</div>
+    <div class="date">2026年10月30日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic IPO 文件披露现金及短期投资达 131</strong>、<strong>Anthropic 报告：Claude 研究模型在 Chro</strong>、<strong>陶术生物新三板挂牌上市</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Mistral Large 4（Le Chonk）登陆 Hu</strong>、<strong>爱威科技增资参股上海祥闰 深化医学检验业务战略布局</strong>、<strong>安源医药获得2.2亿人民币战略投资,华北制药投资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── 404 Media（RSS） 2026-10-30 新增 ──────────────
+{
+  t:"10月30日 09:00",
+  d:"2026-10-30",
+  src:"404 Media（RSS）",
+  cat:"bigtech",
+  score:79,
+  title:"404 Media 起底 Proton 内部 AI 转型之争：CEO Andy Yen 强推 AI 引发恐惧文化",
+  url:"https://www.404media.co/",
+  sum:"404 Media 起底 Proton 内部矛盾：CEO Andy Yen 强推 AI 转型，引发团队\"恐惧文化\"与隐私原则冲突——欧洲隐私派公司与 AI 路线的组织性撕裂。"
+},
+{
+  t:"10月30日 09:00",
+  d:"2026-10-30",
+  src:"Hugging Face 官方团队博客",
+  cat:"bigtech",
+  score:81,
+  title:"Mistral Large 4（Le Chonk）登陆 Hugging Face：1T 参数 MoE 多模态开源权重模型",
+  url:"https://huggingface.co/blog/",
+  sum:"Mistral 发布 **Large 4（代号 Le Chonk）**：**1T 参数 MoE**、多模态，开放权重已上架 Hugging Face——欧洲主权 AI 阵营在开源侧的最大手笔之一。"
+},
+{
+  t:"10月30日 09:00",
+  d:"2026-10-30",
+  src:"The Decoder：AI News（RSS）",
+  cat:"bigtech",
+  score:80,
+  title:"Google 三季度搜索增速不及预期，投资者担忧 AI 搜索变现拖累核心业务",
+  url:"https://the-decoder.com/",
+  sum:"Google Q3 搜索业务增速不及预期——投资者担忧 **AI 搜索（AI Overviews）变现拖累核心广告业务**；AI 基建投入与收入转化的时间差首次成为公开质疑点。"
+},
+{
+  t:"10月30日 09:00",
+  d:"2026-10-30",
+  src:"The Verge：AI（RSS）",
+  cat:"ipo",
+  score:80,
+  title:"The Verge 解读 Anthropic S-1：约 8500 亿美元 compute 承诺押注递归自我改进",
+  url:"https://www.theverge.com/",
+  sum:"The Verge 拆解 Anthropic S-1：**~$85B compute 承诺**，公司将其定位为对**递归自我改进（recursive self-improvement）**的押注——AI 公司首次在公开文件中如此明示。"
+},
+
+// ───────────── IT桔子 2026-10-30 新增 ──────────────
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AniBiz获得600万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，AniBiz完成#11。属\"文娱传媒 > IP版权\"。",
+  ma_cap:"未披露",
+  tags:["投融资","IP版权"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Avante获得3000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，Avante完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Caju AI获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，Caju AI完成#1。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Carma获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，Carma完成#11。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Dalet Labs获得700万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，Dalet Labs完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"General Compute获得1亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，General Compute完成#2。属\"企业服务 > 云服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","云服务"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Hex获得1亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，Hex完成#5。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Machenta获得4000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，Machenta完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"NVO获得超2000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，NVO完成#2。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Re:Build获得21亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，Re:Build完成#11。属\"传统制造 > 其他传统制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他传统制造"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"元脸FacesMarket已完成千万级天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，元脸FacesMarket完成#1。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"匠岭科技获得数亿人民币C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，匠岭科技完成#4。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"博骥源获得数千万人民币A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，博骥源完成#14。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"安源医药获得2.2亿人民币战略投资，华北制药投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，安源医药完成#11。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"巨堃网络增资，增资总额14.5亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，巨堃网络完成#11。属\"游戏 > 游戏综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","游戏综合服务"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"星科源拿下亿元级融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，星科源完成#12。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"欣旺达动力获得17亿人民币C+++轮融资，小米集团投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，欣旺达动力完成#19。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"海龙空天获得天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，海龙空天完成#1。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"爱威科技增资参股上海祥闰 深化医学检验业务战略布局",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，祥闰完成#11。属\"医疗健康 > 医疗信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗信息化"]
+},
+{
+  t:"10月30日",
+  d:"2026-10-30",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"考拉悠然近日完成B++轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-30 IT桔子披露，考拉悠然完成#16。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+
 // ───────────── IT之家·人工智能 2026-10-29 新增 ──────────────
 {
   t:"10月29日 09:00",
