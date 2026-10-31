@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月30日 · 星期五</div>
+    <div class="date">2026年10月31日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Mistral Large 4（Le Chonk）登陆 Hu</strong>、<strong>爱威科技增资参股上海祥闰 深化医学检验业务战略布局</strong>、<strong>安源医药获得2.2亿人民币战略投资,华北制药投资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Google 与 Reddit 同日股价大跌,AI 搜索变现</strong>、<strong>科技巨头 AI 资本开支超 7400 亿美元,投资者担忧升温</strong>、<strong>Wiz 报告"黑色十月"：九个 AI 开发者平台接连披露安全</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,310 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Cursor Blog 2026-10-31 新增 ──────────────
+{
+  t:"10月31日 09:00",
+  d:"2026-10-31",
+  src:"Cursor Blog",
+  cat:"bigtech",
+  score:81,
+  title:"Cursor 通报 VS Code 扩展市场出现恶意 Anthropic.claude-code 2.1.313 版本",
+  url:"https://cursor.com/blog",
+  sum:"Cursor 官方通报：VS Code 扩展市场出现恶意版本 **Anthropic.claude-code 2.1.313**——仿冒 Claude Code 扩展窃取开发者凭据与代码。"
+},
+{
+  t:"10月31日 09:00",
+  d:"2026-10-31",
+  src:"Platformer（热点 RSS）",
+  cat:"bigtech",
+  score:86,
+  title:"Google 与 Reddit 同日股价大跌，AI 搜索变现困境冲击开放网络",
+  url:"https://www.platformer.news/",
+  sum:"Google 与 Reddit 同日股价大跌——Reddit CEO 称 **Google AI Mode 不为任何人带来流量**、Reddit 每周流失超百万搜索访问；AI 搜索冲击开放网络的内容商业模式。"
+},
+{
+  t:"10月31日 09:00",
+  d:"2026-10-31",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:83,
+  title:"科技巨头 AI 资本开支超 7400 亿美元，投资者担忧升温引发市场下跌",
+  url:"https://techcrunch.com/category/artificial-intelligence/",
+  sum:"四大科技巨头合计 AI 资本开支超 **$740B**——投资者对\"AI capex 回报\"担忧升温，引发科技股连日下跌；Intel 盘中跌逾 30%，Google 市值蒸发 $500B。"
+},
+{
+  t:"10月31日 09:00",
+  d:"2026-10-31",
+  src:"Wiz：Research（安全研究）",
+  cat:"bigtech",
+  score:83,
+  title:"Wiz 报告\"黑色十月\"：九个 AI 开发者平台接连披露安全事件",
+  url:"https://wiz.io/blog/",
+  sum:"Wiz 汇总 10 月\"黑色十月\"：**9 个 AI 开发者平台**接连披露安全事件（恶意扩展 / 供应链投毒 / 凭据窃取 / 越权访问）。"
+},
+
+// ───────────── IT桔子 2026-10-31 新增 ──────────────
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Birch Hill获得400万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Birch Hill完成#13。属\"区块链 > 区块链基础设施\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链基础设施"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Blue Arbor获得1050万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Blue Arbor完成#2。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"CHOSEN STORE获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，CHOSEN STORE完成#2。属\"电商零售 > 美容护理\"。",
+  ma_cap:"未披露",
+  tags:["投融资","美容护理"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Casap获得5600万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Casap完成#3。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Clinics On Cloud获得12亿卢比A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Clinics On Cloud完成#2。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Emvolon获得2200万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Emvolon完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Foundry Robotics获得1亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Foundry Robotics完成#2。属\"先进制造 > 其他工业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他工业"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Fragment获得5000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Fragment完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"FuriosaAI获得6.2亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，FuriosaAI完成#5。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Kalshi完成10亿美元G轮融资，最新估值400亿美元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Kalshi完成#25。属\"金融 > 金融信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融信息化"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Mintive获得700万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Mintive完成#11。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nation A获得85亿韩元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Nation A完成#2。属\"文娱传媒 > 动漫\"。",
+  ma_cap:"未披露",
+  tags:["投融资","动漫"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Plato获得1600万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Plato完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Wealthsimple获得4.25亿加元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，Wealthsimple完成#11。属\"金融 > 理财\"。",
+  ma_cap:"未披露",
+  tags:["投融资","理财"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"天嗅智能获天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，天嗅智能完成#1。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"宏芯宇公开招股 引入Flourish、Pine Vigor等基石投资者",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，宏芯宇电子完成#23。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"寒序科技获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，寒序科技完成#11。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"登临科技今起招股，获元禾控股、通富微电等基石认购超6.4亿港元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，登临科技完成#23。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"远信储能今起招股，引入鼎晖为基石投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，远信储能完成#23。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"10月31日",
+  d:"2026-10-31",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"野人先生冰淇淋获黑蚁资本投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-10-31 IT桔子披露，野人先生完成#2。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+
 // ───────────── 404 Media（RSS） 2026-10-30 新增 ──────────────
 {
   t:"10月30日 09:00",
