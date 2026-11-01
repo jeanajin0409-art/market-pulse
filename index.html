@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年10月31日 · 星期六</div>
+    <div class="date">2026年11月1日 · 星期日</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Google 与 Reddit 同日股价大跌,AI 搜索变现</strong>、<strong>科技巨头 AI 资本开支超 7400 亿美元,投资者担忧升温</strong>、<strong>Wiz 报告"黑色十月"：九个 AI 开发者平台接连披露安全</strong> 等。</p>
+      <p>今日新增 3 条。<strong>阿里巴巴与Apple合作,千问集成至Apple智能,11月4</strong>、<strong>数智鲲鹏获得数千万人民币天使轮融资</strong>、<strong>智澄AI完成数亿元新一轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,320 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Epoch AI：Gradient Updates（RSS） 2026-11-01 新增 ──────────────
+{
+  t:"11月1日 09:00",
+  d:"2026-11-01",
+  src:"Epoch AI：Gradient Updates（RSS）",
+  cat:"ai",
+  score:77,
+  title:"Epoch AI 实验显示 GLM 5.3 可利用补丁窗口期自主攻击 Firefox",
+  url:"https://epochai.substack.com/p/glm-patch-gap-exploit-firefox",
+  sum:"Epoch AI 实验：GLM 5.3 可利用\"补丁窗口期\"自主攻击 Firefox——在漏洞修复部署的时序缝隙中完成利用链。"
+},
+{
+  t:"11月1日 09:00",
+  d:"2026-11-01",
+  src:"IT之家·人工智能",
+  cat:"ipo",
+  score:77,
+  title:"Anthropic IPO 招股文件披露近 9000 亿美元隐性债务",
+  url:"https://www.ithome.com/1/020/444.htm",
+  sum:"Anthropic IPO 文件披露近 **$900B 隐性债务**（采购承诺 + 融资租赁等表外义务）——与 $131.7B 现金形成巨大反差。"
+},
+{
+  t:"11月1日 09:00",
+  d:"2026-11-01",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:78,
+  title:"Nvidia 洽谈为 Nscale 西弗吉尼亚 Anthropic 数据中心提供债务担保",
+  url:"https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/",
+  sum:"TechCrunch 报道：Nvidia 洽谈为 Nscale 西弗吉尼亚州 Anthropic 数据中心提供**债务担保**——硬件厂商为 AI 基建融资增信。"
+},
+{
+  t:"11月1日 09:00",
+  d:"2026-11-01",
+  src:"X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+  cat:"bigtech",
+  score:69,
+  title:"Project Suncatcher 在轨道卫星上运行 TPU，Gemma 模型首次在太空完成推理并回传回应",
+  url:"https://x.com/_philschmid/status/2116235686445502608",
+  sum:"Google Project Suncatcher：在轨道卫星上运行 TPU，**Gemma 模型首次在太空完成推理并回传回应**。"
+},
+{
+  t:"11月1日 09:00",
+  d:"2026-11-01",
+  src:"公众号：千问APP（阿里）",
+  cat:"bigtech",
+  score:82,
+  title:"阿里巴巴与Apple合作，千问集成至Apple智能，11月4日开放测试",
+  url:"https://mp.weixin.qq.com/s?__biz=MzYzNDE5MDEwMQ%3D%3D&mid=2247489416&idx=1&sn=9525f61df8086fcd6fe4d4183da068de",
+  sum:"阿里巴巴与 Apple 达成合作：**千问（Qwen）集成至 Apple 智能**（Apple Intelligence），11 月 4 日开放测试——国产模型首次进入 Apple 端侧/系统级入口。"
+},
+
+// ───────────── IT桔子 2026-11-01 新增 ──────────────
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Blue Arbor获得1050万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Blue Arbor完成#2。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"CHOSEN STORE获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，CHOSEN STORE完成#2。属\"电商零售 > 美容护理\"。",
+  ma_cap:"未披露",
+  tags:["投融资","美容护理"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Casap获得5600万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Casap完成#3。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Clinics On Cloud获得12亿卢比A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Clinics On Cloud完成#2。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Emvolon获得2200万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Emvolon完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Foundry Robotics获得1亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Foundry Robotics完成#2。属\"先进制造 > 其他工业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他工业"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Fragment获得5000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Fragment完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"FuriosaAI获得6.2亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，FuriosaAI完成#5。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Kalshi完成10亿美元G轮融资，最新估值400亿美元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Kalshi完成#25。属\"金融 > 金融信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融信息化"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Mintive获得700万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Mintive完成#11。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nation A获得85亿韩元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Nation A完成#2。属\"文娱传媒 > 动漫\"。",
+  ma_cap:"未披露",
+  tags:["投融资","动漫"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Plato获得1600万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Plato完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Wealthsimple获得4.25亿加元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，Wealthsimple完成#11。属\"金融 > 理财\"。",
+  ma_cap:"未披露",
+  tags:["投融资","理财"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"天嗅智能获天使+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，天嗅智能完成#1。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"寒序科技获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，寒序科技完成#11。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"数智鲲鹏获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，数智鲲鹏完成#1。属\"机器人 > 特种机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","特种机器人"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"智澄AI完成数亿元新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，智澄AI完成#14。属\"机器人 > 人形机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人形机器人"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"登临科技今起招股，获元禾控股、通富微电等基石认购超6.4亿港元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，登临科技完成#23。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"远信储能今起招股，引入鼎晖为基石投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，远信储能完成#23。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月1日",
+  d:"2026-11-01",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"野人先生冰淇淋获黑蚁资本投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-01 IT桔子披露，野人先生完成#2。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+
 // ───────────── Cursor Blog 2026-10-31 新增 ──────────────
 {
   t:"10月31日 09:00",
