@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月2日 · 星期一</div>
+    <div class="date">2026年11月3日 · 星期二</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Dren Bio获得3.5亿美元C轮融资</strong>、<strong>OpenTrons获得4000万美元E轮融资</strong>、<strong>Cohere获得70亿加元E轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic 算力与基础设施合同承诺达 $895.4B</strong>、<strong>Lumaril获得6600万美元A轮融资</strong>、<strong>天链测控完成B+轮融资,火星人领投</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,320 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── OpenAI：Alignment 研究博客（RSS） 2026-11-03 新增 ──────────────
+{
+  t:"11月3日 09:00",
+  d:"2026-11-03",
+  src:"OpenAI：Alignment 研究博客（RSS）",
+  cat:"ai",
+  score:63,
+  title:"OpenAI 训练并部署激活分类器作为前沿模型安全监控层",
+  url:"https://alignment.openai.com/training-activation-classifiers/",
+  sum:"OpenAI 训练并部署**激活分类器**作为前沿模型安全监控层——对模型内部状态做实时监控。"
+},
+{
+  t:"11月3日 09:00",
+  d:"2026-11-03",
+  src:"OpenAI：官网动态（RSS · 排除企业/客户案例）",
+  cat:"bigtech",
+  score:70,
+  title:"OpenAI 推出 Grid Protectors 计划，从 Georgia 校园开始支持电网削峰",
+  url:"https://openai.com/index/grid-protectors-program",
+  sum:"OpenAI 推出 **Grid Protectors** 计划：从佐治亚州校园开始支持电网**削峰**——数据中心 AI 用电对电网影响的正面叙事。"
+},
+{
+  t:"11月3日 09:00",
+  d:"2026-11-03",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ipo",
+  score:77,
+  title:"Anthropic 季度营收增长十二倍至近 170 亿美元，但净亏损达 233 亿美元",
+  url:"https://the-decoder.com/anthropic-grows-revenue-twelvefold-but-posts-23-billion-loss/",
+  sum:"Anthropic 季度营收**增长十二倍**至近 **$17B**，但季度**净亏损达 $23.3B**——亏损已超营收。"
+},
+{
+  t:"11月3日 09:00",
+  d:"2026-11-03",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ipo",
+  score:86,
+  title:"Anthropic 算力与基础设施合同承诺达 $895.4B，其中 $447.5B 须在 2031 年前支付",
+  url:"https://x.com/rohanpaul_ai/status/2117368258571784296",
+  sum:"Anthropic 算力与基础设施合同承诺达 **$895.4B**，其中 **$447.5B 须在 2031 年前支付**——算力承诺的时间分布首次被量化。"
+},
+{
+  t:"11月3日 09:00",
+  d:"2026-11-03",
+  src:"公众号：腾讯混元",
+  cat:"bigtech",
+  score:68,
+  title:"腾讯混元发布 Hyra 2.0：让通用 agent 研发可复用的科学工具与模型",
+  url:"https://mp.weixin.qq.com/s?__biz=MzkwODU2OTQyNQ%3D%3D&mid=2247498763&idx=1&sn=279f8fb4e43a987fdc0aa2af0b0f7958",
+  sum:"腾讯混元发布 **Hyra 2.0**：让通用 agent 研发可复用的**科学工具与模型**——agent-for-science 工具链。"
+},
+
+// ───────────── IT桔子 2026-11-03 新增 ──────────────
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"ALLOX获得1050万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，ALLOX完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Bites获得4000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Bites完成#2。属\"企业服务 > 其他企业服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他企业服务"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Bleu Robotics获得500万欧元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Bleu Robotics完成#13。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Dream models获得1700万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Dream models完成#13。属\"房地产 > 建筑建材\"。",
+  ma_cap:"未披露",
+  tags:["投融资","建筑建材"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Dulo获得1.3亿美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Dulo完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Firehawk Aerospace获得1.5亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Firehawk Aerospace完成#5。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Fractile获得5.77亿英镑C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Fractile完成#4。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Gecipe获得6.6亿日元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Gecipe完成#3。属\"教育 > 语言学习\"。",
+  ma_cap:"未披露",
+  tags:["投融资","语言学习"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Group14 Technologies获得约1.69亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Group14 Technologies完成#5。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Lumaril获得6600万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Lumaril完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"StableStock获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，StableStock完成#11。属\"区块链 > DeFi\"。",
+  ma_cap:"未披露",
+  tags:["投融资","DeFi"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Urologic Design获得120万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Urologic Design完成#13。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"VUSE XR获得120万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，VUSE XR完成#13。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Wabi获得5500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，Wabi完成#13。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"i23获得近490万英镑种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，i23完成#13。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"天链测控完成B+轮融资，火星人领投",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，天链测控完成#16。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"昇阳智慧获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，昇阳智慧完成#1。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"杭州南枝完成2000万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，杭州南枝完成#1。属\"房地产 > 房产信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","房产信息化"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"达瓦科技获得数亿人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，达瓦科技完成#2。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月3日",
+  d:"2026-11-03",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"高能数造获得近亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-03 IT桔子披露，高能数造完成#3。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+
 // ───────────── IT桔子 2026-11-02 新增 ──────────────
 {
   t:"11月2日",
