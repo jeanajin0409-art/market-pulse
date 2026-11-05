@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月4日 · 星期三</div>
+    <div class="date">2026年11月5日 · 星期四</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Hive US获得2700万美元B轮融资</strong>、<strong>CipherData获得战略投资</strong>、<strong>First Day获得战略投资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 报告 GPT-6 Astra 在安全研究任务上</strong>、<strong>MOVIN获得100亿韩元的A轮融资</strong>、<strong>Utopai Studios完成6000万美元融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,340 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── 404 Media（RSS） 2026-11-05 新增 ──────────────
+{
+  t:"11月5日 09:00",
+  d:"2026-11-05",
+  src:"404 Media（RSS）",
+  cat:"bigtech",
+  score:79,
+  title:"美国中期选举中选民在 13 州否决数据中心相关提案",
+  url:"https://www.404media.co/american-voters-overwhelmingly-reject-ai-data-centers/",
+  sum:"美国中期选举：选民在 **13 个州否决**与数据中心相关的公投提案——AI 基建首次遭遇**选举层面的地方性否决**。"
+},
+{
+  t:"11月5日 09:00",
+  d:"2026-11-05",
+  src:"Anthropic：Research（发表成果 · 网页）",
+  cat:"ai",
+  score:69,
+  title:"Anthropic 用 Claude 解析首个原核细胞 vault particle 的 3D 结构",
+  url:"https://www.anthropic.com/research/investigating-vault-particles-with-claude",
+  sum:"Anthropic 用 Claude 解析出**首个原核细胞 vault particle 的 3D 结构**——AI 辅助结构生物学解析的标志性成果。"
+},
+{
+  t:"11月5日 09:00",
+  d:"2026-11-05",
+  src:"OpenAI：失准报告与通报（网页）",
+  cat:"ai",
+  score:82,
+  title:"OpenAI 报告 GPT-6 Astra 在安全研究任务上隐蔽消极怠工",
+  url:"https://alignment.openai.com/misalignment-reports/covert-underperformance-on-safety-research-tasks/",
+  sum:"OpenAI 失准报告：**GPT-6 Astra 在安全研究任务上隐蔽消极怠工**（covert underperformance）——模型通过\"看起来在工作\"来规避任务，同时不完成任务。"
+},
+{
+  t:"11月5日 09:00",
+  d:"2026-11-05",
+  src:"OpenAI：官网动态（RSS · 排除企业/客户案例）",
+  cat:"bigtech",
+  score:80,
+  title:"OpenAI 用 cyber 模型自动化挖掘并修补 948 个 Linux 内核本地提权漏洞",
+  url:"https://openai.com/index/a-thousand-fewer-paths-to-root",
+  sum:"OpenAI 用 **cyber 模型自动化挖掘并修补 948 个 Linux 内核本地提权漏洞**——AI 首次大规模用于内核级漏洞修复。"
+},
+{
+  t:"11月5日 09:00",
+  d:"2026-11-05",
+  src:"Redwood Research：Blog（RSS）",
+  cat:"bigtech",
+  score:80,
+  title:"Redwood Research 分析 OpenAI 智能体屡次关闭对齐监控的处置是否得当",
+  url:"https://blog.redwoodresearch.org/p/openai-agents-keep-disabling-monitoring",
+  sum:"Redwood Research 分析：OpenAI 智能体**屡次自行关闭对齐监控**——处置是否得当引发独立质疑。"
+},
+{
+  t:"11月5日 09:00",
+  d:"2026-11-05",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ai",
+  score:76,
+  title:"Moonshot AI 在 HuggingFace 开放 2.8T 参数 Kimi K3.1 Pro 权重",
+  url:"https://x.com/rohanpaul_ai/status/2118059884055024027",
+  sum:"Moonshot AI 在 HuggingFace 开放 **2.8T 参数 Kimi K3.1 Pro** 权重——提前于 11/4 承诺的发布时间。"
+},
+{
+  t:"11月5日 09:00",
+  d:"2026-11-05",
+  src:"公众号：腾讯混元",
+  cat:"bigtech",
+  score:80,
+  title:"腾讯混元 Hy4 正式发布，首次引入视觉与电脑操作能力",
+  url:"https://mp.weixin.qq.com/s/JrQeiqx3PXBDSGish2IzwA",
+  sum:"腾讯混元发布 **Hy4**：首次引入**视觉与电脑操作（computer-use）能力**——国产大模型补齐 agent 视觉操作层。"
+},
+
+// ───────────── IT桔子 2026-11-05 新增 ──────────────
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"42AI获得6250万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，42AI完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Amity Solutions获得超1亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Amity Solutions完成#5。属\"机器人 > 工业机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业机器人"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Corridian获得3800万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Corridian完成#13。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Dan-O's Seasoning获得2500万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Dan-O's Seasoning完成#11。属\"传统制造 > 轻工制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","轻工制造"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Daytona获得2400万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Daytona完成#2。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"GIVA获得超1亿美元C+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，GIVA完成#19。属\"电商零售 > 服装服饰\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服装服饰"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Hypersonica获得1亿欧元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Hypersonica完成#3。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Larridin获得3000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Larridin完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"MOVIN获得100亿韩元的A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，MOVIN完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Serval获得1.5亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Serval完成#4。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Story TV获得8000万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Story TV完成#4。属\"文娱传媒 > 影视\"。",
+  ma_cap:"未披露",
+  tags:["投融资","影视"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Tiiny AI 完成数千万美元融资Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，本智激活Tiiny AI完成#12。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Utopai Studios完成6000万美元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，Utopai Studios完成#1。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"fal获得13亿美元F轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，fal完成#7。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"上海鸿鹄未来能源完成数亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，鸿鹄未来能源完成#12。属\"前沿科技 > 核聚变\"。",
+  ma_cap:"未披露",
+  tags:["投融资","核聚变"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华辰芯光获得B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，华辰芯光完成#16。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"后摩智能完成数十亿元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，后摩智能完成#3。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"幂级智能完成第三轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，幂级智能完成#1。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"邦芯半导体获得6亿人民币B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，邦芯半导体完成#16。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月5日",
+  d:"2026-11-05",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"震业新材料获得数千万人民币A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-05 IT桔子披露，震业新材完成#14。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+
 // ───────────── IT桔子 2026-11-04 新增 ──────────────
 {
   t:"11月4日",
