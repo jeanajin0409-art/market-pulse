@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月5日 · 星期四</div>
+    <div class="date">2026年11月6日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>OpenAI 报告 GPT-6 Astra 在安全研究任务上</strong>、<strong>MOVIN获得100亿韩元的A轮融资</strong>、<strong>Utopai Studios完成6000万美元融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>美国中期选举蓝潮冲击 AI 行业,44 项数据中心暂停提案中</strong>、<strong>OpenAI 发布 GPT-6 Cyber 网络安全模型</strong>、<strong>奕成科技完成C轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Google Blog：AI（RSS） 2026-11-06 新增 ──────────────
+{
+  t:"11月6日 09:00",
+  d:"2026-11-06",
+  src:"Google Blog：AI（RSS）",
+  cat:"bigtech",
+  score:74,
+  title:"Google 发布 Gemini Omni 1.2 Flash：15 秒视频生成，降价 30% 至 $0.07/秒",
+  url:"https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+  sum:"Google 发布 **Gemini Omni 1.2 Flash**：**15 秒视频生成**，降价 30% 至 **$0.07/秒**。"
+},
+{
+  t:"11月6日 09:00",
+  d:"2026-11-06",
+  src:"OpenAI：官网动态（RSS · 排除企业/客户案例）",
+  cat:"ai",
+  score:81,
+  title:"OpenAI 发布 GPT-6 Cyber 网络安全模型",
+  url:"https://openai.com/index/introducing-gpt-6-cyber",
+  sum:"OpenAI 发布 **GPT-6 Cyber** 网络安全模型——在修补 948 个 Linux 内核提权漏洞之后，把 offensive/defensive cyber 能力做成产品。"
+},
+{
+  t:"11月6日 09:00",
+  d:"2026-11-06",
+  src:"The Verge：AI（RSS）",
+  cat:"bigtech",
+  score:82,
+  title:"美国中期选举蓝潮冲击 AI 行业，44 项数据中心暂停提案中 43 项通过",
+  url:"https://www.theverge.com/ai-artificial-intelligence/1026927/total-repudiation-the-blue-wave-is-about-to-hit-ai",
+  sum:"美国中期选举蓝潮冲击 AI 行业：**44 项数据中心暂停提案中 43 项通过**（14 个州）——大型科技公司称反弹针对特朗普而非科技。"
+},
+{
+  t:"11月6日 09:00",
+  d:"2026-11-06",
+  src:"Thinking Machines Lab：News（网页）",
+  cat:"bigtech",
+  score:79,
+  title:"Thinking Machines Lab 发布 Inkling 2 Small：594B 参数 MoE 模型，下周开放 Apache 2.0 权重",
+  url:"https://thinkingmachines.ai/news/inkling-2-small/",
+  sum:"Thinking Machines Lab 发布 **Inkling 2 Small**：**594B 参数 MoE** 模型，下周开放 **Apache 2.0** 许可。"
+},
+{
+  t:"11月6日 09:00",
+  d:"2026-11-06",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  score:79,
+  title:"美股单日蒸发 3.2 万亿美元，Nasdaq 创 2025 年 4 月以来最大跌幅",
+  url:"https://x.com/rohanpaul_ai/status/2118461023808323957",
+  sum:"美股单日蒸发 **$3.2T**，Nasdaq 创 2025 年 4 月以来最大跌幅——AI 基建担忧 + 数据中心公投否决叠加的市场反应。"
+},
+{
+  t:"11月6日 09:00",
+  d:"2026-11-06",
+  src:"a16z：News（RSS）",
+  cat:"ai",
+  score:78,
+  title:"a16z：漏洞利用曾是瓶颈，AI 让攻击成本从数月降到数小时",
+  url:"https://www.a16z.news/p/the-exploit-was-the-bottleneck",
+  sum:"a16z：漏洞利用曾是瓶颈，**AI 让攻击成本从数月降到数小时**——攻防两侧门槛同时坍塌。"
+},
+
+// ───────────── IT桔子 2026-11-06 新增 ──────────────
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Peppermint Robotics完成1050万美元Pre-B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，Peppermint Robotics完成#15。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Sand.ai 完成2亿美元A+轮融资，10 个月累计融资3亿美元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，Sand.ai完成#14。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Soter Insure获得B轮投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，Soter Insure完成#3。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"T-Therapeutics宣布完成1.33亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，T-Therapeutics完成#3。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"伟势机器人获得数千万人民币种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，伟势机器人完成#13。属\"机器人 > 工业机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业机器人"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"兴业期货获得华福证券投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，兴业期货完成#11。属\"金融 > 外汇期货贵金属\"。",
+  ma_cap:"未披露",
+  tags:["投融资","外汇期货贵金属"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华毅瀛飞已完成数亿元的A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，华毅瀛飞完成#2。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"国星宇航今起招股，引入晶科能源、锦信为基石",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，国星宇航完成#23。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"奕成科技完成C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，奕成科技完成#4。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"小孪科技获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，小孪科技完成#1。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"易博图连续完成两轮近4亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，易博图完成#1。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"永宏达获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，永宏达完成#2。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"犀燃医疗获得近亿人民币B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，犀燃医疗完成#16。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"睿芯行完成数千万元新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，睿芯行完成#16。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"聚时科技获得数亿人民币C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，聚时科技完成#4。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"自然选择完成A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，自然选择EVE完成#14。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"臻泰智能获得数千万人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，臻泰智能完成#3。属\"前沿科技 > 脑科学\"。",
+  ma_cap:"未披露",
+  tags:["投融资","脑科学"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"英美达获得E+轮融资，千骥资本、启明创投、招银国际、贵阳创投投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，英美达完成#24。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"银锐智能新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，银锐智能完成#18。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"11月6日",
+  d:"2026-11-06",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"高特佳领投齐聚医疗A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-06 IT桔子披露，齐聚医疗完成#14。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+
 // ───────────── 404 Media（RSS） 2026-11-05 新增 ──────────────
 {
   t:"11月5日 09:00",
