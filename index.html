@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月6日 · 星期五</div>
+    <div class="date">2026年11月7日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>美国中期选举蓝潮冲击 AI 行业,44 项数据中心暂停提案中</strong>、<strong>OpenAI 发布 GPT-6 Cyber 网络安全模型</strong>、<strong>奕成科技完成C轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Bloomberg：OpenAI 完成 110 亿美元融资首</strong>、<strong>METR 审计称 Anthropic 可能早在 7 月已触发</strong>、<strong>致真精密仪器宣布完成B轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,320 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── The Decoder：AI News（RSS） 2026-11-07 新增 ──────────────
+{
+  t:"11月7日 09:00",
+  d:"2026-11-07",
+  src:"OpenRouter：Announcements（RSS）",
+  cat:"bigtech",
+  score:73,
+  title:"OpenRouter 发布新一代 Auto Router 与 Auto Code 路由器",
+  url:"https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/",
+  sum:"OpenRouter 发布新一代 **Auto Router 与 Auto Code** 路由器——模型路由从\"按价格/能力\"升级为\"按任务类型自动选模型 + 自动写代码路径\"。"
+},
+{
+  t:"11月7日 09:00",
+  d:"2026-11-07",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ipo",
+  score:76,
+  title:"Anthropic 1.5 万亿美元 IPO 因投资者质疑估值遇阻",
+  url:"https://the-decoder.com/anthropics-1-5-trillion-ipo-hits-resistance-as-investors-balk-at-valuation/",
+  sum:"Anthropic **$1.5T IPO 因投资者质疑估值遇阻**——机构投资者对万亿估值的接受度低于预期。"
+},
+{
+  t:"11月7日 09:00",
+  d:"2026-11-07",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:83,
+  title:"METR 审计称 Anthropic 可能早在 7 月已触发其自身 AI 加速预警阈值",
+  url:"https://the-decoder.com/metr-finds-anthropic-may-have-crossed-its-own-ai-acceleration-warning-threshold-back-in-july/",
+  sum:"METR 审计：Anthropic 可能**早在 7 月**就已触发其自身设定的\"AI 自我加速\"预警阈值，但当时未公开。"
+},
+{
+  t:"11月7日 09:00",
+  d:"2026-11-07",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ipo",
+  score:86,
+  title:"Bloomberg：OpenAI 完成 110 亿美元融资首批到账，估值达 1.25 万亿美元",
+  url:"https://x.com/rohanpaul_ai/status/2118813225336873181",
+  sum:"彭博：OpenAI 完成 **$11B 融资首批到账**，估值达 **$1.25T**——此前下调后的估值目标已被市场接受。"
+},
+{
+  t:"11月7日 09:00",
+  d:"2026-11-07",
+  src:"X：X.PIN (@thexpin)",
+  cat:"bigtech",
+  score:76,
+  title:"约 60 万块 Nvidia H200 芯片滞留香港仓库，受阻方为北京而非华盛顿",
+  url:"https://x.com/thexpin/status/2118728111076335627",
+  sum:"约 **60 万块 Nvidia H200** 芯片滞留香港仓库，受阻方为**北京而非华盛顿**——出口管制执行链条出现变数。"
+},
+
+// ───────────── IT桔子 2026-11-07 新增 ──────────────
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Alethio Therapeutics获得9000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Alethio Therapeutics完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Anaheim Bio获得4000万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Anaheim Bio完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"ArrayPatch获得160万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，ArrayPatch完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"CesiumAstro获得D轮投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，CesiumAstro完成#5。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"EOS-X获得1.1亿欧元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，EOS-X完成#5。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Emvena获得种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Emvena完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Harbinger获得2.4亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Harbinger完成#5。属\"汽车交通 > 汽车制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","汽车制造"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Humble Robotics获得5100万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Humble Robotics完成#2。属\"汽车交通 > 自动/无人驾驶\"。",
+  ma_cap:"未披露",
+  tags:["投融资","自动/无人驾驶"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Lazzaro One获得Pre-B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Lazzaro One完成#15。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Lombard Systems获得400万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Lombard Systems完成#13。属\"区块链 > 数字货币\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数字货币"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Ocient获得1亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Ocient完成#4。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"SYNCERE获得1100万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，SYNCERE完成#13。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Shackleton AI获得500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Shackleton AI完成#13。属\"房地产 > 建筑建材\"。",
+  ma_cap:"未披露",
+  tags:["投融资","建筑建材"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Takenos完成700万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Takenos完成#13。属\"金融 > 金融信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融信息化"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Titan OS获得A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Titan OS完成#2。属\"先进制造 > 物联网设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","物联网设备"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Zipline UAV获得15亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，Zipline UAV完成#11。属\"先进制造 > 无人机\"。",
+  ma_cap:"未披露",
+  tags:["投融资","无人机"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"森峰激光今日上市 发行价格17.79元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，森峰激光完成#8。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"致真精密仪器宣布完成B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，致真精密完成#3。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"观壹智能获得数千万元A轮投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，观壹智能完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月7日",
+  d:"2026-11-07",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"阿法纳生物宣布完成A轮融资首关",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-07 IT桔子披露，阿法纳生物完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+
 // ───────────── Google Blog：AI（RSS） 2026-11-06 新增 ──────────────
 {
   t:"11月6日 09:00",
