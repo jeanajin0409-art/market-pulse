@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月9日 · 星期一</div>
+    <div class="date">2026年11月10日 · 星期二</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>NVIDIA 董事会宣布就 CEO 黄仁勋遭外国情报行动瞄准</strong>、<strong>Laza Medical获得1.6亿美元B轮融资</strong>、<strong>时空智子获得A+轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>耶鲁教授 Sonnenfeld 估计黄仁勋职位去留概率约为 </strong>、<strong>Anthropic 发布 Claude Fable 5.2 </strong>、<strong>Nvidia CEO 黄仁勋婚外情风波削弱其对严格 AI 芯</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── TechCrunch：AI（RSS） 2026-11-10 新增 ──────────────
+{
+  t:"11月10日 09:00",
+  d:"2026-11-10",
+  src:"Anthropic：Claude.dev 开发者博客（RSS）",
+  cat:"ai",
+  score:83,
+  title:"Anthropic 用 1000 个 Claude Fable 5.2 智能体在沙箱内复现费马大定理形式化证明",
+  url:"https://claude.dev/blog/safely-scaling-multi-agent-teams-with-fable-5-2/",
+  sum:"Anthropic 用 **1000 个 Claude Fable 5.2 智能体**在沙箱内复现**费马大定理形式化证明**——多智能体并行把 2024 年的形式化证明工程重新自动化。"
+},
+{
+  t:"11月10日 09:00",
+  d:"2026-11-10",
+  src:"Anthropic：Newsroom（网页）",
+  cat:"ai",
+  score:86,
+  title:"Anthropic 发布 Claude Fable 5.2 与 Claude Mythos 5.2",
+  url:"https://www.anthropic.com/claude-fable-and-mythos-5-2",
+  sum:"Anthropic 发布 **Claude Fable 5.2 与 Claude Mythos 5.2**——Fable 5.2 以 **65 分**登顶 Artificial Analysis Intelligence Index v5；AA 实测其推理速度 +30%、单任务成本再降。"
+},
+{
+  t:"11月10日 09:00",
+  d:"2026-11-10",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:80,
+  title:"做空机构 Culper Research 曾在丑闻爆发前六个月提示 Nvidia CEO 与疑似中国间谍的关系",
+  url:"https://techcrunch.com/2026/11/09/a-short-seller-flagged-nvidia-ceos-ties-to-a-suspected-chinese-spy-six-months-before-the-scandal/",
+  sum:"TechCrunch：做空机构 Culper Research 曾在丑闻爆发前**六个月**提示 Nvidia CEO 与疑似中国间谍的关系——被市场忽视的预警。"
+},
+{
+  t:"11月10日 09:00",
+  d:"2026-11-10",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  score:88,
+  title:"耶鲁教授 Sonnenfeld 估计黄仁勋职位去留概率约为 50-50",
+  url:"https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/",
+  sum:"耶鲁教授 Jeffrey Sonnenfeld 估计**黄仁勋职位去留概率约 50-50**——NVIDIA CEO 个人风险的量化评估首次出现。"
+},
+{
+  t:"11月10日 09:00",
+  d:"2026-11-10",
+  src:"The Decoder：AI News（RSS）",
+  cat:"bigtech",
+  score:85,
+  title:"Nvidia CEO 黄仁勋婚外情风波削弱其对严格 AI 芯片出口管制的游说",
+  url:"https://the-decoder.com/nvidia-espionage-scandal-weakens-huangs-lobby-against-tighter-ai-chip-export-controls/",
+  sum:"The Decoder 报道：黄仁勋婚外情风波 + 情报行动调查**削弱其对严格 AI 芯片出口管制的游说能力**——个人丑闻直接影响政策结果。"
+},
+{
+  t:"11月10日 09:00",
+  d:"2026-11-10",
+  src:"公众号：数字生命卡兹克",
+  cat:"ai",
+  score:81,
+  title:"实测 Claude Fable 5.2：一次直出视频与 3D 网页，审美与细节表现突出",
+  url:"https://mp.weixin.qq.com/s/sKoVHL_oNsik9vtUjr0lHg",
+  sum:"实测 Claude Fable 5.2：**一次直出视频与 3D 网页**，审美与细节表现突出——多模态生成首次被包进主力旗舰模型。"
+},
+
+// ───────────── IT桔子 2026-11-10 新增 ──────────────
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Fathom Tx获得5500万美元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Fathom Tx完成#14。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Kalepa获得7500万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Kalepa完成#3。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Laza Medical获得1.6亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Laza Medical完成#3。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Marble Imaging获得600万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Marble Imaging完成#13。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Neurabody获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Neurabody完成#11。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Onodrim获得13亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Onodrim完成#2。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Physicl获得1000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Physicl完成#13。属\"机器人 > 机器人周边服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人周边服务"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"SandBase获得数百万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，SandBase完成#13。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Siggy获得600万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Siggy完成#13。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Spectral Medical获得融资446万美元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Spectral Medical完成#17。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Vensum获得900万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Vensum完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"firmly获得1500万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，Firmly完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"三优生物完成近亿元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，三优生物完成#4。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"刻行时空coScene获得近亿人民币Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，刻行时空coScene完成#12。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"原方智能完成数千万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，原方智能完成#1。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"易方智控完成数千万元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，易方智控完成#12。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"津工能源完成A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，津工能源完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"清析智研完成近亿元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，清析智研完成#1。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"谱星航天连续完成两轮近3亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，谱星航天完成#2。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月10日",
+  d:"2026-11-10",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"途深智合获得Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-10 IT桔子披露，途深智合完成#12。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+
 // ───────────── IT之家·人工智能 2026-11-09 新增 ──────────────
 {
   t:"11月9日 09:00",
