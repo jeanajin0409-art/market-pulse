@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月10日 · 星期二</div>
+    <div class="date">2026年11月11日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>耶鲁教授 Sonnenfeld 估计黄仁勋职位去留概率约为 </strong>、<strong>Anthropic 发布 Claude Fable 5.2 </strong>、<strong>Nvidia CEO 黄仁勋婚外情风波削弱其对严格 AI 芯</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic 启动 IPO 路演,拟发行 8.25 亿</strong>、<strong>Google DeepMind 发布 Gemini 4 Ca</strong>、<strong>Anthropic 再次修订 S-1：宣布已达责任扩展政策能</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,340 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Anthropic：Newsroom（网页） 2026-11-11 新增 ──────────────
+{
+  t:"11月11日 09:00",
+  d:"2026-11-11",
+  src:"Anthropic：Newsroom（网页）",
+  cat:"ipo",
+  score:87,
+  title:"Anthropic 启动 IPO 路演，拟发行 8.25 亿股 A 类普通股并申请以代码 ANT 上市纳斯达克",
+  url:"https://www.anthropic.com/news/roadshow-launch",
+  sum:"Anthropic 启动 IPO 路演：拟发行 **8.25 亿股 A 类普通股**，申请以代码 **ANT** 上市纳斯达克；计划下周四或周五挂牌。"
+},
+{
+  t:"11月11日 09:00",
+  d:"2026-11-11",
+  src:"Gary Marcus：The Road to AI We Can Trust（RSS）",
+  cat:"ipo",
+  score:84,
+  title:"Gary Marcus 质疑 Anthropic 1.4 万亿美元 IPO 估值",
+  url:"https://garymarcus.substack.com/p/just-say-no-to-anthropics-ipo",
+  sum:"Gary Marcus 长文质疑 Anthropic **$1.4T IPO 估值**——技术圈对 frontier lab 万亿估值的公开质疑持续。"
+},
+{
+  t:"11月11日 09:00",
+  d:"2026-11-11",
+  src:"Google DeepMind：Blog（RSS）",
+  cat:"ai",
+  score:85,
+  title:"Google DeepMind 发布 Gemini 4 Carbon 前沿模型",
+  url:"https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
+  sum:"Google DeepMind 发布 **Gemini 4 Carbon** 前沿模型——继 Gemini 4 Argon 后的第二代旗舰。"
+},
+{
+  t:"11月11日 09:00",
+  d:"2026-11-11",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  score:81,
+  title:"Anthropic Fable 5.2 在 Remote Labor Index 上以 41.3% 领跑真实自由职业任务",
+  url:"https://the-decoder.com/anthropics-fable-5-2-completes-41-percent-of-real-freelance-jobs-up-from-2-5-percent-a-year-ago/",
+  sum:"Anthropic Fable 5.2 在 **Remote Labor Index** 上以 **41.3%** 领跑真实自由职业任务（一年前仅 2.5%）。"
+},
+{
+  t:"11月11日 09:00",
+  d:"2026-11-11",
+  src:"X：Cursor (@cursor_ai)",
+  cat:"ai",
+  score:85,
+  title:"Gemini 4 Carbon 现已登陆 Cursor，高 effort 下居 CursorBench 榜首",
+  url:"https://x.com/cursor_ai/status/2120193584670580857",
+  sum:"Google DeepMind 发布 **Gemini 4 Carbon** 前沿模型——继 Gemini 4 Argon 后的第二代旗舰。"
+},
+{
+  t:"11月11日 09:00",
+  d:"2026-11-11",
+  src:"X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+  cat:"ai",
+  score:85,
+  title:"Gemini 4 Carbon 上线 Gemini API、AI Studio 和 Antigravity",
+  url:"https://x.com/_philschmid/status/2120186354537812452",
+  sum:"Google DeepMind 发布 **Gemini 4 Carbon** 前沿模型——继 Gemini 4 Argon 后的第二代旗舰。"
+},
+{
+  t:"11月11日 09:00",
+  d:"2026-11-11",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ipo",
+  score:85,
+  title:"Anthropic 再次修订 S-1：宣布已达责任扩展政策能力阈值，IPO 定价 $70-$78",
+  url:"https://x.com/rohanpaul_ai/status/2120231037569790385",
+  sum:"Anthropic 再次修订 S-1：宣布**已达责任扩展政策能力阈值**，IPO 定价 **$70–78/股**。"
+},
+
+// ───────────── IT桔子 2026-11-11 新增 ──────────────
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"3Chat.ai 完成千万元Pre-A 轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，3Chat.ai完成#12。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AIREV获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，AIREV完成#11。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"COGNNA获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，COGNNA完成#11。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Delix获得1亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Delix完成#4。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Mavria获得1.3亿美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Mavria完成#13。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Newmo获得208亿日元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Newmo完成#3。属\"汽车交通 > 交通出行\"。",
+  ma_cap:"未披露",
+  tags:["投融资","交通出行"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nominal获得2.4亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Nominal完成#4。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Optics11获得5000万欧元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Optics11完成#11。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","传感设备"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Raise3D复志科技获得1亿人民币C+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Raise3D复志科技完成#19。属\"先进制造 > 3D打印\"。",
+  ma_cap:"未披露",
+  tags:["投融资","3D打印"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"SRTD Biotech获得3150万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，SRTD Biotech完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Seva Money获得500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Seva Money完成#13。属\"金融 > 供应链金融\"。",
+  ma_cap:"未披露",
+  tags:["投融资","供应链金融"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Spines获得2900万美元A-1轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Spines完成#14。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Vaeridion获得3000万欧元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，Vaeridion完成#14。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"北京知驿科技获得数千万人民币种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，知驿科技完成#13。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"太乙核能完成种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，太乙核能完成#13。属\"前沿科技 > 核聚变\"。",
+  ma_cap:"未披露",
+  tags:["投融资","核聚变"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"微邻客完成1000万元天使轮融资，腾讯投资独家投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，微邻客完成#1。属\"本地生活 > 商户服务及信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","商户服务及信息化"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"猿声科技完成新一轮超亿元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，猿声科技完成#2。属\"机器人 > 机器人零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人零部件"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"登临科技今日上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，登临科技完成#8。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"科思科技完成数千万元新一轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，钻耐科思DiamNEX完成#2。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"11月11日",
+  d:"2026-11-11",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"芯德半导体今日上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-11 IT桔子披露，芯德半导体完成#8。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+
 // ───────────── TechCrunch：AI（RSS） 2026-11-10 新增 ──────────────
 {
   t:"11月10日 09:00",
