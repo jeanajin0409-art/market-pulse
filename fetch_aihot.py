@@ -59,7 +59,12 @@ def fetch(hours: int = 48, limit: int = 60, mode: str = "selected") -> list[dict
 
 
 if __name__ == "__main__":
-    hours = int(sys.argv[1]) if len(sys.argv) > 1 else 48
+    args = sys.argv[1:]
+    hours = int(args[0]) if args and not args[0].startswith('-') else 48
+    if '--json' in args:
+        # 输出纯 JSON 数组，供 pipeline.py import-aihot 直接入库为 raw_candidates
+        print(json.dumps(fetch(hours=hours), ensure_ascii=False, indent=2))
+        sys.exit(0)
     items = fetch(hours=hours)
     print(f"items within {hours}h: {len(items)}")
     for i, it in enumerate(items, 1):

@@ -1,225 +1,313 @@
 ---
 name: dealhot
-description: 更新/维护 DealHOT 一级市场动态聚合页（github.com/jeanajin0409-art/market-pulse 仓库的 index.html，发布于 jeanajin0409-art.github.io/market-pulse）。当用户说"更新 DealHOT"、"刷新一级市场页面"、"更新市场动态网页"、"把今天的交易新闻加到页面"、"加一条 M&A/IPO/少数股权/融资新闻"、"重新生成 market-pulse"、"今天的一级市场日报"等任何涉及这个页面的增、删、改、重建时使用。即使用户只说"更新那个网页"且上下文涉及一级市场/IPO/并购/AI投融资，也应触发本 skill。页面数据内嵌在 HTML 里，不懂结构直接改容易把页面改坏——动这个文件前必须先读本 skill。
+description: 更新/维护 DealHOT 一级市场动态聚合页（github.com/jeanajin0409-art/market-pulse，发布于 jeanajin0409-art.github.io/market-pulse）。当用户说"更新 DealHOT"、"刷新一级市场页面"、"今天的一级市场日报"、"加一条 M&A/IPO/少数股权/融资新闻"、"重做某天的历史"等任何涉及这个页面的增、删、改、重建时使用。现行实现是 **两段式 DB 流水线**：scripts/pipeline.py 抓取入 raw_candidates → 人工精选写 sum/why → items → scripts/build.py 渲染成 index.html + archive/。不要手改 index.html，动数据前必须先读本 skill。
 ---
 
 # DealHOT — 一级市场与AI动态聚合页维护指南
 
-目标文件：本仓库根目录的 `index.html`（仓库：`github.com/jeanajin0409-art/market-pulse`）
-单文件静态页面，无构建步骤、无依赖。所有数据内嵌在 `<script>` 里的 `const ITEMS = [...]` 数组中，前端 JS 负责筛选与渲染。
+## 0. 现行架构
 
-**发布机制**：push 到 `main` 分支后，GitHub Pages 约 1 分钟内自动发布到
-`https://jeanajin0409-art.github.io/market-pulse/` ——这是对外分享的正式地址。
+**两段式流水线**（原始候选与正式条目分离，中间有人工精选这一环）：
 
-**编辑前必须 `git pull`**（可能有其他 agent 刚推送过更新）；改完按下文验证，然后 commit + push。commit message 用一行中文概括（如"新增 6/11 三条M&A + 更新导读"）。
+```
+fetch ──► raw_candidates(DB) ──► 人工逐条精选，写 sum/why/cat/regions/score ──► items(DB)
+                                                                                    │
+                                                            build.py build ─────────┘
+                                                                                    ▼
+                                                              index.html + archive/<date>.html + archive/index.html
+                                                                                    │
+                                                                                    ▼
+                                                        build.py post ──► #dealhot 频道 post
+```
 
-**远程 agent 接入**：不在仓库所有者电脑上的 agent，用仓库的 contributor 部署钥匙（私钥文件由所有者提供）克隆与推送：
+- 仓库：`/Users/mac/Documents/market-pulse`（GitHub `jeanajin0409-art/market-pulse`）
+- 线上页面：`https://jeanajin0409-art.github.io/market-pulse/` —— push 到 `main` 后 GitHub Pages 约 1 分钟自动发布
+- **唯一事实源 = `dealhot.db`**（SQLite，仓库根目录；`.gitignore` 排除，只本机一份 → 定期备份）
+  - 表：`raw_candidates`（原始候选）、`items`（正式发布条目）、`meta`
+  - `items` 字段：`date, t, src, cat, regions, score, title, url, sum, why, ma_cap, tags, commit_sha, raw_id`
+  - 约束：`UNIQUE(date, src, title)`
+- **抓取与精选 = `scripts/pipeline.py`**；**渲染与 post = `scripts/build.py`**
+
+| 文件 | 作用 |
+|---|---|
+| `scripts/pipeline.py` | migrate / fetch / import-aihot / list / accept / stats |
+| `scripts/build.py` | build（含发布硬闸门）/ post / dry-run |
+| `fetch_aihot.py` | AIHOT v1 抓取封装（`--json` 可直接喂 pipeline） |
+| `x_scan/scan.py` | X 账号抓取（conda 环境 `dealhot-x`） |
+| `samples/` | 精选输入 JSON 与渲染样稿（重做历史时作为参照） |
+| `dealhot.db` | 唯一事实源（不入 git） |
+
+**凭证**在 `.secrets/`（`.gitignore` 排除）：`itjuzi.env`、`x_cookies.json`。**绝不能提交进这个公开仓库，也不能写进任何会被 push 的文件。**
+
+**路径可覆盖**（在副本上跑样稿而不动生产 DB / 生产文件）：
 
 ```bash
-# 私钥文件放到本机后（例如 ~/keys/market-pulse-contributor-key，权限 600）：
+export DEALHOT_DB=/tmp/test.db        # DB 路径
+export DEALHOT_INDEX=/tmp/out/index.html
+export DEALHOT_ARCHIVE=/tmp/out/archive
+```
+
+**编辑前必须 `git pull --ff-only origin main`**（可能有其他 agent 刚推送过更新）。
+
+**远程 agent 接入**：用仓库的 contributor 部署钥匙（私钥由所有者提供）克隆与推送：
+
+```bash
 GIT_SSH_COMMAND="ssh -i ~/keys/market-pulse-contributor-key -o IdentitiesOnly=yes" \
-  git clone git@github.com:jeanajin0409-art/market-pulse.git
-# 之后的 pull/push 都带同样的 GIT_SSH_COMMAND，或写进仓库配置：
+  git clone git@github.com/jeanajin0409-art/market-pulse.git
 git config core.sshCommand "ssh -i ~/keys/market-pulse-contributor-key -o IdentitiesOnly=yes"
 ```
 
-## 页面是什么
+## 1. 每日 SOP
 
-仿 aihot.virxact.com 风格的资讯卡片流，覆盖五个板块：
+```bash
+cd /Users/mac/Documents/market-pulse
+git pull --ff-only origin main
 
-| cat 值 | 板块 | 内容范围 |
+# ① 一次性 schema 迁移（幂等，可重复跑）
+python3 scripts/pipeline.py migrate
+
+# ② 抓当天候选 → raw_candidates（绝不直写 items）
+python3 scripts/pipeline.py fetch --date 2026-07-25
+python3 fetch_aihot.py 48 --json > /tmp/aihot.json
+python3 scripts/pipeline.py import-aihot --date 2026-07-25 --file /tmp/aihot.json
+
+# ③ 看候选（人工挑选，逐条写 sum/why/cat/regions/score）
+python3 scripts/pipeline.py list --date 2026-07-25
+
+# ④ 精选结果 → items（字段闸门 + 7 日去重，fail-closed）
+python3 scripts/pipeline.py accept --date 2026-07-25 --file samples/2026-07-25.json
+
+# ⑤ 统计（raw/selected/published、来源、板块、score 分布、重复拦截、字段失败）
+python3 scripts/pipeline.py stats --date 2026-07-25
+
+# ⑥ 渲染（先过发布硬闸门；不过就停，不写文件）
+python3 scripts/build.py build --date 2026-07-25
+
+# ⑦ 提交 + push
+git add -A && git commit -m "dealhot 2026-07-25 rebuild（精选 5 条）" && git push origin main
+
+# ⑧ 生成 #dealhot post 文本 → 发到频道
+python3 scripts/build.py post --date 2026-07-25
+raft message send --target "#dealhot" <<'EOF'
+<post 文本原文>
+EOF
+
+# ⑨ 回报 + ack（漏 ack 会永久挂 inbox）
+raft message send --target "#all:e6f76bce"   # fire→build→commit→push 链路
+raft reminder ack --id 4d2c06ea-7f01-47b6-9465-3f6f58c05f84 --revision <rev>
+```
+
+`build.py build` 的输出必须逐行看：`✓ 发布闸门通过` + 五类统计 + `index.html written` / `archive/<D>.html written` / `archive/index.html updated` / 两行 `JS check ... OK` / `Main page items: N` / `Archive page items: N`。
+
+## 2. 抓取
+
+### 2.1 IT桔子 OpenAPI（pipeline.py fetch 已封装）
+
+中国一级市场的结构化数据源。凭证 `.secrets/itjuzi.env`；token 有效期 1 小时，每次流程开头取一次。
+
+**四个端点与参数**（`date_pattern=3` 按事件发生时间，快讯用 `1` 按发布时间）：
+
+| 端点 | 内容 | 板块倾向 |
 |---|---|---|
-| `minority` | 少数股权 | 中国、美国、亚太的少数股权/PE成长投资、产业资本合资 |
-| `ma` | M&A | 中国、美国、亚太，**并特别关注中东、巴西** |
-| `ipo` | IPO | 全球 IPO 定价/上市/递表/募资数据，重点港股+美股 |
-| `bigtech` | 大厂动态 | Apple/Google/Microsoft/Meta/Amazon/Nvidia 等重要新闻、监管 |
-| `ai` | AI 动态 | 产品、模型/技术、CAPEX、ARR/商业化、投融资、政策 |
-| `frontier` | 前沿科技 | 具身智能/机器人、太空、核聚变、量子计算、国防科技的融资/IPO/里程碑 |
-
-**每日刷新必覆盖（用户 2026-06-11 明确要求）**：除一级市场三板块外，每天都要主动更新 **前沿科技（frontier）+ AI 动态（ai）+ X 上 KOL/机构观点（cmt）**。cmt 不是单独板块，而是把 X 大佬/机构的观点与独家 deal 当成内容来源，挑有料的按内容归到对应 cat（src 写 `X：<显示名>`）。前沿科技与 AI 动态要拉全，不要只放一两条充数。
-
-## 数据结构（ITEMS 数组元素）
-
-```js
-{t:"6月10日 09:46",          // 北京时间显示串；周报类条目可写"6月上旬"/"Q1数据"
- d:"2026-06-10",             // 机器可读 ISO 日期，必填！用于"最新"排序与时间分组/今日徽标
- src:"Bloomberg",            // 来源名（人话：媒体名/公众号名/X账号名，不是URL）
- cat:"ai",                   // minority | ma | ipo | bigtech | ai（五选一）
- regions:["美国"],           // 数组，取值：中国 美国 亚太 中东 巴西 欧洲 全球（可多个）
- score:86,                   // 0-100 重要度，标准见下文
- title:"标题（可含数字与结论，像 AIHOT 一样信息密度要高）",
- url:"https://...",          // 必填，原文链接，没有可靠链接的条目不要加
- sum:"2-3句中文摘要，给出关键数字（金额、估值、倍数、同比）。",
- why:"推荐理由（可选）：为什么值得读/对一级市场意味着什么。",
- tags:["AI","CAPEX"]}        // 主题标签；AI 条目须含 TOPICS 之一：产品、模型/技术、CAPEX、ARR/商业化、投融资、政策
-```
-
-字段注意：
-- **`d` 必填**（ISO `YYYY-MM-DD`）：页面默认"最新"排序按 `d` 倒序+分日期组，并给 `d===今天` 的条目打"今日"绿标。`t` 是展示串、`d` 是排序键，两者都要写。周报/综述类（"6月上旬"→当月05、"Q1数据"→03-31、"年度展望"→01-01）给个合理日期让它沉到下面。"今天"自动取顶部导航日期，无需额外维护。
-- 字符串里如有英文双引号，改用中文引号或转义，否则会破坏 JS。
-- `regions` 与 `tags` 驱动侧栏筛选，别发明新地区值；新主题标签可以加，但 AI 主题筛选 chips 取自 `TOPICS` 常量，新增主题需同步改 `TOPICS`。
-- `publishedAt` 类的 ISO 时间不要出现，`t` 直接写人话北京时间。
-
-## score 打分标准
-
-- 90+：改变市场格局的事件（史上最大IPO、头部模型发布、千亿级政策）
-- 80-89：十亿美元级交易、总量基准数据（季度M&A统计、CAPEX指引）
-- 70-79：数亿美元交易、重要产品发布、监管判例
-- 60-69：补充性动态
-- 60 以下的不值得收录
-
-## 更新工作流
-
-### 1. 拉 AI 动态（AIHOT 公开API）
-
-必须带浏览器 UA，否则 403：
+| `/investevent/get_investevent_list_v2` | 投资事件 | minority |
+| `/merger/get_acquisition_list_v2` | 收购事件 | ma |
+| `/merger/get_merger_list_v2` | 合并事件 | ma |
+| `/news/get_spider_news_list_v2` | 快讯 | 各板块补充 |
 
 ```bash
-UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 aihot-skill/0.2.0"
-since=$(date -u -v-24H +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ)
-curl -sH "User-Agent: $UA" "https://aihot.virxact.com/api/public/items?mode=selected&since=$since&take=60"
+# 正确用法（规格要求）：date_pattern + date_start/date_end
+curl -s "https://openapi.itjuzi.com/investevent/get_investevent_list_v2?date_pattern=3&date_start=2026-07-25&date_end=2026-07-26&limit=100&order=1&order_rules=1" \
+  -H "AUTHORIZATION: Bearer $TOKEN"
 ```
 
-返回字段 `title/source/publishedAt/summary/category/score/url`。挑 score≥65 且与一级市场视角相关的条目（资本开支、融资、ARR、重要模型/产品、政策），改写为上面的 ITEMS 格式。`publishedAt`（UTC）转北京时间 = +8 小时。若用户装有 aihot skill，其文档有完整 API 说明。
-
-### 1.5 IT桔子 OpenAPI（中国少数股权deal + 并购收购 + 重要新闻）
-
-中国一级市场的结构化数据源，已实测可用。完整文档：`itjuzi.com/shujuapi/V2BaseComponents/explain/explain.html`
-
-**凭证**：在仓库所有者本机 `.secrets/itjuzi.env`（含 ITJUZI_APPID / ITJUZI_APPKEY）。该目录被 .gitignore 排除——**绝不能把凭证提交进这个公开仓库或写进任何会推送的文件**。远程 agent 需要所有者另行提供一份 env 文件，同样放本机 git 之外。
-
-**鉴权**（token 有效期 1 小时，每次更新流程开头取一次即可）：
-
-```bash
-source .secrets/itjuzi.env
-TOKEN=$(curl -s -X POST "https://openapi.itjuzi.com/oauth2.0/get_access_token" \
-  -d "appid=$ITJUZI_APPID&appkey=$ITJUZI_APPKEY&granttype=client_credentials" | jq -r '.data.access_token')
-# 之后所有请求带头（注意 AUTHORIZATION 全大写、Bearer 后有空格）：
-# -H "AUTHORIZATION: Bearer $TOKEN"
-```
-
-**接口与板块对应**（GET/POST 均可；`date_pattern=3` 按事件发生时间、快讯用 `1` 按发布时间；日期格式 `2026-06-10`；返回统一为 `{code:1000,info:"Success",data:[...]}`，中文是 \u 转义，用 jq 取字段自动解码）：
-
-| 端点 | 内容 | 喂哪个板块 |
-|---|---|---|
-| `/investevent/get_investevent_list_v2` | 投资事件 | minority（中国少数股权） |
-| `/merger/get_acquisition_list_v2` | 收购事件 | ma（中国） |
-| `/merger/get_merger_list_v2` | 合并事件 | ma（中国） |
-| `/news/get_spider_news_list_v2` | 快讯 | 各板块补充、大厂动态 |
-
-```bash
-Y=$(date -v-1d +%Y-%m-%d 2>/dev/null || date -d yesterday +%Y-%m-%d); T=$(date +%Y-%m-%d)
-# 最近24小时投资事件（按融资时间倒序）
-curl -s "https://openapi.itjuzi.com/investevent/get_investevent_list_v2?date_pattern=3&date_start=$Y&date_end=$T&limit=50&order=1&order_rules=1" -H "AUTHORIZATION: Bearer $TOKEN"
-# 最近24小时收购事件
-curl -s "https://openapi.itjuzi.com/merger/get_acquisition_list_v2?date_pattern=3&date_start=$Y&date_end=$T&limit=50" -H "AUTHORIZATION: Bearer $TOKEN"
-# 最近24小时快讯（可加 keywords=xxx 按标题搜）
-curl -s "https://openapi.itjuzi.com/news/get_spider_news_list_v2?date_pattern=1&date_start=$Y&date_end=$T&limit=100" -H "AUTHORIZATION: Bearer $TOKEN"
-```
+**实测坑（都已在 pipeline.py 里处理，勿回退）**：
+- **单日区间返回 0 条** → 必须用 ≥2 天的窗口，再按 API 自带的事件日期字段（`invest_year/month/day`、`purchase_year/month/day`）精确过滤到目标日
+- **单次上限 100 条** → `order=1`（新→旧）与 `order=2`（旧→新）各取一次合并
+- **`?d=<date>` 不是有效参数**（旧实现踩过）：会忽略日期、返回「最新 20 条」，导致同一天内容被写进多天
+- **`event_tilte` 拼写**（acquisition/merger 接口的 title 字段是 typo）
+- `merger/get_merger_list_v2` 当前返回 500，合并事件暂时缺源（pipeline 会记录端点异常并继续）
 
 **关键返回字段**：
-- 投资事件：`event_title`、`event_des`、`round_name`（轮次）、`detail_amount`（**单位：万**）、`currency_name`、`leading_investor`/`following_investor`（投资方）、`com_name`/`com_industry_name`、`invest_year/month/day`、`news[]`（关联报道，含可用的原文链接）
-- 收购：另有 `purchaser[]`（收购方）、`equity_ratio`（股比）、`purchase_year/month/day`
-- 快讯：`news_title`、`news_time`、`news_source`、`news_url`、`related_party[]`（关联主体）
+- 投资事件：`event_title`、`event_des`、`round_name`（轮次）、`detail_amount`（**单位：万**）、`currency_name`、`approximate_amount_name`（如「未透露」）、`leading_investor`/`following_investor`/`secondary_investor`（投资方）、`com_name`/`com_industry_name`/`com_sub_industry_name`、`invest_year/month/day`、`news[]`（关联报道，含原文链接）
+- 收购：另有 `purchaser[]`（收购方）、`equity_ratio`、`purchase_year/month/day`
+- 快讯：`news_title`、`news_time`、`news_source`、`news_url`、`related_party[]`
 
-**入选门槛**（API 一天返回上百条，页面只收重要的）：
-- 投资事件：金额 ≥1 亿元人民币（`detail_amount`≥10000，单位是万）、或知名机构领投、或 AI/硬科技明星公司；轮次为战略投资/PE/老股转让的优先归 minority，AI 公司大额融资可归 ai+投融资
+**入选门槛**（API 一天上百条，页面只收重要的）：
+- 投资事件：金额 ≥1 亿元人民币（`detail_amount`≥10000，单位是万）、或知名机构领投、或 AI/硬科技明星公司；战略投资/PE/老股转让优先归 minority，AI 公司大额融资可归 ai+投融资
 - 收购/合并：金额 ≥5 亿元、或买卖任一方知名
 - 快讯：只挑 `related_party` 含知名公司/独角兽的
-- 条目 `url` 优先用投资事件 `news[]` 里的报道链接或快讯 `news_url`；实在没有外部链接时用 `https://www.itjuzi.com/investevent` 兜底、`src` 写"IT桔子"
+- **url 必须具体原文链接**（`news[]` 里的报道链接或快讯 `news_url`）；拿不到原文链接的候选**不收录**（`pipeline.py list` 会标 ⚠️）
 
-**配额纪律**：限流 1800 秒/200 次，且总调用次数有限额。每日更新的标准用量 = 1 次 token + 3 次业务调用，足够；**不要翻页轰炸、不要逐条查事件详情**。
+**配额纪律**：限流 1800 秒/200 次，总调用次数有上限。每日标准用量 = 1 次 token + 4 端点 × 2 窗口 × 2 序 ≈ 17 次，足够；**不要翻页轰炸、不要逐条查事件详情**。
 
-### 1.6 从 X (Twitter) 扒一级市场 / AI / 前沿科技信号（cmt 主力来源）
+### 2.2 AIHOT v1（`fetch_aihot.py`）
 
-**首选：x_scan/scan.py 抓取脚本（cookie 认证，直连 X GraphQL，拿真实日期）**
+> ⚠️ **旧接口已于 2026-10-31 停用**：`https://aihot.virxact.com/api/public/items` 现在会 `301` → 目标路径 `404` + 空 body，**静默拿不到数据**（不报错）。不要再用旧地址。
+
+```bash
+python3 fetch_aihot.py 48           # 打印近 48h 候选
+python3 fetch_aihot.py 48 --json    # JSON 数组，可直接喂 pipeline import-aihot
+```
+
+**v1 参数映射**（旧 → 新）：`take` → `limit`；`since` → `window`（**只接受 `'24h'` / `'7d'`**）；去掉 `fields`；旧 `cursor` 弃用。
+**v1 字段映射**：`item.url` → `item.links.original`（fallback `links.aihot`）；`item.source`（字符串）→ `item.source.name`（对象）。`title`/`summary`/`category`/`score`/`publishedAt` 不变。
+迁移指南：https://aihot.news/agent?tab=api#legacy-api-migration
+
+挑 score≥65 且与一级市场视角相关的条目（资本开支、融资、ARR、重要模型/产品、政策）。`publishedAt`（UTC）转北京时间 = +8 小时。
+
+**注意**：AIHOT 公开 API 只有 7 天窗口，**不能回溯历史**。历史重做只能靠 IT桔子接口 + 仓库已有产物。
+
+### 2.3 X (Twitter) 抓取
 
 ```bash
 source /opt/anaconda3/etc/profile.d/conda.sh && conda activate dealhot-x
 python x_scan/scan.py --group deals --days 3              # 一级市场记者 → minority/ma/ipo
-python x_scan/scan.py --group ai --days 2 --loose         # AI 分析+大佬观点(cmt) → ai
+python x_scan/scan.py --group ai --days 2 --loose         # AI 分析+大佬观点 → ai
 python x_scan/scan.py --group frontier --days 7 --loose   # 前沿科技 → frontier
 python x_scan/scan.py --group official --days 5 --loose   # 大厂官方产品/模型 → ai/bigtech
 python x_scan/scan.py --group cn --days 4 --loose         # 中文 AI → ai/minority
 python x_scan/scan.py --group mena --days 4               # 中东/主权基金 → ma/minority
 ```
 
-脚本读 cookie → 直接调 X GraphQL（UserByScreenName→UserTweets）→ 拉 watchlist 账号近 N 天推文 → 按数字/deal关键词筛 → 输出候选 + `out/x_scan_*.json`。维护者挑命中条目改写成 ITEMS。
+脚本读 cookie → 直连 X GraphQL（UserByScreenName→UserTweets）→ 拉 watchlist 账号近 N 天推文 → 按数字/deal 关键词筛 → 输出候选 + `out/x_scan_*.json`。
 
-**关键实现细节（踩过的坑）**：
-- **不要用 twikit 的 login/search**：twikit 2.3.3 的 `client_transaction.init()`（`get_indices`）已与 X 当前 JS bundle 不兼容，必坏；`search_tweet` 端点对小号也返回 404。脚本因此**绕开 twikit**，纯 httpx 直连 GraphQL，operation IDs 启动时从 X `main.*.js` 自动刷新（失效会自动回退硬编码默认值）。
-- **认证靠 cookie**，不靠密码登录。cookie 由 `.secrets/export_cookies.py chrome` 从浏览器导出到 `.secrets/x_cookies.json`（需 `auth_token`+`ct0`）。用户的登录态在 **Chrome Profile 2**（不是 Default），export 脚本已指定该 profile。cookie 失效时让用户在那个 Chrome profile 重新登录 x.com 再导一次。
-- **`--loose`**：放宽筛选（不要求含数字/deal词，只去掉<40字的短推/转推），用于 harvest 观点(cmt)、前沿科技、官方动态这类不一定带金额的内容。deals/mena 这类纯 deal 源用默认严格筛选即可。loose 会混进生活/体育闲聊，**人工挑**。
+**踩过的坑**：
+- **不要用 twikit 的 login/search**：twikit 2.3.3 的 `client_transaction.init()`（`get_indices`）已与 X 当前 JS bundle 不兼容，必坏；`search_tweet` 端点对小号也返回 404。脚本纯 httpx 直连 GraphQL，operation IDs 启动时从 X `main.*.js` 自动刷新（失效自动回退硬编码默认值）
+- **认证靠 cookie**，不靠密码登录。cookie 由 `.secrets/export_cookies.py chrome` 从浏览器导出到 `.secrets/x_cookies.json`（需 `auth_token`+`ct0`）。登录态在 **Chrome Profile 2**（不是 Default）。cookie 失效时让用户在那个 profile 重新登录 x.com 再导一次
+- **`--loose`**：放宽筛选（不要求含数字/deal 词，只去掉<40 字的短推/转推），用于 harvest 观点、前沿科技、官方动态；deals/mena 这类纯 deal 源用默认严格筛选。loose 会混进生活/体育闲聊，**人工挑**
+- 账号有封禁风险，**只用小号**
 
-凭证在 `.secrets/`（gitignore，绝不入库）；账号有封禁风险，**只用小号**。handles 配置在 `scan.py` 的 `HANDLES`（按 deals/vc/ai/official/frontier/cn/mena 分组），与 `watchlist.md` 手动同步。
+**备选：WebSearch**（脚本不可用 / 小号被限时）：`allowed_domains=["x.com"]` + `from:<handle> <关键词>`。**⚠️ 时间窗不可靠**，会混进几个月前甚至去年的旧推，每条必须核对日期、只留近 3 天。
 
-**备选：WebSearch（脚本不可用 / 小号被限时）**
+**watchlist 在 `watchlist.md`**（按板块分组、含每个 handle 喂哪个板块）。`src` 写 `X：<显示名>`。
 
-用 Claude 内置 **WebSearch**，`allowed_domains=["x.com"]` + `from:<handle> <关键词>`（实测 SemiAnalysis_、rohanpaul_ai 通）。**⚠️ 大坑：WebSearch 时间窗不可靠**，会混进几个月前甚至去年的旧推。**每条必须核对日期、只留近 3 天、拿不准就丢**。这是它和 twikit 的本质差别——能用脚本就别靠 WebSearch 猜日期。
+### 2.4 web search（一级市场新闻）
 
-**watchlist 在单独文件 `watchlist.md`**（按板块分组、含每个 handle 喂哪个板块）。每日更新时读它、按板块挑账号扫，不要一次全扫。该文件维护着核心 track 名单（一级市场 deal 记者、VC、AI 分析）+ 候选补充。要扩名单：先用本节方法实测某 handle 能拉到内容、标 ✓ 再加。
-
-补充几个 watchlist.md 之外也好用的：`kimmonismus`（AI快讯）、`AYi_AInotes` `berryxia` `shao__meng`（中文AI）、大厂官方 `OpenAI` `OpenAIDevs` `AnthropicAI` `GoogleDeepMind`、中东 deal `WestAsiaWatch` ✓。
-
-**两种查询方式**：
-- `from:<handle>` 只对**固有性强的 handle 有效**（SemiAnalysis_、rohanpaul_ai 实测准）；像 `from:business`（Bloomberg）这种通用词 handle，`from:` 会失效、返回一堆杂账号——这类不要用 from:。
-- **无 from: 的主题搜索**同样能挖 deal：如 `M&A Middle East stake billion acquire`、`私募 战略投资 亿元`，配 `x.com` domain，实测能拉到中东/全球并购推文。一级市场 deal 发掘优先用这种。
-
-**查询示例**：
-- `from:rohanpaul_ai funding OR raise OR valuation billion`、`from:SemiAnalysis_ HBM OR capex OR Blackwell`
-- 主题式：`AI startup raises billion valuation`、`Middle East sovereign fund acquire stake`
-- ✓ 留：含数字（$Xbn、+47%、估值/轮次/市占）、且与一级市场或某板块主题相关
-- ✗ 丢：纯观点/meme/转推无原创、日期核对不在最近3天、与所有板块都无关
-
-**转成 ITEMS**：`src` 写 `X：<显示名>`（与现有页面 X 条目一致），`url` 用推文链接，`sum` 提炼含数字的要点，按内容归到对应 `cat`。AIHOT 的 API 已经覆盖很多 X 热门内容（见 1.1），**X 扒取是补充**——优先填 AIHOT/IT桔子没覆盖的一级市场 deal 与大额融资，避免与 AIHOT 条目重复。
-
-### 2. 搜一级市场新闻（web search）
-
-按板块搜索，时间限定到最近 1-3 天，示例查询：
+按板块搜索，时间限定最近 1-3 天：
 - 少数股权：`minority stake investment private equity deal <本月> China US Asia`
 - M&A：`M&A deals announced <本周> Middle East Brazil acquisition`（中东、巴西必须覆盖）
-- IPO：`IPO <本周> Hong Kong listing Nasdaq pricing debut` + 中文搜 `港股IPO 招股 本周`
+- IPO：`IPO <本周> Hong Kong listing Nasdaq pricing debut` + `港股IPO 招股 本周`
 - 大厂：`big tech news <日期> Apple Google Microsoft Meta Nvidia`
-- AI融资：`AI startup funding round announced this week raises valuation`（Crunchbase 周榜是好来源）
+- AI 融资：`AI startup funding round announced this week raises valuation`
 
 只收有具体出处 URL 的条目；金额、估值数字要在摘要里保留。
 
-### 3. 编辑文件
+## 3. 精选规则（人工环节，build.py 干不了）
 
-只动三处，**不要重写整个文件**（设计样式已定稿，除非用户要求改设计）：
-1. `ITEMS` 数组——增删条目。每条**必带 `d`**（ISO日期）。数组内仍按板块分组+重要度大致降序（这是"重要"排序模式用的顺序）；页面默认"最新"模式会自动按 `d` 重排，所以新条目放对板块即可，不必纠结日期顺序。过时条目（超过约一周且无背景价值）删除，有判例/基准价值的旧条目可保留并在 `t` 标注"（背景）"。
-2. `.nav .date` 里的日期串（如 `2026年6月10日 · 星期三`）。
-3. `今日导读` 的 `<p>`——用一句话串起当天 4-5 个最大事件（金额+事件名）。
+**每天精选 3–5 条，不是固定 20 条**。当天缺某类就少发，并在汇报里说明，不凑数。
 
-**场景区分**：每日全量更新时三处都要动；用户只让加/删个别条目时，只动 ITEMS 即可——除非新条目够格进当天 top 4-5 事件，否则导读和日期不用碰。
+**必须逐条写**：
 
-### 4. 验证
+- `sum` —— 2–3 句**事实**摘要：金额、轮次、投资方/收购方、关键数字。模板化或与事实不符会被闸门与人工复核拦下
+- `why` —— 1–2 句**解释性**推荐理由：行业意义 / 资本信号 / 风险。**不得含股票买卖意见**（闸门拦截「建议买入 / 加仓 / 目标价 / 持仓」等话术）
+- `cat` —— 语义正确；`bigtech` 只能是大厂（Apple/Google/Microsoft/Meta/Amazon/Nvidia 等），医疗/法律/SaaS 不得错分
+- `regions` —— 中国 / 美国 / 亚太 / 中东 / 巴西 / 欧洲 / 全球
+- `score` —— 按 rubric 拉开（见 §5），**禁止批量同分**
+- `url` —— **具体原文链接**；首页 URL 一律拒绝
+- `dedupe_key`（可选）—— 主体公司名，用于拦截「同一事件被不同来源各写一条」
 
-改完用浏览器或无头方式确认 JS 没坏（页面空白=ITEMS 数组语法错误）：
+**7 日去重**：title / url / dedupe_key 在前后 7 天内已发布过 → 拦截。跨日重复必须阻断。
 
-```bash
-# 快速语法检查：抽出 ITEMS 数组（到 let state 为止，去掉最后一行）让 node 解析
-node -e "$(sed -n '/^const ITEMS/,/^let state/p' index.html | sed '\$d'); console.log('ITEMS ok:', ITEMS.length)"
-# 然后浏览器目检（macOS 用 open；Linux 环境跳过，靠语法检查 + push 后看线上页面）
-open index.html
+**精选输入 JSON 格式**（见 `samples/2026-07-25.json`）：
+
+```json
+{"date": "2026-07-25",
+ "items": [
+   {"raw_id": 92, "dedupe_key": "原粒半导体", "src": "IT桔子",
+    "title": "…", "url": "https://…", "cat": "ai", "regions": ["中国"],
+    "score": 88, "sum": "…", "why": "…", "tags": ["投融资"]}
+ ]}
 ```
 
-最低验证标准：页面打开后侧栏计数正常、新条目出现在对应板块、点击筛选不报错（开发者工具 Console 无红字）。
+## 4. 发布硬闸门（fail-closed）
 
-### 5. 存档（每日更新后必做）
+`build.py build` 先跑 `publish_gate()`，**任一不过 → 打印错误、exit 3、不写任何文件**：
 
-把当天页面存成可浏览的历史快照，并重建往期索引：
+| 闸门 | 说明 |
+|---|---|
+| 首页 URL | path 为空或 `/` 的 URL 一律拒绝 |
+| 空 sum / 空 why | 必填 |
+| 批量同分 | ≥3 条全同分，或 ≥5 条里同一分超过 60% |
+| 跨日重复 | 7 日窗口内 title 重复 |
+| bigtech 错分 | 按 `items.raw_id` 联动 `raw_candidates.category`，医疗健康/企业服务/传统制造/教育/金融/消费 不得进 bigtech |
+| 轮次未解析 | 标题或摘要里出现 `#数字` |
+| CDATA | 标题或摘要含 `<![CDATA[` |
+| 日报聚合标题 | 标题以 `AI HOT 日报` 开头（daily RSS 聚合不得当新闻条目） |
 
-```bash
-bash scripts/archive.sh          # 默认今天；补档用 bash scripts/archive.sh 2026-06-09
+`pipeline.py accept` 是**第二道闸门**（逐条拒收并打印原因）：首页 URL / 空 sum/why / 股票买卖话术 / 轮次未解析 / CDATA / 日报聚合标题 / cat·regions·score 非法 / 7 日 title·url·dedupe_key 重复。
+
+**任一闸门失败：停止 publish，输出明确错误，不得带病 push。**
+
+## 5. 条目字段语义与 score 标准
+
+```js
+{t:"7月25日",               // 北京时间显示串；周报类可写"7月上旬"/"Q3数据"
+ d:"2026-07-25",            // 机器可读 ISO 日期（DB 字段 date），排序键 + 今日徽标
+ src:"IT桔子",              // 来源名（媒体名/公众号名/X账号名，不是URL）
+ cat:"ai",                  // minority | ma | ipo | bigtech | ai | frontier
+ regions:["中国"],          // 数组
+ score:86,                  // 0-100
+ title:"标题（可含数字与结论，像 AIHOT 一样信息密度要高）",
+ url:"https://...",         // 具体原文链接
+ sum:"2-3句中文摘要，给出关键数字（金额、估值、倍数、同比）。",
+ why:"推荐理由：为什么值得读/对一级市场意味着什么。",
+ tags:["AI","CAPEX"]}       // 主题标签；AI 条目须含 TOPICS 之一
 ```
 
-会生成 `archive/<日期>.html`（带"存档快照"提示条的当日页面副本）并重建 `archive/index.html`（往期列表，主页"往期"链接指向它）。**先改完 index.html 再存档**，这样快照与当天发布内容一致。archive/ 要提交进库（这是给访客浏览历史的，不是临时产物）。
+- `date` 必填（ISO）；`t` 是展示串、`date` 是排序键。周报/综述类给个合理日期让它沉到下面
+- `regions` 与 `tags` 驱动侧栏筛选，别发明新地区值；新增主题标签要同步改页面 `TOPICS` 常量
+- 字符串里如有英文双引号，改用中文引号或转义，否则会破坏 JS
 
-## 不要做
+**score rubric**：
+- 90+：改变市场格局的事件（史上最大IPO、头部模型发布、千亿级政策）
+- 80-89：十亿美元级交易、总量基准数据
+- 70-79：数亿美元交易、重要产品发布、监管判例
+- 60-69：补充性动态
+- 60 以下的不值得收录
 
-- 不要凭训练数据编造交易/新闻——每条都必须来自当天的 API 返回或搜索结果，带真实 URL。
-- 不要改动 CSS 与页面骨架（header/aside/footer），用户没要求改设计时只动数据。
-- 不要把摘要写成原文翻译复制——压缩成 2-3 句并保留关键数字。
-- 不要丢 `url` 字段——没有出处的条目等于不可信，宁可不收。
-- 不要忘记中东、巴西的 M&A 覆盖——这是用户明确点名的需求。
+## 6. 验证
+
+```bash
+python3 scripts/pipeline.py stats --date 2026-07-25   # 五类统计
+python3 scripts/build.py dry-run --date 2026-07-25    # 只校验不写文件
+open index.html                                        # 本地目检（macOS）
+```
+
+最低验证标准：发布闸门通过；`JS check` 两行 OK；页面打开后侧栏计数正常、新条目出现在对应板块、点击筛选不报错。
+
+## 7. 定时任务与 ack
+
+- 每天 **08:10 北京时间 (UTC+8)** 触发（wall-clock reminder `#4d2c06ea`，next = `00:10Z`）
+- fire 后**必须**：`raft reminder ack --id 4d2c06ea-7f01-47b6-9465-3f6f58c05f84 --revision <rev>`
+  - `<rev>` 从 `raft inbox check` 输出的 `ack: raft reminder ack --id ... --revision <rev>` 一行原文抄
+  - 不 ack → fired item 永远挂 inbox 显示「1 fired, not acked」→ 看 inbox 的人会误判「job 没跑」
+- 本机时区 11 月起是 **PST (-0800)**；报告 UTC 用 `date -r $(date +%s) -u '+%FT%T%z'`
+- 另有 `#1abcadb5`（美股 pre-market 5 picks，08:30 America/New_York）——**暂停状态**：fire 后**只 ack，不跑任何脚本**，等 owner 明确授权
+
+## 8. 不要做
+
+- 不要凭训练数据编造交易/新闻——每条都必须来自当天的 API 返回或搜索结果，带真实 URL
+- **不要手改 `index.html` 里的 `ITEMS` 数组**——数据在 `dealhot.db`，改 DB 后重新 build；手改会被下次 build 覆盖
+- **不要让抓取直写 items**——原始候选必须先落 raw_candidates，再经人工精选
+- **不要用 IT桔子首页兜底当 url**——没有原文链接的条目宁可不收
+- 不要改动 CSS 与页面骨架（header/aside/footer），用户没要求改设计时只动数据
+- 不要把摘要写成原文翻译复制——压缩成 2–3 句并保留关键数字
+- 不要丢 `url` 字段——没有出处的条目等于不可信
+- 不要在 `why` 里写股票买卖意见
+- 不要忘记中东、巴西的 M&A 覆盖
+- 不要提交 `.secrets/`、不要把凭证写进任何会被 push 的文件
+- 不要单跑 `build.py build` 跳过 `fetch`/`accept`（会漏当天条目）
+- 不要漏 ack（见 §7）
+
+## 9. 历史重做记录
+
+`samples/` 保存了重做样稿（精选输入 JSON + 渲染出的 archive 页面）。最近一次：
+
+| 日期 | raw 候选 | 精选 | 板块覆盖 |
+|---|---|---|---|
+| 2026-07-24 | 169 | 5 | minority / ipo / frontier / bigtech / ai |
+| 2026-07-25 | 55 | 5 | minority ×2 / frontier / bigtech / ai |
+| 2026-07-26 | 57 | 5 | minority / frontier / ai ×2 / bigtech |
+| 2026-07-27 | 189 | 5 | ipo / bigtech / ai / minority / frontier |
+
+重做的候选全部来自 IT桔子接口按真实事件日期回溯（单日区间返回 0 条，必须用 ≥2 天窗口再按事件日过滤）。

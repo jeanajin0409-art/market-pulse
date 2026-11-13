@@ -71,9 +71,9 @@ def schema_gate(item):
     for k in REQUIRED_FIELDS:
         if k not in item or item.get(k) in (None, ''):
             issues.append(f'missing {k}')
-    # why (推荐理由) 推荐但不强制
+    # why (推荐理由) 为空即失败 —— 发布硬闸门同样要求 why 非空
     if not item.get('why'):
-        issues.append('why (推荐理由) missing - should be added for context')
+        issues.append('why (推荐理由) missing')
     if 'score' in item:
         ok, msg = validate_score(item['score'])
         if not ok: issues.append(msg)
@@ -346,8 +346,8 @@ def cmd_dry_run(args):
     rows = c.execute('SELECT COUNT(*) FROM items WHERE date = ?', (today,)).fetchone()[0]
     print(f'Items in DB for {today}: {rows}')
     # Schema gate on each
-    c.execute('SELECT date, t, src, cat, regions, score, title, url, sum, ma_cap, tags FROM items WHERE date = ?', (today,))
-    cols = ['date', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'sum', 'ma_cap', 'tags']
+    c.execute('SELECT date, t, src, cat, regions, score, title, url, sum, why, ma_cap, tags FROM items WHERE date = ?', (today,))
+    cols = ['date', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'sum', 'why', 'ma_cap', 'tags']
     issues = 0
     items = []
     for row in c.fetchall():
