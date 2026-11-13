@@ -473,8 +473,13 @@ def publish_gate(date_str):
     """返回 (errors, stats)。errors 非空 = 禁止 publish（不写任何文件）。"""
     errors = []
     c = get_conn().cursor()
-    rows = c.execute('''SELECT id, title, url, sum, why, cat, score, raw_id
-                         FROM items WHERE date = ?''', (date_str,)).fetchall()
+    try:
+        rows = c.execute('''SELECT id, title, url, sum, why, cat, score, raw_id
+                             FROM items WHERE date = ?''', (date_str,)).fetchall()
+    except sqlite3.OperationalError:
+        # 迁移前（items 还没有 raw_id 列）也能跑：少了 bigtech 错分这一项联动检查
+        rows = c.execute('''SELECT id, title, url, sum, why, cat, score, NULL
+                             FROM items WHERE date = ?''', (date_str,)).fetchall()
     if not rows:
         return [f'当日没有任何条目（{date_str}）'], {}
 
@@ -521,15 +526,24 @@ def publish_gate(date_str):
         errors.append(f'批量同分：{top_n}/{len(rows)} 条同为 {top_score} 分')
 
     since = (datetime.strptime(date_str, '%Y-%m-%d') - timedelta(days=7)).strftime('%Y-%m-%d')
-    dup = c.execute('''SELECT title, COUNT(DISTINCT date) n FROM items
-                        WHERE date >= ? AND date <= ? GROUP BY title HAVING n > 1''',
-                     (since, date_str)).fetchall()
+    # 只看**目标日自己的条目**是否在窗口内的其他日子出现过
+    # （早先的实现扫的是整个窗口，会把别的日子的重复算到目标日头上）
+    target_titles = {r[1] for r in rows if r[1]}
+    dup = []
+    if target_titles:
+        ph = ','.join('?' * len(target_titles))
+        dup = c.execute(f'''SELECT title, COUNT(DISTINCT date) n FROM items
+                             WHERE date >= ? AND date <= ? AND date != ?
+                               AND title IN ({ph})
+                             GROUP BY title HAVING n > 1''',
+                         (since, date_str, date_str, *sorted(target_titles))).fetchall()
     for title, n in dup:
-        errors.append(f'跨日重复（{n} 天）：{(title or "")[:36]}')
+        errors.append(f'跨日重复（目标日在窗口内另有 {n} 天）：{(title or "")[:36]}')
 
     # --- 统计（raw/selected/published、来源、板块、score 分布、重复拦截、字段失败） ---
     raw = 0
     selected = 0
+    rejected = 0
     dup_blocked = 0
     try:
         raw = c.execute('SELECT COUNT(*) FROM raw_candidates WHERE event_date = ?',

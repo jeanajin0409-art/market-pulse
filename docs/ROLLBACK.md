@@ -129,7 +129,8 @@ pipeline.py fetch → pipeline.py list → 人工精选写 JSON → pipeline.py 
 - [ ] `replace` 区间缺日期 / 日期重复 / 日期越界 → 拒绝且**不删任何旧数据**（生产禁用 --allow-missing）
 - [ ] 批内重复（同 event_hash 的两条）→ 整批拒绝、0 条落库
 - [ ] `post` 在坏数据上 → 非零退出且**不输出 post 正文**
-- [ ] 在**旧数据**上 `build` → exit 3 且**不写任何文件**
+- [ ] 在**旧数据**上 `build` → exit 3 且**不写任何文件**（11/13 旧数据实测拦 61 项：首页 URL / 空 why /
+      未解析轮次 / 批量同分，跨日重复 0 —— 旧数据的重复出现在更早的日期对之间，不在 11/13 自己身上）
 - [ ] JS 结构校验失败时 `build` → exit 4 且三个目标文件 byte-unchanged
 - [ ] 在样稿上 `build` → 闸门通过、JS check 三行 OK（node --check 通过）、Archive page items = 5
 - [ ] 历史日 build 用 `--archive-only` → `index.html` byte-unchanged（主页日期不倒退）

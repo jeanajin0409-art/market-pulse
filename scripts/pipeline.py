@@ -582,12 +582,9 @@ def dedupe_reason(conn, target_date, title, url, raw_hash, exclude_dates=(),
         rows = conn.execute(q, [lo, hi] + params + [event_hash]).fetchall()
         if rows:
             return f'事件重复（{rows[0][0]} 已发过同一事件，跨来源指纹一致）'
-    if subject:
-        rows = conn.execute(
-            f'SELECT date, title FROM items WHERE date BETWEEN ? AND ?{excl_p} AND title LIKE ?',
-            [lo, hi] + params + [f'%{subject}%']).fetchall()
-        if rows:
-            return f'主体重复（{rows[0][0]} 已发过同一主体：{(rows[0][1] or "")[:20]}）'
+    # ⚠️ 这里**不做**「主体名出现在标题里」的跨日去重 —— 会误拦不同事件
+    #（例：11/06「国星宇航今起招股」与 11/13「国星宇航今日上市」是同一主体的两件事）。
+    # 跨日同一事件由 event_hash（主体+金额+轮次+参与方）识别；批内同主体由 PlanDeduper 拦。
     return None
 
 

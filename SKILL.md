@@ -258,7 +258,7 @@ python x_scan/scan.py --group mena --days 4               # 中东/主权基金 
 | 首页 URL | path 为空或 `/` 的 URL 一律拒绝 |
 | 空 sum / 空 why | 必填 |
 | 批量同分 | ≥3 条全同分，或 ≥5 条里同一分超过 60% |
-| 跨日重复 | 7 日窗口内 title 重复 |
+| 跨日重复 | **目标日自己的** title 在 7 日窗口内的其他日子出现过（只看目标日的条目，不把别的日子的重复算到它头上） |
 | bigtech 错分 | 按 `items.raw_id` 联动 `raw_candidates.category`，医疗健康/企业服务/传统制造/教育/金融/消费 不得进 bigtech |
 | 轮次未解析 | 标题或摘要里出现 `#数字` |
 | CDATA | 标题或摘要含 `<![CDATA[` |

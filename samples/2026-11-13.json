@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-13",
+  "note": "task #1 §7 要求的「最新日期本地样稿」：用新链路（fetch → raw_candidates → 精选 → items → build）在最新日期跑一期，本地验证用，不发布。5 条，板块覆盖 ai/minority/frontier/ipo。",
+  "items": [
+    {
+      "raw_source": "AIHOT",
+      "raw_source_id": "t86m3q7vdlqmvm2zmx91vps5a",
+      "src": "AIHOT",
+      "title": "黄仁勋辞去英伟达总裁兼CEO，作者梳理14天风波始末",
+      "url": "https://mp.weixin.qq.com/s/ToplAo9NHP356Fu-hbYlsg",
+      "cat": "ai",
+      "regions": ["美国"],
+      "score": 94,
+      "sum": "英伟达公告黄仁勋辞去总裁、CEO 与董事职务，即刻生效，股价开盘下跌 14 个点。文章依据《纽约时报》《The Information》等报道梳理 14 天脉络：2022 年 A100、H100 对华禁售，到 Megaspeed 采购争议与相关涉间谍认定，再到 33 年任期结束。",
+      "why": "芯片龙头的掌门人更替叠加强对华出口管制争议，会直接改变 AI 算力供应链的采购预期与产业链定价基准。",
+      "tags": ["模型/技术", "政策"]
+    },
+    {
+      "raw_source": "IT桔子",
+      "raw_source_id": "14707819",
+      "src": "IT桔子",
+      "title": "灵睿智芯宣布完成数亿元Pre-A+轮融资",
+      "url": "https://mp.weixin.qq.com/s/UC7gd_O5B55krb-1dxtCSA",
+      "cat": "minority",
+      "regions": ["中国"],
+      "score": 86,
+      "sum": "灵睿智芯宣布完成数亿元 Pre-A+ 轮融资，由美团战投领投，京东关联基金、力合算芯基金（东方算芯 CVC）、钧犀资本、商汤国香资本、尚颀资本（上汽 CVC）、深信服产业投资基金琥珀资本等头部产业资本与老股东跟投，估值达数十亿元。公司为全栈自研高端 RISC-V CPU 内核、芯粒及领域增强处理器研发企业。",
+      "why": "美团战投领投、京东与上汽 CVC 跟投，说明 RISC-V 芯粒路线已进入产业资本的自用验证阶段。",
+      "tags": ["投融资"]
+    },
+    {
+      "raw_source": "IT桔子",
+      "raw_source_id": "14707836",
+      "src": "IT桔子",
+      "title": "幺正量子完成数亿元A+轮融资",
+      "url": "https://mp.weixin.qq.com/s/lxSd2mVDMAqABjVt9sJ1VA",
+      "cat": "frontier",
+      "regions": ["中国"],
+      "score": 84,
+      "sum": "幺正量子完成数亿元 A+ 轮融资，新股东包括鸿瑞达投资、金景资本、皖能资本、永鑫方舟、典实资本等，老股东合肥产投、合肥高投、凯联资本、灏浚投资、芯能创投跟投，估值达数十亿元。公司专注离子阱量子计算，今年以来已接连完成三轮 A 系列融资；资金主要用于加快 QCCD 离子阱量子计算机研发与离子阱芯片微纳加工测试平台化建设。",
+      "why": "一年三轮 A 系列的融资节奏，加上市场化机构与省市区三级国资同场加注，是量子计算产业化投入的一个典型样本。",
+      "tags": ["投融资", "前沿科技"]
+    },
+    {
+      "raw_source": "IT桔子",
+      "raw_source_id": "14707838",
+      "src": "IT桔子",
+      "title": "国星宇航今日上市",
+      "url": "https://newstock.cfi.cn/p20261113000154.html",
+      "cat": "ipo",
+      "regions": ["中国"],
+      "score": 82,
+      "sum": "AI 卫星互联网公司国星宇航今日上市，每股定价 24.9 港元，共发行 3012.1 万股，每手 100 股，估值达数百亿元。公司已顺利完成 10 次太空任务，研制并发射 14 颗 AI 卫星及载荷，构建自主可控的低成本快响应卫星研制技术体系与全栈 AI 卫星网络技术体系。",
+      "why": "卫星互联网的上市定价与在轨卫星数量（14 颗）一起给出了这个赛道的阶段性估值坐标，可作为后续同赛道融资的参照。",
+      "tags": ["IPO"]
+    },
+    {
+      "raw_source": "AIHOT",
+      "raw_source_id": "uy1ayrrlqx1snqsv4lub7whsa",
+      "src": "AIHOT",
+      "title": "Google DeepMind 发布 Gemini 4 Hydrogen",
+      "url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+      "cat": "ai",
+      "regions": ["全球"],
+      "score": 84,
+      "sum": "Google DeepMind 于 11 月 12 日发布 Gemini 4 Hydrogen，定位日常编码与智能体工作流的快速执行模型，原生 100 万 token 输入、最高 100 万 token 输出，思考分 low/medium/high（默认）/xhigh 四档。定价为每百万输入 token 1.50 美元、输出 7.50 美元；对比 Gemini 3.8 Flash，high 默认档快 2.5 倍，Terminal-Bench 4.1 得分 57% 对 18.2%。",
+      "why": "百万级上下文加每百万输入 token 1.5 美元的定价，把智能体工作流的单位成本压到可规模化的量级，模型层竞争正从参数规模转向单位任务成本。",
+      "tags": ["模型/技术", "ARR/商业化"]
+    }
+  ]
+}
