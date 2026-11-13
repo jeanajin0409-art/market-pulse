@@ -79,7 +79,7 @@ for D in 2026-07-24 2026-07-25 2026-07-26 2026-07-27; do
 done
 
 # ② 一次事务替换（先整批校验 → 通过后 DELETE 旧 + INSERT 新；失败整批回滚、旧数据不动）
-python3 scripts/pipeline.py replace --from 2026-07-24 --to 2026-07-27 \
+python3 scripts/pipeline.py replace --from 2026-07-24 --to 2026-07-27 --min-items 3 \
   --files samples/2026-07-24.json,samples/2026-07-25.json,samples/2026-07-26.json,samples/2026-07-27.json
 
 # ③ 重新渲染四天 —— 必须用 --archive-only：**历史日的 build 不能改主页**
@@ -130,9 +130,13 @@ pipeline.py fetch → pipeline.py list → 人工精选写 JSON → pipeline.py 
 - [ ] `fetch` 之后 `items` 行数**不变**（只进 raw_candidates）
 - [ ] `accept` 前后 `items` 行数差 = 精选条数；一条不合格时**整批 0 条落库**且退出码非 0
 - [ ] `replace` 失败时区间行数不变（旧 84 行原样）；成功时一次替换完成
-- [ ] `replace` 区间缺日期 / 日期重复 / 日期越界 → 拒绝且**不删任何旧数据**（生产禁用 --allow-missing）
+- [ ] `replace` 区间缺日期 / 日期重复 / 日期越界 / 某天空文件 → 拒绝且**不删任何旧数据**（生产禁用 --allow-missing）
+- [ ] `accept` 空 items → 非零退出、0 条落库
 - [ ] 批内重复（同 event_hash 的两条）→ 整批拒绝、0 条落库
 - [ ] `post` 在坏数据上 → 非零退出且**不输出 post 正文**
+- [ ] 缺 raw 证据（raw_id 为空 / 指向的候选不存在 / 状态不是 selected）的条目 → 闸门拦下
+- [ ] 跨日 url / content_hash / event_hash 重复（标题不同）→ 闸门拦下
+- [ ] `fetch` 端点异常 → 非零退出（rc=5），失败端点出现在 `stats` 的 last_fetch_errors
 - [ ] 在**旧数据**上 `build` → exit 3 且**不写任何文件**（11/13 旧数据实测拦 61 项：首页 URL / 空 why /
       未解析轮次 / 批量同分，跨日重复 0 —— 旧数据的重复出现在更早的日期对之间，不在 11/13 自己身上）
 - [ ] JS 结构校验失败时 `build` → exit 4 且三个目标文件 byte-unchanged

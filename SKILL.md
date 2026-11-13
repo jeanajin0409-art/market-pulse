@@ -70,6 +70,9 @@ python3 scripts/pipeline.py migrate
 python3 scripts/pipeline.py fetch --date 2026-07-25
 python3 fetch_aihot.py 48 --json > /tmp/aihot.json
 python3 scripts/pipeline.py import-aihot --date 2026-07-25 --file /tmp/aihot.json
+# ⚠️ 任一端点异常 → fetch 非零退出（rc=5），**不当作完整抓取**。
+#    当前 merger 端点长期 500，若确认可接受部分结果，加 --allow-partial；
+#    失败端点会记进 fetch_state 表，stats 与每日汇报里要带上。
 
 # ③ 看候选（人工挑选，逐条写 sum/why/cat/regions/score）
 python3 scripts/pipeline.py list --date 2026-07-25
@@ -79,7 +82,7 @@ python3 scripts/pipeline.py accept --date 2026-07-25 --file samples/2026-07-25.j
 
 # ⑤ 统计（raw/selected/published、来源、板块、score 分布、已拒收原因、字段失败）
 python3 scripts/pipeline.py stats --date 2026-07-25
-python3 scripts/pipeline.py stats --date 2026-07-25 --json   # 结构化验收报告
+python3 scripts/pipeline.py stats --date 2026-07-25 --json   # 结构化验收报告（含 last_fetch_errors）
 
 # ⑥ 渲染（先过发布硬闸门；不过就停，不写文件）
 python3 scripts/build.py build --date 2026-07-25
@@ -99,6 +102,7 @@ raft reminder ack --id 4d2c06ea-7f01-47b6-9465-3f6f58c05f84 --revision <rev>
 ```
 
 **accept 是整批原子的**：任何一条不合格 → **整批 0 条落库**、退出码非 0，并逐条打印原因；
+**空 `items` 也不算成功**（退出码 2，0 条落库）；
 被拒的候选会持久化 `status=rejected` + `note`。改完想重新收录，先 `python3 scripts/pipeline.py reset --date <D>`。
 
 **回归测试**（改完 pipeline/build 必须跑）：`python3 tests/run_tests.py`（8 类场景，无第三方依赖）。
@@ -258,7 +262,8 @@ python x_scan/scan.py --group mena --days 4               # 中东/主权基金 
 | 首页 URL | path 为空或 `/` 的 URL 一律拒绝 |
 | 空 sum / 空 why | 必填 |
 | 批量同分 | ≥3 条全同分，或 ≥5 条里同一分超过 60% |
-| 跨日重复 | **目标日自己的** title 在 7 日窗口内的其他日子出现过（只看目标日的条目，不把别的日子的重复算到它头上） |
+| raw 证据 | 正式条目必须 `raw_id` 非空、指向**同日**的 raw candidate、且该候选 `status='selected'` —— 否则「直写 items」就能绕过 raw→精选→published |
+| 跨日重复 | **目标日自己的**条目在 7 日**对称**窗口内（target-7d ~ target+7d）的其他日子出现过：title / **url** / **content_hash** / **event_hash**（后两者经 `raw_id` 联动 `raw_candidates`；历史日期同样按对称窗口查） |
 | bigtech 错分 | 按 `items.raw_id` 联动 `raw_candidates.category`，医疗健康/企业服务/传统制造/教育/金融/消费 不得进 bigtech |
 | 轮次未解析 | 标题或摘要里出现 `#数字` |
 | CDATA | 标题或摘要含 `<![CDATA[` |
@@ -354,7 +359,9 @@ python3 scripts/pipeline.py replace --from 2026-07-24 --to 2026-07-27 \
 ```
 
 - **先校验范围**：所有 payload 的 date 必须落在 `--from ~ --to` 内、日期不能重复、
-  **区间内每一天都要有且仅有一个文件**（缺日期 → 拒绝；生产 runbook 禁止 `--allow-missing`）
+  **区间内每一天都要有且仅有一个文件**，且**每一天都要有有效条目**（空文件也算不合格；
+  「文件齐全」不等于「数据齐全」）；条目数少于 `--min-items`（默认 1，历史重做建议 3）也拒绝
+  （缺日期/空日期要跳过只能显式加 `--allow-missing`，生产 runbook 禁止）
 - **再整批校验**：四天的所有条目一起过字段闸门 + raw 引用校验 + 7 日去重 + 批内去重（去重时排除被替换区间本身）
 - **任一条不合格 → 整批拒绝、0 条落库、旧数据原样不动**（退出码非 0）
 - **全部通过 → 单事务** `DELETE` 旧行 + `INSERT` 新行；写入异常 → 整批回滚，并打印区间行数变化

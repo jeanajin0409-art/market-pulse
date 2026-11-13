@@ -110,6 +110,16 @@ class Fixture:
         conn.commit()
         conn.close()
 
+    def seed_selected_item(self, date, title, url, why='推荐理由内容示例文本', score=88,
+                           cat='minority', src='IT桔子', subject='测试主体'):
+        """播一条**带 raw 证据**的正式条目：候选 status=selected + items.raw_id 指向它。"""
+        self.seed_raw(date, title, url, subject=subject, status='selected')
+        conn = self.conn()
+        rid = conn.execute("SELECT id FROM raw_candidates WHERE url=? ORDER BY id DESC LIMIT 1",
+                           (url,)).fetchone()[0]
+        conn.close()
+        self.seed_item(date, title, url, why=why, score=score, cat=cat, src=src, raw_id=rid)
+
     def items_count(self, date=None):
         conn = self.conn()
         n = (conn.execute('SELECT COUNT(*) FROM items WHERE date=?', (date,)).fetchone()[0]
@@ -259,9 +269,8 @@ def t6_replace_atomic(f):
 def t7_why_in_all_outputs(f):
     """why 必须出现在 main + archive + post 三处"""
     f.migrate()
-    f.seed_raw('2026-07-24', '候选', 'https://example.com/a')
-    f.seed_item('2026-07-24', '带推荐理由的条目', 'https://example.com/a',
-                why='这是唯一可识别的推荐理由标记XYZ', score=88)
+    f.seed_selected_item('2026-07-24', '带推荐理由的条目', 'https://example.com/a',
+                         why='这是唯一可识别的推荐理由标记XYZ', score=88)
     r = run([BUILD, 'build', '--date', '2026-07-24'], f.env)
     assert r.returncode == 0, f'build 应成功: {r.stdout}{r.stderr}'
     main = f.index.read_text()
@@ -353,8 +362,7 @@ def t11_post_respects_gate(f):
 def t12_archive_only_keeps_homepage(f):
     """历史构建用 --archive-only → 主页文件 byte-unchanged"""
     f.migrate()
-    f.seed_raw('2026-07-24', '候选', 'https://example.com/a')
-    f.seed_item('2026-07-24', '条目', 'https://example.com/a', why='推荐理由内容示例文本', score=88)
+    f.seed_selected_item('2026-07-24', '条目', 'https://example.com/a', score=88)
     before = f.index.read_bytes()
     r = run([BUILD, 'build', '--date', '2026-07-24', '--archive-only'], f.env)
     assert r.returncode == 0, f'archive-only build 应成功: {r.stdout}{r.stderr}'
@@ -391,11 +399,66 @@ def t13_node_syntax_check(f):
     assert 'node' in msg or '语法' in msg, f'应说明是语法检查失败: {msg}'
     # 整页 build 也要用同一个检查器：数据合法时能过
     f.migrate()
-    f.seed_raw('2026-07-24', '候选', 'https://example.com/a')
-    f.seed_item('2026-07-24', '含花括号 { 的正常标题', 'https://example.com/a',
-                why='推荐理由内容示例文本', score=88)
+    f.seed_selected_item('2026-07-24', '含花括号 { 的正常标题', 'https://example.com/a')
     r = run([BUILD, 'build', '--date', '2026-07-24'], f.env)
     assert r.returncode == 0, f'含 {{ 的合法标题应能构建: {r.stdout}{r.stderr}'
+
+
+def t14_empty_batch_rejected(f):
+    """空批次不算成功：accept 空 items → 非零；replace 每日空 → 非零且旧数据不动"""
+    f.migrate()
+    p = write_json(f.tmp / 'empty.json', {'date': '2026-07-24', 'items': []})
+    r = run([PIPE, 'accept', '--date', '2026-07-24', '--file', p], f.env)
+    assert r.returncode != 0, '空批次 accept 必须非零退出'
+    assert f.items_count() == 0, '空批次不应写入任何条目'
+    # replace：四个日期文件齐全但内容全空 → 必须拒绝，不能把区间删空
+    f.seed_item('2026-07-24', '旧条目', 'https://example.com/old')
+    files = []
+    for d in ('2026-07-24', '2026-07-25', '2026-07-26', '2026-07-27'):
+        files.append(write_json(f.tmp / f'{d}.json', {'date': d, 'items': []}))
+    r = run([PIPE, 'replace', '--from', '2026-07-24', '--to', '2026-07-27',
+             '--files', ','.join(files)], f.env)
+    assert r.returncode != 0, '空条目的 replace 必须非零退出'
+    assert '没有有效条目' in r.stdout, f'应说明是空条目: {r.stdout}'
+    assert f.items_count('2026-07-24') == 1, '空条目 replace 不能删旧数据'
+
+
+def t15_gate_blocks_url_dup_and_missing_raw(f):
+    """发布闸门：跨日 url 重复要拦；没有 raw 证据的条目要拦"""
+    f.migrate()
+    # ① 跨日 url 相同（标题不同）→ 拦
+    f.seed_selected_item('2026-07-24', '甲条目', 'https://example.com/same', subject='甲主体')
+    f.seed_selected_item('2026-07-21', '乙条目', 'https://example.com/same', subject='乙主体')
+    r = run([BUILD, 'build', '--date', '2026-07-24'], f.env)
+    assert r.returncode != 0, '跨日 url 重复必须被拦'
+    assert 'url 重复' in r.stdout, f'应报 url 重复: {r.stdout}'
+    # ② 没有 raw 证据的直写条目 → 拦
+    conn = f.conn()
+    conn.execute('DELETE FROM items')
+    conn.execute("INSERT INTO items (date,t,src,cat,regions,score,title,url,sum,why,ma_cap,tags,commit_sha)"
+                 " VALUES ('2026-07-24','7月24日','IT桔子','minority','[\"中国\"]',88,'直写条目',"
+                 "'https://example.com/direct','摘要内容示例，长度足够通过字段闸门校验。',"
+                 "'推荐理由内容示例文本','','[]','seed')")
+    conn.commit()
+    conn.close()
+    r = run([BUILD, 'build', '--date', '2026-07-24'], f.env)
+    assert r.returncode != 0, '没有 raw 证据的条目必须被拦'
+    assert 'raw 证据' in r.stdout, f'应报缺 raw 证据: {r.stdout}'
+
+
+def t16_partial_fetch_is_not_success(f):
+    """抓取端点异常默认非零；--allow-partial 才降级，且失败端点被记录"""
+    f.migrate()
+    env = dict(f.env)
+    env['DEALHOT_ITJUZI_API'] = 'http://127.0.0.1:9'      # 不可达 → 全部端点失败
+    r = run([PIPE, 'fetch', '--date', '2026-07-24'], env)
+    assert r.returncode != 0, '端点全失败时 fetch 必须非零退出'
+    assert '抓取不完整' in r.stdout, f'应说明抓取不完整: {r.stdout}'
+    r = run([PIPE, 'fetch', '--date', '2026-07-24', '--allow-partial'], env)
+    assert r.returncode == 0, '--allow-partial 才允许降级'
+    r = run([PIPE, 'stats', '--date', '2026-07-24', '--json'], f.env)
+    assert 'last_fetch_errors' in r.stdout, 'stats 应报告上次抓取的失败端点'
+    assert len(json.loads(r.stdout)['last_fetch_errors']) > 0, '失败端点应被记录'
 
 
 TESTS = [
@@ -412,6 +475,9 @@ TESTS = [
     ('post 也走闸门', t11_post_respects_gate),
     ('archive-only 不动主页', t12_archive_only_keeps_homepage),
     ('node 真语法检查', t13_node_syntax_check),
+    ('空批次被拒', t14_empty_batch_rejected),
+    ('闸门拦 url 重复与缺 raw', t15_gate_blocks_url_dup_and_missing_raw),
+    ('抓取不完整默认失败', t16_partial_fetch_is_not_success),
 ]
 
 

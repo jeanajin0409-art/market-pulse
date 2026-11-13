@@ -42,7 +42,7 @@ DEALHOT_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = Path(os.environ.get('DEALHOT_DB', DEALHOT_DIR / 'dealhot.db'))
 ITJUZI_ENV = Path(os.environ.get('DEALHOT_ITJUZI_ENV', DEALHOT_DIR / '.secrets' / 'itjuzi.env'))
 
-API_BASE = 'https://openapi.itjuzi.com'
+API_BASE = os.environ.get('DEALHOT_ITJUZI_API', 'https://openapi.itjuzi.com')
 BJ = timezone(timedelta(hours=8))
 
 ALLOWED_CATS = {'minority', 'ma', 'ipo', 'bigtech', 'ai', 'frontier'}
@@ -375,7 +375,15 @@ def insert_candidates(rows):
 
 
 def cmd_fetch(args):
-    token = itjuzi_token()
+    try:
+        token = itjuzi_token()
+    except Exception as e:
+        print(f'✗ 抓取不完整：取 token 失败（{e}）')
+        _record_fetch_errors([f'token: {e}'])
+        if not args.allow_partial:
+            return 5
+        print('   → 已用 --allow-partial：接受空结果（失败端点已记入 meta.fetch_errors）')
+        return 0
     target = args.date
     d0 = datetime.strptime(target, '%Y-%m-%d')
     windows = [
@@ -411,11 +419,33 @@ def cmd_fetch(args):
         print(f'  {kind:11s} 原始 {n_raw:4d} 条 → 当日去重后 {len(seen):3d} 条')
     added, existed = insert_candidates(all_rows)
     print(f'\n✓ raw_candidates 新增 {added}，已存在 {existed}（DB: {DB_PATH}）')
-    if errors:
-        print('⚠️ 端点异常：')
-        for e in sorted(set(errors)):
+    failed = sorted(set(errors))
+    if failed:
+        print('✗ 抓取不完整（端点异常）：')
+        for e in failed:
             print('   ', e)
+        _record_fetch_errors(failed)
+        if not args.allow_partial:
+            print('   → 默认按**失败**处理（不当作完整抓取）；要接受部分结果请显式加 --allow-partial')
+            return 5
+        print('   → 已用 --allow-partial：接受部分结果（失败端点已记入 meta.fetch_errors）')
+    else:
+        _record_fetch_errors([])
     return 0
+
+
+def _record_fetch_errors(errors):
+    """把本次抓取失败的端点记进 meta 表，stats / 运行报告可查。"""
+    try:
+        conn = get_conn()
+        # 用独立表：生产库的 meta 表列名是 key/value，与这里假设的 k/v 不同
+        conn.execute('CREATE TABLE IF NOT EXISTS fetch_state (k TEXT PRIMARY KEY, v TEXT)')
+        conn.execute('INSERT OR REPLACE INTO fetch_state (k, v) VALUES (?, ?)',
+                     ('fetch_errors', json.dumps(errors, ensure_ascii=False)))
+        conn.commit()
+        conn.close()
+    except sqlite3.Error:
+        pass
 
 
 def cmd_import_aihot(args):
@@ -733,6 +763,9 @@ def cmd_accept(args):
     if not isinstance(items, list):
         print('✗ 输入需要是 {"items": [...]} 或数组')
         return 2
+    if not items:
+        print('✗ 精选结果为空（items 为空数组）—— **不当作成功**')
+        return 2
     conn = get_conn()
     # ① 先整批校验（不写库）—— 任一条不过，整批不落库；批内重复由 PlanDeduper 盯住
     plan, failures = [], []
@@ -799,6 +832,15 @@ def cmd_replace(args):
             continue
         file_of_date[d] = f
         by_date.setdefault(d, []).extend(items or [])
+    # 「文件齐全」不等于「有效数据齐全」：区间内每一天都必须真的有条目
+    empty_days = [d for d, its in by_date.items() if not its]
+    if empty_days and not args.allow_missing:
+        range_errors.append(f'这些日期的文件没有有效条目：{", ".join(sorted(empty_days))}'
+                            '（要跳过请显式加 --allow-missing，生产 runbook 禁止）')
+    thin_days = [d for d, its in by_date.items() if 0 < len(its) < args.min_items]
+    if thin_days:
+        range_errors.append(f'这些日期的条目少于 --min-items {args.min_items}：'
+                            f'{", ".join(f"{d}({len(by_date[d])})" for d in sorted(thin_days))}')
     missing = [d for d in span if d not in by_date]
     if missing and not args.allow_missing:
         range_errors.append(f'区间缺日期的文件：{", ".join(missing)}'
@@ -913,6 +955,13 @@ def cmd_stats(args):
     field_fail = c.execute(
         'SELECT COUNT(*) FROM items WHERE date = ? AND (sum IS NULL OR sum = ? OR why IS NULL OR why = ?)',
         (d, '', '')).fetchone()[0]
+    fetch_errors = []
+    try:
+        row = c.execute("SELECT v FROM fetch_state WHERE k='fetch_errors'").fetchone()
+        if row:
+            fetch_errors = json.loads(row[0])
+    except (sqlite3.Error, ValueError):
+        pass
     conn.close()
 
     report = {
@@ -929,6 +978,7 @@ def cmd_stats(args):
         'candidates_without_url': no_url,
         'cross_day_duplicate_titles': [{'title': t, 'days': n} for t, n in dup_rows],
         'field_failures': field_fail,
+        'last_fetch_errors': fetch_errors,
     }
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
@@ -946,6 +996,8 @@ def cmd_stats(args):
     for t, n in dup_rows[:5]:
         print(f'    ×{n} {t[:50]}')
     print(f'published 字段失败   : {field_fail}')
+    if fetch_errors:
+        print('上次抓取失败端点   : ' + ' / '.join(fetch_errors))
     return 0
 
 
@@ -959,6 +1011,8 @@ def main():
 
     f = sub.add_parser('fetch', help='抓 IT桔子 4 端点当天事件 → raw_candidates')
     f.add_argument('--date', required=True)
+    f.add_argument('--allow-partial', action='store_true',
+                   help='端点异常时仍接受部分结果（默认：非零退出，不当作完整抓取）')
     f.set_defaults(func=cmd_fetch)
 
     ia = sub.add_parser('import-aihot', help='AIHOT 候选 → raw_candidates（事件日期按北京时间）')
@@ -980,7 +1034,9 @@ def main():
     rp.add_argument('--to', required=True)
     rp.add_argument('--files', required=True, help='逗号分隔的精选 JSON 列表')
     rp.add_argument('--allow-missing', action='store_true',
-                    help='允许区间内有日期没有对应文件（生产 runbook 禁止，仅调试用）')
+                    help='允许区间内有日期没有对应文件或没有有效条目（生产 runbook 禁止，仅调试用）')
+    rp.add_argument('--min-items', type=int, default=1,
+                    help='区间内每天至少几条（默认 1；历史重做建议 3）')
     rp.set_defaults(func=cmd_replace)
 
     rs = sub.add_parser('reset', help='把被拒候选复位回 candidate')

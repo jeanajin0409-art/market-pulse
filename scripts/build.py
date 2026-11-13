@@ -470,14 +470,26 @@ GATE_CDATA = re.compile(r'<!\[CDATA\[', re.I)
 
 
 def publish_gate(date_str):
-    """返回 (errors, stats)。errors 非空 = 禁止 publish（不写任何文件）。"""
+    """返回 (errors, stats)。errors 非空 = 禁止 publish（不写任何文件）。
+
+    闸门四层：
+      1. 字段闸门：CDATA / 未解析轮次 / 日报聚合标题 / 缺 url / 首页 url / 空 sum / 空 why / bigtech 错分
+      2. **raw 证据闸门**：正式条目必须能追到**同日**的 raw candidate，且该候选 status='selected'
+         —— 否则 raw→精选→published 的架构可以被「直写 items」绕过
+      3. 7 日**对称**窗口去重：title / url / content_hash / event_hash
+         （后两者经 items.raw_id 联动 raw_candidates，历史日期同样按对称窗口查）
+      4. 批量同分
+    """
     errors = []
     c = get_conn().cursor()
+    d = datetime.strptime(date_str, '%Y-%m-%d')
+    lo = (d - timedelta(days=7)).strftime('%Y-%m-%d')
+    hi = (d + timedelta(days=7)).strftime('%Y-%m-%d')
     try:
         rows = c.execute('''SELECT id, title, url, sum, why, cat, score, raw_id
                              FROM items WHERE date = ?''', (date_str,)).fetchall()
     except sqlite3.OperationalError:
-        # 迁移前（items 还没有 raw_id 列）也能跑：少了 bigtech 错分这一项联动检查
+        # 迁移前（items 还没有 raw_id 列）也能跑：少了 raw 证据与 hash 去重这两项联动检查
         rows = c.execute('''SELECT id, title, url, sum, why, cat, score, NULL
                              FROM items WHERE date = ?''', (date_str,)).fetchall()
     if not rows:
@@ -520,14 +532,44 @@ def publish_gate(date_str):
             if ind and ind in GATE_BIGTECH_FORBIDDEN_INDUSTRIES:
                 errors.append(f'#{iid} bigtech 错分（行业「{ind}」不是大厂）：{t[:30]}')
 
+        # ---- raw 证据闸门：没有 raw 溯源的条目一律不许发布 ----
+        if raw_id is None:
+            errors.append(f'#{iid} 没有 raw 证据（raw_id 缺失 → 绕过 raw→精选→published）')
+            continue
+        raw_row = c.execute(
+            'SELECT event_date, status, content_hash, event_hash FROM raw_candidates WHERE id = ?',
+            (raw_id,)).fetchone()
+        if raw_row is None:
+            errors.append(f'#{iid} raw_id 指向的候选不存在')
+            continue
+        if raw_row[0] != date_str:
+            errors.append(f'#{iid} raw 候选日期不符（{raw_row[0]} != {date_str}）')
+        if raw_row[1] != 'selected':
+            errors.append(f'#{iid} raw 候选状态不是 selected（{raw_row[1]}）')
+        # ---- 跨日去重：url / content_hash / event_hash（对称窗口，raw 联动）----
+        if u:
+            dup = c.execute(
+                'SELECT date FROM items WHERE date BETWEEN ? AND ? AND date != ? AND url = ? LIMIT 1',
+                (lo, hi, date_str, u)).fetchall()
+            if dup:
+                errors.append(f'#{iid} 跨日 url 重复（{dup[0][0]} 已发过）')
+        for label, idx in (('content_hash', 2), ('event_hash', 3)):
+            h = raw_row[idx]
+            if not h:
+                continue
+            dup = c.execute(
+                f'''SELECT i.date FROM items i JOIN raw_candidates r ON r.id = i.raw_id
+                    WHERE i.date BETWEEN ? AND ? AND i.date != ? AND r.{label} = ? LIMIT 1''',
+                (lo, hi, date_str, h)).fetchall()
+            if dup:
+                errors.append(f'#{iid} 跨日{label}重复（{dup[0][0]} 已发过）')
+
     if len(rows) >= 3 and top_n == len(rows):
         errors.append(f'批量同分：{len(rows)} 条全部 {top_score} 分')
     elif len(rows) >= 5 and top_n / len(rows) > 0.6:
         errors.append(f'批量同分：{top_n}/{len(rows)} 条同为 {top_score} 分')
 
-    since = (datetime.strptime(date_str, '%Y-%m-%d') - timedelta(days=7)).strftime('%Y-%m-%d')
     # 只看**目标日自己的条目**是否在窗口内的其他日子出现过
-    # （早先的实现扫的是整个窗口，会把别的日子的重复算到目标日头上）
     target_titles = {r[1] for r in rows if r[1]}
     dup = []
     if target_titles:
@@ -536,7 +578,7 @@ def publish_gate(date_str):
                              WHERE date >= ? AND date <= ? AND date != ?
                                AND title IN ({ph})
                              GROUP BY title HAVING n > 1''',
-                         (since, date_str, date_str, *sorted(target_titles))).fetchall()
+                         (lo, hi, date_str, *sorted(target_titles))).fetchall()
     for title, n in dup:
         errors.append(f'跨日重复（目标日在窗口内另有 {n} 天）：{(title or "")[:36]}')
 
@@ -546,8 +588,7 @@ def publish_gate(date_str):
     rejected = 0
     dup_blocked = 0
     try:
-        raw = c.execute('SELECT COUNT(*) FROM raw_candidates WHERE event_date = ?',
-                        (date_str,)).fetchone()[0]
+        raw = c.execute('SELECT COUNT(*) FROM raw_candidates WHERE event_date = ?', (date_str,)).fetchone()[0]
         selected = c.execute("SELECT COUNT(*) FROM raw_candidates WHERE event_date = ? AND status = 'selected'",
                              (date_str,)).fetchone()[0]
         # 实际被拦次数：来自 accept 阶段持久化的拒绝记录（status=rejected + note）
@@ -559,10 +600,8 @@ def publish_gate(date_str):
     except sqlite3.Error:
         pass
 
-    srcs = c.execute('SELECT src, COUNT(*) FROM items WHERE date = ? GROUP BY src ORDER BY 2 DESC',
-                     (date_str,)).fetchall()
-    cats = c.execute('SELECT cat, COUNT(*) FROM items WHERE date = ? GROUP BY cat ORDER BY 2 DESC',
-                     (date_str,)).fetchall()
+    srcs = c.execute('SELECT src, COUNT(*) FROM items WHERE date = ? GROUP BY src ORDER BY 2 DESC', (date_str,)).fetchall()
+    cats = c.execute('SELECT cat, COUNT(*) FROM items WHERE date = ? GROUP BY cat ORDER BY 2 DESC', (date_str,)).fetchall()
     field_fail = sum(1 for r in rows if not (r[3] or '').strip() or not (r[4] or '').strip()
                      or not (r[2] or '').strip())
     stats = {
@@ -571,6 +610,7 @@ def publish_gate(date_str):
         'rejected': rejected, 'dup_blocked': dup_blocked, 'field_fail': field_fail,
     }
     return errors, stats
+
 
 
 def cmd_build(args):
