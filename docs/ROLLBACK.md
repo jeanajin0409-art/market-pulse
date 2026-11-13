@@ -110,6 +110,10 @@ pipeline.py fetch → pipeline.py list → 人工精选写 JSON → pipeline.py 
 
 ⚠️ **必须 accept 才能 build**：`fetch` 只落 raw_candidates；当天没有 accept 的条目时，`build` 会以「当日没有任何条目」退出 2（这是设计，不是 bug）。
 
+⚠️ **主页由这一步重建**：日常 job 的 `build`（不带 `--archive-only`）会用**当天日期**从 DB 重新渲染整个主页 ——
+此时 DB 里已是重做后的 7/24–7/27 条目，主页头部日期 = 当天，不会倒退。
+**绝不能**用历史日期的 build 去重建主页（那会把头部日期退回 7/27）。
+
 ### 3.4 回滚
 
 | 层 | 动作 |
@@ -134,6 +138,8 @@ pipeline.py fetch → pipeline.py list → 人工精选写 JSON → pipeline.py 
 - [ ] JS 结构校验失败时 `build` → exit 4 且三个目标文件 byte-unchanged
 - [ ] 在样稿上 `build` → 闸门通过、JS check 三行 OK（node --check 通过）、Archive page items = 5
 - [ ] 历史日 build 用 `--archive-only` → `index.html` byte-unchanged（主页日期不倒退）
+- [ ] 切 job 后**第一次日常发布**（当天日期、不带 --archive-only）→ 主页重建，头部日期 = 当天，
+      且主页里的 7/24–7/27 已是重做后的 20 条
 - [ ] `why` 同时出现在 `index.html` / `archive/<date>.html` / post 文本里
 - [ ] `post` 文案里是「北京时间 (UTC+8)」，没有裸 `CST`
 - [ ] `git status` 干净；`.secrets/` 未被 stage
