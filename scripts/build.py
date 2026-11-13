@@ -13,10 +13,12 @@
 """
 import argparse
 import json
+import os
 import re
 import sqlite3
 import subprocess
 import sys
+import urllib.parse
 from collections import OrderedDict
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -34,11 +36,14 @@ def bj_date_label(date_str):
     weekday_cn = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'][dt.weekday()]
     return f"{dt.year}年{dt.month}月{dt.day}日 · {weekday_cn}"
 
-# Paths
-DEALHOT_DIR = Path('/Users/mac/Documents/market-pulse')
-DB_PATH = DEALHOT_DIR / 'dealhot.db'
-INDEX_PATH = DEALHOT_DIR / 'index.html'
-ARCHIVE_DIR = DEALHOT_DIR / 'archive'
+# Paths —— 可用环境变量覆盖，方便在副本上跑样稿而不动生产 DB / 生产文件
+#   DEALHOT_DB      DB 路径（默认 <repo>/dealhot.db）
+#   DEALHOT_INDEX   index.html 输出路径
+#   DEALHOT_ARCHIVE archive 目录
+DEALHOT_DIR = Path(__file__).resolve().parent.parent
+DB_PATH = Path(os.environ.get('DEALHOT_DB', DEALHOT_DIR / 'dealhot.db'))
+INDEX_PATH = Path(os.environ.get('DEALHOT_INDEX', DEALHOT_DIR / 'index.html'))
+ARCHIVE_DIR = Path(os.environ.get('DEALHOT_ARCHIVE', DEALHOT_DIR / 'archive'))
 
 # --- DB helpers ---
 def get_conn():
@@ -382,10 +387,121 @@ def cmd_dry_run(args):
         print(f'\n✗ Schema gate has {issues} issues. Fix before build.')
         return 3
 
+# --- 发布硬闸门（fail-closed：任一不过 → 停止 publish，不写任何文件） ---
+GATE_HOMEPAGE_HOSTS = {'www.itjuzi.com', 'itjuzi.com', 'aihot.virxact.com', 'aihot.news'}
+GATE_BIGTECH_FORBIDDEN_INDUSTRIES = {'医疗健康', '企业服务', '传统制造', '教育', '金融', '消费'}
+GATE_UNRESOLVED_ROUND = re.compile(r'#\d+')
+GATE_CDATA = re.compile(r'<!\[CDATA\[', re.I)
+
+
+def publish_gate(date_str):
+    """返回 (errors, stats)。errors 非空 = 禁止 publish（不写任何文件）。"""
+    errors = []
+    c = get_conn().cursor()
+    rows = c.execute('''SELECT id, title, url, sum, why, cat, score, raw_id
+                         FROM items WHERE date = ?''', (date_str,)).fetchall()
+    if not rows:
+        return [f'当日没有任何条目（{date_str}）'], {}
+
+    raw_industry = {}
+    try:
+        for rid, industry in c.execute('SELECT id, category FROM raw_candidates'):
+            raw_industry[rid] = industry
+    except sqlite3.Error:
+        pass
+
+    score_counts = {}
+    for r in rows:
+        score_counts[r[6]] = score_counts.get(r[6], 0) + 1
+    top_score, top_n = max(score_counts.items(), key=lambda kv: kv[1])
+
+    for (iid, title, url, sum_, why, cat, score, raw_id) in rows:
+        t = (title or '').strip()
+        u = (url or '').strip()
+        if not t:
+            errors.append(f'#{iid} title 为空')
+            continue
+        if GATE_CDATA.search(t) or GATE_CDATA.search(sum_ or ''):
+            errors.append(f'#{iid} 含 CDATA：{t[:30]}')
+        if GATE_UNRESOLVED_ROUND.search(t) or GATE_UNRESOLVED_ROUND.search(sum_ or ''):
+            errors.append(f'#{iid} 轮次未解析：{t[:30]}')
+        if t.startswith('AI HOT 日报'):
+            errors.append(f'#{iid} daily RSS 聚合标题当条目：{t[:30]}')
+        if not u:
+            errors.append(f'#{iid} 缺 url：{t[:30]}')
+        elif urllib.parse.urlparse(u).path in ('', '/'):
+            errors.append(f'#{iid} 首页 URL（须具体原文链接）：{t[:30]}')
+        if not (sum_ or '').strip():
+            errors.append(f'#{iid} sum 为空：{t[:30]}')
+        if not (why or '').strip():
+            errors.append(f'#{iid} why 为空：{t[:30]}')
+        if cat == 'bigtech':
+            ind = raw_industry.get(raw_id)
+            if ind and ind in GATE_BIGTECH_FORBIDDEN_INDUSTRIES:
+                errors.append(f'#{iid} bigtech 错分（行业「{ind}」不是大厂）：{t[:30]}')
+
+    if len(rows) >= 3 and top_n == len(rows):
+        errors.append(f'批量同分：{len(rows)} 条全部 {top_score} 分')
+    elif len(rows) >= 5 and top_n / len(rows) > 0.6:
+        errors.append(f'批量同分：{top_n}/{len(rows)} 条同为 {top_score} 分')
+
+    since = (datetime.strptime(date_str, '%Y-%m-%d') - timedelta(days=7)).strftime('%Y-%m-%d')
+    dup = c.execute('''SELECT title, COUNT(DISTINCT date) n FROM items
+                        WHERE date >= ? AND date <= ? GROUP BY title HAVING n > 1''',
+                     (since, date_str)).fetchall()
+    for title, n in dup:
+        errors.append(f'跨日重复（{n} 天）：{(title or "")[:36]}')
+
+    # --- 统计（raw/selected/published、来源、板块、score 分布、重复拦截、字段失败） ---
+    raw = 0
+    selected = 0
+    dup_blocked = 0
+    try:
+        raw = c.execute('SELECT COUNT(*) FROM raw_candidates WHERE event_date = ?',
+                        (date_str,)).fetchone()[0]
+        selected = c.execute("SELECT COUNT(*) FROM raw_candidates WHERE event_date = ? AND status = 'selected'",
+                             (date_str,)).fetchone()[0]
+        pub_titles = {r[1] for r in rows}
+        pub_urls = {r[2] for r in rows}
+        dup_blocked = c.execute('''SELECT COUNT(*) FROM raw_candidates
+                                   WHERE event_date = ? AND status = 'candidate'
+                                     AND (title IN (%s) OR url IN (%s))''' % (
+            ','.join('?' * len(pub_titles)), ','.join('?' * len(pub_urls))),
+            (date_str, *pub_titles, *pub_urls)).fetchone()[0]
+    except sqlite3.Error:
+        pass
+
+    srcs = c.execute('SELECT src, COUNT(*) FROM items WHERE date = ? GROUP BY src ORDER BY 2 DESC',
+                     (date_str,)).fetchall()
+    cats = c.execute('SELECT cat, COUNT(*) FROM items WHERE date = ? GROUP BY cat ORDER BY 2 DESC',
+                     (date_str,)).fetchall()
+    field_fail = sum(1 for r in rows if not (r[3] or '').strip() or not (r[4] or '').strip()
+                     or not (r[2] or '').strip())
+    stats = {
+        'raw': raw, 'selected': selected, 'published': len(rows),
+        'sources': srcs, 'cats': cats, 'scores': score_counts,
+        'dup_blocked': dup_blocked, 'field_fail': field_fail,
+    }
+    return errors, stats
+
+
 def cmd_build(args):
     """Full build: index.html + archive/<date>.html + archive/index.html."""
     today = args.date or bj_today_str()
     print(f'=== build for {today} ===\n')
+    # Step 0: 发布硬闸门（fail-closed）
+    gate_errors, gate_stats = publish_gate(today)
+    if gate_errors:
+        print(f'✗ 发布闸门未通过（{len(gate_errors)} 项），已停止，不写任何文件：')
+        for e in gate_errors:
+            print(f'    - {e}')
+        return 3
+    if gate_stats:
+        print('  ✓ 发布闸门通过')
+        print(f"    raw {gate_stats['raw']} / selected {gate_stats['selected']} / published {gate_stats['published']}"
+              f" · 来源 {dict(gate_stats['sources'])}")
+        print(f"    板块 {dict(gate_stats['cats'])} · score {gate_stats['scores']}"
+              f" · 重复拦截 {gate_stats['dup_blocked']} · 字段失败 {gate_stats['field_fail']}")
     # Step 1: dry-run check first
     c = get_conn().cursor()
     rows_today = c.execute('SELECT COUNT(*) FROM items WHERE date = ?', (today,)).fetchone()[0]
@@ -552,7 +668,7 @@ def build_dealhot_post(date_str):
     """Generate #dealhot 频道 post 文本（per 5c42a5a6 模板）."""
     c = get_conn().cursor()
     rows = c.execute('''
-        SELECT title, score, cat, src, regions, sum
+        SELECT title, score, cat, src, regions, sum, why
         FROM items
         WHERE date = ?
         ORDER BY score DESC, id ASC
@@ -560,17 +676,20 @@ def build_dealhot_post(date_str):
     if not rows:
         return None
     cats = {}
-    for title, score, cat, src, regions, sum_ in rows:
-        cats.setdefault(cat, []).append((title, score, src))
+    for title, score, cat, src, regions, sum_, why in rows:
+        cats.setdefault(cat, []).append((title, score, src, why or ''))
     lead_lines = []
-    for title, score, cat, src, regions, sum_ in rows[:5]:
+    for title, score, cat, src, regions, sum_, why in rows[:5]:
         label = title.replace('。', '').replace('，', ',')[:50]
         lead_lines.append(f'- **{label}**')
     cat_lines = []
     for cat, items in cats.items():
         cat_lines.append(f'**{cat}（{len(items)}）**')
-        for i, (title, score, src) in enumerate(items, 1):
+        for i, (title, score, src, why) in enumerate(items, 1):
             cat_lines.append(f'{i}. {title}（{score}）')
+            reason = re.sub(r'\s+', ' ', why).strip()
+            if reason:
+                cat_lines.append(f'   — {reason[:60]}')
         cat_lines.append('')
     from collections import Counter
     srcs = Counter(r[3] for r in rows)
@@ -582,7 +701,7 @@ def build_dealhot_post(date_str):
     weekday_cn = ['星期一','星期二','星期三','星期四','星期五','星期六','星期日'][dt_bj.weekday()]
     month_eng = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][dt_bj.month-1]
     cst_stamp = f'{dt_bj.month}/{dt_bj.day} {weekday_cn}'  # 5c42a5a6 用了 6/24 周二 格式
-    post = f"""📊 **DealHOT {cst_stamp} 更新**（{len(rows)} 条新条目） · {dt_bj.year}-{dt_bj.month:02d}-{dt_bj.day:02d} 08:10 CST
+    post = f"""📊 **DealHOT {cst_stamp} 更新**（{len(rows)} 条新条目） · {dt_bj.year}-{dt_bj.month:02d}-{dt_bj.day:02d} 08:10 北京时间 (UTC+8)
 
 🔗 <https://jeanajin0409-art.github.io/market-pulse/>
 
@@ -593,7 +712,7 @@ def build_dealhot_post(date_str):
 
 {chr(10).join(cat_lines)}来源：{src_text}
 
-—— Mimi-Timer-Mini（post-cutover 新端 dealhot daily job, 08:10 CST）
+—— Mimi-Timer-Mini（dealhot daily job, 08:10 北京时间 (UTC+8)）
 """
     return post
 

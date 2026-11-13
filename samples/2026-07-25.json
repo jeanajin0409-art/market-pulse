@@ -1,0 +1,66 @@
+{
+  "date": "2026-07-25",
+  "note": "task #1 样稿：2026-07-25 用新链路（raw_candidates → 精选 → items）重做，5 条，板块覆盖 minority/bigtech/ai/frontier",
+  "items": [
+    {
+      "raw_id": 32,
+      "src": "创业邦",
+      "title": "蚂蚁国际完成12亿美元A轮融资；泰诺麦博登陆上交所，最新市值为122.51亿元",
+      "url": "https://www.cyzone.cn/article/841095.html",
+      "cat": "minority",
+      "regions": ["中国"],
+      "score": 85,
+      "sum": "创业邦全球投融资周报（07.18-07.24）：蚂蚁国际完成 12 亿美元 A 轮融资；同期泰诺麦博登陆上交所，最新市值 122.51 亿元。",
+      "why": "12 亿美元 A 轮是本周中国一级市场最大单笔之一，蚂蚁系出海支付方向的资本动作节奏值得跟踪。",
+      "tags": ["投融资"]
+    },
+    {
+      "raw_id": 2,
+      "src": "IT桔子",
+      "title": "耀石锂电宣布完成数千万元追加融资",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIwMTA0OTcwMg==&mid=2247614903&idx=2&sn=d92726af1484f4aafb543bf7df9ff052&chksm=97b7034b99be90b8e5dc6bad208d2f1d7782e4e937ca08c4d928b080ae142dd46eea430e3a7f&scene=0&xtrack=1#rd",
+      "cat": "minority",
+      "regions": ["中国"],
+      "score": 74,
+      "sum": "耀石锂电宣布完成数千万元 A+ 轮追加融资，由深创投独家投资。资金将用于 AI 智能穿戴领域固态电池技术迭代与定制化产品量产。",
+      "why": "固态电池与 AI 穿戴是硬科技和消费电子的交叉带，深创投独家投资说明投资方押注其固态电芯的量产路径。",
+      "tags": ["投融资"]
+    },
+    {
+      "raw_id": 18,
+      "src": "华尔街见闻",
+      "title": "韩国绑定美国AI产业链！三星、SK海力士与英伟达、博通等签9500亿美元芯片大单",
+      "url": "https://wallstreetcn.com/articles/3777926",
+      "cat": "bigtech",
+      "regions": ["亚太", "美国"],
+      "score": 88,
+      "sum": "三星、SK 海力士与英伟达、博通等签署总额约 9500 亿美元的芯片相关协议，韩国厂商进一步绑定美国 AI 产业链。",
+      "why": "9500 亿美元量级的长期协议意味着 AI 算力需求已被硬件端锁定，存储与代工产能的分配会长期影响 AI 产业链的利润分配。",
+      "tags": ["CAPEX"]
+    },
+    {
+      "raw_id": 39,
+      "src": "鞭牛士",
+      "title": "Anthropic发布Opus 5：性能超Fable 5，价格减半",
+      "url": "https://www.bianews.com/news/details?id=242292",
+      "cat": "ai",
+      "regions": ["美国"],
+      "score": 86,
+      "sum": "Anthropic 发布新一代模型 Opus 5，性能超过 Fable 5，价格减半。",
+      "why": "模型能力提升与价格下降同时发生，推理成本曲线继续下移，会改变下游 AI 应用的成本结构与算力采购节奏。",
+      "tags": ["模型/技术", "ARR/商业化"]
+    },
+    {
+      "raw_id": 36,
+      "src": "全天候科技",
+      "title": "SpaceX星舰第13次试飞成功，发动机重启、溅落精准，马斯克：星舰完好无损",
+      "url": "https://awtmt.com/articles/3777914?from=wscn",
+      "cat": "frontier",
+      "regions": ["美国"],
+      "score": 84,
+      "sum": "SpaceX 星舰第 13 次试飞成功，发动机成功重启、溅落精准，马斯克称星舰完好无损。",
+      "why": "可回收重型运载工具的试飞节奏直接决定 Starlink 组网与商业发射的成本曲线，是前沿科技板块的硬指标。",
+      "tags": ["前沿科技"]
+    }
+  ]
+}

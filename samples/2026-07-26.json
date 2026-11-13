@@ -1,0 +1,69 @@
+{
+  "date": "2026-07-26",
+  "note": "task #1 真重做样稿之一：raw_candidates → 精选 → items（5 条，板块覆盖 minority/frontier/ai/bigtech）",
+  "items": [
+    {
+      "raw_id": 231,
+      "dedupe_key": "HUboo",
+      "src": "IT桔子",
+      "title": "HUboo获得2.7亿美元A轮融资",
+      "url": "https://baijiahao.baidu.com/s?id=1871705259081329448&wfr=spider&for=pc",
+      "cat": "minority",
+      "regions": ["中国"],
+      "score": 84,
+      "sum": "跨境商业集团 HUboo 完成 2.7 亿美元 A 轮融资，由 Founders Fund 领投，Index Ventures 与 SV Angel 联合跟投。公司搭建 Huboo Shopping 交易平台与自有 Huboo Logistics 物流体系，为国内制造企业提供北美线上开店、跨境交易、海外仓发货与售后全链条服务。",
+      "why": "2.7 亿美元 A 轮由 Founders Fund 领投、SV Angel 与 Index Ventures 跟投，是出海服务赛道少见的大额美元融资，资金大概率用于仓储与履约网络扩张。",
+      "tags": ["投融资"]
+    },
+    {
+      "raw_id": 232,
+      "dedupe_key": "Holiday Robotics",
+      "src": "IT桔子",
+      "title": "Holiday Robotics获得1.05亿美元A轮融资",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzU4NjExNjU1MQ==&mid=2247536830&idx=1&sn=9347940c61094539c884b10ebbceb6e8&poc_token=HN0gZmqjT1fd5Ns1subr5xkrBCGP8kXgKiZF4UVs",
+      "cat": "frontier",
+      "regions": ["美国"],
+      "score": 86,
+      "sum": "工业机器人研发商 Holiday Robotics 获得 1.05 亿美元 A 轮融资。公司主打轮式人形机器人 FRIDAY，聚焦灵巧手精密操控技术，面向半导体、汽车与工厂物流自动化场景。",
+      "why": "灵巧手是具身智能落地成本最高的环节之一，1.05 亿美元 A 轮说明资本仍愿为「手部能力」单独定价。",
+      "tags": ["投融资", "前沿科技"]
+    },
+    {
+      "raw_id": 229,
+      "dedupe_key": "眸深智能",
+      "src": "IT桔子",
+      "title": "眸深智能完成近亿元Pre-A轮追加融资",
+      "url": "https://mp.weixin.qq.com/s/MINosIxLRs6vyd_v7fmF_w",
+      "cat": "ai",
+      "regions": ["中国"],
+      "score": 80,
+      "sum": "眸深智能完成近亿元 Pre-A 轮追加融资，投资方包括创合汇资本、瑾悦投资与老股东徐汇科投等，估值达数十亿元。公司源自复旦大学深度学习实验室，发布了人体运动生成与控制大模型 MoitionGPT。",
+      "why": "具身智能「大脑」层的模型与团队同时推进，Pre-A 阶段就拿到近亿元并有数家产业平台参与，这一层的早期融资定价已经不低。",
+      "tags": ["投融资", "模型/技术"]
+    },
+    {
+      "raw_id": 252,
+      "src": "华尔街见闻",
+      "title": "SK海力士下周放榜：Q2营业利润或突破64万亿韩元创新高，同比增长近600%",
+      "url": "https://wallstreetcn.com/articles/3777948",
+      "cat": "bigtech",
+      "regions": ["亚太"],
+      "score": 84,
+      "sum": "华尔街见闻报道，SK 海力士将于下周公布 Q2 业绩，营业利润预计突破 64 万亿韩元创新高，同比增长近 600%。",
+      "why": "存储厂商的利润弹性直接反映 AI 内存的供需紧张度，是判断 AI 硬件链景气度的高频指标。",
+      "tags": ["CAPEX"]
+    },
+    {
+      "raw_id": 246,
+      "src": "华尔街见闻",
+      "title": "卡帕西删除Anthropic简介，入职68天疑似已离职",
+      "url": "https://wallstreetcn.com/articles/3777953",
+      "cat": "ai",
+      "regions": ["美国"],
+      "score": 82,
+      "sum": "华尔街见闻报道，卡帕西删除了个人简介中的 Anthropic 任职标注，入职该公司 68 天后疑似已离职。",
+      "why": "头部模型团队的人员流动，是模型路线与商业化预期变化的早期信号，值得与同期的模型发布和融资节奏一起看。",
+      "tags": ["模型/技术"]
+    }
+  ]
+}
