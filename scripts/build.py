@@ -477,13 +477,12 @@ def publish_gate(date_str):
                         (date_str,)).fetchone()[0]
         selected = c.execute("SELECT COUNT(*) FROM raw_candidates WHERE event_date = ? AND status = 'selected'",
                              (date_str,)).fetchone()[0]
-        pub_titles = {r[1] for r in rows}
-        pub_urls = {r[2] for r in rows}
-        dup_blocked = c.execute('''SELECT COUNT(*) FROM raw_candidates
-                                   WHERE event_date = ? AND status = 'candidate'
-                                     AND (title IN (%s) OR url IN (%s))''' % (
-            ','.join('?' * len(pub_titles)), ','.join('?' * len(pub_urls))),
-            (date_str, *pub_titles, *pub_urls)).fetchone()[0]
+        # 实际被拦次数：来自 accept 阶段持久化的拒绝记录（status=rejected + note）
+        rejected = c.execute("SELECT COUNT(*) FROM raw_candidates WHERE event_date = ? AND status = 'rejected'",
+                             (date_str,)).fetchone()[0]
+        dup_blocked = c.execute(
+            "SELECT COUNT(*) FROM raw_candidates WHERE event_date = ? AND status = 'rejected' "
+            "AND (note LIKE '%重复%' OR note LIKE '%内容重复%')", (date_str,)).fetchone()[0]
     except sqlite3.Error:
         pass
 
@@ -496,7 +495,7 @@ def publish_gate(date_str):
     stats = {
         'raw': raw, 'selected': selected, 'published': len(rows),
         'sources': srcs, 'cats': cats, 'scores': score_counts,
-        'dup_blocked': dup_blocked, 'field_fail': field_fail,
+        'rejected': rejected, 'dup_blocked': dup_blocked, 'field_fail': field_fail,
     }
     return errors, stats
 
@@ -517,7 +516,8 @@ def cmd_build(args):
         print(f"    raw {gate_stats['raw']} / selected {gate_stats['selected']} / published {gate_stats['published']}"
               f" · 来源 {dict(gate_stats['sources'])}")
         print(f"    板块 {dict(gate_stats['cats'])} · score {gate_stats['scores']}"
-              f" · 重复拦截 {gate_stats['dup_blocked']} · 字段失败 {gate_stats['field_fail']}")
+              f" · 已拒收 {gate_stats['rejected']}（其中去重拦截 {gate_stats['dup_blocked']}）"
+              f" · 字段失败 {gate_stats['field_fail']}")
     # Step 1: dry-run check first
     c = get_conn().cursor()
     rows_today = c.execute('SELECT COUNT(*) FROM items WHERE date = ?', (today,)).fetchone()[0]
