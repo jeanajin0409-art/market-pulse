@@ -1,6 +1,8 @@
 # 回滚与生产切换手册（dealhot 新链路）
 
-配套分支：`fix/dealhot-raw-candidates-pipeline`（流水线 + 闸门 + SKILL）、`hotfix/skill-aihot-v1-2026-11-13`（AIHOT 地址）。
+配套分支：**只有 `fix/dealhot-raw-candidates-pipeline`**（流水线 + 闸门 + SKILL + 回归测试）。
+早先的 `hotfix/skill-aihot-v1-2026-11-13`（AIHOT 地址）与 `docs/dealhot-sop-2026-11-13`（口径写错）**已删除** ——
+前者内容被 SKILL.md 全文取代，两个分支都改 SKILL.md 会互相冲突，合一个就够。
 本文档只讲**怎么回滚**和**验收通过后怎么切生产**，顺序不可颠倒。
 
 ## 1. Schema 迁移的回滚
@@ -25,7 +27,8 @@ sqlite3 dealhot.db "ALTER TABLE items DROP COLUMN raw_id;"
 
 - 校验：`SELECT COUNT(*) FROM items;` 应与迁移前一致，且 `PRAGMA table_info(items)` 里不再有 `raw_id`
 - 若 SQLite < 3.35（无 DROP COLUMN）：直接用备份还原 `dealhot.db`，再重跑 migrate
-- **raw_candidates 里的候选不丢信息**：IT桔子按日期窗口可重新抓回，AIHOT 7 天内可重抓；被 `accept` 拒绝的候选本来就没进 items
+- ⚠️ **候选不一定能重抓**：IT桔子按日期窗口能重抓，但 **AIHOT 公开 API 只有 7 天窗口** ——
+  超过 7 天的 AIHOT 候选**重抓不回来**。所以**完整回滚 = 还原 DB 备份**，不是「删表重抓」
 
 ## 2. 发布回滚（页面层）
 
@@ -79,11 +82,15 @@ done
 python3 scripts/pipeline.py replace --from 2026-07-24 --to 2026-07-27 \
   --files samples/2026-07-24.json,samples/2026-07-25.json,samples/2026-07-26.json,samples/2026-07-27.json
 
-# ③ 重新渲染四天
+# ③ 重新渲染四天 —— 必须用 --archive-only：**历史日的 build 不能改主页**
+#    （否则主页 header / 今日导读会退回 2026-07-27，线上首页日期倒退）
 for D in 2026-07-24 2026-07-25 2026-07-26 2026-07-27; do
   python3 scripts/pipeline.py stats --date $D
-  python3 scripts/build.py build   --date $D
+  python3 scripts/build.py build   --date $D --archive-only
 done
+
+# ④ 主页由**下一次正常发布**重建：日常 job 跑的是当天日期的 build（不带 --archive-only），
+#    它从 DB 重新渲染整个主页 —— 此时 DB 里已是重做后的条目，主页日期 = 当天，不会倒退
 ```
 
 - **样稿里的 raw 引用是稳定键**（`raw_source` + `raw_source_id` = IT桔子 event_id），重新 fetch 后 id 可能变，
@@ -114,14 +121,18 @@ pipeline.py fetch → pipeline.py list → 人工精选写 JSON → pipeline.py 
 
 ## 4. 切前检查清单（每项都要实测跑一遍）
 
-- [ ] `python3 tests/run_tests.py` → 8/8 passed
+- [ ] `python3 tests/run_tests.py` → **13/13 passed**
 - [ ] `python3 scripts/pipeline.py migrate` 跑两次，结果一致（幂等）
 - [ ] `fetch` 之后 `items` 行数**不变**（只进 raw_candidates）
 - [ ] `accept` 前后 `items` 行数差 = 精选条数；一条不合格时**整批 0 条落库**且退出码非 0
 - [ ] `replace` 失败时区间行数不变（旧 84 行原样）；成功时一次替换完成
+- [ ] `replace` 区间缺日期 / 日期重复 / 日期越界 → 拒绝且**不删任何旧数据**（生产禁用 --allow-missing）
+- [ ] 批内重复（同 event_hash 的两条）→ 整批拒绝、0 条落库
+- [ ] `post` 在坏数据上 → 非零退出且**不输出 post 正文**
 - [ ] 在**旧数据**上 `build` → exit 3 且**不写任何文件**
 - [ ] JS 结构校验失败时 `build` → exit 4 且三个目标文件 byte-unchanged
-- [ ] 在样稿上 `build` → 闸门通过、JS check 三行 OK、Archive page items = 5
+- [ ] 在样稿上 `build` → 闸门通过、JS check 三行 OK（node --check 通过）、Archive page items = 5
+- [ ] 历史日 build 用 `--archive-only` → `index.html` byte-unchanged（主页日期不倒退）
 - [ ] `why` 同时出现在 `index.html` / `archive/<date>.html` / post 文本里
 - [ ] `post` 文案里是「北京时间 (UTC+8)」，没有裸 `CST`
 - [ ] `git status` 干净；`.secrets/` 未被 stage

@@ -70,6 +70,44 @@ def get_conn():
     return sqlite3.connect(DB_PATH)
 
 
+def canonical_url(url):
+    """规范化 URL：去 www、去追踪参数与 fragment。"""
+    if not url:
+        return ''
+    try:
+        pr = urllib.parse.urlparse(url)
+    except ValueError:
+        return url.strip().lower()
+    host = (pr.netloc or '').lower()
+    if host.startswith('www.'):
+        host = host[4:]
+    keep = [(k, v) for k, v in urllib.parse.parse_qsl(pr.query or '')
+            if not k.lower().startswith(('utm_', 'spm', 'from', 'scene', 'xtrack', 'chksm',
+                                         'poc_token', 'share', '__biz'))]
+    keep.sort()
+    path = (pr.path or '').rstrip('/')
+    return f'{host}{path}?{urllib.parse.urlencode(keep)}'
+
+
+def event_hash(subject, amount, round_name, parties, url, structured):
+    """**跨来源**的事件指纹。
+
+    - 结构化 deal（投资/收购/合并）：主体 + 金额 + 轮次 + 参与方 → 同一事件换来源仍是同一个 hash
+    - 新闻：canonical URL（去 www / 去追踪参数）→ 同一链接换标题仍是同一个 hash
+    跨来源的同一事件，再由 dedupe_key（主体名）补强。
+    """
+    if structured:
+        raw = '|'.join([
+            (subject or '').strip(),
+            (amount or '').strip().replace(' ', ''),
+            (round_name or '').strip(),
+            '、'.join(sorted(p for p in (parties or []) if p)),
+        ])
+    else:
+        raw = canonical_url(url) or (subject or '').strip()
+    return hashlib.sha256(raw.encode('utf-8')).hexdigest()
+
+
 def content_hash(source, title, amount, round_name, parties):
     raw = '|'.join([
         (source or '').strip(),
@@ -194,6 +232,8 @@ def cmd_migrate(args):
             amount TEXT,
             parties TEXT,
             content_hash TEXT NOT NULL,
+            event_hash TEXT,
+            subject TEXT,
             raw_json TEXT,
             status TEXT NOT NULL DEFAULT 'candidate',
             selected_item_id INTEGER,
@@ -204,6 +244,13 @@ def cmd_migrate(args):
     c.execute('CREATE INDEX IF NOT EXISTS idx_raw_date ON raw_candidates(event_date)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_raw_status ON raw_candidates(status)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_raw_url ON raw_candidates(url)')
+    c.execute('CREATE INDEX IF NOT EXISTS idx_raw_event_hash ON raw_candidates(event_hash)')
+    c.execute('CREATE INDEX IF NOT EXISTS idx_raw_subject ON raw_candidates(subject)')
+    raw_cols = {r[1] for r in c.execute('PRAGMA table_info(raw_candidates)')}
+    for col, decl in (('event_hash', 'TEXT'), ('subject', 'TEXT')):
+        if col not in raw_cols:
+            c.execute(f'ALTER TABLE raw_candidates ADD COLUMN {col} {decl}')
+            print(f'raw_candidates: 新增列 {col}')
     cols = {r[1] for r in c.execute('PRAGMA table_info(items)')}
     if 'raw_id' not in cols:
         c.execute('ALTER TABLE items ADD COLUMN raw_id INTEGER')
@@ -279,6 +326,10 @@ def normalize_itjuzi(kind, row, target_date):
         return None
 
     url = first_news_url(row)
+    structured = kind in ('investevent', 'acquisition', 'merger')
+    subject = (row.get('com_name') or '').strip() if structured else ''
+    if not subject:
+        subject = (row.get('news_source') or '').strip()
     return {
         'source': 'IT桔子',
         'source_id': source_id,
@@ -293,6 +344,8 @@ def normalize_itjuzi(kind, row, target_date):
         'amount': amount,
         'parties': '、'.join(parties),
         'content_hash': content_hash('IT桔子', title, amount, round_name, parties),
+        'event_hash': event_hash(subject, amount, round_name, parties, url, structured),
+        'subject': subject,
         'raw_json': json.dumps(row, ensure_ascii=False),
     }
 
@@ -307,11 +360,12 @@ def insert_candidates(rows):
             c.execute('''
                 INSERT INTO raw_candidates
                     (source, source_id, url, event_date, published_at, fetched_at, title, summary,
-                     category, score, round_name, amount, parties, content_hash, raw_json, status)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'candidate')
+                     category, score, round_name, amount, parties, content_hash, event_hash, subject,
+                     raw_json, status)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'candidate')
             ''', (r['source'], r['source_id'], r['url'], r['event_date'], r['published_at'], fetched,
                   r['title'], r['summary'], r['category'], r['score'], r['round_name'], r['amount'],
-                  r['parties'], r['content_hash'], r['raw_json']))
+                  r['parties'], r['content_hash'], r.get('event_hash'), r.get('subject'), r['raw_json']))
             added += 1
         except sqlite3.IntegrityError:
             existed += 1
@@ -395,6 +449,8 @@ def cmd_import_aihot(args):
             'amount': '',
             'parties': '',
             'content_hash': content_hash('AIHOT', title, '', '', []),
+            'event_hash': event_hash('', '', '', [], url, False),
+            'subject': (it.get('category') or '').strip(),
             'raw_json': json.dumps(it, ensure_ascii=False),
         })
     added, existed = insert_candidates(rows)
@@ -427,8 +483,9 @@ def cmd_list(args):
 
 
 # ---------------------------------------------------------------- accept
-RAW_COLS = 'id, source, source_id, url, event_date, title, content_hash, status'
-RAW_KEYS = ['id', 'source', 'source_id', 'url', 'event_date', 'title', 'content_hash', 'status']
+RAW_COLS = ('id, source, source_id, url, event_date, title, content_hash, event_hash, subject, status')
+RAW_KEYS = ['id', 'source', 'source_id', 'url', 'event_date', 'title', 'content_hash',
+            'event_hash', 'subject', 'status']
 
 
 def resolve_raw(conn, it, target_date):
@@ -489,9 +546,13 @@ def resolve_raw(conn, it, target_date):
     return d, None
 
 
-def dedupe_reason(conn, target_date, title, url, raw_hash, exclude_dates=()):
-    """7 日**对称**窗口去重：target-7d ~ target+7d，跨 title / url / content_hash。
+def dedupe_reason(conn, target_date, title, url, raw_hash, exclude_dates=(),
+                  event_hash=None, subject=None):
+    """7 日**对称**窗口去重：target-7d ~ target+7d，跨 title / url / content_hash / event_hash / 主体。
 
+    - event_hash 是**跨来源**的事件指纹（主体+金额+轮次+参与方，或 canonical URL），
+      换来源、换标题也认得出是同一件事
+    - subject（主体名）用于补强：同一家公司同周内不该发两次
     历史回填时窗口必须对称 —— 只查过去会漏掉「同一事件在目标日之后又发过」。
     """
     d = datetime.strptime(target_date, '%Y-%m-%d')
@@ -515,10 +576,56 @@ def dedupe_reason(conn, target_date, title, url, raw_hash, exclude_dates=()):
         rows = conn.execute(q, [lo, hi] + params + [raw_hash]).fetchall()
         if rows:
             return f'内容重复（{rows[0][0]} 已发过同一事件）'
+    if event_hash:
+        q = (f'SELECT i.date, i.title FROM items i JOIN raw_candidates r ON r.id = i.raw_id '
+             f'WHERE i.date BETWEEN ? AND ?{excl_i} AND r.event_hash = ?')
+        rows = conn.execute(q, [lo, hi] + params + [event_hash]).fetchall()
+        if rows:
+            return f'事件重复（{rows[0][0]} 已发过同一事件，跨来源指纹一致）'
+    if subject:
+        rows = conn.execute(
+            f'SELECT date, title FROM items WHERE date BETWEEN ? AND ?{excl_p} AND title LIKE ?',
+            [lo, hi] + params + [f'%{subject}%']).fetchall()
+        if rows:
+            return f'主体重复（{rows[0][0]} 已发过同一主体：{(rows[0][1] or "")[:20]}）'
     return None
 
 
-def validate_item(it, target_date, conn, exclude_dates=()):
+class PlanDeduper:
+    """**批内**去重：整批还没进库时，条目之间看不见彼此 → 必须自己盯住。
+
+    title / url / event_hash / dedupe_key（主体）四个维度。
+    """
+
+    def __init__(self):
+        self.titles = set()
+        self.urls = set()
+        self.event_hashes = set()
+        self.subjects = set()
+
+    def check(self, title, url, event_hash, subject):
+        if title and title in self.titles:
+            return f'批内重复标题（{title[:24]}）'
+        if url and url in self.urls:
+            return f'批内重复 url（{url[:40]}）'
+        if event_hash and event_hash in self.event_hashes:
+            return '批内重复事件（event_hash 相同）'
+        if subject and subject in self.subjects:
+            return f'批内重复主体（{subject}）'
+        return None
+
+    def add(self, title, url, event_hash, subject):
+        if title:
+            self.titles.add(title)
+        if url:
+            self.urls.add(url)
+        if event_hash:
+            self.event_hashes.add(event_hash)
+        if subject:
+            self.subjects.add(subject)
+
+
+def validate_item(it, target_date, conn, exclude_dates=(), deduper=None):
     """返回 (ok, reason, cleaned, raw_dict)。任何一条不满足即拒（fail-closed）。"""
     title = (it.get('title') or '').strip()
     url = (it.get('url') or '').strip()
@@ -568,9 +675,15 @@ def validate_item(it, target_date, conn, exclude_dates=()):
     if not isinstance(tags, list):
         return False, 'tags 必须是数组', None, raw
 
-    dup = dedupe_reason(conn, target_date, title, url, raw['content_hash'], exclude_dates)
+    subject = (it.get('dedupe_key') or raw.get('subject') or '').strip()
+    dup = dedupe_reason(conn, target_date, title, url, raw['content_hash'], exclude_dates,
+                         event_hash=raw.get('event_hash'), subject=subject or None)
     if dup:
         return False, dup, None, raw
+    if deduper is not None:
+        in_plan = deduper.check(title, url, raw.get('event_hash'), subject or None)
+        if in_plan:
+            return False, in_plan, None, raw
 
     cleaned = {
         'title': title, 'url': url, 'sum': summary, 'why': why, 'cat': cat,
@@ -578,6 +691,8 @@ def validate_item(it, target_date, conn, exclude_dates=()):
         'ma_cap': (it.get('ma_cap') or '').strip(),
         'src': (it.get('src') or raw['source'] or '').strip(),
         't': it.get('t'),
+        'subject': subject,
+        'event_hash': raw.get('event_hash'),
     }
     return True, '', cleaned, raw
 
@@ -613,11 +728,14 @@ def cmd_accept(args):
         print('✗ 输入需要是 {"items": [...]} 或数组')
         return 2
     conn = get_conn()
-    # ① 先整批校验（不写库）—— 任一条不过，整批不落库
+    # ① 先整批校验（不写库）—— 任一条不过，整批不落库；批内重复由 PlanDeduper 盯住
     plan, failures = [], []
+    deduper = PlanDeduper()
     for it in items:
-        ok, reason, cleaned, raw = validate_item(it, args.date, conn)
+        ok, reason, cleaned, raw = validate_item(it, args.date, conn, deduper=deduper)
         if ok:
+            deduper.add(cleaned['title'], cleaned['url'], cleaned.get('event_hash'),
+                        cleaned.get('subject') or None)
             plan.append((cleaned, raw))
         else:
             failures.append((it.get('title', '')[:40], reason, raw))
@@ -651,21 +769,51 @@ def cmd_replace(args):
     失败（任何一条不合格 / 写入异常）→ 整批回滚，**旧数据原样不动**。
     """
     files = [f for f in args.files.split(',') if f.strip()]
-    by_date = {}
+    by_date, file_of_date, range_errors = {}, {}, []
+    d0 = datetime.strptime(args.from_, '%Y-%m-%d')
+    d1 = datetime.strptime(args.to, '%Y-%m-%d')
+    span = []
+    cur = d0
+    while cur <= d1:
+        span.append(cur.strftime('%Y-%m-%d'))
+        cur += timedelta(days=1)
     for f in files:
         payload = json.loads(Path(f.strip()).read_text())
         items = payload.get('items') if isinstance(payload, dict) else payload
         d = payload.get('date') if isinstance(payload, dict) else None
-        for it in items or []:
-            by_date.setdefault(d or it.get('date') or args.to, []).append(it)
+        d = d or (items[0].get('date') if items else None)
+        if not d:
+            range_errors.append(f'{f}: payload 缺 date')
+            continue
+        if d not in span:
+            range_errors.append(f'{f}: 日期 {d} 不在区间 {args.from_}~{args.to} 内')
+            continue
+        if d in file_of_date:
+            range_errors.append(f'{f}: 日期 {d} 重复（已有 {file_of_date[d]}）')
+            continue
+        file_of_date[d] = f
+        by_date.setdefault(d, []).extend(items or [])
+    missing = [d for d in span if d not in by_date]
+    if missing and not args.allow_missing:
+        range_errors.append(f'区间缺日期的文件：{", ".join(missing)}'
+                            '（要跳过请显式加 --allow-missing，生产 runbook 禁止）')
+    if range_errors:
+        print('✗ 替换范围校验未通过，**未做任何改动**：')
+        for e in range_errors:
+            print('   -', e)
+        return 3
 
     conn = get_conn()
     plan_all, failures = {}, []
+    deduper = PlanDeduper()          # 跨 4 个文件共用一个去重器
     for d, items in sorted(by_date.items()):
         plan = []
         for it in items:
-            ok, reason, cleaned, raw = validate_item(it, d, conn, exclude_dates=(args.from_, args.to))
+            ok, reason, cleaned, raw = validate_item(it, d, conn, exclude_dates=(args.from_, args.to),
+                                                     deduper=deduper)
             if ok:
+                deduper.add(cleaned['title'], cleaned['url'], cleaned.get('event_hash'),
+                            cleaned.get('subject') or None)
                 plan.append((cleaned, raw))
             else:
                 failures.append((d, it.get('title', '')[:40], reason, raw))
@@ -825,6 +973,8 @@ def main():
     rp.add_argument('--from', dest='from_', required=True)
     rp.add_argument('--to', required=True)
     rp.add_argument('--files', required=True, help='逗号分隔的精选 JSON 列表')
+    rp.add_argument('--allow-missing', action='store_true',
+                    help='允许区间内有日期没有对应文件（生产 runbook 禁止，仅调试用）')
     rp.set_defaults(func=cmd_replace)
 
     rs = sub.add_parser('reset', help='把被拒候选复位回 candidate')

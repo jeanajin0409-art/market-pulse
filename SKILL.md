@@ -214,7 +214,15 @@ python x_scan/scan.py --group mena --days 4               # 中东/主权基金 
 - `url` —— **具体原文链接**；首页 URL 一律拒绝
 - `dedupe_key`（可选）—— 主体公司名，用于拦截「同一事件被不同来源各写一条」
 
-**7 日去重**：title / url / dedupe_key 在前后 7 天内已发布过 → 拦截。跨日重复必须阻断。
+**7 日去重**：**对称窗口**（target-7d ~ target+7d，历史回填也要查未来侧），四个维度：
+- `title` / `url` —— 同一篇
+- `content_hash` —— 同一来源的同一事件
+- `event_hash` —— **跨来源**事件指纹：结构化 deal 用「主体 + 金额 + 轮次 + 参与方」，
+  新闻用 canonical URL（去 www / 去追踪参数）→ 同一件事换来源、改标题也认得出
+- `dedupe_key`（主体名）—— 补强：同一家公司同周内不该发两次
+
+**批内去重**：整批还没进库时条目之间看不见彼此 → `accept` / `replace` 自带批内去重器
+（title / url / event_hash / 主体四维度），`replace` 跨多个文件共用同一个去重器。
 
 **每条必须能对应到一条已抓到的 raw candidate**（不能拿任意 JSON 绕开 raw 层）。引用方式（按优先级）：
 
@@ -260,9 +268,17 @@ python x_scan/scan.py --group mena --days 4               # 中东/主权基金 
 
 **任一闸门失败：停止 publish，输出明确错误，不得带病 push。**
 
-**build 的零写入保证**：`build.py build` 先把三份产物渲染到内存并完成全部校验（含 JS 结构检查），
-**全部通过后才用「临时文件 + os.replace」原子替换** `index.html` / `archive/<date>.html` / `archive/index.html`。
-任何一项校验失败 → 退出码非 0，且三个目标文件 **byte-unchanged**（不会出现写了一半的页面）。
+**build 的零写入保证**：`build.py build` 先把三份产物渲染到**内存**并完成全部校验
+（发布闸门 + `node --check` 真语法检查 + 结构检查），**全部通过后才写盘**。
+- 校验失败 → 退出码非 0，三个目标文件 **byte-unchanged**（不会写半成品）
+- 写盘用「临时文件 + `os.replace`」，这是**单文件原子**（每个文件要么旧内容要么新内容）；
+  **不是三文件事务** —— 若磁盘在写到第二个文件时出错，仍需靠 DB 备份恢复
+- 语法检查以 `node --check` 为准（把生成的 ITEMS 数组抽出来真解析）；括号计数只作补充，
+  因为字符串里合法的 `{` 会被括号计数误杀
+
+**历史日重建用 `--archive-only`**：只更新 `archive/<date>.html` 与 `archive/index.html`，**不改 `index.html`** ——
+否则历史日的 build 会把主页 header 与今日导读退回历史日期，线上首页日期倒退。
+主页由下一次正常发布（当天日期、不带 `--archive-only`）从 DB 重新渲染。
 
 ## 5. 条目字段语义与 score 标准
 
@@ -290,6 +306,9 @@ python x_scan/scan.py --group mena --days 4               # 中东/主权基金 
 - 70-79：数亿美元交易、重要产品发布、监管判例
 - 60-69：补充性动态
 - 60 以下的不值得收录
+
+**post 也走同一道闸门**：`build.py post` 先跑 `publish_gate()`，不过 → 非零退出且**不输出任何 post 正文**
+（防止「build 失败但流程继续 → 坏内容仍被发到频道」）。
 
 ## 6. 验证
 
@@ -334,7 +353,9 @@ python3 scripts/pipeline.py replace --from 2026-07-24 --to 2026-07-27 \
     --files samples/2026-07-24.json,samples/2026-07-25.json,samples/2026-07-26.json,samples/2026-07-27.json
 ```
 
-- **先整批校验**：四天的所有条目一起过字段闸门 + raw 引用校验 + 7 日去重（去重时排除被替换区间本身）
+- **先校验范围**：所有 payload 的 date 必须落在 `--from ~ --to` 内、日期不能重复、
+  **区间内每一天都要有且仅有一个文件**（缺日期 → 拒绝；生产 runbook 禁止 `--allow-missing`）
+- **再整批校验**：四天的所有条目一起过字段闸门 + raw 引用校验 + 7 日去重 + 批内去重（去重时排除被替换区间本身）
 - **任一条不合格 → 整批拒绝、0 条落库、旧数据原样不动**（退出码非 0）
 - **全部通过 → 单事务** `DELETE` 旧行 + `INSERT` 新行；写入异常 → 整批回滚，并打印区间行数变化
 

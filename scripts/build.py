@@ -18,6 +18,7 @@ import re
 import sqlite3
 import subprocess
 import sys
+import tempfile
 import urllib.parse
 from collections import OrderedDict
 from datetime import datetime, timezone, timedelta
@@ -403,6 +404,64 @@ def cmd_dry_run(args):
         print(f'\n✗ Schema gate has {issues} issues. Fix before build.')
         return 3
 
+def node_syntax_check(content):
+    """真语法检查：抽出 ITEMS 数组跑 node --check。
+
+    括号计数只是补充（字符串里合法的 '{' 会被误杀），语法检查才是判定依据。
+    node 不可用 → 返回 None，降级为只做结构检查并明确提示。
+    """
+    m = re.search(r'const ITEMS = \[(.*?)\n\];', content, re.S)
+    if not m:
+        return False, 'ITEMS array not found'
+    js = 'const ITEMS = [' + m.group(1) + '\n];'
+    tmp = Path(tempfile.mkstemp(suffix='.js')[1])
+    try:
+        tmp.write_text(js)
+        r = subprocess.run(['node', '--check', str(tmp)], capture_output=True, text=True, timeout=30)
+        if r.returncode == 0:
+            return True, 'node --check OK'
+        return False, (r.stderr or '').strip()[:300]
+    except FileNotFoundError:
+        return None, 'node 不可用 → 只做结构检查'
+    except subprocess.TimeoutExpired:
+        return False, 'node --check 超时'
+    finally:
+        try:
+            tmp.unlink()
+        except OSError:
+            pass
+
+def check_page_content(content, require_items=True, date_str=''):
+    issues = []
+    node_ok = None
+    if require_items:
+        node_ok, msg = node_syntax_check(content)
+        if node_ok is False:
+            issues.append(f'node 语法检查失败：{msg}')
+    if require_items:
+        # 括号计数只作**补充**：node --check 通过时不再用它判失败
+        #（字符串里合法的 '{' 会被括号计数误杀 —— node 才是语法权威）
+        if node_ok is not True:
+            opens = content.count('{')
+            closes = content.count('}')
+            if opens != closes:
+                issues.append(f'brace imbalance {{={opens}, }}={closes}')
+        if 'const ITEMS = [' not in content:
+            issues.append('ITEMS array missing')
+        js_required = ['d', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'why']
+        for field in js_required:
+            if f'  {field}:' not in content:
+                issues.append(f'missing field: {field}')
+    else:
+        # 往期索引是链接列表页，没有 ITEMS 数组，只校验当天链接存在
+        if date_str and f'{date_str}.html' not in content:
+            issues.append(f'archive index 缺当天链接 {date_str}.html')
+    if issues:
+        return False, '; '.join(issues)
+    return True, 'all structural checks passed'
+
+
+
 # --- 发布硬闸门（fail-closed：任一不过 → 停止 publish，不写任何文件） ---
 GATE_HOMEPAGE_HOSTS = {'www.itjuzi.com', 'itjuzi.com', 'aihot.virxact.com', 'aihot.news'}
 GATE_BIGTECH_FORBIDDEN_INDUSTRIES = {'医疗健康', '企业服务', '传统制造', '教育', '金融', '消费'}
@@ -539,33 +598,12 @@ def cmd_build(args):
         extra_count=len(re.findall(r'^\s*t:"', archive_html, re.M)))
 
     # Step 3: 全部校验通过后才允许写盘（校验基于内存内容，不依赖已写文件）
-    def check_js_content(content, require_items=True):
-        issues = []
-        opens = content.count('{')
-        closes = content.count('}')
-        if opens != closes:
-            issues.append(f'brace imbalance {{={opens}, }}={closes}')
-        if require_items:
-            if 'const ITEMS = [' not in content:
-                issues.append('ITEMS array missing')
-            js_required = ['d', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'why']
-            for field in js_required:
-                if f'  {field}:' not in content:
-                    issues.append(f'missing field: {field}')
-        else:
-            # 往期索引是链接列表页，没有 ITEMS 数组，只校验当天链接存在
-            if f'{today}.html' not in content:
-                issues.append(f'archive index 缺当天链接 {today}.html')
-        if issues:
-            return False, '; '.join(issues)
-        return True, 'all structural checks passed'
-
     checks = [('index.html', new_main_with_items, True),
               (f'archive/{today}.html', archive_html, True),
               ('archive/index.html', new_idx, False)]
     failed = False
     for name, content, require_items in checks:
-        ok, msg = check_js_content(content, require_items)
+        ok, msg = check_page_content(content, require_items, today)
         status = '✓' if ok else '✗'
         print(f'  {status} JS check {name}: {msg[:200] if not ok else "OK"}')
         if not ok:
@@ -574,9 +612,13 @@ def cmd_build(args):
         print('✗ 结构校验未通过，已停止：三个目标文件保持原样（byte-unchanged），未写入任何内容。')
         return 4
 
-    # Step 4: 校验全部通过 → 原子替换（临时文件 + os.replace）
-    atomic_write(INDEX_PATH, new_main_with_items)
-    print(f'✓ index.html written: {len(new_main_with_items)} bytes')
+    # Step 4: 校验全部通过 → 原子替换（临时文件 + os.replace；**单文件原子**，非三文件事务）
+    if getattr(args, 'archive_only', False):
+        # 历史重做专用：只更新归档与往期索引，**不动主页**（避免把主页日期倒退到历史日）
+        print('  · archive-only 模式：跳过 index.html（主页日期不动）')
+    else:
+        atomic_write(INDEX_PATH, new_main_with_items)
+        print(f'✓ index.html written: {len(new_main_with_items)} bytes')
     atomic_write(archive_path, archive_html)
     print(f'✓ archive/{today}.html written: {len(archive_html)} bytes')
     atomic_write(ARCHIVE_DIR / 'index.html', new_idx)
@@ -597,6 +639,8 @@ def main():
     dr.set_defaults(func=cmd_dry_run)
     b = sub.add_parser('build', help='Full build: index.html + archive + archive index')
     b.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
+    b.add_argument('--archive-only', action='store_true',
+                   help='只更新归档与往期索引，不改 index.html（历史重做用，避免主页日期倒退）')
     b.set_defaults(func=cmd_build)
     # 注：旧的 `fetch` 子命令已删除 —— 它会直接写 items（错误日期参数 + 首页 URL + score 恒 80 +
     # 分类错位），是绕过新架构的后门。抓取一律走 scripts/pipeline.py fetch。
@@ -659,8 +703,18 @@ def build_dealhot_post(date_str):
     return post
 
 def cmd_post(args):
-    """Generate #dealhot channel post in 5c42a5a6 template format. Prints to stdout."""
+    """Generate #dealhot channel post in 5c42a5a6 template format. Prints to stdout.
+
+    **先跑与 build 完全相同的发布硬闸门**：闸门不过 → 非零退出且**不输出任何 post 正文**，
+    避免「build 失败但流程继续 → 坏内容仍被发到频道」。
+    """
     date_str = args.date or bj_today_str()
+    gate_errors, _stats = publish_gate(date_str)
+    if gate_errors:
+        print(f'✗ 发布闸门未通过（{len(gate_errors)} 项），不生成 post：')
+        for e in gate_errors:
+            print(f'    - {e}')
+        return 3
     post = build_dealhot_post(date_str)
     if post is None:
         print(f'\u274c No items for {date_str} in DB. Aborting.')
