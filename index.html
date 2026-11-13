@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月12日 · 星期四</div>
+    <div class="date">2026年11月13日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>WSJ 报道 Nvidia 董事会接近决定是否罢免 CEO </strong>、<strong>Grok 被指生成儿童色情图像,xAI 面临多起集体诉讼</strong>、<strong>Anthropic 投资需求火热,承销商拟将 IPO 目标估</strong> 等。</p>
+      <p>今日新增 3 条。<strong>NVIDIA 宣布 CEO 变动：Jensen Huang </strong>、<strong>SemiAnalysis 分析黄仁勋辞任 Nvidia CE</strong>、<strong>Anthropic 官宣首次公开募股（IPO）</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,320 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Claude：Blog（网页） 2026-11-13 新增 ──────────────
+{
+  t:"11月13日 09:00",
+  d:"2026-11-13",
+  src:"Claude：Blog（网页）",
+  cat:"bigtech",
+  score:85,
+  title:"Anthropic 建议把 Claude Opus 5.5 作为知识工作的日常主力模型",
+  url:"https://claude.com/blog/using-claude-opus-5-5-as-your-daily-driver-for-knowledge-work",
+  sum:"Anthropic 官方指南：建议把 **Claude Opus 5.5** 作为知识工作的**日常主力模型**（而非旗舰 Fable 5.2）——官方给出选型分层建议。"
+},
+{
+  t:"11月13日 09:00",
+  d:"2026-11-13",
+  src:"NVIDIA：Newsroom（RSS）",
+  cat:"bigtech",
+  score:98,
+  title:"NVIDIA 宣布 CEO 变动：Jensen Huang 辞任，CFO Colette Kress 出任临时 CEO",
+  url:"https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
+  sum:"NVIDIA 官方公告：**Jensen Huang 辞任 CEO**，CFO **Colette Kress 出任临时 CEO**——从 10/9 情报调查到 11/13 正式辞任，35 天。"
+},
+{
+  t:"11月13日 09:00",
+  d:"2026-11-13",
+  src:"SemiAnalysis 长文 RSS（RSS）",
+  cat:"bigtech",
+  score:90,
+  title:"SemiAnalysis 分析黄仁勋辞任 Nvidia CEO 背后的出口管制博弈",
+  url:"https://newsletter.semianalysis.com/p/nvidia-and-the-world-without-jensen",
+  sum:"SemiAnalysis 长文：黄仁勋辞任 Nvidia CEO 背后的**出口管制博弈**——美国政策圈对 AI 芯片出口的推动力与人事绑定的程度。"
+},
+{
+  t:"11月13日 09:00",
+  d:"2026-11-13",
+  src:"The Verge：AI（RSS）",
+  cat:"bigtech",
+  score:86,
+  title:"The Verge 分析黄仁勋辞职与 Nvidia 芯片走私疑云",
+  url:"https://www.theverge.com/ai-artificial-intelligence/1032069/jensen-huang-resignation-affair-chips-smuggling",
+  sum:"The Verge 分析黄仁勋辞职与 NVIDIA **芯片走私疑云**的关联——辞职时间点与走私调查的交叠。"
+},
+{
+  t:"11月13日 09:00",
+  d:"2026-11-13",
+  src:"X：Anthropic (@AnthropicAI)",
+  cat:"ipo",
+  score:90,
+  title:"Anthropic 官宣首次公开募股（IPO）",
+  url:"https://x.com/AnthropicAI/status/2120841731302154708",
+  sum:"Anthropic 官宣**首次公开募股（IPO）**——公司正式公告启动上市流程，代码 ANT。"
+},
+
+// ───────────── IT桔子 2026-11-13 新增 ──────────────
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Charta Health获得5500万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Charta Health完成#3。属\"医疗健康 > 医疗信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗信息化"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Coreshell Technologies获得3000万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Coreshell Technologies完成#3。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Edelbyte获得4500万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Edelbyte完成#2。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"HCS获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，HCS完成#11。属\"医疗健康 > 医疗信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗信息化"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nebuly获得1895万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Nebuly完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Neurosterix获得1.05亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Neurosterix完成#3。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Rezera IPO上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Rezera完成#8。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Rox获得1亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Rox完成#3。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Shop Garage获得4100万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Shop Garage完成#3。属\"电商零售 > 大宗商品\"。",
+  ma_cap:"未披露",
+  tags:["投融资","大宗商品"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Tendrils获得3000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Tendrils完成#13。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Torus能源获得5亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Torus能源完成#4。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Uforce获得7亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，Uforce完成#2。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"XpertDox获得2000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，XpertDox完成#2。属\"医疗健康 > 医疗信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗信息化"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"一微科技首挂上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，一微科技完成#8。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"宏芯宇今日港股上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，宏芯宇完成#8。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"拓济医药获得4000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，拓济医药完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"未来序列获得数百万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，未来序列完成#13。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"机器人制造商Agile Robots融资5亿美元，估值85亿美元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，思灵机器人Agile Robots完成#7。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"洽道量子完成两轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，洽道量子完成#1。属\"前沿科技 > 量子技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","量子技术"]
+},
+{
+  t:"11月13日",
+  d:"2026-11-13",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"百通能源：拟定增募资不超2.47亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-13 IT桔子披露，百通能源完成#17。属\"传统制造 > 公用事业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","公用事业"]
+},
+
 // ───────────── X：Rohan Paul (@rohanpaul_ai) 2026-11-12 新增 ──────────────
 {
   t:"11月12日 09:00",
