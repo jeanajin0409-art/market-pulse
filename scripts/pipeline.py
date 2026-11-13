@@ -712,11 +712,15 @@ def cmd_reset(args):
     """
     conn = get_conn()
     c = conn.cursor()
-    if args.date:
-        c.execute("UPDATE raw_candidates SET status='candidate', note=NULL WHERE event_date=? AND status=?",
-                  (args.date, args.status))
+    sql = ("UPDATE raw_candidates SET status='candidate', note=NULL, selected_item_id=NULL "
+           "WHERE {where}")
+    if args.status == 'all':
+        where = "status != 'candidate'" + (" AND event_date = ?" if args.date else "")
+        params = (args.date,) if args.date else ()
     else:
-        c.execute("UPDATE raw_candidates SET status='candidate', note=NULL WHERE status=?", (args.status,))
+        where = "status = ?" + (" AND event_date = ?" if args.date else "")
+        params = (args.status, args.date) if args.date else (args.status,)
+    c.execute(sql.format(where=where), params)
     n = c.rowcount
     conn.commit()
     conn.close()
@@ -825,7 +829,7 @@ def main():
 
     rs = sub.add_parser('reset', help='把被拒候选复位回 candidate')
     rs.add_argument('--date', help='限定日期（默认全部）')
-    rs.add_argument('--status', default='rejected', help='要复位的原状态（默认 rejected）')
+    rs.add_argument('--status', default='rejected', help='要复位的原状态（默认 rejected；all = 所有非 candidate）')
     rs.set_defaults(func=cmd_reset)
 
     st = sub.add_parser('stats', help='统计')
