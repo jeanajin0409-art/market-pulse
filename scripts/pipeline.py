@@ -498,7 +498,7 @@ def _raw_select(conn, where, params):
             f'FROM raw_candidates WHERE {where}', params).fetchone()
 
 
-def resolve_raw(conn, it, target_date):
+def resolve_raw(conn, it, target_date, allow_selected=False):
     """按稳定键解析 raw candidate。返回 (row_dict, error_msg)。
 
     稳定键优先级：raw_content_hash → raw_source+raw_source_id → raw_url → raw_id。
@@ -539,7 +539,7 @@ def resolve_raw(conn, it, target_date):
     d = dict(zip(RAW_KEYS, row))
     if d['event_date'] != target_date:
         return None, f"raw candidate 日期不符（{d['event_date']} != {target_date}）"
-    if d['status'] != 'candidate':
+    if d['status'] != 'candidate' and not (allow_selected and d['status'] == 'selected'):
         return None, f"raw candidate 状态不是 candidate（{d['status']}）"
     if it.get('raw_content_hash') and it['raw_content_hash'] != d['content_hash']:
         return None, 'content_hash 与 raw candidate 不一致'
@@ -627,7 +627,7 @@ class PlanDeduper:
             self.subjects.add(subject)
 
 
-def validate_item(it, target_date, conn, exclude_dates=(), deduper=None):
+def validate_item(it, target_date, conn, exclude_dates=(), deduper=None, allow_selected=False):
     """返回 (ok, reason, cleaned, raw_dict)。任何一条不满足即拒（fail-closed）。"""
     title = (it.get('title') or '').strip()
     url = (it.get('url') or '').strip()
@@ -638,7 +638,7 @@ def validate_item(it, target_date, conn, exclude_dates=(), deduper=None):
     score = it.get('score')
     tags = it.get('tags') or []
 
-    raw, raw_err = resolve_raw(conn, it, target_date)
+    raw, raw_err = resolve_raw(conn, it, target_date, allow_selected=allow_selected)
     if raw_err:
         return False, raw_err, None, None
 
@@ -704,6 +704,8 @@ def validate_item(it, target_date, conn, exclude_dates=(), deduper=None):
 def _insert_items(conn, target_date, plan, commit_sha):
     c = conn.cursor()
     for cleaned, raw in plan:
+        # 区间重做 = 重新选中这条候选（清掉上一轮的拒绝原因）
+        c.execute('UPDATE raw_candidates SET note=NULL WHERE id=?', (raw['id'],))
         t = cleaned['t'] or f'{int(target_date[5:7])}月{int(target_date[8:10])}日'
         cur = c.execute('''
             INSERT INTO items (date, t, src, cat, regions, score, title, url, sum, why, ma_cap, tags, commit_sha, raw_id)
@@ -814,7 +816,7 @@ def cmd_replace(args):
         plan = []
         for it in items:
             ok, reason, cleaned, raw = validate_item(it, d, conn, exclude_dates=(args.from_, args.to),
-                                                     deduper=deduper)
+                                                     deduper=deduper, allow_selected=True)
             if ok:
                 deduper.add(cleaned['title'], cleaned['url'], cleaned.get('event_hash'),
                             cleaned.get('subject') or None)
