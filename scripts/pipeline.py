@@ -244,13 +244,14 @@ def cmd_migrate(args):
     c.execute('CREATE INDEX IF NOT EXISTS idx_raw_date ON raw_candidates(event_date)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_raw_status ON raw_candidates(status)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_raw_url ON raw_candidates(url)')
-    c.execute('CREATE INDEX IF NOT EXISTS idx_raw_event_hash ON raw_candidates(event_hash)')
-    c.execute('CREATE INDEX IF NOT EXISTS idx_raw_subject ON raw_candidates(subject)')
     raw_cols = {r[1] for r in c.execute('PRAGMA table_info(raw_candidates)')}
     for col, decl in (('event_hash', 'TEXT'), ('subject', 'TEXT')):
         if col not in raw_cols:
             c.execute(f'ALTER TABLE raw_candidates ADD COLUMN {col} {decl}')
             print(f'raw_candidates: 新增列 {col}')
+    # 索引要在列存在之后建
+    c.execute('CREATE INDEX IF NOT EXISTS idx_raw_event_hash ON raw_candidates(event_hash)')
+    c.execute('CREATE INDEX IF NOT EXISTS idx_raw_subject ON raw_candidates(subject)')
     cols = {r[1] for r in c.execute('PRAGMA table_info(items)')}
     if 'raw_id' not in cols:
         c.execute('ALTER TABLE items ADD COLUMN raw_id INTEGER')
@@ -327,9 +328,8 @@ def normalize_itjuzi(kind, row, target_date):
 
     url = first_news_url(row)
     structured = kind in ('investevent', 'acquisition', 'merger')
+    # 主体 = 公司/机构名。新闻类**不**用媒体名当主体（那是来源，不是主体，会误拦同一家媒体的两条新闻）
     subject = (row.get('com_name') or '').strip() if structured else ''
-    if not subject:
-        subject = (row.get('news_source') or '').strip()
     return {
         'source': 'IT桔子',
         'source_id': source_id,
@@ -488,6 +488,16 @@ RAW_KEYS = ['id', 'source', 'source_id', 'url', 'event_date', 'title', 'content_
             'event_hash', 'subject', 'status']
 
 
+def _raw_select(conn, where, params):
+    """读候选行；DB 还没迁移（缺 event_hash/subject 列）时降级查询。"""
+    try:
+        return conn.execute(f'SELECT {RAW_COLS} FROM raw_candidates WHERE {where}', params).fetchone()
+    except sqlite3.OperationalError:
+        return conn.execute(
+            'SELECT id, source, source_id, url, event_date, title, content_hash, NULL, NULL, status '
+            f'FROM raw_candidates WHERE {where}', params).fetchone()
+
+
 def resolve_raw(conn, it, target_date):
     """按稳定键解析 raw candidate。返回 (row_dict, error_msg)。
 
@@ -496,35 +506,30 @@ def resolve_raw(conn, it, target_date):
     """
     row = None
     if it.get('raw_content_hash'):
-        cur = conn.execute(
-            f'SELECT {RAW_COLS} FROM raw_candidates WHERE content_hash = ? AND source = ?',
-            (it['raw_content_hash'], it.get('raw_source') or 'IT桔子')).fetchone()
+        cur = _raw_select(conn, 'content_hash = ? AND source = ?',
+                          (it['raw_content_hash'], it.get('raw_source') or 'IT桔子'))
         if cur is None:
             return None, 'raw candidate 不存在（content_hash 对不上）'
         row = cur
     elif it.get('raw_source') and it.get('raw_source_id'):
-        cur = conn.execute(
-            f'SELECT {RAW_COLS} FROM raw_candidates WHERE source = ? AND source_id = ?',
-            (it['raw_source'], str(it['raw_source_id']))).fetchone()
+        cur = _raw_select(conn, 'source = ? AND source_id = ?',
+                          (it['raw_source'], str(it['raw_source_id'])))
         if cur is None:
             return None, 'raw candidate 不存在（source + source_id 对不上）'
         row = cur
     elif it.get('raw_url'):
-        cur = conn.execute(
-            f'SELECT {RAW_COLS} FROM raw_candidates WHERE url = ?', (it['raw_url'],)).fetchone()
+        cur = _raw_select(conn, 'url = ?', (it['raw_url'],))
         if cur is None:
             return None, 'raw candidate 不存在（url 对不上）'
         row = cur
     elif it.get('raw_id'):
-        cur = conn.execute(
-            f'SELECT {RAW_COLS} FROM raw_candidates WHERE id = ?', (it['raw_id'],)).fetchone()
+        cur = _raw_select(conn, 'id = ?', (it['raw_id'],))
         if cur is None:
             return None, 'raw candidate 不存在（id 对不上）'
         row = cur
     elif it.get('url'):
         # 兜底：用条目的 url 去找候选 —— 找不到就说明这条不是抓回来的候选
-        cur = conn.execute(
-            f'SELECT {RAW_COLS} FROM raw_candidates WHERE url = ?', (it['url'],)).fetchone()
+        cur = _raw_select(conn, 'url = ?', (it['url'],))
         if cur is None:
             return None, 'raw candidate 不存在（url 对不上）'
         row = cur
@@ -672,7 +677,9 @@ def validate_item(it, target_date, conn, exclude_dates=(), deduper=None):
     if not isinstance(tags, list):
         return False, 'tags 必须是数组', None, raw
 
-    subject = (it.get('dedupe_key') or raw.get('subject') or '').strip()
+    # dedupe_key 由策展人显式指定（通常是主体/公司名）；不从候选的 subject 自动继承
+    # —— 自动继承会把「同一家媒体的两条不同新闻」或「同一家公司的两笔不同融资」误拦
+    subject = (it.get('dedupe_key') or '').strip()
     dup = dedupe_reason(conn, target_date, title, url, raw['content_hash'], exclude_dates,
                          event_hash=raw.get('event_hash'), subject=subject or None)
     if dup:
