@@ -53,7 +53,7 @@ git push origin main         # GitHub Pages 约 1 分钟重新发布
 git checkout main && git pull --ff-only origin main
 git rev-parse HEAD > /tmp/dealhot_cutover_rollback_point.txt   # 回滚点
 
-python3 tests/run_tests.py                  # 先跑回归（8 类场景）
+python3 tests/run_tests.py                  # 先跑回归（16 类场景）
 git merge --no-ff fix/dealhot-raw-candidates-pipeline
 python3 scripts/pipeline.py migrate        # 生产 DB 加表 + 加列（幂等）
 git push origin main
@@ -134,7 +134,7 @@ pipeline.py fetch → pipeline.py list → 人工精选写 JSON → pipeline.py 
 
 ## 4. 切前检查清单（每项都要实测跑一遍）
 
-- [ ] `python3 tests/run_tests.py` → **13/13 passed**
+- [ ] `python3 tests/run_tests.py` → **16/16 passed**
 - [ ] `python3 scripts/pipeline.py migrate` 跑两次，结果一致（幂等）
 - [ ] `fetch` 之后 `items` 行数**不变**（只进 raw_candidates）
 - [ ] `accept` 前后 `items` 行数差 = 精选条数；一条不合格时**整批 0 条落库**且退出码非 0

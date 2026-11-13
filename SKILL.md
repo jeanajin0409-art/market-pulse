@@ -72,7 +72,8 @@ python3 fetch_aihot.py 48 --json > /tmp/aihot.json
 python3 scripts/pipeline.py import-aihot --date 2026-07-25 --file /tmp/aihot.json
 # ⚠️ 任一端点异常 → fetch 非零退出（rc=5），**不当作完整抓取**。
 #    当前 merger 端点长期 500，若确认可接受部分结果，加 --allow-partial；
-#    失败端点会记进 fetch_state 表，stats 与每日汇报里要带上。
+#    失败端点会记进 fetch_state 表（该表是**第一次记录失败端点时懒创建**的，不是 migrate 建的），
+#    stats 与每日汇报里要带上。
 
 # ③ 看候选（人工挑选，逐条写 sum/why/cat/regions/score）
 python3 scripts/pipeline.py list --date 2026-07-25
@@ -105,7 +106,7 @@ raft reminder ack --id 4d2c06ea-7f01-47b6-9465-3f6f58c05f84 --revision <rev>
 **空 `items` 也不算成功**（退出码 2，0 条落库）；
 被拒的候选会持久化 `status=rejected` + `note`。改完想重新收录，先 `python3 scripts/pipeline.py reset --date <D>`。
 
-**回归测试**（改完 pipeline/build 必须跑）：`python3 tests/run_tests.py`（8 类场景，无第三方依赖）。
+**回归测试**（改完 pipeline/build 必须跑）：`python3 tests/run_tests.py`（**16 类场景**，无第三方依赖）。
 
 `build.py build` 的输出必须逐行看：`✓ 发布闸门通过` + 五类统计 + `index.html written` / `archive/<D>.html written` / `archive/index.html updated` / 两行 `JS check ... OK` / `Main page items: N` / `Archive page items: N`。
 
