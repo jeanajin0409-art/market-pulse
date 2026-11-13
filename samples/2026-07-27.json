@@ -3,68 +3,94 @@
   "note": "task #1 真重做样稿之一：raw_candidates → 精选 → items（5 条，板块覆盖 ipo/bigtech/ai/minority/frontier）",
   "items": [
     {
-      "raw_id": 359,
       "dedupe_key": "长鑫科技",
       "src": "IT桔子",
       "title": "长鑫科技今日上市 发行价格8.66元/股",
       "url": "https://www.cnstock.com/commonDetail/751008",
       "cat": "ipo",
-      "regions": ["中国"],
+      "regions": [
+        "中国"
+      ],
       "score": 92,
-      "sum": "长鑫科技今日在上交所科创板上市，证券代码 688825，发行价格 8.66 元/股，发行市盈率 308.92 倍。公司为一体化存储器制造商，主营 DRAM 芯片的设计、研发、生产与销售。",
+      "sum": "长鑫科技今日在上交所科创板上市，证券代码 688825，发行价格 8.66 元/股，发行市盈率 308.92 倍，估值达数千亿元。公司为一体化存储器制造商，主营 DRAM 芯片的设计、研发、生产与销售，已推出多款商用 DRAM 产品，应用于移动终端、电脑、服务器、虚拟现实与物联网。",
       "why": "308 倍发行市盈率把国产 DRAM 战场的估值锚公开化，后续同赛道的一级融资与二级定价都会拿它当参照。",
-      "tags": ["IPO"]
+      "tags": [
+        "IPO"
+      ],
+      "raw_source": "IT桔子",
+      "raw_source_id": "14701266"
     },
     {
-      "raw_id": 360,
       "dedupe_key": "NAVER",
       "src": "IT桔子",
       "title": "韩国互联网巨头NAVER 获得英伟达 10 亿美元战略投资",
       "url": "https://www.jiemian.com/article/14828807.html",
       "cat": "bigtech",
-      "regions": ["亚太"],
+      "regions": [
+        "亚太"
+      ],
       "score": 86,
-      "sum": "英伟达宣布向韩国互联网公司 NAVER 投资 10 亿美元，获得 NAVER 4.5% 股份。NAVER 成立于 1999 年，是韩国最大的搜索引擎与门户网站，同时是社交软件 LINE 的母公司，业务覆盖搜索、电商、支付与人工智能。",
+      "sum": "英伟达将按战略投资协议向韩国互联网公司 NAVER 投资 10 亿美元，获得 4.5% 股份。NAVER、Brookfield 与英伟达同时宣布扩建韩国自主 AI 工厂基础设施：GAK 世宗数据中心的英伟达 DSX AI 工厂初始部署规模为 55 兆瓦，计划到 2028 年扩大至 200 兆瓦。",
       "why": "算力厂商直接持股本地互联网平台，把算力供应与 AI 入口绑定，是「模型 + 流量」一体化的典型资本动作。",
-      "tags": ["投融资", "CAPEX"]
+      "tags": [
+        "投融资",
+        "CAPEX"
+      ],
+      "raw_source": "IT桔子",
+      "raw_source_id": "14701250"
     },
     {
-      "raw_id": 390,
       "src": "华尔街见闻",
       "title": "英伟达、微软等科技巨头签署联名信，公开支持开源模型",
       "url": "https://wallstreetcn.com/articles/3778016",
       "cat": "ai",
-      "regions": ["全球"],
+      "regions": [
+        "全球"
+      ],
       "score": 82,
-      "sum": "英伟达、微软等科技巨头签署联名信，公开支持开源模型。",
+      "sum": "英伟达、微软、Meta、Palantir 等 25 家科技公司于 7 月 24 日联署公开信支持开放模型权重，随后新增 OpenAI、谷歌等，联名方一天内增至 50 家。信件主张开放权重有助竞争与创新、收益应广泛共享，黄仁勋、纳德拉、扎克伯格与马斯克均公开支持；此前近 200 家硅谷初创公司曾致信美国政府要求不要限制获取中国开源模型。",
       "why": "开源阵营的支持者从模型公司扩展到算力与云厂商，会直接影响开源模型的可得性与商业化路径。",
-      "tags": ["模型/技术", "政策"]
+      "tags": [
+        "模型/技术",
+        "政策"
+      ]
     },
     {
-      "raw_id": 331,
       "dedupe_key": "铭镓半导体",
       "src": "IT桔子",
       "title": "铭镓半导体完成超1.5亿元Pre-B1、B2轮融资",
       "url": "https://mp.weixin.qq.com/s?__biz=MzI0NDIwMTM5Ng==&mid=2649484028&idx=2&sn=20df6029a3c8e7cd54dab253fff4d057&poc_token=HCkzZ2qj_5VLir6wNRPdLlFDBSnIWsdcPoPfYGdn",
       "cat": "minority",
-      "regions": ["中国"],
+      "regions": [
+        "中国"
+      ],
       "score": 76,
-      "sum": "铭镓半导体完成 Pre-B1、B2 两轮融资，累计金额超 1.5 亿元人民币，由千曦资本、芯禾资本、安阳经开集团、粤科资本、天鹰资本及洪泰基金联合投资。资金主要用于磷化铟多晶材料的产能扩张、氧化镓中试产线建设及上市筹备。",
-      "why": "第四代半导体材料（氧化镓、磷化铟）正从研发走向中试与扩产，这类上游材料的融资与产能节奏通常是下游器件量产的前置指标。",
-      "tags": ["投融资"]
+      "sum": "铭镓半导体完成 Pre-B1、B2 两轮融资，累计金额超 1.5 亿元人民币，由千曦资本、芯禾资本、安阳经开集团、粤科资本、天鹰资本及洪泰基金联合投资。资金主要用于磷化铟多晶材料的产能扩张、氧化镓中试产线建设及上市筹备；公司产品包括第四代半导体材料氧化镓、高频磷化铟晶体与大尺寸掺杂光学晶体。",
+      "why": "第四代半导体材料正从研发走向中试与扩产，这类上游材料的融资与产能节奏通常是下游器件量产的前置指标。",
+      "tags": [
+        "投融资"
+      ],
+      "raw_source": "IT桔子",
+      "raw_source_id": "14701354"
     },
     {
-      "raw_id": 353,
       "dedupe_key": "Rize",
       "src": "IT桔子",
       "title": "Rize获得3100万美元B轮融资",
       "url": "https://mp.weixin.qq.com/s?__biz=MzI1OTM4MTM3OQ==&mid=2247486857&idx=1&sn=00012298d2cd2345d5e311a73621994b&poc_token=HEXZZmqjAnSZtB6r8fSWR-F9SrmZSJU7daR1BK_c",
       "cat": "frontier",
-      "regions": ["全球"],
+      "regions": [
+        "全球"
+      ],
       "score": 78,
-      "sum": "越南水稻农业信息化服务商 Rize 获得 3100 万美元 B 轮融资，BNP Paribas Asset Management Alts 领投，越南投资发展银行、大华银行、Breakthrough Energy Ventures、淡马锡、淡马锡基金会与洛克菲勒基金会参投。公司以自研田间数字化 APP 与碳 MRV 监测系统落地节水低碳种植方案。",
+      "sum": "越南水稻农业信息化服务商 Rize 获得 3100 万美元 B 轮融资，BNP Paribas Asset Management Alts 领投，越南投资发展银行、大华银行、Breakthrough Energy Ventures、淡马锡、淡马锡基金会与洛克菲勒基金会参投。公司以自研田间数字化 APP 与碳 MRV 监测系统落地节水低碳种植方案，已在越南、印尼规模化落地数字化农田管理。",
       "why": "把碳汇计量（碳 MRV）写进产品与融资条款，是「数字化农管 + 碳资产开发」模式拿到规模化美元资本的一次验证。",
-      "tags": ["投融资", "前沿科技"]
+      "tags": [
+        "投融资",
+        "前沿科技"
+      ],
+      "raw_source": "IT桔子",
+      "raw_source_id": "14701289"
     }
   ]
 }

@@ -42,33 +42,54 @@ git push origin main         # GitHub Pages 约 1 分钟重新发布
 
 ### 3.1 合分支（先记回滚点）
 
+**只合一个分支**：`fix/dealhot-raw-candidates-pipeline`。它已包含 AIHOT v1 的 SKILL.md 全文重写，
+早先那个 `hotfix/skill-aihot-v1-2026-11-13`（同样改 SKILL.md）已被内容取代并删除 ——
+两个分支都改 SKILL.md 会冲突，合一个就够。
+
 ```bash
 git checkout main && git pull --ff-only origin main
 git rev-parse HEAD > /tmp/dealhot_cutover_rollback_point.txt   # 回滚点
 
+python3 tests/run_tests.py                  # 先跑回归（8 类场景）
 git merge --no-ff fix/dealhot-raw-candidates-pipeline
-git merge --no-ff hotfix/skill-aihot-v1-2026-11-13
 python3 scripts/pipeline.py migrate        # 生产 DB 加表 + 加列（幂等）
 git push origin main
 ```
 
+冲突自检（合并前先演练）：
+
+```bash
+git merge-tree $(git merge-base main origin/fix/dealhot-raw-candidates-pipeline) \
+    main origin/fix/dealhot-raw-candidates-pipeline | grep -c '<<<<<<<'   # 期望 0
+```
+
 ### 3.2 把 7/24–7/27 的旧数据换成重做后的 20 条
+
+**用事务化的 `replace`，不要手写 DELETE** —— 中途失败会留下半迁移状态（旧行已删、新行没进）。
 
 ```bash
 cp dealhot.db "dealhot.db.bak.pre-redo.$(date +%Y%m%d-%H%M%S)"
 
-sqlite3 dealhot.db "DELETE FROM items WHERE date BETWEEN '2026-07-24' AND '2026-07-27';"
-
+# ① 先把候选抓进 raw_candidates（不碰 items）
 for D in 2026-07-24 2026-07-25 2026-07-26 2026-07-27; do
-  python3 scripts/pipeline.py fetch  --date $D
-  python3 scripts/pipeline.py accept --date $D --file samples/$D.json
-  python3 scripts/pipeline.py stats  --date $D
+  python3 scripts/pipeline.py fetch --date $D
+done
+
+# ② 一次事务替换（先整批校验 → 通过后 DELETE 旧 + INSERT 新；失败整批回滚、旧数据不动）
+python3 scripts/pipeline.py replace --from 2026-07-24 --to 2026-07-27 \
+  --files samples/2026-07-24.json,samples/2026-07-25.json,samples/2026-07-26.json,samples/2026-07-27.json
+
+# ③ 重新渲染四天
+for D in 2026-07-24 2026-07-25 2026-07-26 2026-07-27; do
+  python3 scripts/pipeline.py stats --date $D
   python3 scripts/build.py build   --date $D
 done
 ```
 
+- **样稿里的 raw 引用是稳定键**（`raw_source` + `raw_source_id` = IT桔子 event_id），重新 fetch 后 id 可能变，
+  稳定键不会 → 不用改样稿
 - 这会改变 `archive/2026-07-2*.html` 与主页：那四天从 21/25 条变成每天 5 条（旧内容是「最新 20 条」被重复写了四天 + 1 条日报聚合）
-- 每一步 `build` 前闸门会先跑；不通过就停在原地，不会写出坏页面
+- `build` 的零写入保证：校验不过就退出，三个目标文件 byte-unchanged
 - 完成后 `git add -A && git commit -m "dealhot 7/24-7/27 重做（精选 20 条）" && git push origin main`
 
 ### 3.3 切日常 job
@@ -93,10 +114,14 @@ pipeline.py fetch → pipeline.py list → 人工精选写 JSON → pipeline.py 
 
 ## 4. 切前检查清单（每项都要实测跑一遍）
 
+- [ ] `python3 tests/run_tests.py` → 8/8 passed
 - [ ] `python3 scripts/pipeline.py migrate` 跑两次，结果一致（幂等）
 - [ ] `fetch` 之后 `items` 行数**不变**（只进 raw_candidates）
-- [ ] `accept` 前后 `items` 行数差 = 精选条数；被拒条目逐条有原因
+- [ ] `accept` 前后 `items` 行数差 = 精选条数；一条不合格时**整批 0 条落库**且退出码非 0
+- [ ] `replace` 失败时区间行数不变（旧 84 行原样）；成功时一次替换完成
 - [ ] 在**旧数据**上 `build` → exit 3 且**不写任何文件**
-- [ ] 在样稿上 `build` → 闸门通过、JS check 两行 OK、Archive page items = 5
+- [ ] JS 结构校验失败时 `build` → exit 4 且三个目标文件 byte-unchanged
+- [ ] 在样稿上 `build` → 闸门通过、JS check 三行 OK、Archive page items = 5
+- [ ] `why` 同时出现在 `index.html` / `archive/<date>.html` / post 文本里
 - [ ] `post` 文案里是「北京时间 (UTC+8)」，没有裸 `CST`
 - [ ] `git status` 干净；`.secrets/` 未被 stage

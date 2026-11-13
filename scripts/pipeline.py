@@ -10,14 +10,17 @@
      不是当天事件；同一天被写进多天时，四天内容完全一样。
   2. 旧实现抓完直接 INSERT items —— 原始候选与正式条目没有分离，也没有去重闸门。
   3. 旧实现 url 兜底成 `https://www.itjuzi.com/`（首页），违反「正式条目保留具体原文 URL」。
+  （旧 build.py 的 fetch 子命令已删除 —— 抓取只有本文件这一条路径。）
 
 命令：
   migrate                     建 raw_candidates 表 + items.raw_id 列（幂等，可重复跑）
   fetch --date D              抓 IT桔子 4 端点当天事件 → raw_candidates（绝不直写 items）
-  import-aihot --date D       把 AIHOT 候选（fetch_aihot.py 的 JSON）写进 raw_candidates
+  import-aihot --date D       把 AIHOT 候选（fetch_aihot.py --json）写进 raw_candidates
   list --date D               列出当天候选，供人工挑选
-  accept --date D --file F    精选结果 → items（字段闸门 + 7 日 title/URL/content_hash 去重，fail-closed）
-  stats --date D              raw/selected/published、来源、板块、score 分布、去重拦截、字段失败
+  accept --date D --file F    精选结果 → items（整批校验 + 单事务写入 + 7 日对称去重，fail-closed）
+  replace --from D --to D --files F1,F2
+                              历史替换：整批校验通过后单事务 DELETE 旧行 + INSERT 新行，失败整批回滚
+  stats --date D [--json]     raw/selected/published、来源、板块、score 分布、拒绝原因、字段失败
 
 环境变量：
   DEALHOT_DB        覆盖 DB 路径（默认 <repo>/dealhot.db）
@@ -40,8 +43,7 @@ DB_PATH = Path(os.environ.get('DEALHOT_DB', DEALHOT_DIR / 'dealhot.db'))
 ITJUZI_ENV = Path(os.environ.get('DEALHOT_ITJUZI_ENV', DEALHOT_DIR / '.secrets' / 'itjuzi.env'))
 
 API_BASE = 'https://openapi.itjuzi.com'
-UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
-      '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 aihot-skill/0.2.0')
+BJ = timezone(timedelta(hours=8))
 
 ALLOWED_CATS = {'minority', 'ma', 'ipo', 'bigtech', 'ai', 'frontier'}
 ALLOWED_REGIONS = {'中国', '美国', '亚太', '中东', '巴西', '欧洲', '全球'}
@@ -55,16 +57,11 @@ ADVICE_PATTERNS = [
     '目标价', '持仓', '重仓', '抄底', '追高', '配置比例',
 ]
 
-# 轮次未解析（原始 round_id）——规格禁止
 ROUND_UNRESOLVED = re.compile(r'#\d+')
 CDATA = re.compile(r'<!\[CDATA\[', re.I)
 
 
 # ---------------------------------------------------------------- helpers
-def bj_now():
-    return datetime.now(timezone(timedelta(hours=8)))
-
-
 def now_iso():
     return datetime.now(timezone.utc).isoformat(timespec='seconds')
 
@@ -111,7 +108,7 @@ def itjuzi_get(token, path, params):
     req = urllib.request.Request(url, headers={'AUTHORIZATION': f'Bearer {token}'})
     try:
         raw = urllib.request.urlopen(req, timeout=30).read()
-    except Exception as e:                                    # 端点不可用不算致命
+    except Exception as e:
         return None, f'{path}: {e}'
     if not raw.strip():
         return None, f'{path}: 空响应'
@@ -123,7 +120,6 @@ def itjuzi_get(token, path, params):
 
 
 def names_of(value):
-    """投资方/收购方字段形态不一：list[dict{name}] / list[str] / str。"""
     out = []
     if isinstance(value, list):
         for v in value:
@@ -139,7 +135,6 @@ def names_of(value):
 
 
 def first_news_url(row):
-    """从 news[] / news_url 里取第一条具体原文链接（绝不用首页兜底）。"""
     news = row.get('news')
     if isinstance(news, list):
         for n in news:
@@ -163,6 +158,19 @@ def event_date_of(row, yk, mk, dk):
         return f'{int(y):04d}-{int(m):02d}-{int(d):02d}'
     except (TypeError, ValueError):
         return None
+
+
+def utc_to_bj_date(iso_ts):
+    """UTC 时间戳 → 北京时间日期（UTC+8）。00:00–07:59 UTC 的条目属于北京时间次日。"""
+    if not iso_ts:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(iso_ts).replace('Z', '+00:00'))
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(BJ).strftime('%Y-%m-%d')
 
 
 # ---------------------------------------------------------------- migrate
@@ -195,14 +203,13 @@ def cmd_migrate(args):
     ''')
     c.execute('CREATE INDEX IF NOT EXISTS idx_raw_date ON raw_candidates(event_date)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_raw_status ON raw_candidates(status)')
+    c.execute('CREATE INDEX IF NOT EXISTS idx_raw_url ON raw_candidates(url)')
     cols = {r[1] for r in c.execute('PRAGMA table_info(items)')}
     if 'raw_id' not in cols:
         c.execute('ALTER TABLE items ADD COLUMN raw_id INTEGER')
         print('items: 新增列 raw_id')
     conn.commit()
     print(f'✓ schema 就绪（DB: {DB_PATH}）')
-    print('  raw_candidates 表:', '存在' if 'raw_candidates' in {
-        r[0] for r in c.execute("SELECT name FROM sqlite_master WHERE type='table'")} else '缺失')
     conn.close()
     return 0
 
@@ -227,7 +234,6 @@ def fetch_window(token, path, date_pattern, d_from, d_to):
 
 
 def normalize_itjuzi(kind, row, target_date):
-    """把一个 IT桔子事件规整成候选行。返回 None 表示日期不匹配目标日。"""
     if kind == 'investevent':
         title = (row.get('event_title') or '').strip()
         event_date = event_date_of(row, 'invest_year', 'invest_month', 'invest_day')
@@ -292,7 +298,6 @@ def normalize_itjuzi(kind, row, target_date):
 
 
 def insert_candidates(rows):
-    """写入 raw_candidates（UNIQUE(source,content_hash) 去重）。返回 (新增, 已存在)。"""
     conn = get_conn()
     c = conn.cursor()
     added = existed = 0
@@ -319,7 +324,6 @@ def cmd_fetch(args):
     token = itjuzi_token()
     target = args.date
     d0 = datetime.strptime(target, '%Y-%m-%d')
-    # 单日区间 API 返回 0 条 → 用 ±1 天的窗口覆盖，再按事件日精确过滤
     windows = [
         ((d0 - timedelta(days=1)).strftime('%Y-%m-%d'), d0.strftime('%Y-%m-%d')),
         (d0.strftime('%Y-%m-%d'), (d0 + timedelta(days=1)).strftime('%Y-%m-%d')),
@@ -361,7 +365,11 @@ def cmd_fetch(args):
 
 
 def cmd_import_aihot(args):
-    """把 AIHOT 候选（fetch_aihot.py 输出的 JSON 数组）写进 raw_candidates。"""
+    """把 AIHOT 候选（fetch_aihot.py --json 的数组）写进 raw_candidates。
+
+    publishedAt 是 UTC → 事件日期按北京时间 (UTC+8) 计算，避免北京时间 00:00–07:59
+    的条目被归到前一天。
+    """
     data = json.loads(Path(args.file).read_text())
     if isinstance(data, dict):
         data = data.get('items') or []
@@ -371,7 +379,7 @@ def cmd_import_aihot(args):
         if not title:
             continue
         pub = it.get('publishedAt') or ''
-        event_date = (pub[:10] or args.date)
+        event_date = utc_to_bj_date(pub) or args.date
         url = it.get('url') or ''
         rows.append({
             'source': 'AIHOT',
@@ -390,7 +398,7 @@ def cmd_import_aihot(args):
             'raw_json': json.dumps(it, ensure_ascii=False),
         })
     added, existed = insert_candidates(rows)
-    print(f'✓ AIHOT 候选新增 {added}，已存在 {existed}')
+    print(f'✓ AIHOT 候选新增 {added}，已存在 {existed}（事件日期按北京时间 UTC+8 计算）')
     return 0
 
 
@@ -399,7 +407,7 @@ def cmd_list(args):
     conn = get_conn()
     c = conn.cursor()
     rows = c.execute('''
-        SELECT id, source, category, round_name, amount, url, title, status
+        SELECT id, source, source_id, category, round_name, amount, url, title, status, note
         FROM raw_candidates WHERE event_date = ? ORDER BY source, id
     ''', (args.date,)).fetchall()
     conn.close()
@@ -407,20 +415,111 @@ def cmd_list(args):
         print(f'(no raw candidates for {args.date} — 先跑 fetch)')
         return 0
     print(f'raw_candidates for {args.date}: {len(rows)}')
-    for (rid, source, category, round_name, amount, url, title, status) in rows:
+    for (rid, source, source_id, category, round_name, amount, url, title, status, note) in rows:
         flag = '' if url else '  ⚠️ 无原文 URL（不能收录）'
-        print(f'\n  #{rid} [{source}] {category} {round_name} {amount}{flag}')
+        print(f'\n  #{rid} [{source}] {category} {round_name} {amount}{flag}  status={status}')
         print(f'      {title[:90]}')
         if url:
             print(f'      {url[:110]}')
-        if status != 'candidate':
-            print(f'      status={status}')
+        if note:
+            print(f'      note: {note}')
     return 0
 
 
 # ---------------------------------------------------------------- accept
-def validate_item(it, target_date, conn):
-    """返回 (ok, reason, cleaned)。任何一条不满足即拒（fail-closed）。"""
+RAW_COLS = 'id, source, source_id, url, event_date, title, content_hash, status'
+RAW_KEYS = ['id', 'source', 'source_id', 'url', 'event_date', 'title', 'content_hash', 'status']
+
+
+def resolve_raw(conn, it, target_date):
+    """按稳定键解析 raw candidate。返回 (row_dict, error_msg)。
+
+    稳定键优先级：raw_content_hash → raw_source+raw_source_id → raw_url → raw_id。
+    raw_id 只是自增号，跨 DB 重建不保证一致，因此只作最后手段，且必须逐项校验。
+    """
+    row = None
+    if it.get('raw_content_hash'):
+        cur = conn.execute(
+            f'SELECT {RAW_COLS} FROM raw_candidates WHERE content_hash = ? AND source = ?',
+            (it['raw_content_hash'], it.get('raw_source') or 'IT桔子')).fetchone()
+        if cur is None:
+            return None, 'raw candidate 不存在（content_hash 对不上）'
+        row = cur
+    elif it.get('raw_source') and it.get('raw_source_id'):
+        cur = conn.execute(
+            f'SELECT {RAW_COLS} FROM raw_candidates WHERE source = ? AND source_id = ?',
+            (it['raw_source'], str(it['raw_source_id']))).fetchone()
+        if cur is None:
+            return None, 'raw candidate 不存在（source + source_id 对不上）'
+        row = cur
+    elif it.get('raw_url'):
+        cur = conn.execute(
+            f'SELECT {RAW_COLS} FROM raw_candidates WHERE url = ?', (it['raw_url'],)).fetchone()
+        if cur is None:
+            return None, 'raw candidate 不存在（url 对不上）'
+        row = cur
+    elif it.get('raw_id'):
+        cur = conn.execute(
+            f'SELECT {RAW_COLS} FROM raw_candidates WHERE id = ?', (it['raw_id'],)).fetchone()
+        if cur is None:
+            return None, 'raw candidate 不存在（id 对不上）'
+        row = cur
+    elif it.get('url'):
+        # 兜底：用条目的 url 去找候选 —— 找不到就说明这条不是抓回来的候选
+        cur = conn.execute(
+            f'SELECT {RAW_COLS} FROM raw_candidates WHERE url = ?', (it['url'],)).fetchone()
+        if cur is None:
+            return None, 'raw candidate 不存在（url 对不上）'
+        row = cur
+    else:
+        return None, '缺少 raw 引用（raw_url / raw_source+raw_source_id / raw_content_hash / raw_id / url）'
+
+    d = dict(zip(RAW_KEYS, row))
+    if d['event_date'] != target_date:
+        return None, f"raw candidate 日期不符（{d['event_date']} != {target_date}）"
+    if d['status'] != 'candidate':
+        return None, f"raw candidate 状态不是 candidate（{d['status']}）"
+    if it.get('raw_content_hash') and it['raw_content_hash'] != d['content_hash']:
+        return None, 'content_hash 与 raw candidate 不一致'
+    if it.get('raw_source') and it.get('raw_source_id'):
+        if it['raw_source'] != d['source'] or str(it['raw_source_id']) != str(d['source_id']):
+            return None, 'source/source_id 与 raw candidate 不一致'
+    if it.get('raw_url') and it['raw_url'] != d['url']:
+        return None, 'url 与 raw candidate 不一致'
+    return d, None
+
+
+def dedupe_reason(conn, target_date, title, url, raw_hash, exclude_dates=()):
+    """7 日**对称**窗口去重：target-7d ~ target+7d，跨 title / url / content_hash。
+
+    历史回填时窗口必须对称 —— 只查过去会漏掉「同一事件在目标日之后又发过」。
+    """
+    d = datetime.strptime(target_date, '%Y-%m-%d')
+    lo = (d - timedelta(days=7)).strftime('%Y-%m-%d')
+    hi = (d + timedelta(days=7)).strftime('%Y-%m-%d')
+    excl_i = excl_p = ''
+    params = []
+    if exclude_dates:
+        lo_s, hi_s = min(exclude_dates), max(exclude_dates)
+        excl_i = ' AND NOT (i.date BETWEEN ? AND ?)'
+        excl_p = ' AND NOT (date BETWEEN ? AND ?)'
+        params = [lo_s, hi_s]
+    rows = conn.execute(
+        f'SELECT date, title FROM items WHERE date BETWEEN ? AND ?{excl_p} AND (title = ? OR url = ?)',
+        [lo, hi] + params + [title, url]).fetchall()
+    if rows:
+        return f'跨日重复（{rows[0][0]} 已发过）'
+    if raw_hash:
+        q = (f'SELECT i.date, i.title FROM items i JOIN raw_candidates r ON r.id = i.raw_id '
+             f'WHERE i.date BETWEEN ? AND ?{excl_i} AND r.content_hash = ?')
+        rows = conn.execute(q, [lo, hi] + params + [raw_hash]).fetchall()
+        if rows:
+            return f'内容重复（{rows[0][0]} 已发过同一事件）'
+    return None
+
+
+def validate_item(it, target_date, conn, exclude_dates=()):
+    """返回 (ok, reason, cleaned, raw_dict)。任何一条不满足即拒（fail-closed）。"""
     title = (it.get('title') or '').strip()
     url = (it.get('url') or '').strip()
     summary = (it.get('sum') or '').strip()
@@ -430,68 +529,81 @@ def validate_item(it, target_date, conn):
     score = it.get('score')
     tags = it.get('tags') or []
 
+    raw, raw_err = resolve_raw(conn, it, target_date)
+    if raw_err:
+        return False, raw_err, None, None
+
     if not title:
-        return False, 'title 为空', None
+        return False, 'title 为空', None, raw
     if CDATA.search(title) or CDATA.search(summary):
-        return False, '含 CDATA', None
+        return False, '含 CDATA', None, raw
     if ROUND_UNRESOLVED.search(title) or ROUND_UNRESOLVED.search(summary):
-        return False, '轮次未解析（#数字）', None
+        return False, '轮次未解析（#数字）', None, raw
     if title.startswith('AI HOT 日报'):
-        return False, 'daily RSS 聚合标题（不得当新闻条目）', None
+        return False, 'daily RSS 聚合标题（不得当新闻条目）', None, raw
     if not url:
-        return False, '缺 url（没有出处的条目不可信）', None
+        return False, '缺 url（没有出处的条目不可信）', None, raw
     if not url.startswith('http'):
-        return False, 'url 非 http(s)', None
-    parsed = urllib.parse.urlparse(url)
-    if parsed.path in ('', '/'):
-        return False, '首页 URL（必须具体原文链接）', None
-    if parsed.netloc in HOMEPAGE_HOSTS and parsed.path in ('', '/'):
-        return False, '首页 URL（必须具体原文链接）', None
+        return False, 'url 非 http(s)', None, raw
+    if urllib.parse.urlparse(url).path in ('', '/'):
+        return False, '首页 URL（必须具体原文链接）', None, raw
+    if raw.get('url') and url != raw['url']:
+        return False, 'url 与 raw candidate 不一致（正式链接必须是候选的原文链接）', None, raw
     if len(summary) < 15:
-        return False, 'sum 过短（需 2-3 句事实摘要）', None
+        return False, 'sum 过短（需 2-3 句事实摘要）', None, raw
     if len(why) < 10:
-        return False, 'why 为空或过短', None
+        return False, 'why 为空或过短', None, raw
     for pat in ADVICE_PATTERNS:
         if pat in why or pat in summary:
-            return False, f'含股票买卖话术「{pat}」', None
+            return False, f'含股票买卖话术「{pat}」', None, raw
     if cat not in ALLOWED_CATS:
-        return False, f'cat 非法（{cat}）', None
+        return False, f'cat 非法（{cat}）', None, raw
     if not isinstance(regions, list) or not regions:
-        return False, 'regions 为空', None
+        return False, 'regions 为空', None, raw
     bad = [r for r in regions if r not in ALLOWED_REGIONS]
     if bad:
-        return False, f'regions 非法值 {bad}', None
+        return False, f'regions 非法值 {bad}', None, raw
     if not isinstance(score, int) or not (1 <= score <= 100):
-        return False, f'score 非法（{score}）', None
+        return False, f'score 非法（{score}）', None, raw
     if not isinstance(tags, list):
-        return False, 'tags 必须是数组', None
+        return False, 'tags 必须是数组', None, raw
 
-    # 7 日跨日去重：同标题或同 URL 在前后 7 天内已发布 → 拦截
-    since = (datetime.strptime(target_date, '%Y-%m-%d') - timedelta(days=7)).strftime('%Y-%m-%d')
-    dup = conn.execute(
-        'SELECT date, title FROM items WHERE date >= ? AND date <= ? AND (title = ? OR url = ?)',
-        (since, target_date, title, url)).fetchall()
+    dup = dedupe_reason(conn, target_date, title, url, raw['content_hash'], exclude_dates)
     if dup:
-        return False, f'跨日重复（{dup[0][0]} 已发过）', None
-
-    # 同主体重复：同一事件被不同来源各写一条（如「眸深智能 Pre-A」两条报道）→ 拦截
-    dedupe_key = (it.get('dedupe_key') or '').strip()
-    if dedupe_key:
-        same = conn.execute(
-            "SELECT date, title FROM items WHERE date >= ? AND date <= ? AND title LIKE ?",
-            (since, target_date, f'%{dedupe_key}%')).fetchall()
-        if same:
-            return False, f'同主体重复（{same[0][0]} 已发过：{same[0][1][:24]}）', None
+        return False, dup, None, raw
 
     cleaned = {
         'title': title, 'url': url, 'sum': summary, 'why': why, 'cat': cat,
         'regions': regions, 'score': score, 'tags': tags,
         'ma_cap': (it.get('ma_cap') or '').strip(),
-        'src': (it.get('src') or '').strip(),
-        'raw_id': it.get('raw_id'),
+        'src': (it.get('src') or raw['source'] or '').strip(),
         't': it.get('t'),
     }
-    return True, '', cleaned
+    return True, '', cleaned, raw
+
+
+def _insert_items(conn, target_date, plan, commit_sha):
+    c = conn.cursor()
+    for cleaned, raw in plan:
+        t = cleaned['t'] or f'{int(target_date[5:7])}月{int(target_date[8:10])}日'
+        cur = c.execute('''
+            INSERT INTO items (date, t, src, cat, regions, score, title, url, sum, why, ma_cap, tags, commit_sha, raw_id)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        ''', (target_date, t, cleaned['src'], cleaned['cat'],
+              json.dumps(cleaned['regions'], ensure_ascii=False), cleaned['score'],
+              cleaned['title'], cleaned['url'], cleaned['sum'], cleaned['why'], cleaned['ma_cap'],
+              json.dumps(cleaned['tags'], ensure_ascii=False), commit_sha, raw['id']))
+        c.execute('UPDATE raw_candidates SET status=?, selected_item_id=? WHERE id=?',
+                  ('selected', cur.lastrowid, raw['id']))
+
+
+def _persist_rejections(conn, failures):
+    """把拒绝原因持久化到 raw_candidates（status=rejected + note），让 stats 可审计。"""
+    c = conn.cursor()
+    for title, reason, raw in failures:
+        if raw:
+            c.execute('UPDATE raw_candidates SET status=?, note=? WHERE id=?',
+                      ('rejected', reason[:200], raw['id']))
 
 
 def cmd_accept(args):
@@ -501,37 +613,115 @@ def cmd_accept(args):
         print('✗ 输入需要是 {"items": [...]} 或数组')
         return 2
     conn = get_conn()
-    c = conn.cursor()
-    accepted, failures, dup_blocked = 0, [], 0
-    commit_sha = f"accept-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+    # ① 先整批校验（不写库）—— 任一条不过，整批不落库
+    plan, failures = [], []
     for it in items:
-        ok, reason, cleaned = validate_item(it, args.date, conn)
-        if not ok:
-            if '跨日重复' in reason:
-                dup_blocked += 1
-            failures.append((it.get('title', '')[:40], reason))
-            continue
-        t = cleaned['t'] or f'{int(args.date[5:7])}月{int(args.date[8:10])}日'
-        src = cleaned['src'] or 'IT桔子'
-        try:
-            cur = c.execute('''
-                INSERT INTO items (date, t, src, cat, regions, score, title, url, sum, why, ma_cap, tags, commit_sha, raw_id)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-            ''', (args.date, t, src, cleaned['cat'], json.dumps(cleaned['regions'], ensure_ascii=False),
-                  cleaned['score'], cleaned['title'], cleaned['url'], cleaned['sum'], cleaned['why'],
-                  cleaned['ma_cap'], json.dumps(cleaned['tags'], ensure_ascii=False), commit_sha,
-                  cleaned['raw_id']))
-            accepted += 1
-            if cleaned['raw_id']:
-                c.execute('UPDATE raw_candidates SET status=?, selected_item_id=? WHERE id=?',
-                          ('selected', cur.lastrowid, cleaned['raw_id']))
-        except sqlite3.IntegrityError as e:
-            failures.append((cleaned['title'][:40], f'DB 约束冲突 {e}'))
+        ok, reason, cleaned, raw = validate_item(it, args.date, conn)
+        if ok:
+            plan.append((cleaned, raw))
+        else:
+            failures.append((it.get('title', '')[:40], reason, raw))
+    if failures:
+        _persist_rejections(conn, failures)
+        conn.commit()
+        print(f'✗ 整批拒绝（{len(failures)}/{len(items)} 条不合格）：**0 条落库**')
+        for title, reason, _ in failures:
+            print(f'   ✗ [{reason}] {title}')
+        conn.close()
+        return 3
+    # ② 校验全过 → 单事务写入
+    commit_sha = f"accept-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+    try:
+        with conn:
+            _insert_items(conn, args.date, plan, commit_sha)
+    except sqlite3.Error as e:
+        conn.rollback()
+        print(f'✗ 写入失败，整批回滚（0 条落库）：{e}')
+        conn.close()
+        return 4
+    print(f'✓ 收录 {len(plan)} 条（单事务提交，失败整批回滚）')
+    conn.close()
+    return 0
+
+
+# ---------------------------------------------------------------- replace
+def cmd_replace(args):
+    """历史替换：整批校验通过后，单事务 DELETE 旧行 + INSERT 新行。
+
+    失败（任何一条不合格 / 写入异常）→ 整批回滚，**旧数据原样不动**。
+    """
+    files = [f for f in args.files.split(',') if f.strip()]
+    by_date = {}
+    for f in files:
+        payload = json.loads(Path(f.strip()).read_text())
+        items = payload.get('items') if isinstance(payload, dict) else payload
+        d = payload.get('date') if isinstance(payload, dict) else None
+        for it in items or []:
+            by_date.setdefault(d or it.get('date') or args.to, []).append(it)
+
+    conn = get_conn()
+    plan_all, failures = {}, []
+    for d, items in sorted(by_date.items()):
+        plan = []
+        for it in items:
+            ok, reason, cleaned, raw = validate_item(it, d, conn, exclude_dates=(args.from_, args.to))
+            if ok:
+                plan.append((cleaned, raw))
+            else:
+                failures.append((d, it.get('title', '')[:40], reason, raw))
+        plan_all[d] = plan
+    if failures:
+        _persist_rejections(conn, [(t, r, raw) for _, t, r, raw in failures])
+        conn.commit()
+        print(f'✗ 整批拒绝（{len(failures)} 条不合格）：**旧数据保持原样，0 条落库**')
+        for d, title, reason, _ in failures:
+            print(f'   ✗ [{d}] [{reason}] {title}')
+        conn.close()
+        return 3
+
+    before = conn.execute(
+        'SELECT COUNT(*) FROM items WHERE date BETWEEN ? AND ?', (args.from_, args.to)).fetchone()[0]
+    commit_sha = f"replace-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+    try:
+        with conn:
+            conn.execute('DELETE FROM items WHERE date BETWEEN ? AND ?', (args.from_, args.to))
+            for d, plan in plan_all.items():
+                _insert_items(conn, d, plan, commit_sha)
+    except sqlite3.Error as e:
+        conn.rollback()
+        after = conn.execute('SELECT COUNT(*) FROM items WHERE date BETWEEN ? AND ?',
+                             (args.from_, args.to)).fetchone()[0]
+        print(f'✗ 写入失败，整批回滚：{e}（区间行数 {before} → {after}，旧数据未动）')
+        conn.close()
+        return 4
+    after = conn.execute('SELECT COUNT(*) FROM items WHERE date BETWEEN ? AND ?',
+                         (args.from_, args.to)).fetchone()[0]
+    print(f'✓ 区间 {args.from_} ~ {args.to} 已替换：{before} → {after} 行（单事务提交）')
+    for d, plan in sorted(plan_all.items()):
+        print(f'   {d}: {len(plan)} 条')
+    conn.close()
+    return 0
+
+
+# ---------------------------------------------------------------- reset
+def cmd_reset(args):
+    """把候选状态复位（默认回到 candidate）。
+
+    被拒的候选会持久化 status=rejected + note；改完 sum/why 后想重新收录，
+    先 reset 再 accept（否则会因「状态不是 candidate」被拒）。
+    """
+    conn = get_conn()
+    c = conn.cursor()
+    if args.date:
+        c.execute("UPDATE raw_candidates SET status='candidate', note=NULL WHERE event_date=? AND status=?",
+                  (args.date, args.status))
+    else:
+        c.execute("UPDATE raw_candidates SET status='candidate', note=NULL WHERE status=?", (args.status,))
+    n = c.rowcount
     conn.commit()
     conn.close()
-    print(f'✓ 收录 {accepted} 条；去重拦截 {dup_blocked} 条；字段/闸门失败 {len(failures) - dup_blocked} 条')
-    for title, reason in failures:
-        print(f'   ✗ [{reason}] {title}')
+    print(f'✓ 已把 {n} 条候选复位为 candidate'
+          + (f'（限定 {args.date}）' if args.date else ''))
     return 0
 
 
@@ -540,36 +730,64 @@ def cmd_stats(args):
     conn = get_conn()
     c = conn.cursor()
     d = args.date
-    raw = c.execute("SELECT COUNT(*) FROM raw_candidates WHERE event_date=?", (d,)).fetchone()[0]
+    raw = c.execute('SELECT COUNT(*) FROM raw_candidates WHERE event_date = ?', (d,)).fetchone()[0]
     raw_by_src = c.execute(
-        "SELECT source, COUNT(*) FROM raw_candidates WHERE event_date=? GROUP BY source", (d,)).fetchall()
-    selected = c.execute("SELECT COUNT(*) FROM raw_candidates WHERE event_date=? AND status='selected'",
+        'SELECT source, COUNT(*) FROM raw_candidates WHERE event_date = ? GROUP BY source', (d,)).fetchall()
+    selected = c.execute("SELECT COUNT(*) FROM raw_candidates WHERE event_date = ? AND status = 'selected'",
                          (d,)).fetchone()[0]
-    pub = c.execute("SELECT COUNT(*) FROM items WHERE date=?", (d,)).fetchone()[0]
-    srcs = c.execute("SELECT src, COUNT(*) FROM items WHERE date=? GROUP BY src ORDER BY 2 DESC", (d,)).fetchall()
-    cats = c.execute("SELECT cat, COUNT(*) FROM items WHERE date=? GROUP BY cat ORDER BY 2 DESC", (d,)).fetchall()
-    scores = c.execute("SELECT score, COUNT(*) FROM items WHERE date=? GROUP BY score ORDER BY score DESC",
+    rejected = c.execute("SELECT COUNT(*) FROM raw_candidates WHERE event_date = ? AND status = 'rejected'",
+                         (d,)).fetchone()[0]
+    reject_reasons = c.execute(
+        "SELECT note, COUNT(*) FROM raw_candidates WHERE event_date = ? AND status = 'rejected' "
+        "GROUP BY note ORDER BY 2 DESC", (d,)).fetchall()
+    pub = c.execute('SELECT COUNT(*) FROM items WHERE date = ?', (d,)).fetchone()[0]
+    srcs = c.execute('SELECT src, COUNT(*) FROM items WHERE date = ? GROUP BY src ORDER BY 2 DESC', (d,)).fetchall()
+    cats = c.execute('SELECT cat, COUNT(*) FROM items WHERE date = ? GROUP BY cat ORDER BY 2 DESC', (d,)).fetchall()
+    scores = c.execute('SELECT score, COUNT(*) FROM items WHERE date = ? GROUP BY score ORDER BY score DESC',
                        (d,)).fetchall()
     no_url = c.execute(
-        "SELECT COUNT(*) FROM raw_candidates WHERE event_date=? AND (url IS NULL OR url='')",
-        (d,)).fetchone()[0]
+        'SELECT COUNT(*) FROM raw_candidates WHERE event_date = ? AND (url IS NULL OR url = ?)',
+        (d, '')).fetchone()[0]
     dup_rows = c.execute('''
         SELECT title, COUNT(DISTINCT date) n FROM items
         WHERE date >= date(?, '-7 day') AND date <= ? GROUP BY title HAVING n > 1
     ''', (d, d)).fetchall()
+    field_fail = c.execute(
+        'SELECT COUNT(*) FROM items WHERE date = ? AND (sum IS NULL OR sum = ? OR why IS NULL OR why = ?)',
+        (d, '', '')).fetchone()[0]
     conn.close()
 
+    report = {
+        'date': d,
+        'raw_candidates': raw,
+        'raw_by_source': dict(raw_by_src),
+        'selected': selected,
+        'rejected': rejected,
+        'rejected_reasons': [{'reason': n or '', 'count': c} for n, c in reject_reasons],
+        'published': pub,
+        'sources': dict(srcs),
+        'categories': dict(cats),
+        'score_distribution': {str(s): n for s, n in scores},
+        'candidates_without_url': no_url,
+        'cross_day_duplicate_titles': [{'title': t, 'days': n} for t, n in dup_rows],
+        'field_failures': field_fail,
+    }
+    if args.json:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+        return 0
     print(f'=== stats {d} ===')
     print(f'raw candidates      : {raw}' + ('  (' + ' / '.join(f'{s} {n}' for s, n in raw_by_src) + ')' if raw_by_src else ''))
     print(f'selected (候选已选)  : {selected}')
+    print(f'rejected (已拒收)    : {rejected}' + ('  ' + ' / '.join(f'{n}×{c}' for n, c in reject_reasons) if reject_reasons else ''))
     print(f'published (items)   : {pub}')
-    print(f'来源分布            : ' + (' / '.join(f'{s} {n}' for s, n in srcs) or '-'))
-    print(f'板块分布            : ' + (' / '.join(f'{c} {n}' for c, n in cats) or '-'))
-    print(f'score 分布          : ' + (' '.join(f'{s}({n})' for s, n in scores) or '-'))
+    print('来源分布            : ' + (' / '.join(f'{s} {n}' for s, n in srcs) or '-'))
+    print('板块分布            : ' + (' / '.join(f'{c} {n}' for c, n in cats) or '-'))
+    print('score 分布          : ' + (' '.join(f'{s}({n})' for s, n in scores) or '-'))
     print(f'候选无原文 URL      : {no_url}（这些候选不能收录）')
     print(f'7 日内跨日重复标题  : {len(dup_rows)}')
     for t, n in dup_rows[:5]:
         print(f'    ×{n} {t[:50]}')
+    print(f'published 字段失败   : {field_fail}')
     return 0
 
 
@@ -585,7 +803,7 @@ def main():
     f.add_argument('--date', required=True)
     f.set_defaults(func=cmd_fetch)
 
-    ia = sub.add_parser('import-aihot', help='AIHOT 候选 → raw_candidates')
+    ia = sub.add_parser('import-aihot', help='AIHOT 候选 → raw_candidates（事件日期按北京时间）')
     ia.add_argument('--date', required=True)
     ia.add_argument('--file', required=True)
     ia.set_defaults(func=cmd_import_aihot)
@@ -594,13 +812,25 @@ def main():
     li.add_argument('--date', required=True)
     li.set_defaults(func=cmd_list)
 
-    ac = sub.add_parser('accept', help='精选结果 → items（字段闸门 + 7 日去重）')
+    ac = sub.add_parser('accept', help='精选结果 → items（整批校验 + 单事务 + 7 日对称去重）')
     ac.add_argument('--date', required=True)
     ac.add_argument('--file', required=True)
     ac.set_defaults(func=cmd_accept)
 
+    rp = sub.add_parser('replace', help='历史替换：整批校验后单事务 DELETE 旧 + INSERT 新')
+    rp.add_argument('--from', dest='from_', required=True)
+    rp.add_argument('--to', required=True)
+    rp.add_argument('--files', required=True, help='逗号分隔的精选 JSON 列表')
+    rp.set_defaults(func=cmd_replace)
+
+    rs = sub.add_parser('reset', help='把被拒候选复位回 candidate')
+    rs.add_argument('--date', help='限定日期（默认全部）')
+    rs.add_argument('--status', default='rejected', help='要复位的原状态（默认 rejected）')
+    rs.set_defaults(func=cmd_reset)
+
     st = sub.add_parser('stats', help='统计')
     st.add_argument('--date', required=True)
+    st.add_argument('--json', action='store_true', help='输出结构化 JSON 验收报告')
     st.set_defaults(func=cmd_stats)
 
     args = p.parse_args()

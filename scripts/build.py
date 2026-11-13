@@ -49,6 +49,15 @@ ARCHIVE_DIR = Path(os.environ.get('DEALHOT_ARCHIVE', DEALHOT_DIR / 'archive'))
 def get_conn():
     return sqlite3.connect(DB_PATH)
 
+
+def atomic_write(path, content):
+    """写临时文件再 os.replace —— 保证目标文件要么是旧内容、要么是新内容，不会半写。"""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + '.tmp-build')
+    tmp.write_text(content)
+    os.replace(tmp, path)
+
 REQUIRED_FIELDS = ['date', 't', 'src', 'cat', 'regions', 'score', 'title', 'url']
 MAX_SCORE = 100
 MIN_SCORE = 1
@@ -159,11 +168,11 @@ def generate_main():
     """Generate index.html (main page) with all items."""
     c = get_conn().cursor()
     rows = c.execute('''
-        SELECT date, t, src, cat, regions, score, title, url, sum, ma_cap, tags, commit_sha
+        SELECT date, t, src, cat, regions, score, title, url, sum, why, ma_cap, tags, commit_sha
         FROM items
         ORDER BY date DESC, score DESC, id ASC
     ''').fetchall()
-    cols = ['date', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'sum', 'ma_cap', 'tags', 'commit_sha']
+    cols = ['date', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'sum', 'why', 'ma_cap', 'tags', 'commit_sha']
     items = [dict(zip(cols, r)) for r in rows]
     # Parse JSON fields
     for it in items:
@@ -213,18 +222,18 @@ def generate_archive_html(date_str, today_only=True):
     c = get_conn().cursor()
     if today_only:
         rows = c.execute('''
-            SELECT date, t, src, cat, regions, score, title, url, sum, ma_cap, tags, commit_sha
+            SELECT date, t, src, cat, regions, score, title, url, sum, why, ma_cap, tags, commit_sha
             FROM items
             WHERE date = ?
             ORDER BY score DESC, id ASC
         ''', (date_str,)).fetchall()
     else:
         rows = c.execute('''
-            SELECT date, t, src, cat, regions, score, title, url, sum, ma_cap, tags, commit_sha
+            SELECT date, t, src, cat, regions, score, title, url, sum, why, ma_cap, tags, commit_sha
             FROM items
             ORDER BY date DESC, score DESC, id ASC
         ''').fetchall()
-    cols = ['date', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'sum', 'ma_cap', 'tags', 'commit_sha']
+    cols = ['date', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'sum', 'why', 'ma_cap', 'tags', 'commit_sha']
     items = [dict(zip(cols, r)) for r in rows]
     for it in items:
         try: it['regions'] = json.loads(it['regions']) if it['regions'] else []
@@ -288,8 +297,12 @@ def generate_archive_html(date_str, today_only=True):
     return new_html
 
 # --- Archive index ---
-def generate_archive_index():
-    """Generate archive/index.html with list of all archives."""
+def generate_archive_index(extra_date=None, extra_count=0):
+    """Generate archive/index.html with list of all archives.
+
+    extra_date/extra_count：正在构建但尚未落盘的那一天（落盘前文件还不存在），
+    否则往期索引会漏掉当天。
+    """
     c = get_conn().cursor()
     archive_files = sorted(ARCHIVE_DIR.glob('2026-*.html'), reverse=True)
     items = []
@@ -303,6 +316,9 @@ def generate_archive_index():
             content = fp.read()
         n = len(re.findall(r'^\s*t:"', content, re.M))
         items.append((date, n, f))
+    if extra_date and not any(d == extra_date for d, _n, _f in items):
+        items.append((extra_date, extra_count, None))
+        items.sort(key=lambda x: x[0], reverse=True)
     # Read template
     idx_path = ARCHIVE_DIR / 'index.html'
     html = idx_path.read_text()
@@ -508,7 +524,7 @@ def cmd_build(args):
     if rows_today == 0:
         print(f'✗ No items for {today} in DB. Aborting.')
         return 2
-    # Step 2: build index.html
+    # Step 2: 在内存里渲染三份产物（先不落盘）
     new_main = update_main_header(today)
     new_items = generate_main()
     new_main_with_items = re.sub(
@@ -516,133 +532,61 @@ def cmd_build(args):
         f'const ITEMS = {new_items}',
         new_main, count=1, flags=re.S
     )
-    INDEX_PATH.write_text(new_main_with_items)
-    print(f'✓ index.html written: {len(new_main_with_items)} bytes')
-    # Step 3: build archive/<date>.html
     archive_path = ARCHIVE_DIR / f'{today}.html'
     archive_html = generate_archive_html(today, today_only=True)
-    archive_path.write_text(archive_html)
-    print(f'✓ archive/{today}.html written: {len(archive_html)} bytes')
-    # Step 4: update archive/index.html
-    new_idx = generate_archive_index()
-    (ARCHIVE_DIR / 'index.html').write_text(new_idx)
-    print(f'✓ archive/index.html updated')
-    # Step 5: verify file structure
-    def check_js(path):
-        content = path.read_text()
-        # Basic structural check: count opening/closing braces match + required fields present
+    new_idx = generate_archive_index(
+        extra_date=today,
+        extra_count=len(re.findall(r'^\s*t:"', archive_html, re.M)))
+
+    # Step 3: 全部校验通过后才允许写盘（校验基于内存内容，不依赖已写文件）
+    def check_js_content(content, require_items=True):
         issues = []
-        # Count braces (rough balance)
         opens = content.count('{')
         closes = content.count('}')
         if opens != closes:
             issues.append(f'brace imbalance {{={opens}, }}={closes}')
-        # Verify ITEMS array exists
-        if 'const ITEMS = [' not in content:
-            issues.append('ITEMS array missing')
-        # Verify each item has required fields (d is alias for date in JS)
-        js_required = ['d', 't', 'src', 'cat', 'regions', 'score', 'title', 'url']
-        for field in js_required:
-            if f'  {field}:' not in content:
-                issues.append(f'missing field: {field}')
+        if require_items:
+            if 'const ITEMS = [' not in content:
+                issues.append('ITEMS array missing')
+            js_required = ['d', 't', 'src', 'cat', 'regions', 'score', 'title', 'url', 'why']
+            for field in js_required:
+                if f'  {field}:' not in content:
+                    issues.append(f'missing field: {field}')
+        else:
+            # 往期索引是链接列表页，没有 ITEMS 数组，只校验当天链接存在
+            if f'{today}.html' not in content:
+                issues.append(f'archive index 缺当天链接 {today}.html')
         if issues:
             return False, '; '.join(issues)
         return True, 'all structural checks passed'
 
-    for f in [INDEX_PATH, archive_path]:
-        ok, msg = check_js(f)
+    checks = [('index.html', new_main_with_items, True),
+              (f'archive/{today}.html', archive_html, True),
+              ('archive/index.html', new_idx, False)]
+    failed = False
+    for name, content, require_items in checks:
+        ok, msg = check_js_content(content, require_items)
         status = '✓' if ok else '✗'
-        print(f'  {status} JS check {f.name}: {msg[:200] if not ok else "OK"}')
-    # Step 6: verify items count in main page
-    main_count = len(re.findall(r'^\s*t:"', INDEX_PATH.read_text(), re.M))
+        print(f'  {status} JS check {name}: {msg[:200] if not ok else "OK"}')
+        if not ok:
+            failed = True
+    if failed:
+        print('✗ 结构校验未通过，已停止：三个目标文件保持原样（byte-unchanged），未写入任何内容。')
+        return 4
+
+    # Step 4: 校验全部通过 → 原子替换（临时文件 + os.replace）
+    atomic_write(INDEX_PATH, new_main_with_items)
+    print(f'✓ index.html written: {len(new_main_with_items)} bytes')
+    atomic_write(archive_path, archive_html)
+    print(f'✓ archive/{today}.html written: {len(archive_html)} bytes')
+    atomic_write(ARCHIVE_DIR / 'index.html', new_idx)
+    print(f'✓ archive/index.html updated')
+    # Step 5: 统计
+    main_count = len(re.findall(r'^\s*t:"', new_main_with_items, re.M))
     print(f'  ✓ Main page items: {main_count}')
     arch_count = len(re.findall(r'^\s*t:"', archive_html, re.M))
     print(f'  ✓ Archive page items: {arch_count}')
     return 0
-
-
-def fetch_itjuzi(target_date):
-    """Fetch IT桔子 events for a date. Returns list of dicts."""
-    import urllib.request, os
-    env_path = DEALHOT_DIR / '.secrets' / 'itjuzi.env'
-    if env_path.exists():
-        for line in env_path.read_text().strip().split('\n'):
-            k, v = line.split('=', 1)
-            os.environ[k.strip()] = v.strip()
-    if not os.environ.get('ITJUZI_APPID'):
-        return []
-    req = urllib.request.Request(
-        'https://openapi.itjuzi.com/oauth2.0/get_access_token',
-        data=f"appid={os.environ['ITJUZI_APPID']}&appkey={os.environ['ITJUZI_APPKEY']}&granttype=client_credentials".encode()
-    )
-    tok = json.loads(urllib.request.urlopen(req, timeout=15).read())['data']['access_token']
-    req2 = urllib.request.Request(
-        f"https://openapi.itjuzi.com/investevent/get_investevent_list_v2?d={target_date}&d={target_date}&limit=20&order=1&order_rules=1",
-        headers={'AUTHORIZATION': f'Bearer {tok}'}
-    )
-    return json.loads(urllib.request.urlopen(req2, timeout=15).read()).get('data', [])
-
-
-def import_itjuzi_to_db(target_date, commit_sha):
-    """Import IT桔子 events for date into dealhot.db."""
-    items = fetch_itjuzi(target_date)
-    if not items:
-        return 0
-    conn = get_conn()
-    c = conn.cursor()
-    inserted = 0
-    for it in items:
-        d = it.get('d') or target_date
-        title = it.get('event_title', '').strip()
-        if not title:
-            continue
-        round_id = it.get('round_id', 0)
-        ind = it.get('com_industry_name', '')
-        if ind in ('先进制造', '前沿科技', '机器人', '汽车交通'):
-            cat = 'frontier'
-        elif ind in ('医疗健康', '企业服务', '传统制造', '教育'):
-            cat = 'bigtech'
-        elif ind in ('金融', '消费'):
-            cat = 'minority'
-        else:
-            cat = 'bigtech'
-        url = 'https://www.itjuzi.com/'
-        ROUND_NAMES = {1:'天使',2:'A',3:'A+',4:'B',5:'B+',6:'C',7:'D',8:'E',9:'Pre-IPO',10:'战略',11:'种子',12:'Pre-A',13:'Pre-A+',14:'B++',15:'C++',16:'被收购'}
-        round_name = ROUND_NAMES.get(round_id, f'#{round_id}')
-        ind_name = it.get('com_sub_industry_name', '')
-        sum_text = f"{d} IT桔子披露，{it.get('com_name','')}完成{round_name}。属\"{ind} > {ind_name}\"。"
-        c.execute('SELECT id FROM items WHERE date=? AND src=? AND title=?', (d, 'IT桔子', title))
-        if c.fetchone():
-            continue
-        try:
-            c.execute(
-                'INSERT INTO items (date, t, src, cat, regions, score, title, url, sum, ma_cap, tags, commit_sha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                (d, f"{d[5:7].lstrip('0')}月{d[8:10].lstrip('0')}日", 'IT桔子', cat,
-                 '["中国"]', 80, title, url, sum_text, '未披露',
-                 '["投融资", "' + ind_name + '"]', commit_sha)
-            )
-            inserted += 1
-        except Exception as e:
-            print(f'  err: {e}')
-    conn.commit()
-    conn.close()
-    return inserted
-
-
-def cmd_fetch(args):
-    """Fetch IT桔子 events for date and import to DB. No file writes."""
-    target_date = args.date or bj_today_str()
-    print(f'=== fetch IT桔子 for {target_date} ===\n')
-    items = fetch_itjuzi(target_date)
-    print(f'Found {len(items)} events')
-    for it in items:
-        print(f'  - {it.get("event_title", "?")[:80]}')
-    if not args.dry_run and items:
-        commit_sha = f'fetch-{datetime.now().strftime("%Y%m%d-%H%M%S")}'
-        n = import_itjuzi_to_db(target_date, commit_sha)
-        print(f'\n✓ Imported {n} events to DB (commit_sha={commit_sha})')
-    return 0 if items else 2
-
 
 
 def main():
@@ -654,10 +598,8 @@ def main():
     b = sub.add_parser('build', help='Full build: index.html + archive + archive index')
     b.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
     b.set_defaults(func=cmd_build)
-    f = sub.add_parser('fetch', help='Fetch IT桔子 events for date and import to DB')
-    f.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
-    f.add_argument('--dry-run', action='store_true', help='Only fetch, do not insert')
-    f.set_defaults(func=cmd_fetch)
+    # 注：旧的 `fetch` 子命令已删除 —— 它会直接写 items（错误日期参数 + 首页 URL + score 恒 80 +
+    # 分类错位），是绕过新架构的后门。抓取一律走 scripts/pipeline.py fetch。
     p = sub.add_parser('post', help='Generate #dealhot channel post in 5c42a5a6 template format')
     p.add_argument('--date', help='Date in YYYY-MM-DD (default: today Beijing)')
     p.set_defaults(func=cmd_post)

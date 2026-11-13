@@ -74,11 +74,12 @@ python3 scripts/pipeline.py import-aihot --date 2026-07-25 --file /tmp/aihot.jso
 # ③ 看候选（人工挑选，逐条写 sum/why/cat/regions/score）
 python3 scripts/pipeline.py list --date 2026-07-25
 
-# ④ 精选结果 → items（字段闸门 + 7 日去重，fail-closed）
+# ④ 精选结果 → items（整批校验 + 单事务写入 + 7 日对称去重，fail-closed）
 python3 scripts/pipeline.py accept --date 2026-07-25 --file samples/2026-07-25.json
 
-# ⑤ 统计（raw/selected/published、来源、板块、score 分布、重复拦截、字段失败）
+# ⑤ 统计（raw/selected/published、来源、板块、score 分布、已拒收原因、字段失败）
 python3 scripts/pipeline.py stats --date 2026-07-25
+python3 scripts/pipeline.py stats --date 2026-07-25 --json   # 结构化验收报告
 
 # ⑥ 渲染（先过发布硬闸门；不过就停，不写文件）
 python3 scripts/build.py build --date 2026-07-25
@@ -96,6 +97,11 @@ EOF
 raft message send --target "#all:e6f76bce"   # fire→build→commit→push 链路
 raft reminder ack --id 4d2c06ea-7f01-47b6-9465-3f6f58c05f84 --revision <rev>
 ```
+
+**accept 是整批原子的**：任何一条不合格 → **整批 0 条落库**、退出码非 0，并逐条打印原因；
+被拒的候选会持久化 `status=rejected` + `note`。改完想重新收录，先 `python3 scripts/pipeline.py reset --date <D>`。
+
+**回归测试**（改完 pipeline/build 必须跑）：`python3 tests/run_tests.py`（8 类场景，无第三方依赖）。
 
 `build.py build` 的输出必须逐行看：`✓ 发布闸门通过` + 五类统计 + `index.html written` / `archive/<D>.html written` / `archive/index.html updated` / 两行 `JS check ... OK` / `Main page items: N` / `Archive page items: N`。
 
@@ -143,6 +149,8 @@ curl -s "https://openapi.itjuzi.com/investevent/get_investevent_list_v2?date_pat
 ### 2.2 AIHOT v1（`fetch_aihot.py`）
 
 > ⚠️ **旧接口已于 2026-10-31 停用**：`https://aihot.virxact.com/api/public/items` 现在会 `301` → 目标路径 `404` + 空 body，**静默拿不到数据**（不报错）。不要再用旧地址。
+
+新接口：`https://aihot.news/api/v1/items?mode=selected&limit=60&window=7d`
 
 ```bash
 python3 fetch_aihot.py 48           # 打印近 48h 候选
@@ -208,16 +216,30 @@ python x_scan/scan.py --group mena --days 4               # 中东/主权基金 
 
 **7 日去重**：title / url / dedupe_key 在前后 7 天内已发布过 → 拦截。跨日重复必须阻断。
 
+**每条必须能对应到一条已抓到的 raw candidate**（不能拿任意 JSON 绕开 raw 层）。引用方式（按优先级）：
+
+| 写法 | 说明 |
+|---|---|
+| `"raw_source": "IT桔子", "raw_source_id": "14701243"` | **推荐**：IT桔子 的 event_id，跨 DB 重建稳定 |
+| `"raw_content_hash": "<sha256>"` | 候选的 content_hash |
+| `"raw_url": "https://…"` | 候选的原文链接 |
+| 不写 | 兜底：用条目的 `url` 去找候选；找不到即拒 |
+
+解析到候选后还要过三关：`event_date` 必须等于目标日、`status` 必须是 `candidate`、条目的 `url` 必须等于候选的原文链接。
+
 **精选输入 JSON 格式**（见 `samples/2026-07-25.json`）：
 
 ```json
 {"date": "2026-07-25",
  "items": [
-   {"raw_id": 92, "dedupe_key": "原粒半导体", "src": "IT桔子",
+   {"raw_source": "IT桔子", "raw_source_id": "14701243",
+    "dedupe_key": "原粒半导体", "src": "IT桔子",
     "title": "…", "url": "https://…", "cat": "ai", "regions": ["中国"],
-    "score": 88, "sum": "…", "why": "…", "tags": ["投融资"]}
+    "score": 88, "sum": "2-3 句事实摘要，含关键数字", "why": "1-2 句解释性推荐理由", "tags": ["投融资"]}
  ]}
 ```
+
+⚠️ `raw_id` 只是自增号，**跨 DB 重建不保证一致** → 生产回填不要用 `raw_id`，用 `raw_source + raw_source_id`。
 
 ## 4. 发布硬闸门（fail-closed）
 
@@ -237,6 +259,10 @@ python x_scan/scan.py --group mena --days 4               # 中东/主权基金 
 `pipeline.py accept` 是**第二道闸门**（逐条拒收并打印原因）：首页 URL / 空 sum/why / 股票买卖话术 / 轮次未解析 / CDATA / 日报聚合标题 / cat·regions·score 非法 / 7 日 title·url·dedupe_key 重复。
 
 **任一闸门失败：停止 publish，输出明确错误，不得带病 push。**
+
+**build 的零写入保证**：`build.py build` 先把三份产物渲染到内存并完成全部校验（含 JS 结构检查），
+**全部通过后才用「临时文件 + os.replace」原子替换** `index.html` / `archive/<date>.html` / `archive/index.html`。
+任何一项校验失败 → 退出码非 0，且三个目标文件 **byte-unchanged**（不会出现写了一半的页面）。
 
 ## 5. 条目字段语义与 score 标准
 
@@ -299,7 +325,20 @@ open index.html                                        # 本地目检（macOS）
 - 不要单跑 `build.py build` 跳过 `fetch`/`accept`（会漏当天条目）
 - 不要漏 ack（见 §7）
 
-## 9. 历史重做记录
+## 9. 历史替换（replace）
+
+重做历史**不要**手写 `DELETE` 再逐日 accept —— 中途失败会留下半迁移状态。用事务化的 replace：
+
+```bash
+python3 scripts/pipeline.py replace --from 2026-07-24 --to 2026-07-27 \
+    --files samples/2026-07-24.json,samples/2026-07-25.json,samples/2026-07-26.json,samples/2026-07-27.json
+```
+
+- **先整批校验**：四天的所有条目一起过字段闸门 + raw 引用校验 + 7 日去重（去重时排除被替换区间本身）
+- **任一条不合格 → 整批拒绝、0 条落库、旧数据原样不动**（退出码非 0）
+- **全部通过 → 单事务** `DELETE` 旧行 + `INSERT` 新行；写入异常 → 整批回滚，并打印区间行数变化
+
+## 10. 历史重做记录
 
 `samples/` 保存了重做样稿（精选输入 JSON + 渲染出的 archive 页面）。最近一次：
 
