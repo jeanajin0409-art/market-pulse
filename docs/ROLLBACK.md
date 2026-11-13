@@ -123,6 +123,15 @@ pipeline.py fetch → pipeline.py list → 人工精选写 JSON → pipeline.py 
 | 代码 | `git revert -m 1 <merge commit> && git push origin main`，再按 §1 回滚 schema |
 | 提醒 | reminder 本身不切（仍是同一条 `#4d2c06ea`），只是执行步骤变了；出问题时按老步骤跑 |
 
+### 3.5 旧日期为什么不能直接重建（不是 bug）
+
+`publish_gate` 现在要求正式条目**有 raw 溯源**（`raw_id` → 同日候选 → `status='selected'`）。
+旧链路写进生产的条目**没有 raw_id**，所以：
+
+- 用新链路重建**旧日期**会被闸门拦下（实测旧数据 86 项拦截）→ 这是预期行为
+- 已提交的 `archive/<旧日期>.html` **不需要重建**，它们在 git 里
+- 确需重建某个旧日期 → 必须用新链路重新抓取 + 重新精选（`pipeline.py fetch` → `accept` → `build --archive-only`）
+
 ## 4. 切前检查清单（每项都要实测跑一遍）
 
 - [ ] `python3 tests/run_tests.py` → **13/13 passed**

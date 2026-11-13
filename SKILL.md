@@ -262,7 +262,7 @@ python x_scan/scan.py --group mena --days 4               # 中东/主权基金 
 | 首页 URL | path 为空或 `/` 的 URL 一律拒绝 |
 | 空 sum / 空 why | 必填 |
 | 批量同分 | ≥3 条全同分，或 ≥5 条里同一分超过 60% |
-| raw 证据 | 正式条目必须 `raw_id` 非空、指向**同日**的 raw candidate、且该候选 `status='selected'` —— 否则「直写 items」就能绕过 raw→精选→published |
+| raw 证据 | 正式条目必须 `raw_id` 非空、指向**同日**的 raw candidate、且该候选 `status='selected'` —— 否则「直写 items」就能绕过 raw→精选→published。**旧链路写的条目没有 raw_id → 用新链路重建旧日期会被拦下**（已提交的归档不需要重建；要重建就重新抓 + 重新精选） |
 | 跨日重复 | **目标日自己的**条目在 7 日**对称**窗口内（target-7d ~ target+7d）的其他日子出现过：title / **url** / **content_hash** / **event_hash**（后两者经 `raw_id` 联动 `raw_candidates`；历史日期同样按对称窗口查） |
 | bigtech 错分 | 按 `items.raw_id` 联动 `raw_candidates.category`，医疗健康/企业服务/传统制造/教育/金融/消费 不得进 bigtech |
 | 轮次未解析 | 标题或摘要里出现 `#数字` |
