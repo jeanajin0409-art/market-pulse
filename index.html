@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月14日 · 星期六</div>
+    <div class="date">2026年11月15日 · 星期日</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>研究报告称中国最强 AI 模型使用了被禁出口的 Nvidia</strong>、<strong>Mirendil获得10亿美元A轮融资</strong>、<strong>Opdo获得230万美元种子轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic CEO Amodei 在 IPO 前承认</strong>、<strong>马斯克等高管联署请愿,要求 Nvidia 恢复黄仁勋 CEO</strong>、<strong>Jensen Huang 离任或给 AI 创业融资留下大缺口</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── TechCrunch：AI（RSS） 2026-11-15 新增 ──────────────
+{
+  t:"11月15日 09:00",
+  d:"2026-11-15",
+  src:"Nathan Lambert：Interconnected",
+  cat:"ai",
+  regions:["美国"],
+  score:78,
+  title:"分析黄仁勋辞职后美国开源模型生态的真空",
+  url:"https://www.interconnects.ai/p/open-source-ai-without-jensen",
+  sum:"Nathan Lambert 在《Open-source AI without Jensen》中称，Nvidia 首要目标是未来 24 个月稳定公司、交付客户，对开源模型的支持「very likely dry up」；他提到「几亿美元」不足以造出优于 Kimi 或 DeepSeek 的模型，Thinking Machines 下一轮按 400 亿美元估值达成但仍难长期跟上闭源前沿实验室。文中还提到 Nemotron 尚未交出满意结果、Thinking Machines 的 Inkling 2 Small 仍落后于 Kimi K3.1 Pro。",
+  tags:["模型/技术","政策"]
+},
+{
+  t:"11月15日 09:00",
+  d:"2026-11-15",
+  src:"TechCrunch：AI（RSS）",
+  cat:"minority",
+  regions:["全球"],
+  score:84,
+  title:"Jensen Huang 离任或给 AI 创业融资留下大缺口，投资人和创始人担忧",
+  url:"https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/",
+  sum:"TechCrunch 报道，Nvidia 过去数年每年向初创投入数百亿美元，仅 2026 年就参与 105 轮融资且常为最大投资方：以 129 亿美元收购 Hugging Face（预计 2027 年完成）、参与 Crusoe 14 亿美元 E 轮、在 Reflection AI 尚无收入时投入 8 亿美元并参与其 20 亿美元 B 轮。VC 认为 Nvidia 后续出手会更挑剔、单笔更小并压低相关初创估值；Relational Capital 创始人 Maria Davidson 称「这个方向若变，会重创大量年轻公司」。",
+  tags:["投融资","大厂"]
+},
+{
+  t:"11月15日 09:00",
+  d:"2026-11-15",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  regions:["全球"],
+  score:86,
+  title:"马斯克等高管联署请愿，要求 Nvidia 恢复黄仁勋 CEO 职务",
+  url:"https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/",
+  sum:"TechCrunch 报道，由 standwithjensen.com 发起的请愿截至周六下午已有超过 11.5 万个签名，其中 Nvidia 现任员工 5965 人、前员工 1108 人、股东 63063 人；马斯克、Replit CEO Amjad Masad、Epic Games CEO Tim Sweeney、Y Combinator CEO Garry Tan 等公开联署，要求董事会恢复黄仁勋职务并进行独立调查，称「Jensen deserves due process, not mob justice」。目前由 CFO Colette Kress 任临时 CEO，董事会尚未正式回应。",
+  tags:["大厂","治理"]
+},
+{
+  t:"11月15日 09:00",
+  d:"2026-11-15",
+  src:"TechCrunch：AI（RSS）",
+  cat:"ai",
+  regions:["亚太","中国"],
+  score:82,
+  title:"黄仁勋离开 Nvidia 后，亚洲各国政府如何回应",
+  url:"https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/",
+  sum:"TechCrunch 汇总亚洲各方反应：中国外交部 11 月 10 日否认相关间谍指控并称出口管制扰乱全球供应链，Reuters 称超过 30 亿美元的中国 AI 算力项目依赖 Nvidia 受限处理器；韩国科学部确认重新向韩供应 26 万枚先进 GPU，并于 11 月 13 日召开紧急会议评估影响；台湾经济部称台北设立海外总部计划不变，日本经产省表示将密切监测并关注半导体稳定供应。",
+  tags:["政策","AI"]
+},
+{
+  t:"11月15日 09:00",
+  d:"2026-11-15",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ipo",
+  regions:["美国"],
+  score:88,
+  title:"Anthropic CEO Amodei 在 IPO 前承认明年存在巨大不确定性，算力是公司最深的商业两难",
+  url:"https://the-decoder.com/anthropic-ceo-amodei-admits-theres-a-huge-uncertainty-in-whats-going-to-happen-next-year-days-before-a-record-ipo/",
+  sum:"Amodei 周五在纽约 JPMorgan 投资者活动上表示「明年有巨大不确定性」「算力是公司面临的最深的商业两难」；Anthropic 计划 11 月 19 日上市，拟通过 IPO 募资最高 644 亿美元、另以私募募集 260 亿美元，发行已约六倍超额订阅。截至 10 月末年化营收 810 亿美元；公司已承诺近 9010 亿美元用于算力与芯片，其中约 710 亿美元将在 2027 年 9 月前到期。",
+  tags:["IPO","投融资","CAPEX"]
+},
+
+// ───────────── IT桔子 2026-11-15 新增 ──────────────
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"4Minds获得1500万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，4Minds完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Alma Mater获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Alma Mater完成#11。属\"电商零售 > 服装服饰\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服装服饰"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Anorak获得500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Anorak完成#13。属\"文娱传媒 > 视频/直播\"。",
+  ma_cap:"未披露",
+  tags:["投融资","视频/直播"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Biomatter获得1800万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Biomatter完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Cytodyn获得500万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Cytodyn完成#11。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Hatz AI获得2400万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Hatz AI完成#2。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Horizon Group获得1250万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Horizon Group完成#2。属\"电商零售 > 家居家纺\"。",
+  ma_cap:"未披露",
+  tags:["投融资","家居家纺"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Imprint获得1.3亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Imprint完成#5。属\"金融 > 支付\"。",
+  ma_cap:"未披露",
+  tags:["投融资","支付"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"LangChain获得3亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，LangChain完成#4。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Medaica获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Medaica完成#11。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Mirendil获得10亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Mirendil完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Neu Battery Materials获得760万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Neu Battery Materials完成#11。属\"传统制造 > 环保\"。",
+  ma_cap:"未披露",
+  tags:["投融资","环保"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Opdo获得230万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Opdo完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Q-CTRL获得2.9亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Q-CTRL完成#4。属\"前沿科技 > 量子技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","量子技术"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Reflect Orbital获得7350万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Reflect Orbital完成#3。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Tristar AI获得1240万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，Tristar AI完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"国星宇航今日上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，国星宇航完成#8。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"幺正量子完成数亿元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，幺正量子完成#14。属\"前沿科技 > 量子技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","量子技术"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"擎天租宣布完成数亿元战略融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，擎天租完成#11。属\"机器人 > 机器人周边服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人周边服务"]
+},
+{
+  t:"11月15日",
+  d:"2026-11-15",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"铠链科技完成700万元人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-15 IT桔子披露，铠链科技完成#2。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+
 // ───────────── TechCrunch：AI（RSS） 2026-11-14 新增 ──────────────
 {
   t:"11月14日 09:00",
