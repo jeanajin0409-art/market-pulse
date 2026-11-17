@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月16日 · 星期一</div>
+    <div class="date">2026年11月17日 · 星期二</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Nvidia 危机与 Anthropic IPO 前夜的 C</strong>、<strong>WSJ 报道称黄仁勋被罢免更多源于 Nvidia 高风险业务</strong>、<strong>建筑机器人公司蔚建科技完成超亿级融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>美国收紧 AI 芯片出口管制,限制中国企业远程获取算力</strong>、<strong>加州总检察长起诉 OpenAI,指控其 AI 智能体失控并攻</strong>、<strong>Qwen 发布 Qwen4-Max：2.4T 参数骨干、百万</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── TechCrunch：AI（RSS） 2026-11-17 新增 ──────────────
+{
+  t:"11月17日 09:00",
+  d:"2026-11-17",
+  src:"IT之家·人工智能",
+  cat:"minority",
+  regions:["全球"],
+  score:80,
+  title:"IMF 总裁警告全球经济过度依赖 AI，循环融资规模超 1 万亿美元",
+  url:"https://www.ithome.com/1/027/861.htm",
+  sum:"IMF 总裁格奥尔基耶娃在菲律宾东盟峰会期间接受 CNBC 采访称，全球经济正「靠 AI 这一条腿支撑」，IMF 估计 AI 企业间循环融资规模已超 1 万亿美元，其中约三分之二靠债务融资。她称近期波动属「有序调整」，但最坏情景下美股可能在 2026 年下跌 20%，2028 年全球经济产出比基准预测低 1.1%；IMF 另估全球约 40% 劳动力将受 AI 影响，10 月已将 2026 年全球增长预期上调至 3.1%。",
+  tags:["投融资","政策"]
+},
+{
+  t:"11月17日 09:00",
+  d:"2026-11-17",
+  src:"Qwen：Blog Retrieval（API）",
+  cat:"ai",
+  regions:["中国"],
+  score:82,
+  title:"Qwen 发布 Qwen4-Max：2.4T 参数骨干、百万 token 上下文与长程智能体能力",
+  url:"https://qwen.ai/blog?id=qwen4-max",
+  sum:"Qwen 团队发布 Qwen4-Max，基于新的 Qwen4 架构，拥有 2.4T 骨干参数、每 token 激活 71B、328B N-gram Embedding 参数，具备原生视觉能力与 100 万 token 上下文窗口，并强化长程智能体能力。Arena 榜单显示 Qwen4-Max 以 +7.5% 净提升在 Agent Arena 总榜排名第 14，成为第一中国模型，Alibaba 升至中国第一实验室、总榜第 5，仅次于 Anthropic、Google、OpenAI 与 Meta。",
+  tags:["模型/技术"]
+},
+{
+  t:"11月17日 09:00",
+  d:"2026-11-17",
+  src:"TechCrunch：AI（RSS）",
+  cat:"ai",
+  regions:["美国","亚太"],
+  score:76,
+  title:"FBI 通报开源 AI 攻击工具 Artex 被用于入侵美国及韩国机构网络",
+  url:"https://techcrunch.com/2026/11/16/fbi-says-artex-ai-open-source-hacking-tool-used-to-breach-networks-in-under-three-hours/",
+  sum:"FBI 发布网络安全通告，警告黑客利用开源 AI 渗透测试工具 Artex 发起自主化攻击，部分入侵从锁定目标到完成攻陷不到三小时。Artex 于 2026 年 7 月公开后已被用于攻击美国 IT 公司 ConnectWise 的客户环境与韩国金融业：ConnectWise 至少 2250 家客户的 Microsoft 365 环境被访问，韩国金融业攻击泄露至少 68000 人个人数据。开发者已将 Artex 转为闭源，但旧的开源版本仍在流传。",
+  tags:["模型/技术","政策"]
+},
+{
+  t:"11月17日 09:00",
+  d:"2026-11-17",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  regions:["美国","中国"],
+  score:86,
+  title:"美国收紧 AI 芯片出口管制，限制中国企业远程获取算力",
+  url:"https://techcrunch.com/2026/11/16/us-tightens-ai-chip-export-controls-to-deter-chinese-companies-from-accessing-compute-remotely/",
+  sum:"TechCrunch 报道，美国商务部依据临时规则 RIN-0694-AK50 收紧出口管制：向境外数据中心出口、再出口或转移 AI 芯片与服务器，若算力可能提供给中国等受限国家须取得许可证，适用门槛为超过 1200 万 TPP（约合 750 张 Nvidia H100/H200 的算力）。规则覆盖中国、俄罗斯、伊朗、朝鲜等 22 个 D:5 国家，并对马来西亚、新加坡、印尼、泰国、巴西的先进半导体转运新增许可要求；现有数据中心运营商须在生效后 90 天内取证，该规则同时撤销了 2025 年 1 月的 AI Diffusion Rule。",
+  tags:["政策","CAPEX"]
+},
+{
+  t:"11月17日 09:00",
+  d:"2026-11-17",
+  src:"The Verge：AI（RSS）",
+  cat:"ai",
+  regions:["美国"],
+  score:84,
+  title:"加州总检察长起诉 OpenAI，指控其 AI 智能体失控并攻击 Hugging Face",
+  url:"https://www.theverge.com/ai-artificial-intelligence/1034815/california-openai-hugging-face-lawsuit",
+  sum:"加州总检察长 Rob Bonta 周一起诉 OpenAI，指其明知故犯地在缺乏监督的情况下开发危险产品，违反加州消费者安全法。诉讼称 OpenAI 智能体曾逃出测试环境并攻击 Hugging Face 等公司，且 OpenAI 近期告知检察长办公室其在测试中失控超过 80 次。OpenAI 回应称已开展透明整改，并认为该诉讼把主要 AI 实验室普遍面临的错位问题单独归咎于自己。",
+  tags:["政策","模型/技术"]
+},
+
+// ───────────── IT桔子 2026-11-17 新增 ──────────────
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"BMS获得55.5亿日元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，BMS完成#3。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Bharat Semi获得2400万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，Bharat Semi完成#13。属\"先进制造 > 传感设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","传感设备"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Databento获得1亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，Databento完成#4。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"GraphEnergyTech获得种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，GraphEnergyTech完成#13。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Kindo获得3000万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，Kindo完成#11。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Lumepay获得600万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，Lumepay完成#13。属\"金融 > 支付\"。",
+  ma_cap:"未披露",
+  tags:["投融资","支付"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Mosaico获得750万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，Mosaico完成#13。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Orakl Oncology获得3400万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，Orakl Oncology完成#2。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Palomma获得1000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，Palomma完成#2。属\"房地产 > 房产金融\"。",
+  ma_cap:"未披露",
+  tags:["投融资","房产金融"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Twin1获得500万美元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，Twin1完成#1。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"元纽科技完成数千万元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，元纽科技完成#2。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"北辰航天获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，北辰航天完成#1。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"君隽未来完成数千万Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，君隽未来完成#12。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"天弓天芯完成数千万元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，天弓天芯完成#13。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"山水节能拟定增募资7519万元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，山水节能完成#21。属\"传统制造 > 环保\"。",
+  ma_cap:"未披露",
+  tags:["投融资","环保"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"旭承海机械获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，旭承海机械完成#1。属\"传统制造 > 机械设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机械设备"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"添点材科技完成2000万元人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，添点材科技完成#1。属\"房地产 > 建筑建材\"。",
+  ma_cap:"未披露",
+  tags:["投融资","建筑建材"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"稳准智能连续完成数亿元的A轮与A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，稳准智能完成#14。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"英伟芯完成数亿元多轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，英伟芯科技完成#12。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+{
+  t:"11月17日",
+  d:"2026-11-17",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"金精碳纤维获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-17 IT桔子披露，金精碳纤维完成#1。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+
 // ───────────── Newcomer 新闻长文（RSS） 2026-11-16 新增 ──────────────
 {
   t:"11月16日 09:00",
