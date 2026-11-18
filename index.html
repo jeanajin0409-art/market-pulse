@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月17日 · 星期二</div>
+    <div class="date">2026年11月18日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>美国收紧 AI 芯片出口管制,限制中国企业远程获取算力</strong>、<strong>加州总检察长起诉 OpenAI,指控其 AI 智能体失控并攻</strong>、<strong>Qwen 发布 Qwen4-Max：2.4T 参数骨干、百万</strong> 等。</p>
+      <p>今日新增 3 条。<strong>OpenAI 发布 GPT-6.2 Astra 与 GPT-</strong>、<strong>Nvidia 第三财季营收 1158 亿美元超预期,数据中心</strong>、<strong>Jensen Huang 发声明回应离职风波并表态愿在董事会</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Ed Zitron 长文 / Where’s Your Ed At 2026-11-18 新增 ──────────────
+{
+  t:"11月18日 09:00",
+  d:"2026-11-18",
+  src:"Ed Zitron 长文 / Where’s Your Ed At",
+  cat:"minority",
+  regions:["全球"],
+  score:81,
+  title:"Ed Zitron 长文解析 NVIDIA 泡沫：循环融资、渠道压货与芯片出口管制争议如何支撑AI行业",
+  url:"https://www.wheresyoured.at/the-nvidia-bubble/",
+  sum:"Ed Zitron 长文把 Nvidia 的循环融资与渠道压货摆上台面：Nvidia 宣布向 OpenAI 投资 1000 亿美元建设 10GW 数据中心（后称仅为意向书）、声称已安排 5000 亿美元融资，向客户租回 GPU 的承诺从 2025 年底约 270 亿美元增至最近一期 360 亿美元，CoreWeave 回租由 13 亿美元/4 年扩至 63 亿美元；作者估计仓库中躺着超过 2000 亿美元的 Nvidia GPU。文中还引述 Megaspeed 采购金额从 48 亿、至少 75 亿到 120 亿美元的递增。",
+  tags:["投融资","政策"]
+},
+{
+  t:"11月18日 09:00",
+  d:"2026-11-18",
+  src:"OpenAI：官网动态（RSS · 排除企业/客户案例）",
+  cat:"ai",
+  regions:["美国"],
+  score:88,
+  title:"OpenAI 发布 GPT-6.2 Astra 与 GPT-6.2 Sol",
+  url:"https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+  sum:"OpenAI 发布面向复杂专业工作的 GPT-6.2 Astra 与面向日常工作的 GPT-6.2 Sol，称两者在更少输出 token 下取得更好结果，已同步上线 ChatGPT、Codex 与 API。Artificial Analysis 评测显示两者在 Intelligence Index 排名第二、仅次于 Claude Fable 5.2；OpenRouter 定价 Astra 每百万 token 输入 8 美元、输出 40 美元，每任务成本不到 GPT-6 Astra 的三分之一，Sol 为输入 2 美元、输出 10 美元。",
+  tags:["模型/技术","ARR/商业化"]
+},
+{
+  t:"11月18日 09:00",
+  d:"2026-11-18",
+  src:"X：Jim Fan (@DrJimFan)",
+  cat:"bigtech",
+  regions:["美国"],
+  score:83,
+  title:"Jensen Huang 发声明回应离职风波并表态愿在董事会决定下回归 NVIDIA CEO",
+  url:"https://x.com/DrJimFan/status/2122727208754254245",
+  sum:"Jensen Huang 发文感谢外界支持，承认个人生活中犯了严重错误、给董事会造成问题，并承诺配合董事会的独立调查。他表示离任以来收到员工、投资者、合作伙伴与客户大量回归呼声，若董事会认为回归符合股东、员工、公司与美国的最佳利益，他将回归 CEO 职位。",
+  tags:["大厂","治理"]
+},
+{
+  t:"11月18日 09:00",
+  d:"2026-11-18",
+  src:"X：Philipp Schmid（Google DeepMind 开发者体验）",
+  cat:"ai",
+  regions:["全球"],
+  score:82,
+  title:"Google 发布 Gemini 4 Carbon 与 Hydrogen，并推出 Decisions API 和自托管 agent 沙箱",
+  url:"https://x.com/_philschmid/status/2122358498461691913",
+  sum:"Google 发布 Gemini 4 Carbon 与 Hydrogen，并推出 Decisions API 与自托管 agent 沙箱；其中 Gemini 4 Carbon 提供 100 万共享 token 池，11 月 30 日前价格为每百万 token 输入 2 美元、输出 10 美元。",
+  tags:["模型/技术","产品"]
+},
+{
+  t:"11月18日 09:00",
+  d:"2026-11-18",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  regions:["美国"],
+  score:86,
+  title:"Nvidia 第三财季营收 1158 亿美元超预期，数据中心占 93%",
+  url:"https://x.com/rohanpaul_ai/status/2122812619379900579",
+  sum:"Nvidia 第三财季营收 1158 亿美元、同比增长 103%，其中数据中心收入 1076 亿美元、占 93%；季度利润 653 亿美元、翻倍。",
+  tags:["CAPEX","大厂"]
+},
+
+// ───────────── IT桔子 2026-11-18 新增 ──────────────
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Alphabet旗下AI制药商Isomorphic Labs完成50亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Isomorphic Labs完成#4。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Bedrock Energy获得2400万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Bedrock Energy完成#3。属\"传统制造 > 其他传统制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他传统制造"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Commit获得6000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Commit完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Corma获得1.25亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Corma完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Dreamteam AI获得5300万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Dreamteam AI完成#11。属\"企业服务 > 销售营销\"。",
+  ma_cap:"未披露",
+  tags:["投融资","销售营销"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"EDRA获得1000万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，EDRA完成#11。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Morgan获得365万澳元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Morgan完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Noeri获得1.1亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Noeri完成#11。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Remedy Robotics获得6200万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Remedy Robotics完成#3。属\"机器人 > 特种机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","特种机器人"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Seawolf获得1亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Seawolf完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Stark Future获得超1.5亿欧元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Stark Future完成#11。属\"汽车交通 > 交通出行\"。",
+  ma_cap:"未披露",
+  tags:["投融资","交通出行"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"TestDynamics获得900万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，TestDynamics完成#2。属\"医疗健康 > 其他医疗服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","其他医疗服务"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"ULC获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，ULC完成#11。属\"医疗健康 > 健康保健\"。",
+  ma_cap:"未披露",
+  tags:["投融资","健康保健"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Valeria获得550万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Valeria完成#13。属\"企业服务 > 人力资源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","人力资源"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Zya获得1150万英镑A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，Zya完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"‌Bravera Bio获得1.7109亿美元A轮融资‌",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，‌Bravera Bio完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"星尘浩宇NeuxMind.AI获得数亿人民币B轮融资，赛泽资本领投",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，星尘浩宇NeuxMind.AI完成#3。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"纳诺半导体获得B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，纳诺半导体完成#3。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"菊乐股份今日上市 发行价格31.92元/股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，菊乐股份完成#8。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+{
+  t:"11月18日",
+  d:"2026-11-18",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"鹰瞰智翼获得数千万人民币Pre-B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-18 IT桔子披露，鹰瞰智翼完成#15。属\"机器人 > 特种机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","特种机器人"]
+},
+
 // ───────────── TechCrunch：AI（RSS） 2026-11-17 新增 ──────────────
 {
   t:"11月17日 09:00",
