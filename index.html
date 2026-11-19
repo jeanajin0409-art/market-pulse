@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月18日 · 星期三</div>
+    <div class="date">2026年11月19日 · 星期四</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>OpenAI 发布 GPT-6.2 Astra 与 GPT-</strong>、<strong>Nvidia 第三财季营收 1158 亿美元超预期,数据中心</strong>、<strong>Jensen Huang 发声明回应离职风波并表态愿在董事会</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic IPO 定价每股 83.00 美元,11</strong>、<strong>Nvidia 宣布停售 H200 芯片至中国,并设立董事会级</strong>、<strong>Nvidia 临时 CEO Colette Kress 表示</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Anthropic：Newsroom（网页） 2026-11-19 新增 ──────────────
+{
+  t:"11月19日 09:00",
+  d:"2026-11-19",
+  src:"Anthropic：Newsroom（网页）",
+  cat:"ipo",
+  regions:["美国"],
+  score:90,
+  title:"Anthropic IPO 定价每股 83.00 美元，11 月 19 日以代码 ANT 登陆纳斯达克",
+  url:"https://www.anthropic.com/news/anthropic-prices-initial-public-offering",
+  sum:"Anthropic 宣布 IPO 定价每股 83.00 美元，本次发行 9.8 亿股 A 类普通股——其中 Anthropic 出售 956,351,354 股、出售股东出售 23,648,646 股（约占本次发行 2.41%），按发行价计募资约 814 亿美元，另有最多 1.47 亿股的 30 天超额配售权。股票预计于 11 月 19 日在纳斯达克全球精选市场开始交易，代码 ANT，IPO 预计 11 月 20 日完成交割。",
+  tags:["IPO","投融资"]
+},
+{
+  t:"11月19日 09:00",
+  d:"2026-11-19",
+  src:"Google Blog：AI（RSS）",
+  cat:"ai",
+  regions:["全球"],
+  score:84,
+  title:"Gemini 向美国等六国用户免费开放任务功能，可打电话、付款并接入 60 多款应用",
+  url:"https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/",
+  sum:"Google 于 11 月 17 日向美国、日本、韩国、加拿大、澳大利亚与印度免费开放 Gemini 任务功能，基于 Gemini 4 Hydrogen，可连接 60 多款热门应用：代打电话给附近经销商预约（曾同时致电两家经销商、耗时不到五分钟）、用 Google Pay 经 Agent Payments Protocol 结账并设置硬性消费上限、收据进 Google Wallet，还能分析电费账单、比较购物、添加 Instacast 商品等。每个任务跑在 Google Cloud Agent Compute Engine 的隔离虚拟机中，点击「Buy」前等关键步骤会暂停请求确认。",
+  tags:["产品","模型/技术"]
+},
+{
+  t:"11月19日 09:00",
+  d:"2026-11-19",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  regions:["美国","中国"],
+  score:86,
+  title:"Nvidia 宣布停售 H200 芯片至中国，并设立董事会级国家安全委员会",
+  url:"https://techcrunch.com/2026/11/17/nvidia-is-abandoning-china-after-jensen-huangs-ouster/",
+  sum:"Nvidia 在黄仁勋离任后的首场财报电话会上宣布不再向中国销售 H200 芯片，并设立董事会级国家安全委员会，监督国家安全政策、出口管制合规与全球贸易风险。Jefferies 估计新规可能使 Nvidia 明年数据中心营收减少 440 亿至 620 亿美元，批评者称中国相关需求可能占其营收 20%；Kress 则称受 Vera Rubin 等芯片需求积压影响，新规不会影响公司营收。",
+  tags:["政策","CAPEX"]
+},
+{
+  t:"11月19日 09:00",
+  d:"2026-11-19",
+  src:"Wiz：Research（安全研究）",
+  cat:"frontier",
+  regions:["全球"],
+  score:82,
+  title:"Wiz 披露 NGINX 两个 HTTP/2 无需认证远程代码执行漏洞 CVE-2026-123633 与 CVE-2026-123007",
+  url:"https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities",
+  sum:"Wiz Research 披露 NGINX 两个 HTTP/2 无需认证远程代码执行漏洞：CVE-2026-123633（连接 use-after-free）与 CVE-2026-123007（send_window 整数下溢导致流控内存损坏），CVSS 4.0 均为 9.2 Critical，分别影响 1.19.7–1.31.8 与 1.9.5–1.31.8，修复版本为 NGINX OSS 1.30.7 stable、1.31.9 mainline 与 Plus 37.0.7.1、37.2.0.1。两者均要求启用 HTTP/2，其中一条已在 64 位系统上经 HTTPS 验证 RCE。漏洞由 Wiz、Ikotas Labs、Metnir、Rapid7、Xint 独立发现，10 月 21 日与 11 月 16 日报告、11 月 18 日公开。",
+  tags:["模型/技术","政策"]
+},
+{
+  t:"11月19日 09:00",
+  d:"2026-11-19",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  regions:["美国"],
+  score:85,
+  title:"Nvidia 临时 CEO Colette Kress 表示董事会不会恢复黄仁勋的 CEO 职务",
+  url:"https://x.com/rohanpaul_ai/status/2122925474485870983",
+  sum:"Nvidia 临时 CEO Colette Kress 在 Jim Cramer 的节目上表示，董事会已决定不会恢复黄仁勋的 CEO 职务，称这就是董事会的决定与官方声明；此前董事 Harvey Jones 在首次财报电话会上也表示董事会一致接受其辞职、无意让其复任。Semafor 另报道，部分董事仍在推动其回归，且 Nvidia 章程允许剩余 10 名董事以简单多数任命 CEO 而无需股东投票。",
+  tags:["大厂","治理"]
+},
+
+// ───────────── IT桔子 2026-11-19 新增 ──────────────
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Astranu获得350万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Astranu完成#13。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Avenia获得2500万美元A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Avenia完成#14。属\"区块链 > 区块链基础设施\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链基础设施"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Gama Space获得1500万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Gama Space完成#13。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"LanceDB获得5750万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，LanceDB完成#3。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Model ML获得2.5亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Model ML完成#3。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Odaia获得1500万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Odaia完成#4。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Pedestal AI获得470万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Pedestal AI完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Pretxt获得500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Pretxt完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Remanence获得3000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Remanence完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Science获得4亿美元D轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Science完成#5。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Sqwish获得300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Sqwish完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"TheHUB获得400万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，TheHUB完成#13。属\"区块链 > 区块链基础设施\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链基础设施"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Tiberius获得8500万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Tiberius完成#2。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Voyage Labs获得1200万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，Voyage Labs完成#13。属\"旅游 > 旅游工具及社区\"。",
+  ma_cap:"未披露",
+  tags:["投融资","旅游工具及社区"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"二零八科技获得数千万人民币A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，二零八科技完成#14。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"博理科技连续完成B2轮与B+轮两轮股权融资，合计融资总额超5亿元人民币",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，博理科技完成#16。属\"先进制造 > 3D打印\"。",
+  ma_cap:"未披露",
+  tags:["投融资","3D打印"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"启钠新能源完成近亿元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，启钠新能源完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"洽道量子再获深圳高新投领投",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，洽道量子完成#12。属\"前沿科技 > 量子技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","量子技术"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"知业科技获得数千万人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，知业科技完成#2。属\"先进制造 > 工业互联网\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业互联网"]
+},
+{
+  t:"11月19日",
+  d:"2026-11-19",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"青石永隽完成数亿元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-19 IT桔子披露，青石永隽完成#2。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+
 // ───────────── Ed Zitron 长文 / Where’s Your Ed At 2026-11-18 新增 ──────────────
 {
   t:"11月18日 09:00",
