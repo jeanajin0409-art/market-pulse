@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月19日 · 星期四</div>
+    <div class="date">2026年11月20日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic IPO 定价每股 83.00 美元,11</strong>、<strong>Nvidia 宣布停售 H200 芯片至中国,并设立董事会级</strong>、<strong>Nvidia 临时 CEO Colette Kress 表示</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Anthropic 登陆纳斯达克,开盘价 111 美元较发行</strong>、<strong>Anthropic IPO 检验 AI 循环融资模式,Ama</strong>、<strong>芯片停运叠加海外云通道关闭,中国科技公司面临双重冲击</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── TechCrunch：AI（RSS） 2026-11-20 新增 ──────────────
+{
+  t:"11月20日 09:00",
+  d:"2026-11-20",
+  src:"Google DeepMind：Blog（RSS）",
+  cat:"ai",
+  regions:["全球"],
+  score:80,
+  title:"Google DeepMind 发布 Gemini 4 Neon",
+  url:"https://deepmind.google/blog/introducing-gemini-4-neon/",
+  sum:"Google DeepMind 于 11 月 18 日发布 Gemini 4 Neon，定位复杂软件工程、知识工作与科学工作流，采用 100 万 token 上下文窗口。Artificial Analysis Intelligence Index 得分 61、排名第 3，Vals Index 70.9% 排第 2 并处于 Pareto frontier，Agent Arena Index 以 1336 分列全球第 2。定价为每百万输入 token 3 美元、缓存输入 0.15 美元（折扣 95%）、输出 15 美元，默认 high 档每任务成本比 Gemini 4 Carbon 低 32%。",
+  tags:["模型/技术","ARR/商业化"]
+},
+{
+  t:"11月20日 09:00",
+  d:"2026-11-20",
+  src:"TechCrunch：AI（RSS）",
+  cat:"minority",
+  regions:["全球"],
+  score:86,
+  title:"Anthropic IPO 检验 AI 循环融资模式，Amazon 和 Google 持股市值约 3079 亿美元",
+  url:"https://techcrunch.com/2026/11/19/anthropics-ipo-puts-ais-circular-financing-boom-to-the-test/",
+  sum:"TechCrunch 报道，Anthropic IPO 预计净募资约 917 亿美元、私募合计 260 亿、合计约 1410 亿美元；按发行价计 Amazon 持股 14.7%（估值超 1590 亿、累计投资 180 亿），Google 持股 13.7%（估值近 1490 亿、自 2023 年累计投资 123 亿，另承诺最多 300 亿），Nvidia、AMD、Microsoft、Broadcom、Micron、TSMC 参加 260 亿私募。公司已承诺算力与基础设施支出约 9000 亿美元，未来四年需约 2800 亿美元收入才能覆盖算力账单；2026 年三季度收入 170 亿、年化 680 亿，仍按季度净亏损数百亿美元。",
+  tags:["投融资","CAPEX"]
+},
+{
+  t:"11月20日 09:00",
+  d:"2026-11-20",
+  src:"TechCrunch：AI（RSS）",
+  cat:"ipo",
+  regions:["美国"],
+  score:90,
+  title:"Anthropic 登陆纳斯达克，开盘价 111 美元较发行价高出 33%",
+  url:"https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/",
+  sum:"Anthropic 于 11 月 19 日在纳斯达克挂牌，开盘价 111.50 美元、较 83 美元发行价高 33%（高于公司此前预计的 70–78 美元区间）；募资超 810 亿美元，资金流向员工与公司，开盘市值超过 2 万亿美元，仅次于 Apple、Amazon、Alphabet、Nvidia 与 Microsoft。计入 IPO、既有融资与同期私募后，公司预计现金储备约 2200 亿美元。",
+  tags:["IPO","投融资"]
+},
+{
+  t:"11月20日 09:00",
+  d:"2026-11-20",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  regions:["全球"],
+  score:78,
+  title:"Nadella 解释向 6 万员工提供买断的原因：转型为 AI 优先的组织而非裁员",
+  url:"https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/",
+  sum:"纳德拉在 DealBook Summit 解释，微软于 2026 年 10 月向 6 万名员工提供买断，目标是重组为 AI 优先组织、员工工作转向管理与指导 AI。他称微软「并非以 AI 优先的公司成长起来」，转型「会比任何人预期的更久」，并称每位员工最终都会成为「agent 的管理者」；他还提到负责 M365 中 Cowork AI agent 的团队只有 11 名开发者，建的是生产软件的「软件工厂」。",
+  tags:["大厂","组织"]
+},
+{
+  t:"11月20日 09:00",
+  d:"2026-11-20",
+  src:"The Decoder：AI News（RSS）",
+  cat:"ai",
+  regions:["中国"],
+  score:84,
+  title:"芯片停运叠加海外云通道关闭，中国科技公司面临双重冲击",
+  url:"https://the-decoder.com/chinese-tech-firms-face-a-double-hit-as-chip-shipments-stop-and-overseas-cloud-access-disappears/",
+  sum:"The Decoder 报道，TSMC 与 Samsung 已停止向部分中国客户发运处理器、等待商务部许可，受影响方包括字节跳动与百度的昆仑 AI 数据中心业务，许可范围还涉及小米、Oppo、Vivo 的先进手机处理器；新规同时关闭了 AI 芯片的云端租用漏洞，设在新加坡、马来西亚、印尼的第三方数据中心须取得 BIS 许可、现有运营商有 90 天过渡期。Moonshot 因此取消了 1.5 亿美元的印尼云服务合同；5 家银行考虑退出对新加坡云服务商 Aolani 的 4.8 亿美元贷款。",
+  tags:["政策","CAPEX"]
+},
+
+// ───────────── IT桔子 2026-11-20 新增 ──────────────
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Alpine获得300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Alpine完成#13。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Ansa获得7150万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Ansa完成#4。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Arborum获得种子前轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Arborum完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Boltz获得1.1亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Boltz完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Darcy获得1500万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Darcy完成#3。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Fairly获得2240万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Fairly完成#2。属\"房地产 > 房产租赁\"。",
+  ma_cap:"未披露",
+  tags:["投融资","房产租赁"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Fermat获得800万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Fermat完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Guerrilla RF IPO上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Guerrilla RF完成#8。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Humyn Labs获得2600万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Humyn Labs完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Lemonpeel获得100万美元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Lemonpeel完成#13。属\"文娱传媒 > 视频/直播\"。",
+  ma_cap:"未披露",
+  tags:["投融资","视频/直播"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"MetaComp获得近1000万美元Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，MetaComp完成#12。属\"区块链 > 数字货币\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数字货币"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Null.xyz获得170万美元Pre-Seed轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Null.xyz完成#13。属\"区块链 > DeFi\"。",
+  ma_cap:"未披露",
+  tags:["投融资","DeFi"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Onward Therapeutics获得约2300万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Onward Therapeutics完成#3。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Ramon.Space获得1.24亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Ramon.Space完成#3。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Sensei Labs获得B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Sensei Labs完成#3。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Soket获得400万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Soket完成#11。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Storipod获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，Storipod完成#11。属\"文娱传媒 > 综合文娱\"。",
+  ma_cap:"未披露",
+  tags:["投融资","综合文娱"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"VitriVax获得8700万美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，VitriVax完成#4。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"安纳智芯完成新一轮亿元级融资，华睿控股等投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，安纳智芯完成#14。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月20日",
+  d:"2026-11-20",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"瑞意旭联完成近亿元Pre-A+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-20 IT桔子披露，瑞意旭联完成#12。属\"前沿科技 > 脑科学\"。",
+  ma_cap:"未披露",
+  tags:["投融资","脑科学"]
+},
+
 // ───────────── Anthropic：Newsroom（网页） 2026-11-19 新增 ──────────────
 {
   t:"11月19日 09:00",
