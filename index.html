@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月20日 · 星期五</div>
+    <div class="date">2026年11月21日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic 登陆纳斯达克,开盘价 111 美元较发行</strong>、<strong>Anthropic IPO 检验 AI 循环融资模式,Ama</strong>、<strong>芯片停运叠加海外云通道关闭,中国科技公司面临双重冲击</strong> 等。</p>
+      <p>今日新增 3 条。<strong>METR 发布 2026 年 11 月能力测量更新：AI R</strong>、<strong>Thinking Machines Lab 发布可跑在笔记本</strong>、<strong>湃沃斯科技完成数千万元Pre-A轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Hacker News：AI 热帖 2026-11-21 新增 ──────────────
+{
+  t:"11月21日 09:00",
+  d:"2026-11-21",
+  src:"Hacker News：AI 热帖",
+  cat:"minority",
+  regions:["全球"],
+  score:79,
+  title:"Anthropic 破纪录 IPO 未能止住 AI 抛售，全球股市下挫",
+  url:"https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
+  sum:"Anthropic 上市第二天股价跌逾 9% 至 88.17 美元、逼近 83 美元发行价，其破纪录 IPO 未能止住 AI 相关公司抛售。周五纳斯达克跌 2%，SanDisk 跌 14%、Micron 跌 10%；亚洲股市创 2020 年以来最差一周，台湾加权指数跌 6.7%、日经跌 5%、Kospi 跌 5.5%，软银单日跌 14.5%。",
+  tags:["投融资","政策"]
+},
+{
+  t:"11月21日 09:00",
+  d:"2026-11-21",
+  src:"IT之家·人工智能",
+  cat:"ai",
+  regions:["亚太"],
+  score:78,
+  title:"彭博社：黄仁勋离任英伟达 CEO 后日本 AI 股首当其冲",
+  url:"https://www.ithome.com/1/029/265.htm",
+  sum:"彭博社报道，自黄仁勋辞任英伟达 CEO 以来，日本存储芯片厂商铠侠与半导体测试设备公司爱德万测试股价均累计下跌超过 9%，东证指数同期约跌 2.9%。报道称市场担忧 AI 企业盈利能力恶化、美国中期选举后监管趋严，以及英伟达领导层动荡冲击行业信心，投资者开始要求「AI 折价」；六家美国大型科技公司今年资本支出预计 8850 亿美元，明年或再增 64% 至 1.45 万亿美元。",
+  tags:["政策","CAPEX"]
+},
+{
+  t:"11月21日 09:00",
+  d:"2026-11-21",
+  src:"METR：Research（网页）",
+  cat:"frontier",
+  regions:["全球"],
+  score:84,
+  title:"METR 发布 2026 年 11 月能力测量更新：AI R&D 相关能力每约 3.6 个月翻倍且更难测量",
+  url:"https://metr.org/blog/2026-11-20-q4-2026-capability-update/",
+  sum:"METR 发布季度能力测量更新：以 222 个 TH1.1 任务、36 个 TH2 任务（含 8 个可验证族）与 75 个 MirrorCode 复现任务衡量前沿模型的时间视野，合并 TH1.1+TH2 的 50% time horizon 翻倍时间约 3.61 个月（95% 置信区间 2.08–4.94 个月，即 110 天），此前 TH1.1 单口径为 105 天。人类基线时薪 200–350 美元、7 次尝试共约 9 万美元，三个正式基线任务上最佳模型均超过所有人类基线者。",
+  tags:["模型/技术"]
+},
+{
+  t:"11月21日 09:00",
+  d:"2026-11-21",
+  src:"The Verge：AI（RSS）",
+  cat:"bigtech",
+  regions:["美国"],
+  score:80,
+  title:"Nvidia 股价近期波动复盘：财报强劲但股价较 10 月高点跌近 40%",
+  url:"https://www.theverge.com/ai-artificial-intelligence/1038063/nvidia-stock-market-price-earnings",
+  sum:"The Verge 梳理 Nvidia 近期股价波动：第三季度营收同比翻倍至 1158 亿美元，数据中心业务增长 110%，Vera Rubin 平台贡献近 200 亿美元收入；但受芯片股整体抛售、前 CEO 黄仁勋辞职与公司治理调查等因素影响，股价一度报约 150 美元，较 10 月 6 日历史高点跌近 40%，周四收于 145.98 美元、创 52 周新低。",
+  tags:["大厂","CAPEX"]
+},
+{
+  t:"11月21日 09:00",
+  d:"2026-11-21",
+  src:"Thinking Machines Lab：News（网页）",
+  cat:"ai",
+  regions:["美国"],
+  score:82,
+  title:"Thinking Machines Lab 发布可跑在笔记本上的开源权重模型 Inkling 2 Mini",
+  url:"https://thinkingmachines.ai/news/inkling-2-mini/",
+  sum:"Thinking Machines Lab 于 11 月 20 日发布 Inkling 2 Mini：总参数 26.4B、激活参数 3.4B（每 token 权重激活 5.4B），总内存占用约 20GB，支持至少 32GB 内存的 Mac，演示机为 MacBook Pro（M5 Pro、48GB）。权重采用 NVFP4（20 层）与 MXFP8（4 层）混合量化；DeepSWE v1.1 得分 48.2%、SWE-bench Verified 79.2%、BrowseComp 79.0%、DeepSearchQA 85.3%，在参数量低于 100B 的开放权重模型中领先。",
+  tags:["模型/技术","产品"]
+},
+
+// ───────────── IT桔子 2026-11-21 新增 ──────────────
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Alpine Intel获得3000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Alpine Intel完成#13。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Brelyon获得B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Brelyon完成#3。属\"前沿科技 > 未来显示\"。",
+  ma_cap:"未披露",
+  tags:["投融资","未来显示"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"BrightAI获得9700万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，BrightAI完成#2。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Community Wolf获得种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Community Wolf完成#13。属\"传统制造 > 公用事业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","公用事业"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Everful获得4850万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Everful完成#2。属\"电商零售 > 跨境电商\"。",
+  ma_cap:"未披露",
+  tags:["投融资","跨境电商"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Extrordinas获得150万美元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Extrordinas完成#1。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"F&M Bank IPO上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，F&M Bank完成#8。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"General Flash获得1.28亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，General Flash完成#2。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nexon Omniverse获得48.5亿卢比E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Nexon Omniverse完成#6。属\"电商零售 > 服装服饰\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服装服饰"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Payhawk获得2.8亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Payhawk完成#4。属\"企业服务 > 财税服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","财税服务"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"RBC获得1000万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，RBC完成#11。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Tesorai获得530万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Tesorai完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Unsiloed AI获得750万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，Unsiloed AI完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"中科搏锐获得近亿人民币B+轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，中科搏锐完成#16。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"博纳半导体完成亿元级B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，博纳半导体完成#3。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"原子矩阵获得数亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，原子矩阵完成#3。属\"前沿科技 > 量子技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","量子技术"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"基元科技获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，基元科技完成#1。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"湃沃斯科技完成数千万元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，湃沃斯完成#12。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"航天空间获得战略投资，中国航天科技集团商业卫星投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，航天空间完成#11。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月21日",
+  d:"2026-11-21",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"金澜智序获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-21 IT桔子披露，金澜智序完成#1。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+
 // ───────────── TechCrunch：AI（RSS） 2026-11-20 新增 ──────────────
 {
   t:"11月20日 09:00",
