@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月22日 · 星期日</div>
+    <div class="date">2026年11月23日 · 星期一</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Anthropic 数学家称与 Claude 完成黎曼猜想证</strong>、<strong>研究者向 AI 供应链埋入 200 万个金丝雀,揭露敏感数据</strong>、<strong>湃沃斯科技完成数千万元Pre-A轮融资</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Lean 与 Mathlib 社区确认 Levent Alp</strong>、<strong>IntelliProve获得270万欧元种子轮融资</strong>、<strong>Wilgot获得300万美元种子轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── X：面壁智能 OpenBMB (@OpenBMB) 2026-11-23 新增 ──────────────
+{
+  t:"11月23日 09:00",
+  d:"2026-11-23",
+  src:"OpenAI：官网动态（RSS · 排除企业/客）",
+  cat:"ai",
+  regions:["全球"],
+  score:70,
+  title:"OpenAI 提议以困惑度作为行业共享指标并公开内部预训练测量数据",
+  url:"https://openai.com/index/perplexity-and-intelligence",
+  sum:"OpenAI 撰文提议将 perplexity（交叉熵损失）确立为跨模型、供开发者比较的安全与性能共享指标，并公开其内部预训练测量数据。",
+  tags:["模型/技术","政策"]
+},
+{
+  t:"11月23日 09:00",
+  d:"2026-11-23",
+  src:"The Decoder：AI News（RSS）",
+  cat:"frontier",
+  regions:["全球"],
+  score:86,
+  title:"Lean 与 Mathlib 社区确认 Levent Alpöge 黎曼猜想证明正确",
+  url:"https://the-decoder.com/lean-and-mathlib-community-officially-confirms-levent-alpoges-proof-of-the-riemann-hypothesis-is-correct/",
+  sum:"Lean 与 Mathlib 社区正式确认 Levent Alpöge 的黎曼猜想证明正确，声明给予「full confidence」；验证由数十人独立运行 Lean 验证代码并得到相同结果，验证程序被设计为不会接受有缺陷的证明，证明代码规模达 1700 万行 Lean。MIT 数学家 Andrew Sutherland 在个人网站列出独立检查结果。证明发布于 11 月 20 日，正式确认见于 11 月 22 日。",
+  tags:["模型/技术"]
+},
+{
+  t:"11月23日 09:00",
+  d:"2026-11-23",
+  src:"X：面壁智能 OpenBMB (@OpenBMB)",
+  cat:"frontier",
+  regions:["亚太"],
+  score:74,
+  title:"MiniCPM 8B 成为老挝国家模型，端侧小模型加速落地多国",
+  url:"https://x.com/OpenBMB/status/2124464239670964531",
+  sum:"面壁智能援引观察：截至 2026 年 11 月 MiniCPM 下载量超过 7000 万，其 8B 老挝国家模型接入老挝政府的 G-Chat v2 通讯软件，老挝翻译在国际基准上超过 GPT-4o。马来西亚用 VoxCPM2 做语音交互，肯尼亚一家银行在其上运行端侧风控 Agent，开发者基于它推出离线应用。",
+  tags:["模型/技术","产品"]
+},
+{
+  t:"11月23日 09:00",
+  d:"2026-11-23",
+  src:"X：面壁智能 OpenBMB (@OpenBMB)",
+  cat:"ai",
+  regions:["中国"],
+  score:76,
+  title:"用户实测用 MiniCPM5-2B 在 Mac 上本地跑通体检报告分析",
+  url:"https://x.com/OpenBMB/status/2124461770043785636",
+  sum:"用户实测在 Mac（M4 Pro、48GB）上用 Homebrew 装 llama.cpp 跑 minicpm5-2b、以 colima 起 Docker 本地运行开源项目 Mirobody：14 页 PDF 首次处理漏掉 3 页扫描版化验单，截图单独上传后 58 行化验数值逐项与原件对上，其中 20 行成功映射到 LOINC 标准编码，肌酐因名称歧义留空未猜；问超标指标时 2B 模型走 11 步找到全部 5 项箭头指标，但把一项在范围内的血糖误判为超标。Mirobody 由 Theta Health 以 Apache-2.0 开源。",
+  tags:["模型/技术","产品"]
+},
+{
+  t:"11月23日 09:00",
+  d:"2026-11-23",
+  src:"公众号：数字生命卡兹克",
+  cat:"ai",
+  regions:["中国"],
+  score:78,
+  title:"卡兹克分享 Claude、GPT、Gemini 三模型协同调度方法",
+  url:"https://mp.weixin.qq.com/s/gwj0xLNHPfToQnQJN7IkMA",
+  sum:"自媒体作者卡兹克分享自己让 Claude、GPT 和 Gemini 协同工作的方法：把 Claude Opus 5.5 当总指挥，负责沟通、拆解与验收；Gemini 4 Neon 当军师，出方案并改界面文案；GPT 负责后端、算法、修 BUG 与代码审查。",
+  tags:["产品","模型/技术"]
+},
+
+// ───────────── IT桔子 2026-11-23 新增 ──────────────
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Alpine Intel获得3000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Alpine Intel完成#13。属\"金融 > 保险\"。",
+  ma_cap:"未披露",
+  tags:["投融资","保险"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Boba Bhai获得1800万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Boba Bhai完成#3。属\"本地生活 > 餐饮业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","餐饮业"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Brelyon获得B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Brelyon完成#3。属\"前沿科技 > 未来显示\"。",
+  ma_cap:"未披露",
+  tags:["投融资","未来显示"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"BrightAI获得9700万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，BrightAI完成#2。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Community Wolf获得种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Community Wolf完成#13。属\"传统制造 > 公用事业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","公用事业"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Devengo获得500万欧元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Devengo完成#11。属\"金融 > 支付\"。",
+  ma_cap:"未披露",
+  tags:["投融资","支付"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Everful获得4850万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Everful完成#2。属\"电商零售 > 跨境电商\"。",
+  ma_cap:"未披露",
+  tags:["投融资","跨境电商"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Extrordinas获得150万美元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Extrordinas完成#1。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"General Flash获得1.28亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，General Flash完成#2。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"IntelliProve获得270万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，IntelliProve完成#13。属\"医疗健康 > 医疗信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗信息化"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"LATO获得470万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，LATO完成#2。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Nexon Omniverse获得48.5亿卢比E轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Nexon Omniverse完成#6。属\"电商零售 > 服装服饰\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服装服饰"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Origin Frame获得Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Origin Frame完成#13。属\"文娱传媒 > 动漫\"。",
+  ma_cap:"未披露",
+  tags:["投融资","动漫"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Payhawk获得2.8亿美元C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Payhawk完成#4。属\"企业服务 > 财税服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","财税服务"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"RBC获得1000万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，RBC完成#11。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Tesorai获得530万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Tesorai完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Unsiloed AI获得750万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Unsiloed AI完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Wilgot获得300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，Wilgot完成#13。属\"企业服务 > 销售营销\"。",
+  ma_cap:"未披露",
+  tags:["投融资","销售营销"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"湃沃斯科技完成数千万元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，湃沃斯完成#12。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"11月23日",
+  d:"2026-11-23",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"金澜智序获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-23 IT桔子披露，金澜智序完成#1。属\"企业服务 > 企业IT服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","企业IT服务"]
+},
+
 // ───────────── Ars Technica：AI（RSS） 2026-11-22 新增 ──────────────
 {
   t:"11月22日 09:00",
