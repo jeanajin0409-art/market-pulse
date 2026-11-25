@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月24日 · 星期二</div>
+    <div class="date">2026年11月25日 · 星期三</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>NVIDIA 宣布黄仁勋复任总裁兼 CEO 并重回董事会</strong>、<strong>Anthropic IPO 前三家机构如何重注押注（Nota</strong>、<strong>智谱发布 GLM-5.4：首个 Loop Transform</strong> 等。</p>
+      <p>今日新增 3 条。<strong>ChinaTalk 播客：Nvidia 董事会恢复黄仁勋职务</strong>、<strong>Amazon 报告黑客用开源框架 Cairn 驱动 AI 智</strong>、<strong>Anthropic 股价跌破 83 美元 IPO 发行价,上</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── ChinaTalk（RSS） 2026-11-25 新增 ──────────────
+{
+  t:"11月25日 09:00",
+  d:"2026-11-25",
+  src:"Ars Technica：AI（RSS）",
+  cat:"frontier",
+  regions:["全球"],
+  score:84,
+  title:"Amazon 报告黑客用开源框架 Cairn 驱动 AI 智能体在约 11 分钟内自主发现并利用 0-day",
+  url:"https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/",
+  sum:"Amazon 报告，黑客利用开源框架 Cairn 驱动 AI 智能体，在约 11 分钟内自主发现并利用了一个 0-day 漏洞，人类投入极少。",
+  tags:["模型/技术","政策"]
+},
+{
+  t:"11月25日 09:00",
+  d:"2026-11-25",
+  src:"ChinaTalk（RSS）",
+  cat:"ai",
+  regions:["中国"],
+  score:80,
+  title:"ChinaTalk 分析 BIS 租赁算力新规或为美国换取约六个月算力领先",
+  url:"https://www.chinatalk.media/p/the-remote-access-rule-will-slow",
+  sum:"ChinaTalk 分析称，BIS 于 11 月 16 日发布、11 月 19 日生效的远程访问规则，境外数据中心若向中国企业提供超过小规模集群的算力须取得许可证，门槛约为 760 块 H100（按规则 12M aggregate TPP 折算），覆盖 Hopper 与 Blackwell 级芯片，明确涉及印尼、马来西亚、新加坡、泰国与巴西。作者的模型估计远程访问约占中国算力供给的五分之一、若只计可训练最前沿模型的集群则约占三分之一（约 120 万块 H100），中心情景下到 2028 年底中国前沿算力进度延后约六个月，50% 模拟区间为四至九个月；模型覆盖 2027Q1 至 2035Q4 共 36 个季度、1 万次运行。",
+  tags:["政策","CAPEX"]
+},
+{
+  t:"11月25日 09:00",
+  d:"2026-11-25",
+  src:"ChinaTalk（RSS）",
+  cat:"bigtech",
+  regions:["美国","中国"],
+  score:88,
+  title:"ChinaTalk 播客：Nvidia 董事会恢复黄仁勋职务，美商务部将 Megaspeed 列入实体清单",
+  url:"https://www.chinatalk.media/p/jensen-returns",
+  sum:"ChinaTalk 报道，Nvidia 董事会于周一「一致投票」恢复黄仁勋职务，距他因与 Megaspeed 高管 Alice Huang 的关系辞职恰好 11 天；董事会称收到「美国政府高层的意见」，黄仁勋称美国司法部调查未采取行动。商务部在同一次录制期间把 Megaspeed、SpeedMatrix 与印尼实体 PT Megaspeed 列入实体清单，现场读到的清单未显示外国直接产品规则；文中称 AI 芯片出口许可中约 30% 发往被列为「中国军事公司」的企业，涉及 Alibaba、Baidu、Inspur 等。",
+  tags:["政策","大厂"]
+},
+{
+  t:"11月25日 09:00",
+  d:"2026-11-25",
+  src:"Claude：Blog（网页）",
+  cat:"ai",
+  regions:["全球"],
+  score:76,
+  title:"Claude 推出 Install as app：artifacts 可安装为 Mac 和 Windows 桌面应用",
+  url:"https://claude.com/blog/install-as-app",
+  sum:"Anthropic 于 11 月 24 日推出 Install as app 测试版，可在 Claude for Mac 与 Claude for Windows 中把 artifact 装成独立应用：自带图标与独立窗口、可共享、可调用 Claude 与 connectors，底层 artifact 编辑后自动更新，并支持通知与菜单栏/系统托盘。权限分 Default、App permissions、Full computer access 三级，Full computer access 可运行程序并读写、删除文件，每次版本更新后需重新授权；仅 artifacts 支持安装，Claude Docs、Slides 与 Sheets 不支持，面向 all plans 但 HIPAA-ready 组织与混合部署不可用。",
+  tags:["产品","模型/技术"]
+},
+{
+  t:"11月25日 09:00",
+  d:"2026-11-25",
+  src:"TechCrunch：AI（RSS）",
+  cat:"minority",
+  regions:["全球"],
+  score:82,
+  title:"Anthropic 股价跌破 83 美元 IPO 发行价，上市不到一周最低跌至 76 美元",
+  url:"https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups/",
+  sum:"TechCrunch 报道，Anthropic 股价于 11 月 24 日中午跌破 83 美元发行价，最低触及 76 美元，较前一交易日收盘下跌近 12%，距 11 月 19 日上市不足一周；上市首日开盘价为 111.50 美元。风投与市场观察人士认为，其股价表现可能成为市场给 AI 行业估值的指标；若未来几周继续疲弱，可能压低私营初创估值并削弱其他 AI 公司的 IPO 前景。",
+  tags:["IPO","投融资"]
+},
+
+// ───────────── IT桔子 2026-11-25 新增 ──────────────
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AIVC获得1.12亿美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，AIVC完成#11。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Agon获得7000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Agon完成#2。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"HoloSolis获得1500万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，HoloSolis完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Linq获得9000万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Linq完成#11。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Marlowe获得2.77亿美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Marlowe完成#13。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Marrow获得1.2亿美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Marrow完成#3。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"NEPRA Resource Management获得1170万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，NEPRA Resource Management完成#11。属\"本地生活 > 维修服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","维修服务"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Orchard获得380万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Orchard完成#13。属\"农业 > 农业服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","农业服务"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Perry AI获得220万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Perry AI完成#13。属\"企业服务 > 法律服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","法律服务"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Recove获得36.25亿卢比种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Recove完成#13。属\"传统制造 > 环保\"。",
+  ma_cap:"未披露",
+  tags:["投融资","环保"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Ritzey获得1.12亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Ritzey完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Sierra获得17.5亿美元F轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Sierra完成#7。属\"人工智能 > AI通用应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI通用应用"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Stoa获得350万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Stoa完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Supertake获得2000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，Supertake完成#13。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"nowhey获得Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，nowhey完成#13。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"亿优威光完成约5000万元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，亿优威光完成#12。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"先通医药登陆港交所",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，先通医药完成#8。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"启明光子完成超亿元Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，启明光子完成#12。属\"前沿科技 > 光子计算\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光子计算"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"广荣科技获千万级天使轮战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，广荣科技完成#1。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月25日",
+  d:"2026-11-25",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"航中天启新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-25 IT桔子披露，航中天启完成#18。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+
 // ───────────── TechCrunch：AI（RSS） 2026-11-24 新增 ──────────────
 {
   t:"11月24日 09:00",
