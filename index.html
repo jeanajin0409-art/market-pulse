@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月25日 · 星期三</div>
+    <div class="date">2026年11月26日 · 星期四</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>ChinaTalk 播客：Nvidia 董事会恢复黄仁勋职务</strong>、<strong>Amazon 报告黑客用开源框架 Cairn 驱动 AI 智</strong>、<strong>Anthropic 股价跌破 83 美元 IPO 发行价,上</strong> 等。</p>
+      <p>今日新增 3 条。<strong>42 州总检察长介入 Character.AI 破产程序,反</strong>、<strong>黄仁勋回归后 Nvidia 仍面临 Megaspeed 芯片</strong>、<strong>Ed Zitron 分析 NVIDIA 董事会恢复黄仁勋 C</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── TechCrunch：AI（RSS） 2026-11-26 新增 ──────────────
+{
+  t:"11月26日 09:00",
+  d:"2026-11-26",
+  src:"Ed Zitron 长文 / Where’s Your Ed At",
+  cat:"minority",
+  regions:["全球"],
+  score:84,
+  title:"Ed Zitron 分析 NVIDIA 董事会恢复黄仁勋 CEO 职位背后的行业流动性风险",
+  url:"https://www.wheresyoured.at/defective-accelerationism/",
+  sum:"Ed Zitron 长文给出流动性账：Nvidia 自 2023 年以来经 293 笔交易向 AI 行业投入超 1000 亿美元，加上回购担保与供应商融资安排合计接近 7000 亿美元；Anthropic 未履约承诺 8950 亿美元、未来四年最低到期 3199 亿美元；OpenAI 融资 110 亿美元对应估值 1.25 万亿美元，而其第三财季收入 100 亿美元、经营亏损 109 亿美元。文中称 Nvidia 仓库中闲置 GPU 超过 2000 亿美元，Moonshot 取消 1.5 亿美元订单，Jefferies 估新规或使 Nvidia FY2028 收入减少 440 亿至 620 亿美元。",
+  tags:["投融资","政策"]
+},
+{
+  t:"11月26日 09:00",
+  d:"2026-11-26",
+  src:"OpenAI：官网动态（RSS · 排除企业/客）",
+  cat:"ai",
+  regions:["美国"],
+  score:82,
+  title:"OpenAI 发布预印本：GPT-6 模型展现内在蛋白质设计能力",
+  url:"https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/",
+  sum:"OpenAI 发布预印本，称 GPT-6 系列模型仅凭推理与通用编码工具即可设计新蛋白的结构与序列，无需调用专用生物学模型。在与 Onava 的实验室测试中，基于 GPT-6.2 设计的 minibinder 在 5 个靶点上均出现结合证据，322 个 minibinder 中 35 个（10.9%）结合阳性；重设计的抗体片段 66% 保留结合。",
+  tags:["模型/技术"]
+},
+{
+  t:"11月26日 09:00",
+  d:"2026-11-26",
+  src:"TechCrunch：AI（RSS）",
+  cat:"ai",
+  regions:["美国"],
+  score:85,
+  title:"42 州总检察长介入 Character.AI 破产程序，反对拍卖用户私密聊天记录",
+  url:"https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/",
+  sum:"由 42 个州总检察长组成的联盟介入 Character.AI 的破产程序，反对出售用户数据与私密聊天：该公司于 2026 年 10 月申请 Chapter 11，涉事聊天历史覆盖逾 2100 万个美国账户、其中超过 210 万个属于未成年人，还包括 IP 地址等个人数据。拍卖方 Smirks and Pangs Acquisition LLC 于 11 月 13 日在特拉华注册、11 月 14 日被选为底价竞标人，拍卖定于 12 月 1 日；州总检察长指出买方无需遵守 Character.AI 的隐私政策，可能再次转售数据且无需披露。",
+  tags:["政策","产品"]
+},
+{
+  t:"11月26日 09:00",
+  d:"2026-11-26",
+  src:"TechCrunch：AI（RSS）",
+  cat:"bigtech",
+  regions:["美国","中国"],
+  score:84,
+  title:"黄仁勋回归后 Nvidia 仍面临 Megaspeed 芯片出口合规调查",
+  url:"https://techcrunch.com/2026/11/25/the-questions-jensen-huang-and-nvidia-will-still-have-to-answer-about-megaspeed/",
+  sum:"TechCrunch 梳理：黄仁勋回归后 Nvidia 面临的调查并未结束——美国司法部自 2024 年调查 Megaspeed 并向 Nvidia 索取销售资料，商务部亦曾调查，据报 SEC 正在调查 Nvidia 的披露问题，加州总检察长亦已介入；三个众议院委员会将私下询问 Huang 与首席律师 Tim Teter，参议院银行委员会将于 12 月 3 日公开询问。Nvidia 对 Megaspeed 的销售额为「数十亿美元」；公司已宣布停止向中国销售持牌芯片、计划任命首任首席合规官并设立出口管制委员会，同时停止在财务文件中单独列示对新加坡的出口数据。",
+  tags:["政策","大厂"]
+},
+{
+  t:"11月26日 09:00",
+  d:"2026-11-26",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"minority",
+  regions:["美国"],
+  score:80,
+  title:"MIT 与 Microsoft 论文：GitHub Copilot 使初级软件工程师招聘下降约 40%",
+  url:"https://x.com/rohanpaul_ai/status/2125461932111229203",
+  sum:"MIT 与 Microsoft 的论文《AI-Assisted Programming and Labor Demand》利用 5,414 家跨国公司（覆盖美国约 38% 的程序员）在 GitHub 合同审查时点构造自然实验，估计 GitHub Copilot 采用对劳动力需求的影响，结论是初级软件工程师招聘下降约 40%。",
+  tags:["投融资","政策"]
+},
+
+// ───────────── IT桔子 2026-11-26 新增 ──────────────
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AidenAI获得3200万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，AidenAI完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Brace Dentistry获得Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Brace Dentistry完成#12。属\"医疗健康 > 专科医疗\"。",
+  ma_cap:"未披露",
+  tags:["投融资","专科医疗"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Cocos Capital获得3400万美元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Cocos Capital完成#1。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"EvolonAI宣布完成超千万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，EvolonAI完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Kardi Ai获得530万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Kardi Ai完成#2。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Lawfty获得战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Lawfty完成#11。属\"企业服务 > 法律服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","法律服务"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Maple AI获得530万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Maple AI完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Nidus获得3000万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Nidus完成#11。属\"机器人 > 工业机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","工业机器人"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"OpenVault获得2000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，OpenVault完成#13。属\"金融 > 金融信息化\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融信息化"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Plurai获得1300万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Plurai完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Revolv Space获得500万欧元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Revolv Space完成#2。属\"先进制造 > 航空航天\"。",
+  ma_cap:"未披露",
+  tags:["投融资","航空航天"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Toutix获得3000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Toutix完成#13。属\"体育运动 > 综合体育\"。",
+  ma_cap:"未披露",
+  tags:["投融资","综合体育"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"VectorY获得8350万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，VectorY完成#11。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Vero Security获得1100万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，Vero Security完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"coprod获得600万美元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，coprod完成#13。属\"机器人 > 机器人零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人零部件"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"上绍德芯完成首轮市场化融资，同步推进产业侧落地",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，上绍德芯完成#1。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"占一科技获得A轮融资，上海赛有科技投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，占一科技完成#2。属\"传统制造 > 轻工制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","轻工制造"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"原子芯光宣布完成超亿元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，原子芯光完成#1。属\"前沿科技 > 量子技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","量子技术"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"生研生命科学获得2000万美元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，生研生命科学完成#2。属\"医疗健康 > 制药\"。",
+  ma_cap:"未披露",
+  tags:["投融资","制药"]
+},
+{
+  t:"11月26日",
+  d:"2026-11-26",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"长坂科技完成新一轮融资，新泉机器人战略入股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-26 IT桔子披露，长坂机器人完成#11。属\"机器人 > 机器人零部件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人零部件"]
+},
+
 // ───────────── ChinaTalk（RSS） 2026-11-25 新增 ──────────────
 {
   t:"11月25日 09:00",
