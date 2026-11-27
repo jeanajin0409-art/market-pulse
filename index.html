@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月26日 · 星期四</div>
+    <div class="date">2026年11月27日 · 星期五</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>42 州总检察长介入 Character.AI 破产程序,反</strong>、<strong>黄仁勋回归后 Nvidia 仍面临 Megaspeed 芯片</strong>、<strong>Ed Zitron 分析 NVIDIA 董事会恢复黄仁勋 C</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Google 强制 AI Agent 走 Workspace</strong>、<strong>FT 报道 Nvidia 暂停向东南亚四国发运服务器</strong>、<strong>上下文漂移如何影响你的 AI Agent：470 项实验与一</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── Calif：Research（AI 漏洞研究） 2026-11-27 新增 ──────────────
+{
+  t:"11月27日 09:00",
+  d:"2026-11-27",
+  src:"Calif：Research（AI 漏洞研究）",
+  cat:"frontier",
+  regions:["亚太"],
+  score:76,
+  title:"OEMpocalypse Part 2：利用 Knox DualDAR 漏洞链 root Galaxy S23 与 S26 旗舰机",
+  url:"https://calif.io/research/oempocalypse-part-2",
+  sum:"研究者 Lukas Maar（Calif）披露两阶段漏洞链：Stage 1 是 DualDARComnService 的 confused deputy，使零权限应用在 duald 中执行原生代码；Stage 2 是 /dev/dd 内核驱动的 page UAF，经 pipe_buffer 获得任意物理读写并实现完全 root。编号 CVE-2026-21102 / SVE-2026-3092，起始应用为普通 untrusted_app 且「无需任何权限」，可绕过 SELinux、RKP/KDP 与 DEFEX；四台测试机（Galaxy S23 SM-S911B / Galaxy S26 的 EU、US、Ultra 三款）均从零权限应用拿到 root，Z Fold8 亦确认受影响。作者于 2026 年 6 月 17 日报告三星，两个漏洞分别在 8 月与 9 月版本修复。",
+  tags:["模型/技术","政策"]
+},
+{
+  t:"11月27日 09:00",
+  d:"2026-11-27",
+  src:"Google AI：DEV 作者专属（RSS）",
+  cat:"frontier",
+  regions:["全球"],
+  score:82,
+  title:"上下文漂移如何影响你的 AI Agent：470 项实验与一个免费的 MCP 解法",
+  url:"https://dev.to/googleai/how-context-drift-impacts-your-ai-agents-1iph",
+  sum:"作者在 Gemini 3.8 Flash 与 Gemini Pro 上跑 470 项任务，用植入 5 万 token 无关历史、重复规则、陈旧文档与直接矛盾来制造上下文漂移：5 万 token 无关历史与重复规则造成 0 次规则违规，但模型在 73% 的运行中于内部思考里明确发现来源分歧，用户端告警却是 0%；陈旧文档引用已改名函数时 15 次运行里有 9 次静默生成包装器让测试继续通过。解法是加只读工具 report_inconsistency，单独启用即在两次 Gemini 运行中记录到 98.7%（150/152 次）的冲突，思考 token 平均下降约 19%。",
+  tags:["模型/技术","产品"]
+},
+{
+  t:"11月27日 09:00",
+  d:"2026-11-27",
+  src:"Hacker News：AI 热帖",
+  cat:"ai",
+  regions:["全球"],
+  score:84,
+  title:"Google 强制 AI Agent 走 Workspace MCP 服务器，Gmail 服务器不能发邮件",
+  url:"https://techstackups.com/articles/google-workspace-ai-agents-mcp/",
+  sum:"Google 于 11 月 24 日把八个 Workspace MCP 服务器推向一般可用，并新增 Workspace AI Tools Addendum 条款：受 AI Agent、AI Harness 或模型驱动的 GWS Access Tool 必须调用 Google MCP，禁止隐藏 Agent 身份规避分类，违规可能被限制访问或暂停账号，2027 年 2 月 1 日生效；OAuth 客户端新增「用于 AI 智能体」勾选项，自 11 月 11 日起未声明者会被 MCP 服务器拒绝。MCP 侧每项目每产品每天有 5,000 次免费额度，Gmail 的 search_threads 与 list_drafts 各计 10 次，理论上限约每天 500 次搜索。",
+  tags:["产品","政策"]
+},
+{
+  t:"11月27日 09:00",
+  d:"2026-11-27",
+  src:"Pragmatic Engineer（RSS）",
+  cat:"minority",
+  regions:["全球"],
+  score:78,
+  title:"Anthropic 平台工程负责人谈 2026 年如何用 Claude 构建软件",
+  url:"https://newsletter.pragmaticengineer.com/p/how-anthropic-builds-software-in",
+  sum:"Anthropic 平台工程负责人 Katelyn Lesse 介绍内部实践：Claude 的 Messages API 原是 Python 单体，约 5 个月完成 Rust 重写，用 shadow traffic 对照旧实现逐步迭代到响应一致，工程师只仔细看了约 20% 的生成代码；所有 PR 都跑 Claude 分类器判断是否需要人工评审、需要几名评审、路由到哪个团队，机械或低风险变更可由 Claude 评审后合并部署，oncall 告警也先由 agent 分类真伪。组织侧：团队仍是 5–8 人的 two-pizza，晋升不再以项目完成时间衡量，改用节省的 CPU、降低的 latency、避免的 incident 数；因强力候选人在传统 coding interview 中失败，团队正逐步取消该环节，并试验与 coding agents 一起面试。",
+  tags:["投融资","产品"]
+},
+{
+  t:"11月27日 09:00",
+  d:"2026-11-27",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"bigtech",
+  regions:["亚太"],
+  score:82,
+  title:"FT 报道 Nvidia 暂停向东南亚四国发运服务器",
+  url:"https://x.com/rohanpaul_ai/status/2125847124600656142",
+  sum:"据 FT 报道，Nvidia 已通知 Dell、Supermicro 等制造伙伴停止向马来西亚、新加坡、泰国和印尼发运服务器，原因是美国要求这些国家及巴西的先进 AI 芯片需申请许可。此前中国 AI 实验室通过当地云厂商租用 Nvidia 算力绕开直接出口禁令，云厂商现有 90 天证明无受限用户但缺乏申请指引；Nvidia 2025 年经新加坡部门入账 1040 亿美元，同比增长 72%。",
+  tags:["政策","CAPEX"]
+},
+
+// ───────────── IT桔子 2026-11-27 新增 ──────────────
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"AidenAI获得3200万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，AidenAI完成#2。属\"人工智能 > AI行业应用\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI行业应用"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Alta Finance获得4750万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Alta Finance完成#2。属\"区块链 > 区块链基础设施\"。",
+  ma_cap:"未披露",
+  tags:["投融资","区块链基础设施"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Blackletter获得600万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Blackletter完成#13。属\"企业服务 > 法律服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","法律服务"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Dreeze获得330万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Dreeze完成#13。属\"企业服务 > 云服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","云服务"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Good Protein获得1.28亿加元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Good Protein完成#2。属\"电商零售 > 食品饮料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","食品饮料"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"ILS获得1100万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，ILS完成#2。属\"企业服务 > 法律服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","法律服务"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Pai Defence获得500万美元天使前轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Pai Defence完成#1。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Reversa获得75万欧元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Reversa完成#1。属\"企业服务 > 法律服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","法律服务"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"SenseNet获得4300万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，SenseNet完成#3。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Sequent获得220万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Sequent完成#13。属\"人工智能 > AI技术层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI技术层"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Sparetech获得2000万美元B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Sparetech完成#3。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Trustly获得6000万美元战略投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Trustly完成#11。属\"金融 > 金融综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","金融综合服务"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Zipher获得5300万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，Zipher完成#2。属\"企业服务 > 数据服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数据服务"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"中旅港澳以介绍形式挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，中旅港澳完成#8。属\"旅游 > 旅游综合服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","旅游综合服务"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"华庄科技新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，华庄科技完成#18。属\"先进制造 > 电子设备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","电子设备"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"博登智能获得数亿人民币B轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，博登智能完成#3。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"夏仙创新连续完成三轮数千万元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，夏仙创新完成#1。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"奇点光子获得2180万美元A轮投资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，奇点光子PhotonicX AI完成#2。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"迅芯微新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，迅芯微完成#18。属\"先进制造 > 集成电路\"。",
+  ma_cap:"未披露",
+  tags:["投融资","集成电路"]
+},
+{
+  t:"11月27日",
+  d:"2026-11-27",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"闪科光联获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-27 IT桔子披露，闪科光联完成#1。属\"先进制造 > 光学光电\"。",
+  ma_cap:"未披露",
+  tags:["投融资","光学光电"]
+},
+
 // ───────────── TechCrunch：AI（RSS） 2026-11-26 新增 ──────────────
 {
   t:"11月26日 09:00",
