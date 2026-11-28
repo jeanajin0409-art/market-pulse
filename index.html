@@ -113,7 +113,7 @@
   <div class="nav">
     <button class="menu-btn" id="menuBtn" aria-label="打开筛选">☰</button>
     <div class="logo">Deal<span>HOT</span></div>
-    <div class="date">2026年11月27日 · 星期五</div>
+    <div class="date">2026年11月28日 · 星期六</div>
     <a class="nav-link" href="archive/">往期</a>
     <div class="spacer"></div>
     <input class="search" id="q" type="search" placeholder="搜索标题 / 摘要 / 标签…">
@@ -159,7 +159,7 @@
   <main>
     <div class="lead">
       <h1>今日导读</h1>
-      <p>今日新增 3 条。<strong>Google 强制 AI Agent 走 Workspace</strong>、<strong>FT 报道 Nvidia 暂停向东南亚四国发运服务器</strong>、<strong>上下文漂移如何影响你的 AI Agent：470 项实验与一</strong> 等。</p>
+      <p>今日新增 3 条。<strong>Dragos 调查称 MiniMax 在用户请求不存储的情况</strong>、<strong>爱科赛博：拟募资不超6.5亿元</strong>、<strong>索塔无界完成数千万元天使轮融资</strong> 等。</p>
     </div>
     <div class="feed-head">
       <div class="sort-toggle">
@@ -185,6 +185,330 @@
 // cat: minority | ma | ipo | bigtech | ai
 // regions: 中国 美国 亚太 中东 巴西 欧洲 全球
 const ITEMS = [
+// ───────────── MiniMax：Blog（网页） 2026-11-28 新增 ──────────────
+{
+  t:"11月28日 09:00",
+  d:"2026-11-28",
+  src:"MiniMax：Blog（网页）",
+  cat:"ai",
+  regions:["中国"],
+  score:78,
+  title:"MiniMax 推出 H3 Family：旗舰与扩展视频图像模型",
+  url:"https://www.minimax.io/blog/minimax-h3-family",
+  sum:"MiniMax 于 11 月 26 日发布 H3 Family：旗舰视频模型 MiniMax H3 支持 2K 或 768P、起价每秒 0.08 美元；H3-Highspeed 最长 30 秒、5 秒片段平均约 11 秒生成，起价每秒 0.04 美元；H3-Lite 在部分硬件上 5 秒 768P 约 8 秒生成，起价每秒 0.025 美元。图像侧 H3-Image 支持最多 16 张参考图、每百万 token 3.80 美元，H3-Image Highspeed 达 4K、最快 10 秒内、每百万 token 7.60 美元。H3 开源后 100 天内衍生模型 1,472 个、下载量超 1.48 亿次（平均每秒超 17 次）。",
+  tags:["模型/技术","ARR/商业化"]
+},
+{
+  t:"11月28日 09:00",
+  d:"2026-11-28",
+  src:"X：Ado Kukic（Anthropic 开发者关系，Claude Code）",
+  cat:"frontier",
+  regions:["美国"],
+  score:74,
+  title:"Karpathy 用 Claude Code 和 Opus 5.5 把美国真实数据做成文明风格游戏地图",
+  url:"https://x.com/adocomplete/status/2125994186252161315",
+  sum:"Karpathy 分享用 Claude Code 桌面版加 Opus 5.5（开启 ultracode）构建的美国文明风格游戏地图：7 小时生成 4.5 万行代码，整合 Census、BEA、BLS、EIA、NOAA 等 31 个真实数据源，统一到 25 公里六边形网格；GDP 映射为金产量、城市按真实产业分化，含 19 个视图、524 个都市的 City View 与覆盖 3,100 多个县的 Explorer，已部署在 karpathy.ai/usaciv/。",
+  tags:["模型/技术","产品"]
+},
+{
+  t:"11月28日 09:00",
+  d:"2026-11-28",
+  src:"X：Philipp Schmid（Google DeepMind 开发者体验）",
+  cat:"ai",
+  regions:["全球"],
+  score:72,
+  title:"Philipp Schmid 撰文解释为何在 Skills 与 CLI 兴起后仍更看好 MCP",
+  url:"https://x.com/_philschmid/status/2125945282072297794",
+  sum:"Philipp Schmid 撰文称，即便 Skills 与 CLI 正在流行，他仍更看好 MCP：Linear 与 Notion 的 agent 每周创建约 240 万条 issue 与页面，Atlassian 每天 MCP 工具调用超 500 万次、其中 44% 的用户来自软件团队之外，Notion 报告 MCP 流量增长 60 倍。",
+  tags:["产品","模型/技术"]
+},
+{
+  t:"11月28日 09:00",
+  d:"2026-11-28",
+  src:"X：Rohan Paul (@rohanpaul_ai)",
+  cat:"ai",
+  regions:["全球"],
+  score:84,
+  title:"Dragos 调查称 MiniMax 在用户请求不存储的情况下仍打开提示词中的私有链接",
+  url:"https://x.com/rohanpaul_ai/status/2126214860421914884",
+  sum:"据美国安全公司 Dragos 调查，MiniMax 会收集并打开用户提示词中的私有链接，即使用户明确要求不存储数据。",
+  tags:["政策","产品"]
+},
+{
+  t:"11月28日 09:00",
+  d:"2026-11-28",
+  src:"公众号：数字生命卡兹克",
+  cat:"minority",
+  regions:["中国"],
+  score:70,
+  title:"实测支付宝 SkillPay：手把手教你怎么把 Skill 挂上去卖钱",
+  url:"https://mp.weixin.qq.com/s/x7Yt237NPL-sLvkUJlwESw",
+  sum:"作者完整实测支付宝 SkillPay 平台的 Skill 变现流程：该平台 7 月上线，支持买断与订阅两种售卖模式——买断制把 Skill 完整内容交付本地，订阅制把 Skill 保留在云端沙盒中、Agent 看不到明文。买断定价 0.01–50 元，订阅按周/月/季度收费、上限 50 元，免费试用最低 5 次。",
+  tags:["投融资","产品"]
+},
+
+// ───────────── IT桔子 2026-11-28 新增 ──────────────
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Altair获得1亿美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Altair完成#2。属\"先进制造 > 通信制造\"。",
+  ma_cap:"未披露",
+  tags:["投融资","通信制造"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"minority",
+  regions:["中国"],
+  score:80,
+  title:"Finnable获得40.5亿卢比C轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Finnable完成#4。属\"金融 > 借贷\"。",
+  ma_cap:"未披露",
+  tags:["投融资","借贷"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Index Industries获得5000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Index Industries完成#13。属\"区块链 > 数字货币\"。",
+  ma_cap:"未披露",
+  tags:["投融资","数字货币"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"LexDo.it获得Pre-A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，LexDo.it完成#12。属\"企业服务 > 财税服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","财税服务"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"LiblibAI完成新一轮近2亿美元融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，LiblibAI完成#16。属\"人工智能 > AIGC\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AIGC"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Lute获得2000万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Lute完成#13。属\"机器人 > 特种机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","特种机器人"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Mosaic Intelligence获得4700万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Mosaic Intelligence完成#13。属\"医疗健康 > 医疗器械\"。",
+  ma_cap:"未披露",
+  tags:["投融资","医疗器械"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Permut获得300万欧元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Permut完成#13。属\"企业服务 > 客户服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","客户服务"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Project Omega获得8000万美元A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Project Omega完成#2。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Sumary获得2500万美元种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Sumary完成#13。属\"企业服务 > 财税服务\"。",
+  ma_cap:"未披露",
+  tags:["投融资","财税服务"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"Switchpoint Bio获得530万美元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Switchpoint Bio完成#13。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"Valkyrie Dynamics获得100万欧元Pre-种子轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，Valkyrie Dynamics完成#13。属\"先进制造 > 国防军工\"。",
+  ma_cap:"未披露",
+  tags:["投融资","国防军工"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"卓微制造获得天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，卓微制造完成#1。属\"先进制造 > 新材料\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新材料"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"大衍科技获得数千万人民币Pre-A轮融资，赛伯乐投资领投，浙江创新投资、浙里信、浙商创投、普华资本、松禾资本、万联天泽参投",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，大衍科技完成#12。属\"人工智能 > AI基础层\"。",
+  ma_cap:"未披露",
+  tags:["投融资","AI基础层"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"宝优际新三板挂牌上市",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，宝优际完成#18。属\"先进制造 > 新能源\"。",
+  ma_cap:"未披露",
+  tags:["投融资","新能源"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"爱科赛博：拟募资不超6.5亿元",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，爱科赛博完成#17。属\"先进制造 > 智能装备\"。",
+  ma_cap:"未披露",
+  tags:["投融资","智能装备"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"索塔无界完成数千万元天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，索塔无界完成#1。属\"机器人 > 机器人软件\"。",
+  ma_cap:"未披露",
+  tags:["投融资","机器人软件"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"袁记食品拟全球发售1631.23万股 11月27日起招股",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，袁记食品完成#23。属\"本地生活 > 餐饮业\"。",
+  ma_cap:"未披露",
+  tags:["投融资","餐饮业"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"bigtech",
+  regions:["中国"],
+  score:80,
+  title:"赛存生物获得数千万人民币A轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，赛存生物完成#2。属\"医疗健康 > 生物技术\"。",
+  ma_cap:"未披露",
+  tags:["投融资","生物技术"]
+},
+{
+  t:"11月28日",
+  d:"2026-11-28",
+  src:"IT桔子",
+  cat:"frontier",
+  regions:["中国"],
+  score:80,
+  title:"跃灵智伴获得数千万人民币天使轮融资",
+  url:"https://www.itjuzi.com/",
+  sum:"2026-11-28 IT桔子披露，跃灵智伴完成#1。属\"机器人 > 服务机器人\"。",
+  ma_cap:"未披露",
+  tags:["投融资","服务机器人"]
+},
+
 // ───────────── Calif：Research（AI 漏洞研究） 2026-11-27 新增 ──────────────
 {
   t:"11月27日 09:00",
